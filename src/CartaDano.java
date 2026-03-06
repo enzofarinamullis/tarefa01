@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // dinâmica de ataque:
 // 1-Declara o ataque
 // 2-roda d20 + bonus
@@ -5,12 +6,15 @@
 //obs: só pode um ataque por turno
 
 class Carta_de_dano{
+=======
+public class CartaDano{
+>>>>>>> refs/remotes/origin/main
   public String nome;
   public int custo_de_energia;
   public int forca;
   //public String efeito;
 
-  public Carta_de_dano(String nome, int custo_de_energia) {
+  public CartaDano(String nome, int custo_de_energia) {
     this.nome = nome;
     this.custo_de_energia = custo_de_energia;
     this.forca = forca;

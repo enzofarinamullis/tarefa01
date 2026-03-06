@@ -1,4 +1,4 @@
-class Inimigo {
+public class Inimigo {
   public String nome;
   public int vida;
   public int escudo;
