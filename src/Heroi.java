@@ -55,9 +55,9 @@ public class Heroi{
     else{
       System.out.println(nome + "não está vivo!");
       return false;
-    }
+    } 
   }
-
+  
   void status(){
     System.out.println("Status do" + nome + ":");
     System.out.println("Vida: " + vida);
