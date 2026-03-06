@@ -21,10 +21,13 @@ public class CartaDano{
     this.efeito = efeito;
   }
 
-  public void usar_a_carta(String nome, int custo_de_energia, int for
-
+  public void usar_a_carta(String nome, int custo_de_energia, int forca){
+    
 
   }
+
+
+  
 
 
 }
