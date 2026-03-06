@@ -22,7 +22,10 @@ class CartaDano{
 
   }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/main
   public void usar(Inimigo inimigo){
     inimigo.receberDano(this.dano);
   }
