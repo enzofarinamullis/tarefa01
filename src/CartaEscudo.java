@@ -16,7 +16,6 @@ public class CartaEscudo{
 
   public void usar(Heroi heroi){
 
-
     heroi.ganharEscudo(this.escudo);
   }
 }
