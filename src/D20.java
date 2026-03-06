@@ -10,26 +10,26 @@ public class D20 {
 
   /* Métodos */
 
-  public int rolar_dado(){
+  public int rolarDado(){
     int resultado = aleatorio.nextInt();
     return resultado;
   }
 
-  public int rolar_com_vantagem() {
-    int dado_1 = rolar_dado();
-    int dado_2 = rolar_dado();
+  public int rolarVantagem() {
+    int dado_1 = rolarDado();
+    int dado_2 = rolarDado();
     int resultado = Math.max(dado_1, dado_2);
     return resultado;
   }
 
-  public int rolar_com_desvantagem() {
-    int dado_1 = rolar_dado();
-    int dado_2 = rolar_dado();
+  public int rolarDesvantagem() {
+    int dado_1 = rolarDado();
+    int dado_2 = rolarDado();
     int resultado = Math.min(dado_1, dado_2);
     return resultado;
   }
   public boolean teste(int dificuldade) {
-    return rolar_dado()>= dificuldade;
+    return rolarDado()>= dificuldade;
   }
 
   public void critico(int resultado) {

@@ -18,14 +18,8 @@ public class CartaDano{
     this.custoEnergia = custoEnergia;
   }
 
-<<<<<<< HEAD
-  public void usar_a_carta(String nome, int custo_de_energia, int forca){
-    
-
-=======
   public void usar(Inimigo inimigo){
     inimigo.receberDano(this.dano);
->>>>>>> refs/remotes/origin/main
   }
 
 
