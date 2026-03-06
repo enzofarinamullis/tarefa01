@@ -1,4 +1,4 @@
-class Heroi{
+public class Heroi{
   /* Atributos */
   public String nome;
   public int vida;

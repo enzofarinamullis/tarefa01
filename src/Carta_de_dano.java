@@ -1,4 +1,4 @@
-class Carta_de_dano{
+public class Carta_de_dano{
   public String nome;
   int custo_de_energia;
 
