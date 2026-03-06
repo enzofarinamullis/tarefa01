@@ -48,9 +48,9 @@ class D20 {
 
 class Heroi {
     //Atributos
-    public   String nome;
+    public String nome;
     public int vida;
-    public   int escudo;
+    public int escudo;
 
     //construtor:
     public Heroi(String nome, int vida, int escudo) {
