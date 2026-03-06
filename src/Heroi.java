@@ -58,6 +58,10 @@ public class Heroi{
     } 
   }
   
+  public boolean temEnergia(inr energiaCarta) {
+    return energia >= energiaCarta;
+  }
+
   void status(){
     System.out.println("Status do" + nome + ":");
     System.out.println("Vida: " + vida);

@@ -14,20 +14,18 @@ class CartaDano{
     this.custoEnergia = custoEnergia;
     this.forca = forca;
   }
-  public boolean temEnergia(Heroi heroi, int custoCarta){
-    return energiaHeroi >= custoCarta;
+  
+
+  public int calcularDano( D20 d20) {
+    
+
   }
 
-  public void calcularDano() {
-
-  }
-
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/main
-  public void usar(Inimigo inimigo){
-    inimigo.receberDano(this.dano);
+  public void usar(Inimigo inimigo, Heroi heroi){
+    if (heroi.temEnergia(custoEnergia)) {
+      inimigo.receberDano();  
+    }
+    
   }
 
 
