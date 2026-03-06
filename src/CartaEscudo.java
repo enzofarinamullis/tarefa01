@@ -11,5 +11,6 @@ public class CartaEscudo{
 
   /* Métodos */
   public void usar(Heroi heroi){
+    heroi.ganharEscudo(this.escudo);
   }
 }
