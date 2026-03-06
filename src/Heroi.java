@@ -15,7 +15,7 @@ public class Heroi{
     this.energia = energia;
   }
 
-  void recebe_dano(int dano){
+  void receberDano(int dano){
       
     if(escudo > 0) {
       int dano_no_escudo = Math.min(escudo, dano);
@@ -37,17 +37,17 @@ public class Heroi{
       
   }
 
-  void ganha_escudo(int bonus_de_escudo) {
-    System.out.println(nome + "ganhou" + bonus_de_escudo + "de escudo.");
-    escudo += bonus_de_escudo;
+  void ganharEscudo(int bonusDeEscudo) {
+    System.out.println(nome + "ganhou" + bonusDeEscudo + "de escudo.");
+    escudo += bonusDeEscudo;
   }
 
-  void ganha_vida(int bonus_de_vida) {
-    System.out.println(nome + "ganhou" + bonus_de_vida + "de vida.");
-    vida += bonus_de_vida;
+  void ganharVida(int bonusDeVida) {
+    System.out.println(nome + "ganhou" + bonusDeVida + "de vida.");
+    vida += bonusDeVida;
   }
 
-  Boolean esta_vivo() {
+  Boolean estaVivo() {
     if (vida > 0) {
       System.out.println(nome + "está vivo!");
       return true;
