@@ -11,7 +11,7 @@ public class Inimigo {
     this.escudo = escudo;
   }
 
-  void recebe_dano(int dano) {
+  void receberDano(int dano) {
         
     if (escudo > 0){
       int dano_no_escudo = Math.min(escudo, dano);
@@ -34,11 +34,11 @@ public class Inimigo {
     System.out.println(nome + "ataca" + heroi.nome + "!");
     System.out.println("Força do ataque:" + forca_do_ataque + "PF");
     if (forca_do_ataque > 0) {
-      heroi.recebe_dano(forca_do_ataque);
+      heroi.receberDano(forca_do_ataque);
     }
   }
 
-  Boolean esta_vivo() {
+  Boolean estaVivo() {
     if (vida > 0) {
       System.out.println(nome + "está vivo!");
       return true;
