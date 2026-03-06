@@ -4,13 +4,15 @@ public class Heroi{
   public int vida;
   public int escudo;
   public int dano;
+  public int energia;
 
   /* Construtor */
-  public Heroi(String nome, int vida, int escudo, int dano) {
+  public Heroi(String nome, int vida, int escudo, int dano, int energia) {
     this.nome = nome;
     this.vida = vida;
     this.escudo = escudo;
     this.dano = dano;
+    this.energia = energia;
   }
 
   void recebe_dano(int dano){
