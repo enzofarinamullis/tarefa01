@@ -1,8 +1,8 @@
-public class Carta_de_dano{
+public class CartaDano{
   public String nome;
   int custo_de_energia;
 
-  public Carta_de_dano(String nome, int custo_de_energia) {
+  public CartaDano(String nome, int custo_de_energia) {
     this.nome = nome;
     this.custo_de_energia = custo_de_energia;
   }
