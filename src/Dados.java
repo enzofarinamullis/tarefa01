@@ -7,9 +7,11 @@ public class Dados {
   // onde cada inimigo sera um elemento da lista!
   Heroi heroi;
   int qntInimigos;
+  int frame;
 
   public Dados(Heroi heroi, int qntInimigos){
     this.heroi = heroi;
     this.qntInimigos = qntInimigos;
+    this.frame = 0;
   }
 }

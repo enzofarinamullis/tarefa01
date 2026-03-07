@@ -13,8 +13,8 @@ public class WindowManager{
     }
   }
 
-  public void trocarCena(Cena cenaProx){
+  public void trocarCena(Cena atual, Cena cenaProx){
     limpaTerminal();
-    this.cenaAtual = cenaProx;
+    cenaAtual = cenaProx;
   }
 }

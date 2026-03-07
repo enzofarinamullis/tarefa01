@@ -12,9 +12,9 @@ public class CenaInicial extends Cena {
   public void carregaCena(){
 
     /* Lemos o nome do Heroi */
-    Scanner teclado = new Scanner(System.in);
+    this.leitor = new Scanner(System.in);
     System.out.println("Escolha seu nome de herói: ");
-    String nome = teclado.nextLine();
+    String nome = this.leitor.nextLine();
 
     /* Como o Heroi ja foi inicializado na Main */
     /* podemos, agora, salvar o seu nome */
