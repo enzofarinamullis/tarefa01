@@ -58,7 +58,7 @@ public class Heroi{
     } 
   }
   
-  public boolean temEnergia(inr energiaCarta) {
+  public boolean temEnergia(int energiaCarta) {
     return energia >= energiaCarta;
   }
 
