@@ -17,8 +17,6 @@ class CartaDano{
   
 
   public int calcularDano( D20 d20) {
-    
-
   }
 
   public void usar(Inimigo inimigo, Heroi heroi){
