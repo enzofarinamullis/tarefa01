@@ -3,15 +3,13 @@ public class Heroi{
   public String nome;
   public int vida;
   public int escudo;
-  public int dano;
   public int energia;
 
   /* Construtor */
-  public Heroi(String nome, int vida, int escudo, int dano, int energia) {
+  public Heroi(String nome, int vida, int escudo, int energia) {
     this.nome = nome;
     this.vida = vida;
     this.escudo = escudo;
-    this.dano = dano;
     this.energia = energia;
   }
 
@@ -58,7 +56,7 @@ public class Heroi{
     } 
   }
   
-  public boolean temEnergia(inr energiaCarta) {
+  public boolean temEnergia(int energiaCarta) {
     return energia >= energiaCarta;
   }
 
