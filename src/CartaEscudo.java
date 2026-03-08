@@ -15,7 +15,7 @@ public class CartaEscudo{
   }
 
   public void usar(Heroi heroi){
-    if(heroi.temEnergia(this.custoEnergia)){{
+    if(heroi.temEnergia(this.custoEnergia)){
       heroi.ganharEscudo(this.escudo);
     }
   }

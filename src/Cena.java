@@ -26,4 +26,9 @@ public class Cena {
 
   /* Unload sera feito pelo proprio Java */
   
+  public void limpaTerminal(){
+    for(int i = 0; i < 100; i++){
+      System.out.println("\n");
+    }
+  }
 }

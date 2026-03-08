@@ -17,7 +17,7 @@ public class Main {
 
 
     /* Inicializamos nosso Heroi com atributos iniciais, mas o nome vazio */
-    Heroi heroi = new Heroi(null, 20, 10, 1, 10); // aqui ainda esta o dano ( retirar mais tarde )
+    Heroi heroi = new Heroi(null, 20, 10,  10); // aqui ainda esta o dano ( retirar mais tarde )
                                                                                   // dano estara nas cartas
 
     /* Inicializamos nossos Dados vazio */
@@ -34,15 +34,6 @@ public class Main {
     /* so para efeitos de teste */
     cena.atualizaCena(); // amanha irei implementar a sistema de FramesPerSeconds para que o 
                          // nosso jogo tenha atualizacoes constantes
-    
-    /* carregamos a Cena de Introducao */
-
-    cena = new AnimacaoPortaAbrindo(dados);
-
-    cena.carregaCena();
-    cena.atualizaCena();
-    cena.atualizaCena();
-    cena.atualizaCena();
     
   }
 
