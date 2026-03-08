@@ -1,10 +1,11 @@
 public class CartaEscudo{
   /* Atributos */
+  public String nome;
   public int escudo;
   public int custoEnergia;
 
   /* Construtor */
-  public CartaEscudo(int escudo, int custoEnergia){
+  public CartaEscudo(String nome, int escudo, int custoEnergia){
     this.escudo = escudo;
     this.custoEnergia = custoEnergia;
   }

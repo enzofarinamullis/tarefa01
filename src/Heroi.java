@@ -5,6 +5,7 @@ public class Heroi{
   public int escudo;
   public int energia;
 
+
   /* Construtor */
   public Heroi(String nome, int vida, int escudo, int energia) {
     this.nome = nome;

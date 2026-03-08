@@ -34,7 +34,9 @@ public class Main {
     /* so para efeitos de teste */
     cena.atualizaCena(); // amanha irei implementar a sistema de FramesPerSeconds para que o 
                          // nosso jogo tenha atualizacoes constantes
-    
+    cena = new CenaSlime(dados);
+    cena.carregaCena();
+    cena.atualizaCena();
   }
 
   /* Explicarei melhor tudo pessoalmente, mas basicamente, nao faremos a "jogatina" na main */
