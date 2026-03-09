@@ -3,6 +3,6 @@ public class EscudoPequeno extends CartaEscudo{
     /* valores */
     int valorEscudoPequeno = 5;
     int energiaEscudoPequeno = 2;
-    super(valorEscudoPequeno, energiaEscudoPequeno);
+    super("Escudo Pequeno", valorEscudoPequeno, energiaEscudoPequeno);
   }
 }

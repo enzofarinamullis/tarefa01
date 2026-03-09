@@ -4,6 +4,8 @@ public class Heroi{
   public int vida;
   public int escudo;
   public int energia;
+  DequeCartas dequeEscudo;
+  DequeCartas dequeDano;
 
 
   /* Construtor */
@@ -12,10 +14,11 @@ public class Heroi{
     this.vida = vida;
     this.escudo = escudo;
     this.energia = energia;
+    this.dequeEscudo = new DequeCartas("ESCUDO");
+    this.dequeDano = new DequeCartas("DANO");
   }
 
   void receberDano(int dano){
-      
     if(escudo > 0) {
       int dano_no_escudo = Math.min(escudo, dano);
       escudo -= dano_no_escudo;

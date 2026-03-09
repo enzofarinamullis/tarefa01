@@ -5,10 +5,11 @@ public class Inimigo {
   public int dano;
 
   /* Construtor */
-  public Inimigo(String nome, int vida, int escudo) {
+  public Inimigo(String nome, int vida, int escudo, int dano) {
     this.nome = nome;
     this.vida = vida;
     this.escudo = escudo;
+    this.dano = dano;
   }
 
   void receberDano(int dano) {

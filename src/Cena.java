@@ -13,7 +13,7 @@ public class Cena {
     this.nome = nome;
     this.dados = dados;
     this.frame = 0;
-
+    
     this.file = null;
     this.leitor = null;
   }

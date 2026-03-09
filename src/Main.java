@@ -21,7 +21,8 @@ public class Main {
                                                                                   // dano estara nas cartas
 
     /* Inicializamos nossos Dados vazio */
-    Dados dados = new Dados(heroi, 0);
+    Dados dados = new Dados(heroi);
+
     /* Inicializamos nossa cena como sendo a CenaInicial */
     Cena cena = new CenaInicial(dados); // estou usando heranca para as cenas
     

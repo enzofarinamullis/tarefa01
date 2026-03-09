@@ -6,12 +6,12 @@ public class Dados {
   // para adicionar os inimigos, podemos trabalhar com uma lista!
   // onde cada inimigo sera um elemento da lista!
   Heroi heroi;
-  int qntInimigos;
+  ListaInimigos listaInimigos;
   int frame;
 
-  public Dados(Heroi heroi, int qntInimigos){
+  public Dados(Heroi heroi){
     this.heroi = heroi;
-    this.qntInimigos = qntInimigos;
+    this.listaInimigos = null;
     this.frame = 0;
   }
 }

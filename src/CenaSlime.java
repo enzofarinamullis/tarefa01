@@ -5,20 +5,24 @@ import java.io.FileNotFoundException;
 public class CenaSlime extends Cena{
   public CenaSlime(Dados dados) {
     super("Inimigo: Slime", dados);
-    this.dados.qntInimigos = 1;
+    this.dados.listaInimigos = new ListaInimigos();
+    Inimigo slime = new Inimigo("Slime Selvagem", 5, 10, 1);
+    dados.listaInimigos.adicionarInimigo(slime);
   }
 
  /* Carregamento da Cena */
   @Override
   public void carregaCena(){
     /* mostramos o caminho para a animacao */
-    this.file = new File("AnimacaoSlime.txt");
+    this.file = new File("animacoes/AnimacaoSlime.txt");
     /* Fazemos a tentativa de ler o arquivo */
     try{
       this.leitor = new Scanner(file);
+      System.out.println("Você encontrou inimigos! Cuidado!\n");
+      dados.listaInimigos.mostrarInimigos(); // mostramos quais inimigos estao na tela!
     }
     catch(FileNotFoundException e){
-      System.out.println("Erro arquivo não encontrado");
+      System.out.println("Erro arquivo não encontrado!\n");
     } 
   }
 
@@ -40,4 +44,6 @@ public class CenaSlime extends Cena{
       this.dados.frame++;
     }
   }
+
+
 } 

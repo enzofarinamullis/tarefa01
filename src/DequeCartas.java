@@ -75,4 +75,23 @@ public class DequeCartas {
       noMovel = noMovel.prox;
     }
   }
+
+  public void mostrarCartaDano(){
+    NoCartas noMovel = no;
+    CartaDano carta;
+    for(int i = 0; i < qntCartas; i++){
+      carta = noMovel.cartaDano;
+      System.out.println(carta.nome + ": DMG: " + carta.forca + " ENG: " + carta.custoEnergia);
+      noMovel = noMovel.prox;
+    }
+  }
+
+  public CartaDano selecionarCartaDano(int numero){
+    NoCartas noMovel = this.no;
+    int indice = numero - 1;
+    for(int i = 0; i < indice; i++){
+      noMovel = no.prox;
+    }
+    return noMovel.cartaDano; 
+  }
 }

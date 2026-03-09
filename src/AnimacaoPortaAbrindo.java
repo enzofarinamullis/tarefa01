@@ -17,7 +17,7 @@ public class AnimacaoPortaAbrindo extends Cena {
   @Override
   public void carregaCena(){
     /* mostramos o caminho para a animacao */
-    this.file = new File("AnimacaoPortaAbrindo.txt");
+    this.file = new File("animacoes/AnimacaoPortaAbrindo.txt");
     /* Fazemos a tentativa de ler o arquivo */
     try{
       this.leitor = new Scanner(file);
