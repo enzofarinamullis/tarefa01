@@ -81,7 +81,7 @@ public class DequeCartas {
     CartaDano carta;
     for(int i = 0; i < qntCartas; i++){
       carta = noMovel.cartaDano;
-      System.out.println(carta.nome + ": DMG: " + carta.forca + " ENG: " + carta.custoEnergia);
+      System.out.println(carta.nome + ": DMG: " + carta.nivel + " ENG: " + carta.custoEnergia);
       noMovel = noMovel.prox;
     }
   }

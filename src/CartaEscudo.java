@@ -10,14 +10,13 @@ public class CartaEscudo{
     this.custoEnergia = custoEnergia;
   }
 
-  /* Métodos */
-  public void calcularEscudo(D20 d20){
-    this.escudo = this.escudo + d20.rolarDado();
-  }
-
   public void usar(Heroi heroi){
     if(heroi.temEnergia(this.custoEnergia)){
       heroi.ganharEscudo(this.escudo);
+      System.out.println("O " + heroi.nome + " ganhou" + escudo + "de escudo.");
+    }
+    else {
+      System.out.println("Não há energia o suficiente!");
     }
   }
 }
