@@ -1,10 +1,10 @@
 import java.util.Random;
 
-public class D20 {
+public class Precisao {
   private Random aleatorio;
 
   /* Construtor */
-  public D20(){
+  public Precisao(){
     this.aleatorio = new Random();
   }
 
@@ -12,29 +12,27 @@ public class D20 {
    
   public int rolarDado(){
     int resultado = aleatorio.nextInt();
-    for(int i = 0; i < 100; i++){
-      System.out.println("Rolando D20:\n");
-      System.out.println(rolarDado());
+      System.out.println("Rolando D20 de precisão:");
+      System.out.println(resultado);
       
-    }
     return resultado;
   }
 
   public int rolarVantagem() {
-    for(int i = 0; i < 100; i++){
-      System.out.println("Rolando D20 com vantagem:\n");
-      System.out.println(rolarDado());
-    }
+    System.out.println("Rolando D20 de precisão com vantagem:");
     int dado_1 = rolarDado();
     int dado_2 = rolarDado();
     int resultado = Math.max(dado_1, dado_2);
+    System.out.println(resultado);
     return resultado;
   }
 
   public int rolarDesvantagem() {
+    System.out.println("Rolando D20 de precisão com desvantagem:");
     int dado_1 = rolarDado();
     int dado_2 = rolarDado();
     int resultado = Math.min(dado_1, dado_2);
+    System.out.println(resultado);
     return resultado;
   }
   public boolean teste(int dificuldade) {
@@ -48,5 +46,5 @@ public class D20 {
     else if (resultado == 1) {
       System.out.println("Erro crítico");
     }
-  }
+  } 
 }

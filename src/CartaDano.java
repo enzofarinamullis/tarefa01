@@ -1,4 +1,4 @@
-// dinâmica de ataque:
+// dinâmica de ataque
 // 1-Declara o ataque
 // 2-roda d20 + bonus
 // 3-se romper o escudo é aplicado o efeito
