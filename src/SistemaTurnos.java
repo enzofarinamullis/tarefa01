@@ -1,18 +1,19 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class SistemaTurnos {
   Dados dados;
   Scanner teclado;
   int heroiAgiu;
   int inimigoAgiu;
-  int random
+  Random random;
 
   public SistemaTurnos(Dados dados){
     this.dados = dados;
     this.heroiAgiu = 0;
     this.inimigoAgiu = 0;
     this.teclado = new Scanner(System.in);
-    this.random = 0;
+    this.random = new Random();
   }
 
   public void printAcoes(){
@@ -31,8 +32,9 @@ public class SistemaTurnos {
     int comando;
     CartaDano cartaDano;
     CartaEscudo cartaEscudo;
-    int numero = 0;
+    int indiceRand = 0;
     int inimigosMortos = 0;
+    Inimigo inimigo;
     while(true){
 
       heroiAgiu = 0;
@@ -75,7 +77,7 @@ public class SistemaTurnos {
         }
         
         /* buscamos o inimigo */
-        Inimigo inimigo = this.dados.listaInimigos.buscarInimigo(numero);
+        inimigo = this.dados.listaInimigos.buscarInimigo(comando);
         /* aplicamos o dano ao inimigo */
         cartaDano.usar(inimigo, dados.heroi);
 
@@ -108,8 +110,14 @@ public class SistemaTurnos {
       }
 
       /* turno inimigo */
+      /* queremos um inimigo random atacar o heroi */
       System.out.println("Turno dos Inimigos");
+      indiceRand = random.nextInt(dados.listaInimigos.qntInimigos);
+      /* inimigo que for atacar estar na posicao indiceRand */
+      inimigo = dados.listaInimigos.buscarInimigo(indiceRand);
+      inimigo.atacar(dados.heroi);
       
+      inimigoAgiu = 1;
     }
 
     

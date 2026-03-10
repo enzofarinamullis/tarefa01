@@ -31,11 +31,11 @@ public class Inimigo {
     }
   }
 
-  void atacar(int forca_do_ataque, Heroi heroi) {
+  void atacar(Heroi heroi) {
     System.out.println(nome + "ataca" + heroi.nome + "!");
-    System.out.println("Força do ataque:" + forca_do_ataque + "PF");
-    if (forca_do_ataque > 0) {
-      heroi.receberDano(forca_do_ataque);
+    System.out.println("Força do ataque:" + dano + "PF");
+    if (dano > 0) {
+      heroi.receberDano(dano);
     }
   }
 

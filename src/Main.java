@@ -26,9 +26,6 @@ public class Main {
     /* Inicializamos nossa cena como sendo a CenaInicial */
     Cena cena = new CenaInicial(dados); // estou usando heranca para as cenas
     
-    /* Inicializamos nosso windowManager */
-    WindowManager windowManager = new WindowManager(cena);
-    
     /* Carregamos nossa cena inicial */
     cena.carregaCena();
 
@@ -39,9 +36,9 @@ public class Main {
     //cena.carregaCena();
     //cena.atualizaCena();
 
-    cena = new HistoriaInicial(dados);
-    cena.carregaCena();
-    cena.atualizaCena();
+    //cena = new HistoriaInicial(dados);
+    //cena.carregaCena();
+    //cena.atualizaCena();
 
     SistemaTurnos sistemaTurnos = new SistemaTurnos(dados);
     sistemaTurnos.turno();
