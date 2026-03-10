@@ -45,4 +45,28 @@ public class ListaInimigos {
     /* achamos o inimigo */
     return noMovel.inimigo;
   }
+
+  public void removerInimigo(Inimigo inimigoRemover){
+    NoInimigo noMovel = this.noInimigo;
+    NoInimigo noAnterior = null;
+    for(int i = 0; i < qntInimigos; i++){
+      noMovel = noMovel.prox;
+      if(noMovel.inimigo == inimigoRemover){
+        break;
+      }
+      else{
+        noAnterior = noMovel;
+      }
+    }
+
+    /* ant->prox -> prox */
+    if(noAnterior != null){
+      noAnterior.prox = noMovel.prox;
+      this.qntInimigos--;
+    }
+    else{
+      this.noInimigo = null;
+      this.qntInimigos--;
+    }
+  }
 }

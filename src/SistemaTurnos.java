@@ -2,44 +2,17 @@ import java.util.Scanner;
 
 public class SistemaTurnos {
   Dados dados;
-  Scanner acao;
+  Scanner teclado;
   int heroiAgiu;
   int inimigoAgiu;
+  int random
 
   public SistemaTurnos(Dados dados){
     this.dados = dados;
     this.heroiAgiu = 0;
     this.inimigoAgiu = 0;
-    this.acao = new Scanner(System.in);
-  }
-
-
-  public int converteCharInt(char caracter){
-    if(caracter <= '0' && caracter < 10){
-      return caracter - 30;
-    }
-    else{
-      return -1;
-    }
-  }
-  public int converteStringInt(String string){
-    int comprimento = string.length();
-
-    int multiplicador = 1;
-
-    int numero = 0;
-    int casa = 0;
-    for(comprimento--; comprimento >= 0; comprimento--){
-      casa = converteCharInt(string.charAt(comprimento));
-      if(casa == -1){
-        return -1; // string invalida
-      }
-      numero = numero + multiplicador * casa;
-      multiplicador = multiplicador * 10;
-    }
-
-    return numero;
-
+    this.teclado = new Scanner(System.in);
+    this.random = 0;
   }
 
   public void printAcoes(){
@@ -51,65 +24,96 @@ public class SistemaTurnos {
     System.out.println("ENG = " + dados.heroi.energia + "\n");
   }
 
+
   public boolean turno(){
     /* Sistema de turnos será feito por ação */
     /* turno heroi */
-    String comando;
+    int comando;
     CartaDano cartaDano;
+    CartaEscudo cartaEscudo;
     int numero = 0;
+    int inimigosMortos = 0;
     while(true){
+
+      heroiAgiu = 0;
+      inimigoAgiu = 0;
+
       /* printamos as acoes */
       printAcoes();
       /* lemos o comando */
-      comando = acao.nextLine();
+      comando = teclado.nextInt();
 
-      if(comando == "0"){
+      if(heroiAgiu == 0 && comando == 0){
         break;
       }
       
       /* caso o Heroi tenha escolhido usar carta de dano */
-      if(comando == "1"){
+      if(comando == 1){
         dados.heroi.dequeDano.mostrarCartaDano();
         /* lemos o comando */
-        comando = acao.nextLine();
+        comando = teclado.nextInt();
 
-        /* como a entrada do teclado retorna uma string, precisamos converte-la em int */
-        numero = converteStringInt(comando);
-
-          /* caso o numero nao tenha sido aprovado lemos o numero denovo*/
-        while(numero <= 0 || numero > dados.heroi.dequeDano.qntCartas){
+        /* verificamos se o numero é valido */
+        while(comando <= 0 || comando > dados.heroi.dequeDano.qntCartas){
           System.out.println("Numero inválido, escolha outro:");
           dados.heroi.dequeDano.mostrarCartaDano();
-          comando = acao.next();
-          numero = converteStringInt(comando);
+          comando = teclado.nextInt();
         }
 
         /* puxamos a carta que queremos usar */
-        cartaDano = dados.heroi.dequeDano.selecionarCartaDano(numero);
+        cartaDano = dados.heroi.dequeDano.selecionarCartaDano(comando);
 
         System.out.println("Escolha um alvo:\n"); 
         dados.listaInimigos.mostrarInimigos();
-        comando = acao.nextLine();
+        comando = teclado.nextInt();
         
-        numero = converteStringInt(comando);
         /* caso o numero nao tenha sido aprovado lemos o numero denovo*/
-        while(numero <= 0 || numero > dados.listaInimigos.qntInimigos){
+        while(comando <= 0 || comando > dados.listaInimigos.qntInimigos){
           System.out.println("Numero inválido, escolha outro:");
           dados.listaInimigos.mostrarInimigos();;
-          comando = acao.next();
-          numero = converteStringInt(comando);
+          comando = teclado.nextInt();
         }
         
         /* buscamos o inimigo */
         Inimigo inimigo = this.dados.listaInimigos.buscarInimigo(numero);
         /* aplicamos o dano ao inimigo */
         cartaDano.usar(inimigo, dados.heroi);
+
+        /* verificamos se o inimigo morreu */
+        if(inimigo.estaVivo() == false){
+          inimigosMortos++;
+          /* caso ele morreu removemos ele da lista de inimigos */
+          dados.listaInimigos.removerInimigo(inimigo);
+        }
+
+        heroiAgiu = 1;
       }
 
-      if(comando == "2"){
+      if(heroiAgiu == 0 && comando == 2){
+        dados.heroi.dequeEscudo.mostrarCartaEscudo();
+        comando = teclado.nextInt();
+        if(comando <= 0 || comando > dados.heroi.dequeEscudo.qntCartas){
+          System.out.println("Número Inválido, escolha outro:");
+          dados.heroi.dequeEscudo.mostrarCartaEscudo();
+          comando = teclado.nextInt();
+        }
 
+        cartaEscudo = dados.heroi.dequeEscudo.selecionarCartaEscudo(comando);
+        cartaEscudo.usar(dados.heroi);
+        heroiAgiu = 1;
       }
+
+      if(inimigosMortos == dados.listaInimigos.qntInimigos){
+        break;
+      }
+
+      /* turno inimigo */
+      System.out.println("Turno dos Inimigos");
+      
     }
+
+    
+    
     return true; 
   }
 }

@@ -94,4 +94,13 @@ public class DequeCartas {
     }
     return noMovel.cartaDano; 
   }
+
+  public CartaEscudo selecionarCartaEscudo(int numero){
+    NoCartas noMovel = this.no;
+    int indice = numero - 1;
+    for(int i = 0; i < indice; i++){
+      noMovel = no.prox;
+    }
+    return noMovel.cartaEscudo;
+  }
 }

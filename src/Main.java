@@ -43,7 +43,8 @@ public class Main {
     cena.carregaCena();
     cena.atualizaCena();
 
-     
+    SistemaTurnos sistemaTurnos = new SistemaTurnos(dados);
+    sistemaTurnos.turno();
   }
 
   /* Explicarei melhor tudo pessoalmente, mas basicamente, nao faremos a "jogatina" na main */

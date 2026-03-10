@@ -7,6 +7,7 @@ public class Dados {
   // onde cada inimigo sera um elemento da lista!
   Heroi heroi;
   ListaInimigos listaInimigos;
+  
   int frame;
 
   public Dados(Heroi heroi){
