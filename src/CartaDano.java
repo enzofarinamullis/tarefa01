@@ -17,19 +17,14 @@ class CartaDano{
   
 
   public int calcularDano( D20 d20) {
-    
-
+    int ataque = d20.rolarDado() + forca;
+    return ataque;
   }
 
-  public void usar(Inimigo inimigo, Heroi heroi){
+  public void usar(Inimigo inimigo, Heroi heroi, D20 d20){
     if (heroi.temEnergia(custoEnergia)) {
-      inimigo.receberDano();  
+      inimigo.receberDano(calcularDano(d20));  
     }
     
   }
-
-
-  
-
-
 }
