@@ -15,16 +15,36 @@ class CartaDano{
     this.forca = forca;
   }
   
+  /* Implementacao simples de um calculo de dano */
+  public int calcularDano(){
+    D20 d20 = new D20();
+    int valorDado = d20.rolarDado();
 
-  public int calcularDano( D20 d20) {
-    int ataque = d20.rolarDado() + forca;
-    return ataque;
-  }
-
-  public void usar(Inimigo inimigo, Heroi heroi, D20 d20){
-    if (heroi.temEnergia(custoEnergia)) {
-      inimigo.receberDano(calcularDano(d20));  
+    if(valorDado > 3 && valorDado < 20){
+      return valorDado * this.forca;
     }
-    
+    else if(valorDado == 20){
+      return valorDado/5 * forca;
+    }
+    else{
+      return 0;
+    }
   }
+
+  /* Usar carta no inimigo ja pronta */
+  public void usar(Inimigo inimigo, Heroi heroi){
+    if (heroi.temEnergia(custoEnergia)) {
+      int dano = calcularDano();
+      inimigo.receberDano(dano);  
+      System.out.println(dano + " causado em " + inimigo.nome + "!");
+    }
+    else{
+      System.out.println("Energia Insuficiente!");
+    }
+  }
+
+
+  
+
+
 }
