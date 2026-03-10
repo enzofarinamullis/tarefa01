@@ -7,27 +7,38 @@
 class CartaDano{
   public String nome;
   public int custoEnergia;
-  public int forca;
+  public int nivel;
 
-  public CartaDano(String nome, int custoEnergia, int forca) {
+  public CartaDano(String nome, int custoEnergia, int nivel) {
     this.nome = nome;
     this.custoEnergia = custoEnergia;
-    this.forca = forca;
+    this.nivel = nivel;
   }
   
-  /* Implementacao simples de um calculo de dano */
+  
   public int calcularDano(){
-    D20 d20 = new D20();
-    int valorDado = d20.rolarDado();
-
-    if(valorDado > 3 && valorDado < 20){
-      return valorDado * this.forca;
-    }
-    else if(valorDado == 20){
-      return valorDado/5 * forca;
-    }
-    else{
+    Precisao d20 = new Precisao();
+    Potencia dx = new Potencia(nivel);
+    int precisao = d20.rolarDado();
+    if (precisao == 1) {
+      System.out.println("Errou o ataque!");
       return 0;
+    }
+    int potencia = dx.rolarDado();
+    if (precisao >= 2 && precisao <= 5) {
+      return potencia;
+    }
+    else if (precisao >= 6 && precisao >= 10) {
+      return potencia*2;
+    }
+    else if (precisao >= 11 && precisao <= 15) {
+      return potencia*3;
+    }
+    else if (precisao >= 16 && precisao <= 19) {
+      return potencia*4;
+    }
+    else {
+      return potencia*6;
     }
   }
 
