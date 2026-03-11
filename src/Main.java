@@ -1,49 +1,31 @@
+import java.util.Scanner;
+
 public class Main {
-  public static void main(String[] args) throws Exception {
-    /* Implementei inicialmente a ideia do WindowManager */
-    /* Pessoalemente explicarei melhor como ele funciona */
-    /* Mas resumindo, toda Cena, terá 4 métodos (funções) principais */
+  public static void main(String[] args) {
+    Scanner teclado = new Scanner(System.in);
 
-    /* 1- Init --> o init será responsável por iniciarmos os dados da cena */
-    /* isso será feito automaticamente quando chamarmos Cena cena = new CenaInicial(dados) */
-    /* voce pode ver isso na linha 26 */
+    DequeCartas deque = new DequeCartas();
+    FilaCartasEscudo cartasEscudo = new FilaCartasEscudo();
 
-    /* 2- carregaCena --> ou seja, literalmente desenhamos a cena (carregamos ela) */
+    System.out.println("Digite o nome do seu heroi:");
+    String nome = teclado.nextLine();
 
-    /* 3- atualizaCena --> será responsável por atualizar a cena (exemplo movimento dos inimigos) */
-
-    /* 4- liberaCena --> isso o Java já fará de graça para a gente, sem termos que nos preocupar */
-    /* Apenas limpamos a tela do terminal (já implementado) */
-
-
-    /* Inicializamos nosso Heroi com atributos iniciais, mas o nome vazio */
-    Heroi heroi = new Heroi(null, 20, 10,  10); // aqui ainda esta o dano ( retirar mais tarde )
-                                                                                  // dano estara nas cartas
-
-    /* Inicializamos nossos Dados vazio */
+    Heroi heroi = new Heroi(nome, 200, 100,50, deque, cartasEscudo ); 
     Dados dados = new Dados(heroi);
+    heroi.status();
 
-    /* Inicializamos nossa cena como sendo a CenaInicial */
-    Cena cena = new CenaInicial(dados); // estou usando heranca para as cenas
-    
-    /* Carregamos nossa cena inicial */
-    cena.carregaCena();
+    CartaDano espada_enferrujada = new CartaDano("Espada enferrujada", 2, 1); 
+    CartaDano adaga_de_pedra = new CartaDano("Adaga de pedra", 2, 1);
+    CartaEscudo escudo_de_madeira = new CartaEscudo("Escudo de madeira", 3);
 
-    /* so para efeitos de teste */
-    cena.atualizaCena(); // amanha irei implementar a sistema de FramesPerSeconds para que o 
-                         // nosso jogo tenha atualizacoes constantes
-    //cena = new CenaSlime(dados);
-    //cena.carregaCena();
-    //cena.atualizaCena();
-
-    //cena = new HistoriaInicial(dados);
-    //cena.carregaCena();
-    //cena.atualizaCena();
-
-    SistemaTurnos sistemaTurnos = new SistemaTurnos(dados);
-    sistemaTurnos.turno();
+    heroi.deque.adicionar_no_inicio(espada_enferrujada);
+    heroi.deque.adicionar_no_inicio(adaga_de_pedra);
+    heroi.deque.printDoDeck();
+    heroi.deque.adicionar_no_inicio(adaga_de_pedra);
+    heroi.deque.printDoDeck();
+    heroi.cartasEscudo.enfileirar(carta);
   }
-
-  /* Explicarei melhor tudo pessoalmente, mas basicamente, nao faremos a "jogatina" na main */
-  /* A Main será responsável apenas por carregar e atualizar nosso jogo! */
+    
+   
+  
 }

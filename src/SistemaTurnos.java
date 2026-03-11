@@ -51,7 +51,7 @@ public class SistemaTurnos {
       
       /* caso o Heroi tenha escolhido usar carta de dano */
       if(comando == 1){
-        dados.heroi.dequeDano.mostrarCartaDano();
+        dados.heroi.DequeCartas.mostrarCartaDano();
         /* lemos o comando */
         comando = teclado.nextInt();
 

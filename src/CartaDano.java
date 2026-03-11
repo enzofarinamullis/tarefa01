@@ -45,6 +45,7 @@ class CartaDano{
   /* Usar carta no inimigo ja pronta */
   public void usar(Inimigo inimigo, Heroi heroi){
     if (heroi.temEnergia(custoEnergia)) {
+      heroi.energia -= custoEnergia;
       int dano = calcularDano();
       inimigo.receberDano(dano);  
       System.out.println(dano + " causado em " + inimigo.nome + "!");

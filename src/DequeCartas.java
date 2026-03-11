@@ -1,106 +1,161 @@
 public class DequeCartas {
-  String tipo;
-  int qntCartas;
-  NoCartas no;
-  
-  public DequeCartas(String tipo){
-    this.tipo = tipo;
-    this.no = new NoCartas(tipo);
-    this.no.prox = null;
-    this.qntCartas = 0;
-  }
+  private class No {
+    private CartaDano carta;
+    private No anterior;
+    private No proximo;
 
-  public void adicionaCartaDano(CartaDano cartaDano){
-    NoCartas noMovel;
-    /* iniciamos no no raiz */
-    noMovel = this.no;
-    for(int i = 0; i < this.qntCartas; i++){
-      noMovel = noMovel.prox;
+    public No (CartaDano carta) {
+      this.carta = carta;
     }
-    NoCartas noAdicionar = new NoCartas(this.tipo);
-    /* atribuimos a carta a o no */
-    noAdicionar.atribuiCartaDano(cartaDano); 
-    /* apontamos as referencias para termos uma lista ligada */
-    noMovel.prox = noAdicionar;
-    noAdicionar.ant = noMovel;
-  }
-
-  public void adicionaCartaEscudo(CartaEscudo cartaEscudo){
-    NoCartas noMovel;
-    noMovel = this.no;
-    for(int i = 0; i < this.qntCartas; i++){
-      noMovel = noMovel.prox;
+    public CartaDano pegarCarta() {
+      return carta;
     }
-    NoCartas noAdicionar = new NoCartas(this.tipo);
-    /* atribuimos a carta ao no */
-    noAdicionar.atribuiCartaEscudo(cartaEscudo);
-    /* apontamos as referencias */
-    noMovel.prox = noAdicionar;
-    noAdicionar.ant = noMovel;
-    /* apontamos o primeiro no.ant para o ultimo adicionado */
-    no.ant = noAdicionar;
-    /* e o ultimo.prox pro primeiro */
-    noAdicionar.prox = no;
-
-  }
-
-  public void removeCarta(int numero){
-    NoCartas noMovel;
-    if(numero < 1 && numero > qntCartas){
-      System.out.println("Carta Inválida");
-      return;
+    public No pegarNoAnterior() {
+      return anterior;
     }
-
-    noMovel = this.no;
-    for(int i = 1; i < numero; i++){
-      noMovel = no.prox;
+    public No pegarProximoNo() {
+      return  proximo;
     }
-
-    /* estamos no Nó que queremos remover */
-    /* apontamos as referencias */
-    /* ant */
-    noMovel.ant.prox = noMovel.prox;
-    noMovel.prox.ant = noMovel.ant;
-
-    /* removemos o no */
-    this.qntCartas--;
-  }
-
-  public void mostrarCartaEscudo(){
-    NoCartas noMovel = no;
-    CartaEscudo carta;
-    for(int i = 0; i < qntCartas; i++){
-      carta = noMovel.cartaEscudo;
-      System.out.println(carta.nome + ": SHD: " + carta.escudo + " ENG: " + carta.custoEnergia);
-      noMovel = noMovel.prox;
+    public void  modificarCarta(CartaDano carta) {
+      this.carta = carta; 
+    }
+    public void modificarProximo(No proximo) {
+      this.proximo = proximo;
+    }
+    public void modificarAnterior(No anterior) {
+      this.anterior = anterior;
     }
   }
 
-  public void mostrarCartaDano(){
-    NoCartas noMovel = no;
-    CartaDano carta;
-    for(int i = 0; i < qntCartas; i++){
-      carta = noMovel.cartaDano;
-      System.out.println(carta.nome + ": DMG: " + carta.nivel + " ENG: " + carta.custoEnergia);
-      noMovel = noMovel.prox;
+  private No cabeca;
+  private No calda;
+  private int tamanho;
+
+  public DequeCartas() {
+    cabeca = null;
+    calda = null;
+    tamanho = 0;
+  }
+
+  public No buscarNo(String nome) {
+    if (tamanho == 0) {
+      throw new IllegalArgumentException("Deque vazio");
+    } else {
+      No atual = cabeca;
+      while (atual != null) {
+        if (atual.carta.nome.equals(nome)) {
+
+          return atual;
+        }
+        atual = atual.proximo;
+      }
+      return null;
     }
   }
 
-  public CartaDano selecionarCartaDano(int numero){
-    NoCartas noMovel = this.no;
-    int indice = numero - 1;
-    for(int i = 0; i < indice; i++){
-      noMovel = no.prox;
+  public void passar_carta_para_o_final(String nome) {
+    if (tamanho == 0) {
+      throw  new IllegalArgumentException("Deque vazio");
+    } else {
+      No NoBuscado = buscarNo(nome);
+      if (NoBuscado == null) {
+        return;
+      } else {
+        //Já está no final
+        if (NoBuscado == calda) return;
+        //Removendo o nó da posicao
+        if (NoBuscado == cabeca) {
+          cabeca = cabeca.proximo;
+          if (cabeca != null) {
+            cabeca.anterior = null;
+          }
+        } else {
+          NoBuscado.anterior.proximo = NoBuscado.proximo;
+          NoBuscado.proximo.anterior = NoBuscado.anterior;
+        }
+
+        //insere o no no final:
+        NoBuscado.anterior = calda;
+        NoBuscado.proximo = null;
+        if (calda != null) {
+          calda.proximo = NoBuscado;
+        }
+        calda = NoBuscado;
+      }
     }
-    return noMovel.cartaDano; 
   }
 
-  public CartaEscudo selecionarCartaEscudo(int numero){
-    NoCartas noMovel = this.no;
-    int indice = numero - 1;
-    for(int i = 0; i < indice; i++){
-      noMovel = no.prox;
+  public void adicionar_no_inicio(CartaDano carta) {
+    No novoNo = new No(carta);
+    if (tamanho == 0) {
+      cabeca = novoNo;
+      calda = novoNo;
+    } else {
+      novoNo.proximo = cabeca;
+      cabeca.anterior = novoNo;
+      cabeca = novoNo;
     }
-    return noMovel.cartaEscudo;
+    tamanho++;
+
   }
+
+  public void adicionar_no_fim(CartaDano carta) {
+    No novoNo = new No(carta);
+    if (tamanho == 0) {
+      cabeca = novoNo;
+      calda = novoNo;
+    } else {
+      novoNo.anterior = calda;
+      calda.proximo = novoNo;
+      calda = novoNo;
+    }
+    tamanho++;
+  }
+
+  public CartaDano removerDoInicio() {
+    if (tamanho == 0) {
+      throw new IllegalArgumentException("Deque vazio");
+    } else {
+      CartaDano retirada = cabeca.carta;
+      if (cabeca == calda) {
+        cabeca = null;
+        calda = null;
+      } else {
+        cabeca = cabeca.proximo;
+        cabeca.anterior = null;
+      }
+      tamanho--;
+      return retirada;
+    }
+  }
+
+  public CartaDano removerDoFinal() {
+    if (tamanho == 0) {
+      throw new IllegalArgumentException("Deque vazio");
+    } else {
+      CartaDano retirada = calda.carta;
+      if (cabeca == calda) {
+        cabeca = null;
+        calda = null;
+      } else {
+        calda = calda.anterior;
+        calda.proximo = null;
+      }
+      tamanho--;
+      return retirada;
+    }
+  }
+  public void printDoDeck() {
+    No atual = cabeca;
+    while (atual != null) {
+      if (atual.proximo != null) {
+        System.out.print(atual.carta.nome + " <-> ");
+      } else {
+        System.out.print(atual.carta.nome);
+      }
+      atual = atual.proximo;
+    }
+    System.out.println();
+  }
+
 }

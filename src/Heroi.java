@@ -3,16 +3,19 @@ public class Heroi{
   public String nome;
   public int vida;
   public int escudo;
-  public int dano;
   public int energia;
+  public FilaCartasEscudo cartasEscudo;
+  public DequeCartas deque;
 
   /* Construtor */
-  public Heroi(String nome, int vida, int escudo, int dano, int energia) {
+  public Heroi(String nome, int vida, int escudo, int energia, DequeCartas deque, 
+    FilaCartasEscudo cartasEscudo) {
     this.nome = nome;
     this.vida = vida;
     this.escudo = escudo;
-    this.dano = dano;
     this.energia = energia;
+    this.deque = deque;
+    this.cartasEscudo = cartasEscudo;
   }
 
   void receberDano(int dano){
@@ -63,7 +66,7 @@ public class Heroi{
   }
 
   void status(){
-    System.out.println("Status do" + nome + ":");
+    System.out.println("Status do " + nome + ":");
     System.out.println("Vida: " + vida);
     System.out.println("Escudo: " + escudo);
     System.out.println("Status: " + (vida > 0 ? "Vivo" : "Morto"));
