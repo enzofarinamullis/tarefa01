@@ -46,17 +46,17 @@ public class Heroi{
   }
 
   void ganharVida(int bonusDeVida) {
-    System.out.println(nome + "ganhou" + bonusDeVida + "de vida.");
+    System.out.println(nome + "ganhou" + Main.ANSI_GREEN + bonusDeVida + Main.ANSI_RESET + "de vida.");
     vida += bonusDeVida;
   }
 
   Boolean estaVivo() {
     if (vida > 0) {
-      System.out.println(nome + "está vivo!");
+      System.out.println(nome + Main.ANSI_GREEN + "está vivo!" + Main.ANSI_RESET);
       return true;
     }
     else{
-      System.out.println(nome + "não está vivo!");
+      System.out.println(nome + Main.ANSI_RED + "não está vivo!" + Main.ANSI_RESET);
       return false;
     } 
   }
@@ -66,9 +66,11 @@ public class Heroi{
   }
 
   void status(){
-    System.out.println("Status do " + nome + ":");
-    System.out.println("Vida: " + vida);
-    System.out.println("Escudo: " + escudo);
-    System.out.println("Status: " + (vida > 0 ? "Vivo" : "Morto"));
+    System.out.println(Main.ANSI_CYAN + "Status do " + Main.ANSI_RESET + nome +
+     Main.ANSI_CYAN + ":" + Main.ANSI_RESET);
+    System.out.println("Vida: " + Main.ANSI_GREEN + vida + Main.ANSI_RESET);
+    System.out.println("Escudo: " + Main.ANSI_BLUE + escudo + Main.ANSI_RESET);
+    System.out.println("Status: " + (vida > 0 ? Main.ANSI_GREEN + "Vivo" + Main.ANSI_RESET :
+     Main.ANSI_RED + "Morto" + Main.ANSI_RESET));
   }
 }

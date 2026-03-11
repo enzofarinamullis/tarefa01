@@ -145,12 +145,12 @@ public class DequeCartas {
     }
   }
 
-  private void printLinha(){
+  private void printLinha(String cor){
     int tamanhoLinha = 20;
     for(int i = 0; i < tamanhoLinha; i++){
-      System.out.print("-");
+      System.out.print(cor + "-");
     }
-    System.out.println("");
+    System.out.println(Main.ANSI_RESET + "");
   }
 
   public void printDoDeck() {
@@ -158,16 +158,18 @@ public class DequeCartas {
     int i = 1;
 
     System.out.println();
-    System.out.println(ANSI_YELLOW + ">> DEQUE DANO <<" + ANSI_RESET);
-    printLinha();
+    System.out.println(Main.ANSI_YELLOW + ">> DEQUE DANO <<" + Main.ANSI_RESET);
+
+    printLinha(Main.ANSI_YELLOW);
+    
     while (atual != null) {
       /* para o player nao ter que ficar digitando o nome da carta cada vez que quiser usá-la */
       /* colocaremos cada carta com um indice */
-      System.out.println(i + " - " + atual.carta.nome);
+      System.out.println(Main.ANSI_CYAN + i + Main.ANSI_RESET + " - " + atual.carta.nome);
       atual = atual.proximo;
       i++;
     }
-    printLinha();
+    printLinha(Main.ANSI_YELLOW);
     System.out.println();
   }
 
@@ -184,6 +186,4 @@ public class DequeCartas {
     return atual.carta;
   }
 
-  public static final String ANSI_YELLOW = "\u001B[33m";
-  public static final String ANSI_RESET = "\u001B[0m";
 }
