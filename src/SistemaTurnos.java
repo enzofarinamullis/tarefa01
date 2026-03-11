@@ -32,7 +32,11 @@ public class SistemaTurnos {
       System.out.println("Não há inimigos, por aqui!");
       return true;
     }
-
+    else{
+      System.out.println(Main.ANSI_YELLOW + "Cuidado!" + Main.ANSI_RESET +
+        " Você entrou em combate com:");
+      dados.listaInimigos.printInimigosSemIndice();
+    }
     /* Sistema de turnos será feito por ação */
     /* turno heroi */
     int comando;

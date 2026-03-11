@@ -12,7 +12,16 @@ public class Main {
   public static final String ANSI_PURPLE = "\u001B[35m";
   public static final String ANSI_CYAN = "\u001B[36m";
   public static final String ANSI_WHITE = "\u001B[37m";
+  
+  public static final int TAM_LINHA_DEQUE = 20;
 
+  public static void printLinha(String cor, int tamanho){
+    int tamanhoLinha = 20;
+    for(int i = 0; i < tamanhoLinha; i++){
+      System.out.print(cor + "-");
+    }
+    System.out.println(Main.ANSI_RESET + "");
+  }
 
   public static void main(String[] args) {
     Scanner teclado = new Scanner(System.in);
@@ -46,6 +55,8 @@ public class Main {
     heroi.cartasEscudo.enfileirar(escudo_de_madeira);
 
     SistemaTurnos sistemaTurnos = new SistemaTurnos(dados);
+
+    cena = new CenaSlime(dados);
 
     sistemaTurnos.turno();
   }

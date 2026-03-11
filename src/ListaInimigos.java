@@ -26,12 +26,23 @@ public class ListaInimigos {
     }
   }
 
+
   public void mostrarInimigos(){
     NoInimigo noMovel = noInimigo;
+    int indice = 0;
     for(int i = 0; i < qntInimigos; i++){
-      int indice = i + 1;
-      System.out.println(indice + " - " + noMovel.inimigo.nome + " HP = " + noMovel.inimigo.vida + " DMG = " + noMovel.inimigo.dano);
+      indice = i + 1;
+      System.out.print(indice + " ");
+      noMovel.inimigo.printStats();
       noMovel = noMovel.prox;
+    }
+  }
+
+  public void printInimigosSemIndice(){
+    NoInimigo atual = noInimigo;
+    for(int i = 0; i < qntInimigos; i++){
+      atual.inimigo.printStats();
+      atual = atual.prox;
     }
   }
 

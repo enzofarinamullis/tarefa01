@@ -49,4 +49,12 @@ public class Inimigo {
       return false;
     }
   }
+
+  public void printStats(){
+    System.out.print(Main.ANSI_YELLOW + nome + Main.ANSI_RESET +
+      " Vida: " + Main.ANSI_GREEN + vida + Main.ANSI_RESET + 
+      " Dano: " + Main.ANSI_RED + dano + Main.ANSI_RESET +
+      " Escudo " + Main.ANSI_BLUE + escudo + Main.ANSI_RESET +
+      "\n");
+  }
 }
