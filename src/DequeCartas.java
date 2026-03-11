@@ -96,7 +96,6 @@ public class DequeCartas {
       cabeca = novoNo;
     }
     tamanho++;
-
   }
 
   public void adicionar_no_fim(CartaDano carta) {
@@ -147,15 +146,27 @@ public class DequeCartas {
   }
   public void printDoDeck() {
     No atual = cabeca;
+    int i = 1;
     while (atual != null) {
-      if (atual.proximo != null) {
-        System.out.print(atual.carta.nome + " <-> ");
-      } else {
-        System.out.print(atual.carta.nome);
-      }
+      /* para o player nao ter que ficar digitando o nome da carta cada vez que quiser usá-la */
+      /* colocaremos cada carta com um indice */
+      System.out.println(i + " - " + atual.carta.nome);
       atual = atual.proximo;
+      i++;
     }
     System.out.println();
   }
 
+  /* para o sistema de turnos é necessário uma função de selecionar a carta pelo numero */
+  public CartaDano buscarCartaNumero(int numero){
+    if(numero > tamanho){
+      System.out.println("Número inválido, escolha outro:");
+    }
+    No atual = cabeca;
+    for(int i = 0; i < numero; i++){
+      atual = atual.proximo;
+    }
+
+    return atual.carta;
+  }
 }

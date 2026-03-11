@@ -51,14 +51,14 @@ public class SistemaTurnos {
       
       /* caso o Heroi tenha escolhido usar carta de dano */
       if(comando == 1){
-        dados.heroi.DequeCartas.mostrarCartaDano();
+        dados.heroi.deque.printDoDeck();
         /* lemos o comando */
         comando = teclado.nextInt();
 
         /* verificamos se o numero é valido */
         while(comando <= 0 || comando > dados.heroi.dequeDano.qntCartas){
           System.out.println("Numero inválido, escolha outro:");
-          dados.heroi.dequeDano.mostrarCartaDano();
+          dados.heroi.deque.printDoDeck();;
           comando = teclado.nextInt();
         }
 

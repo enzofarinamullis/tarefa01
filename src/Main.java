@@ -7,23 +7,30 @@ public class Main {
     DequeCartas deque = new DequeCartas();
     FilaCartasEscudo cartasEscudo = new FilaCartasEscudo();
 
+    Heroi heroi = new Heroi(null, 200, 100,50, deque, cartasEscudo ); 
+    Dados dados = new Dados(heroi);
+
+    Cena cena = new CenaInicial(dados);
+    cena.carregaCena();
+
     System.out.println("Digite o nome do seu heroi:");
     String nome = teclado.nextLine();
+    heroi.nome = nome;
 
-    Heroi heroi = new Heroi(nome, 200, 100,50, deque, cartasEscudo ); 
-    Dados dados = new Dados(heroi);
+    cena.atualizaCena();
+
     heroi.status();
 
     CartaDano espada_enferrujada = new CartaDano("Espada enferrujada", 2, 1); 
     CartaDano adaga_de_pedra = new CartaDano("Adaga de pedra", 2, 1);
-    CartaEscudo escudo_de_madeira = new CartaEscudo("Escudo de madeira", 3);
+    CartaEscudo escudo_de_madeira = new CartaEscudo("Escudo de madeira", 3, 3);
 
     heroi.deque.adicionar_no_inicio(espada_enferrujada);
     heroi.deque.adicionar_no_inicio(adaga_de_pedra);
     heroi.deque.printDoDeck();
     heroi.deque.adicionar_no_inicio(adaga_de_pedra);
     heroi.deque.printDoDeck();
-    heroi.cartasEscudo.enfileirar(carta);
+    heroi.cartasEscudo.enfileirar(escudo_de_madeira);
   }
     
    
