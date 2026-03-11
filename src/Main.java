@@ -31,6 +31,10 @@ public class Main {
     heroi.deque.adicionar_no_inicio(adaga_de_pedra);
     heroi.deque.printDoDeck();
     heroi.cartasEscudo.enfileirar(escudo_de_madeira);
+
+    SistemaTurnos sistemaTurnos = new SistemaTurnos(dados);
+
+    sistemaTurnos.turno();
   }
     
    
