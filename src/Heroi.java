@@ -3,22 +3,20 @@ public class Heroi{
   public String nome;
   public int vida;
   public int escudo;
+  public int dano;
   public int energia;
-  DequeCartas dequeEscudo;
-  DequeCartas dequeDano;
-
 
   /* Construtor */
-  public Heroi(String nome, int vida, int escudo, int energia) {
+  public Heroi(String nome, int vida, int escudo, int dano, int energia) {
     this.nome = nome;
     this.vida = vida;
     this.escudo = escudo;
+    this.dano = dano;
     this.energia = energia;
-    this.dequeEscudo = new DequeCartas("ESCUDO");
-    this.dequeDano = new DequeCartas("DANO");
   }
 
   void receberDano(int dano){
+      
     if(escudo > 0) {
       int dano_no_escudo = Math.min(escudo, dano);
       escudo -= dano_no_escudo;
