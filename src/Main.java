@@ -1,27 +1,16 @@
 import java.util.Scanner;
+import cenas.Cena;
+import cenas.CenaInicial;
+import cenas.CenaSlime;
+import dados.Dados;
+import dados.Heroi;
+import deque.DequeCartas;
+import deque.cartadano.CartaDano;
+import deque.escudos.CartaEscudo;
+import deque.escudos.FilaCartasEscudo;
+import sistematurnos.SistemaTurnos;
 
 public class Main {
-
-  /* sistema de cores */
-  public static final String ANSI_RESET = "\u001B[0m";
-  public static final String ANSI_BLACK = "\u001B[30m";
-  public static final String ANSI_RED = "\u001B[31m";
-  public static final String ANSI_GREEN = "\u001B[32m";
-  public static final String ANSI_YELLOW = "\u001B[33m";
-  public static final String ANSI_BLUE = "\u001B[34m";
-  public static final String ANSI_PURPLE = "\u001B[35m";
-  public static final String ANSI_CYAN = "\u001B[36m";
-  public static final String ANSI_WHITE = "\u001B[37m";
-  
-  public static final int TAM_LINHA_DEQUE = 20;
-
-  public static void printLinha(String cor, int tamanho){
-    int tamanhoLinha = 20;
-    for(int i = 0; i < tamanhoLinha; i++){
-      System.out.print(cor + "-");
-    }
-    System.out.println(Main.ANSI_RESET + "");
-  }
 
   public static void main(String[] args) {
     Scanner teclado = new Scanner(System.in);
@@ -59,6 +48,9 @@ public class Main {
     cena = new CenaSlime(dados);
 
     sistemaTurnos.turno();
+
+    /* fechamos o teclado quando terminarmos o programa */
+    teclado.close();
   }
     
    
