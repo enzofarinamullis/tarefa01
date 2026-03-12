@@ -3,7 +3,6 @@ import dados.Inimigo;
 import dados.Heroi;
 
 public class CartaDano extends Cartas{
-  int nivel;
 
   public CartaDano(String nome, int custoEnergia, int nivel){
     this.nome = nome;

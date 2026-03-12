@@ -47,7 +47,7 @@ public class Main {
 
     cena = new CenaSlime(dados);
 
-    //sistemaTurnos.turno();
+    sistemaTurnos.turno();
 
     /* fechamos o teclado quando terminarmos o programa */
     teclado.close();

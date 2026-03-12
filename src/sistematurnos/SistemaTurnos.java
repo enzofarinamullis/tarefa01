@@ -72,7 +72,7 @@ public class SistemaTurnos {
         }
         
         /* caso o comando seja usar carta */
-        if(comando == 1){
+        if(comando == 1 && dados.heroi.verificaEnergia() == true){
           dados.heroi.mao.printMao();;
           comando = teclado.nextInt(); // lemos o numero da carta que queremos usar
           
@@ -109,14 +109,19 @@ public class SistemaTurnos {
               /* caso ele morreu removemos ele da lista de inimigos */
               dados.listaInimigos.removerInimigo(inimigo);
             }
+
+            /* verificamos se todos morreram e o turno deve acabar */
+            if(inimigosMortos == dados.listaInimigos.qntInimigos){
+              heroiAgiu = 1;
+              return true;
+            }
+
+            if(dados.heroi.energia == 0){
+              heroiAgiu = 1;
+            }
           }
 
         }
-      }
-
-      /* verificamos se todos morreram e o turno deve acabar */
-      if(inimigosMortos == dados.listaInimigos.qntInimigos){
-        break;
       }
 
       /* turno inimigo */
@@ -134,7 +139,6 @@ public class SistemaTurnos {
         return true;
       }
     }
-    return true;
   }
 
 }

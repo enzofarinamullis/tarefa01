@@ -2,7 +2,6 @@ package usaveis;
 import dados.Heroi;
 
 public class CartaEscudo extends Cartas{
-  int escudo;
 
   public CartaEscudo(String nome, int escudo, int custoEnergia){
     this.nome = nome;

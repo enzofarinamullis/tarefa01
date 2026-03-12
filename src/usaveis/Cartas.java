@@ -3,9 +3,11 @@ import dados.Inimigo;
 import dados.Heroi;
 
 public class Cartas{
-  String nome;
-  int custoEnergia;
-  Cartas prox;
+  public String nome;
+  public int custoEnergia;
+  public int nivel;
+  public int escudo;
+  public Cartas prox;
   public boolean ehDano;
   public boolean ehEscudo;
 

@@ -71,9 +71,21 @@ public class Heroi{
   public void status(){
     System.out.println(Cores.ANSI_CYAN + "Status de " + Cores.ANSI_RESET + nome +
      Cores.ANSI_CYAN + ":" + Cores.ANSI_RESET);
-    System.out.println("Vida: " + Cores.ANSI_GREEN + vida + Cores.ANSI_RESET);
+    System.out.println("Vida: " + Cores.ANSI_RED + vida + Cores.ANSI_RESET);
     System.out.println("Escudo: " + Cores.ANSI_BLUE + escudo + Cores.ANSI_RESET);
+    System.out.println("Energia: " + Cores.ANSI_GREEN + energia + Cores.ANSI_RESET);
     System.out.println("Status: " + (vida > 0 ? Cores.ANSI_GREEN + "Vivo" + Cores.ANSI_RESET :
      Cores.ANSI_RED + "Morto" + Cores.ANSI_RESET));
+  }
+
+  public boolean verificaEnergia(){
+    Cartas atual = mao.raiz;
+    while(atual != null){
+      if(atual.custoEnergia <= energia){
+        return true;
+      }
+      atual = atual.prox;
+    }
+    return false;
   }
 }

@@ -3,8 +3,8 @@ import usaveis.Cartas;
 import constantes.Cores;
 
 public class Mao{
-  int qntCartas;
-  Cartas raiz;
+  public int qntCartas;
+  public Cartas raiz;
 
   public Mao(){
     this.qntCartas = 0;
@@ -39,6 +39,21 @@ public class Mao{
       Cores.cprintInt(Cores.ANSI_BLUE, num);
       Cores.cprint(Cores.ANSI_BLUE, " - ");
       System.out.print(atual.nome + "\n");
+
+      /* colocar funcoes printCarta em Cartas */
+      if(atual.ehDano == true){
+        Cores.cprint(Cores.ANSI_RED, "> ");
+        System.out.print("Dano Base: ");
+        Cores.cprintIntn(Cores.ANSI_RED, atual.nivel);
+      }
+      else if(atual.ehEscudo == true){
+        Cores.cprint(Cores.ANSI_BLUE, "> ");
+        System.out.print("Escudo Base: ");
+        Cores.cprintIntn(Cores.ANSI_BLUE, atual.escudo);
+      }
+      Cores.cprint(Cores.ANSI_GREEN, "> ");
+      System.out.print("Custo: ");
+      Cores.cprintIntn(Cores.ANSI_GREEN, atual.custoEnergia);
       atual = atual.prox;
       num++;
     }
