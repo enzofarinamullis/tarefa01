@@ -21,7 +21,7 @@ public class Main {
     matriz.gerarMatriz();
     matriz.printMapaCompleto();
     System.out.println();
-    matriz.visualizarMapa();
+    matriz.visualizarMapa(0,0);
 
     Scanner teclado = new Scanner(System.in);
 

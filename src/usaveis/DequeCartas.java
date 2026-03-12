@@ -157,25 +157,25 @@ public class DequeCartas {
     No atual = cabeca;
     int i = 1;
     System.out.println();
-    System.out.println(Cores.ANSI_YELLOW + ">> DEQUE DANO <<" + Cores.ANSI_RESET);
+    System.out.println(Cores.COR_DEQUE_CABECALHO + ">> DEQUE DANO <<" + Cores.ANSI_RESET);
 
-    PrintTerminal.printLinha(Cores.ANSI_YELLOW, Cabecalho.TAM_LINHA_DEQUE);
+    PrintTerminal.printLinha(Cores.COR_DEQUE_CABECALHO, Cabecalho.TAM_LINHA_DEQUE);
     
     while (atual != null) {
       /* para o player nao ter que ficar digitando o nome da carta cada vez que quiser usá-la */
       /* colocaremos cada carta com um indice */
-      System.out.println(Cores.ANSI_CYAN + i + Cores.ANSI_RESET + " - " + atual.carta.nome);
+      System.out.println(Cores.ANSI_CYAN + i + " - "  + Cores.ANSI_RESET + atual.carta.nome);
       atual = atual.proximo;
       i++;
     }
-    PrintTerminal.printLinha(Cores.ANSI_YELLOW, Cabecalho.TAM_LINHA_DEQUE);
+    PrintTerminal.printLinha(Cores.COR_DEQUE_CABECALHO, Cabecalho.TAM_LINHA_DEQUE);
     System.out.println();
   }
 
   /* para o sistema de turnos é necessário uma função de selecionar a carta pelo numero */
   public CartaDano buscarCartaNumero(int numero){
     if(numero > tamanho){
-      System.out.println("Número inválido, escolha outro:");
+      System.out.println("Número " + Cores.ANSI_RED + "inválido" + Cores.ANSI_RESET + ", escolha outro:");
     }
     No atual = cabeca;
     for(int i = 0; i < numero; i++){

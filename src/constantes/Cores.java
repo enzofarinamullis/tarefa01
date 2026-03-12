@@ -1,7 +1,7 @@
 package constantes;
 public class Cores {
   /* sistema de cores */
-  public static final String ANSI_RESET = "\u001B[0m";
+  public static final String ANSI_RESET = "\u001B[38;5;229m";
   public static final String ANSI_BLACK = "\u001B[30m";
   public static final String ANSI_RED = "\u001B[31m";
   public static final String ANSI_GREEN = "\u001B[32m";
@@ -12,7 +12,8 @@ public class Cores {
   public static final String ANSI_WHITE = "\u001B[37m";
   
   /* cores de cabecalho */
-  public static final String COR_DEQUE = "\u001B[43;33m";
+  public static final String COR_DEQUE_CABECALHO = "\u001B[33m";
+  public static final String COR_DEQUE_NUM = "\u001B[36m";
 
   /* cores titulo */
   public static final String COR_SANGUE_1 = "\u001B[38;5;52m";

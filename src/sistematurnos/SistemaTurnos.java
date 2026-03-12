@@ -1,10 +1,13 @@
 package sistematurnos;
 import java.util.Scanner;
 import java.util.Random;
+
+import constantes.Cabecalho;
 import constantes.Cores;
 import dados.Dados;
 import dados.Inimigo;
 import usaveis.cartadano.CartaDano;
+import utilitarios.PrintTerminal;
 
 public class SistemaTurnos {
   Dados dados;
@@ -22,12 +25,20 @@ public class SistemaTurnos {
   }
 
   public void printAcoes(){
-    System.out.println("1 - Usar Carta de Dano");
-    System.out.println("2 - Usar Carta de Escudo");
-    System.out.println("3 - Tentar fugir");
-    System.out.println("0 - Passar turno");
-    System.out.println("HP = " + dados.heroi.vida + "\n");
-    System.out.println("ENG = " + dados.heroi.energia + "\n");
+    PrintTerminal.printLinha(Cores.ANSI_RESET, Cabecalho.TAM_LINHA_DEQUE);
+    dados.heroi.status();
+    PrintTerminal.printLinha(Cores.ANSI_RESET, Cabecalho.TAM_LINHA_DEQUE);
+    System.out.println("Escolha " + Cores.ANSI_BLUE +
+      "uma" + Cores.ANSI_RESET + " opção:");
+    System.out.println(Cores.ANSI_BLUE + "1 - " + Cores.ANSI_RESET +
+      "Usar Carta de " + Cores.ANSI_RED + "Dano" + Cores.ANSI_RESET);
+    System.out.println(Cores.ANSI_BLUE + "2 - " + Cores.ANSI_RESET + "Usar Carta de " +
+      Cores.ANSI_BLUE + "Escudo" + Cores.ANSI_RESET);
+    System.out.println(Cores.ANSI_BLUE + "3 - " + Cores.ANSI_RESET + "Tentar " +
+      Cores.COR_CIMENTO_3 + "fugir" + Cores.ANSI_RESET);
+    System.out.println(Cores.ANSI_BLUE + "0 - " + Cores.ANSI_RESET + "Passar turno");
+
+    PrintTerminal.printLinha(Cores.ANSI_RESET, Cabecalho.TAM_LINHA_DEQUE);
   }
 
 
@@ -56,7 +67,12 @@ public class SistemaTurnos {
       inimigoAgiu = 0;
 
       printAcoes();
+
       comando = teclado.nextInt(); // lemos o comando
+      // verificamos se o comando eh valido
+      if(comando != 1 || comando != 2 || comando != 3 || comando != 0){
+        comando = teclado.nextInt();
+      }
 
       if(heroiAgiu == 0 && comando == 0){
         break;
@@ -103,7 +119,7 @@ public class SistemaTurnos {
 
         heroiAgiu = 1;
       }
-      
+
       /* Usar escudo */
       if(heroiAgiu == 0 && comando == 2){
       }
@@ -122,8 +138,6 @@ public class SistemaTurnos {
       
       inimigoAgiu = 1;
     }
-
-    
     
     return true; 
   }

@@ -1,15 +1,12 @@
 package mapa;
 import constantes.TamMapa;
 import java.util.Random;
-import java.util.Objects;
-
-import javax.lang.model.element.QualifiedNameable;
 
 public class Matriz {
   int lenX;
   int lenY;
   int numCidades;
-  int[][] mapa;
+  public int[][] mapa;
   int proporcao;
   /* matriz que representa cada quadrante */
   Quadrante[][] matrizQuadrantes;
@@ -24,8 +21,8 @@ public class Matriz {
     Cidade inimiga;
   }
 
-  private class Quadrante{
-    int[][] subMapa;
+  public class Quadrante{
+    public int[][] subMapa;
     int x;
     int y;
     int tamX;
@@ -34,26 +31,37 @@ public class Matriz {
     private Quadrante(int x, int y){
       this.x = calculaCoord(x);
       this.y = calculaCoord(y);
-      this.subMapa = new int[proporcao][proporcao];
+      this.subMapa = new int[TamMapa.displayY][TamMapa.displayX];
       this.tamX = TamMapa.displayX;
       this.tamY = TamMapa.displayY;
     }
 
-    private void transfereSubMapa(){}
+    public void transfereSubMapa(Quadrante quadrante){
+      /* nao queria ter que percorrer a matriz duas vezes */
+      /* mas sera mais facil de implementar e nossa matriz eh pequena */ 
+      int x = 0;
+      int y = 0;
+      /* percorremos o mapa no quadrante */
+      for(int i = quadrante.y; i < quadrante.y + quadrante.tamY; i++){
+        for(int j = quadrante.x; j < quadrante.x + quadrante.tamY; j++){
+          quadrante.subMapa[y][x] = mapa[i][j]; // transferimos o dado para o quadrante
+          x++;
+        }
+        x = 0;
+        y++;
+      }
+    }
   }
 
   private class Camera{
     Quadrante quadrante;
 
     private Camera(){
-      this.quadrante = new Quadrante(0, 0);
+      this.quadrante = null;
     }
 
-    private int calculaCoordX(){
-      return (quadrante.x + 1) * quadrante.tamX - quadrante.tamX;
-    }
-    private int calculaCoordY(){
-      return (quadrante.y + 1) * quadrante.tamY - quadrante.tamX;
+    private void moveCamera(Quadrante quadrante){
+      this.quadrante = quadrante;
     }
   }
 
@@ -64,12 +72,12 @@ public class Matriz {
     camera = new Camera();
     random = new Random();
     proporcao = lenX / TamMapa.displayX;
-    matrizQuadrantes = new Quadrante[proporcao][proporcao];
+    matrizQuadrantes = new Quadrante[TamMapa.y][TamMapa.x];
   }
 
 
   private int calculaCoord(int x){
-    return (x + 1) * TamMapa.displayX - TamMapa.displayX;
+    return (x / TamMapa.displayX) * TamMapa.displayX; 
   }
 
 
@@ -92,6 +100,9 @@ public class Matriz {
 
         if(xQuadranteAntigo != xQuadranteNovo || yQuadranteAntigo != yQuadranteNovo){
           matrizQuadrantes[y][x] = new Quadrante(xQuadranteNovo, yQuadranteNovo);
+          /* transferimos os dados para o novo quadrante */
+          matrizQuadrantes[y][x].transfereSubMapa(matrizQuadrantes[y][x]); // eu poderia fazer isso inves de copia
+                                                                           // fazer limitadores sup e inf em x e y
           x++;
         }
       }
@@ -100,11 +111,12 @@ public class Matriz {
     }
   }
 
-  public void visualizarMapa(){
+  public void visualizarMapa(int v, int h){
     for(int i = 0; i < matrizQuadrantes[0][0].tamY; i++){
       for(int j = 0; j < matrizQuadrantes[0][0].tamX; j++){
-        System.out.println(matrizQuadrantes[][]);
+        System.out.print(matrizQuadrantes[v][h].subMapa[i][j] + " ");
       }
+      System.out.println();
     }
   }
 
