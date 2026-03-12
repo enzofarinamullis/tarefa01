@@ -6,8 +6,8 @@ import constantes.Cabecalho;
 import constantes.Cores;
 import dados.Dados;
 import dados.Inimigo;
-import usaveis.cartadano.CartaDano;
 import utilitarios.PrintTerminal;
+import usaveis.*;
 
 public class SistemaTurnos {
   Dados dados;
@@ -31,10 +31,8 @@ public class SistemaTurnos {
     System.out.println("Escolha " + Cores.ANSI_BLUE +
       "uma" + Cores.ANSI_RESET + " opção:");
     System.out.println(Cores.ANSI_BLUE + "1 - " + Cores.ANSI_RESET +
-      "Usar Carta de " + Cores.ANSI_RED + "Dano" + Cores.ANSI_RESET);
-    System.out.println(Cores.ANSI_BLUE + "2 - " + Cores.ANSI_RESET + "Usar Carta de " +
-      Cores.ANSI_BLUE + "Escudo" + Cores.ANSI_RESET);
-    System.out.println(Cores.ANSI_BLUE + "3 - " + Cores.ANSI_RESET + "Tentar " +
+      "Usar Carta" + Cores.ANSI_RESET);
+    System.out.println(Cores.ANSI_BLUE + "2 - " + Cores.ANSI_RESET + "Tentar " +
       Cores.COR_CIMENTO_3 + "fugir" + Cores.ANSI_RESET);
     System.out.println(Cores.ANSI_BLUE + "0 - " + Cores.ANSI_RESET + "Passar turno");
 
@@ -53,77 +51,70 @@ public class SistemaTurnos {
         " Você entrou em combate com:");
       dados.listaInimigos.printInimigosSemIndice();
     }
-    /* Sistema de turnos será feito por ação */
-    /* turno heroi */
+
     int comando;
-    CartaDano cartaDano;
-    //CartaEscudo cartaEscudo;
+    Cartas carta = null;
     int indiceRand = 0;
     int inimigosMortos = 0;
     Inimigo inimigo;
     while(true){
+      while(heroiAgiu == 0){
+        printAcoes();
 
-      heroiAgiu = 0;
-      inimigoAgiu = 0;
-
-      printAcoes();
-
-      comando = teclado.nextInt(); // lemos o comando
-      // verificamos se o comando eh valido
-      if(comando != 1 && comando != 2 && comando != 3 && comando != 0){
-        comando = teclado.nextInt();
-      }
-
-      if(heroiAgiu == 0 && comando == 0){
-        break;
-      }
-      
-      /* caso o Heroi tenha escolhido usar carta de dano */
-      if(comando == 1){
-        dados.heroi.deque.printDoDeck();
-        comando = teclado.nextInt(); // lemos o numero da carta que queremos usar
-        
-        /* tentamos puxar a carta dano */
-        cartaDano = null;
-        while(cartaDano == null){
-          cartaDano = dados.heroi.deque.buscarCartaNumero(comando);
-          /* caso não exista, lemos de novo */
-          if(cartaDano == null){
-            dados.heroi.deque.printDoDeck();;
-            comando = teclado.nextInt();
-          }
-        }
-
-        System.out.println("Escolha um alvo:\n"); 
-        dados.listaInimigos.mostrarInimigos();
-        comando = teclado.nextInt();
-        
-        /* caso o numero nao tenha sido aprovado lemos o numero denovo*/
-        while(comando <= 0 || comando > dados.listaInimigos.qntInimigos){
-          System.out.println("Numero inválido, escolha outro:");
-          dados.listaInimigos.mostrarInimigos();;
+        comando = teclado.nextInt(); // lemos o comando
+        // verificamos se o comando eh valido
+        if(comando != 1 && comando != 2 && comando != 3 && comando != 0){
           comando = teclado.nextInt();
         }
-        
-        /* buscamos o inimigo */
-        inimigo = this.dados.listaInimigos.buscarInimigo(comando);
-        /* aplicamos o dano ao inimigo */
-        cartaDano.usar(inimigo, dados.heroi);
 
-        /* verificamos se o inimigo morreu */
-        if(inimigo.estaVivo() == false){
-          inimigosMortos++;
-          /* caso ele morreu removemos ele da lista de inimigos */
-          dados.listaInimigos.removerInimigo(inimigo);
+        if(heroiAgiu == 0 && comando == 0){
+          break;
         }
+        
+        /* caso o comando seja usar carta */
+        if(comando == 1){
+          dados.heroi.mao.printMao();;
+          comando = teclado.nextInt(); // lemos o numero da carta que queremos usar
+          
+          /* tentamos puxar a carta */
+          while(carta == null){
+            carta = dados.heroi.mao.buscaCartaNum(comando);
+            /* caso não exista, lemos de novo */
+            if(carta == null){
+              dados.heroi.mao.printMao();
+              comando = teclado.nextInt();
+            }
+          }
 
-        heroiAgiu = 1;
+          if(carta.ehDano == true){
+            System.out.println("Escolha um alvo:\n"); 
+            dados.listaInimigos.mostrarInimigos();
+            comando = teclado.nextInt();
+            
+            /* caso o numero nao tenha sido aprovado lemos o numero denovo*/
+            while(comando <= 0 || comando > dados.listaInimigos.qntInimigos){
+              System.out.println("Numero inválido, escolha outro:");
+              dados.listaInimigos.mostrarInimigos();;
+              comando = teclado.nextInt();
+            }
+            
+            /* buscamos o inimigo */
+            inimigo = this.dados.listaInimigos.buscarInimigo(comando);
+            /* aplicamos o dano ao inimigo */
+            carta.usar(inimigo, dados.heroi);
+
+            /* verificamos se o inimigo morreu */
+            if(inimigo.estaVivo() == false){
+              inimigosMortos++;
+              /* caso ele morreu removemos ele da lista de inimigos */
+              dados.listaInimigos.removerInimigo(inimigo);
+            }
+          }
+
+        }
       }
 
-      /* Usar escudo */
-      if(heroiAgiu == 0 && comando == 2){
-      }
-
+      /* verificamos se todos morreram e o turno deve acabar */
       if(inimigosMortos == dados.listaInimigos.qntInimigos){
         break;
       }
@@ -143,7 +134,7 @@ public class SistemaTurnos {
         return true;
       }
     }
-    
-    return true; 
+    return true;
   }
+
 }

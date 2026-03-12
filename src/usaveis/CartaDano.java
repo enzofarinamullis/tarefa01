@@ -1,22 +1,18 @@
-package usaveis.cartadano;
-import dados.*;
-import dados.Heroi;
+package usaveis;
 import dados.Inimigo;
-import usaveis.Potencia;
-import usaveis.Precisao;
+import dados.Heroi;
 
-public class CartaDano{
-  public String nome;
-  public int custoEnergia;
-  public int nivel;
+public class CartaDano extends Cartas{
+  int nivel;
 
-  public CartaDano(String nome, int custoEnergia, int nivel) {
+  public CartaDano(String nome, int custoEnergia, int nivel){
     this.nome = nome;
     this.custoEnergia = custoEnergia;
     this.nivel = nivel;
+    this.ehDano = true;
+    this.ehEscudo = false;
   }
-  
-  
+
   public int calcularDano(){
     Precisao d20 = new Precisao();
     Potencia dx = new Potencia(nivel);
@@ -43,7 +39,9 @@ public class CartaDano{
     }
   }
 
+
   /* Usar carta no inimigo ja pronta */
+  @Override
   public void usar(Inimigo inimigo, Heroi heroi){
     if (heroi.temEnergia(custoEnergia)) {
       heroi.energia -= custoEnergia;
@@ -54,10 +52,5 @@ public class CartaDano{
     else{
       System.out.println("Energia Insuficiente!");
     }
-  }
-
-
-  
-
-
-}
+  } 
+} 

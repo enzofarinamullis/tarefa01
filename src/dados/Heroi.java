@@ -1,7 +1,7 @@
 package dados;
 import constantes.Cores;
-import usaveis.DequeCartas;
-import usaveis.escudos.FilaCartasEscudo;
+import usaveis.Cartas;
+import usaveis.Mao;
 
 
 public class Heroi{
@@ -10,18 +10,15 @@ public class Heroi{
   public int vida;
   public int escudo;
   public int energia;
-  public FilaCartasEscudo cartasEscudo;
-  public DequeCartas deque;
+  public Mao mao;
 
   /* Construtor */
-  public Heroi(String nome, int vida, int escudo, int energia, DequeCartas deque, 
-    FilaCartasEscudo cartasEscudo) {
+  public Heroi(String nome, int vida, int escudo, int energia){
     this.nome = nome;
     this.vida = vida;
     this.escudo = escudo;
     this.energia = energia;
-    this.deque = deque;
-    this.cartasEscudo = cartasEscudo;
+    this.mao = new Mao();
   }
 
   public void receberDano(int dano){
