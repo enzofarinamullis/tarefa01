@@ -72,7 +72,7 @@ public class Heroi{
   }
 
   public void status(){
-    System.out.println(Cores.ANSI_CYAN + "Status do " + Cores.ANSI_RESET + nome +
+    System.out.println(Cores.ANSI_CYAN + "Status de " + Cores.ANSI_RESET + nome +
      Cores.ANSI_CYAN + ":" + Cores.ANSI_RESET);
     System.out.println("Vida: " + Cores.ANSI_GREEN + vida + Cores.ANSI_RESET);
     System.out.println("Escudo: " + Cores.ANSI_BLUE + escudo + Cores.ANSI_RESET);

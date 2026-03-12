@@ -6,6 +6,7 @@ import cenas.CenaInicial2;
 import constantes.Cores;
 import dados.Dados;
 import dados.Heroi;
+import mapa.Matriz;
 import sistematurnos.SistemaTurnos;
 import usaveis.DequeCartas;
 import usaveis.cartadano.CartaDano;
@@ -16,7 +17,11 @@ public class Main {
 
   public static void main(String[] args) {
 
-    System.out.println(Cores.COR_DEQUE + "teste" + Cores.ANSI_RESET);
+    Matriz matriz = new Matriz();
+    matriz.gerarMatriz();
+    matriz.printMapaCompleto();
+    System.out.println();
+    matriz.visualizarMapa();
 
     Scanner teclado = new Scanner(System.in);
 

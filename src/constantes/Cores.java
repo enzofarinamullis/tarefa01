@@ -12,7 +12,7 @@ public class Cores {
   public static final String ANSI_WHITE = "\u001B[37m";
   
   /* cores de cabecalho */
-  public static final String COR_DEQUE = "\u001B[43;30m";
+  public static final String COR_DEQUE = "\u001B[43;33m";
 
   /* cores titulo */
   public static final String COR_SANGUE_1 = "\u001B[38;5;52m";
