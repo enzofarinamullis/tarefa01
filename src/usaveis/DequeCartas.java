@@ -178,7 +178,7 @@ public class DequeCartas {
       System.out.println("Número " + Cores.ANSI_RED + "inválido" + Cores.ANSI_RESET + ", escolha outro:");
     }
     No atual = cabeca;
-    for(int i = 0; i < numero; i++){
+    for(int i = 0; i < numero - 1; i++){
       atual = atual.proximo;
     }
 
