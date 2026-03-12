@@ -1,8 +1,8 @@
-package deque;
+package usaveis;
 import utilitarios.PrintTerminal;
-import deque.cartadano.*;
 import constantes.Cabecalho;
 import constantes.Cores;
+import usaveis.cartadano.*;
 
 public class DequeCartas {
   private class No {

@@ -1,4 +1,4 @@
-package deque.escudos;
+package usaveis.escudos;
 import dados.Heroi;
 
 public class CartaEscudo{

@@ -4,7 +4,7 @@ import java.util.Random;
 import constantes.Cores;
 import dados.Dados;
 import dados.Inimigo;
-import deque.cartadano.CartaDano;
+import usaveis.cartadano.CartaDano;
 
 public class SistemaTurnos {
   Dados dados;

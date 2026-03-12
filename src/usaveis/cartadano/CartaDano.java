@@ -1,9 +1,9 @@
-package deque.cartadano;
+package usaveis.cartadano;
 import dados.*;
 import dados.Heroi;
 import dados.Inimigo;
-import deque.Potencia;
-import deque.Precisao;
+import usaveis.Potencia;
+import usaveis.Precisao;
 
 public class CartaDano{
   public String nome;

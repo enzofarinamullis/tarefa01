@@ -1,4 +1,4 @@
-package deque.escudos;
+package usaveis.escudos;
 public class EscudoPequeno extends CartaEscudo{
   public EscudoPequeno(){
     /* valores */

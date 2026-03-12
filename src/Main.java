@@ -2,17 +2,22 @@ import java.util.Scanner;
 import cenas.Cena;
 import cenas.CenaInicial;
 import cenas.CenaSlime;
+import cenas.CenaInicial2;
+import constantes.Cores;
 import dados.Dados;
 import dados.Heroi;
-import deque.DequeCartas;
-import deque.cartadano.CartaDano;
-import deque.escudos.CartaEscudo;
-import deque.escudos.FilaCartasEscudo;
 import sistematurnos.SistemaTurnos;
+import usaveis.DequeCartas;
+import usaveis.cartadano.CartaDano;
+import usaveis.escudos.CartaEscudo;
+import usaveis.escudos.FilaCartasEscudo;
 
 public class Main {
 
   public static void main(String[] args) {
+
+    System.out.println(Cores.COR_DEQUE + "teste" + Cores.ANSI_RESET);
+
     Scanner teclado = new Scanner(System.in);
 
     DequeCartas deque = new DequeCartas();
@@ -21,7 +26,7 @@ public class Main {
     Heroi heroi = new Heroi(null, 200, 100,50, deque, cartasEscudo ); 
     Dados dados = new Dados(heroi);
 
-    Cena cena = new CenaInicial(dados);
+    Cena cena = new CenaInicial2(dados);
     cena.carregaCena();
 
     System.out.println("Digite o nome do seu heroi:");

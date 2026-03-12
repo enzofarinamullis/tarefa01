@@ -1,4 +1,4 @@
-package deque.escudos;
+package usaveis.escudos;
 public class EscudoMedio extends CartaEscudo{
   public EscudoMedio(){
     int valorEscudoMedio = 10;

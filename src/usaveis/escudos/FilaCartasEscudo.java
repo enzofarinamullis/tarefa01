@@ -1,4 +1,7 @@
-package deque.escudos;
+package usaveis.escudos;
+import constantes.Cores;
+import constantes.Cabecalho;
+
 public class FilaCartasEscudo {
   private class No {
     CartaEscudo carta;
@@ -8,6 +11,7 @@ public class FilaCartasEscudo {
       this.carta = carta;
     }
   }
+
   private No frente;
   private No tras;
   int tamanho;
@@ -46,6 +50,18 @@ public class FilaCartasEscudo {
       return cartaRetirada;
     }
 
+  }
+
+  void mostrarFila(){
+    if(frente == null){
+      System.out.println(Cores.ANSI_RED );
+      return;
+    }
+    No atual = frente;
+    for(int i = 0; i < tamanho; i++){
+      System.out.println(atual.carta.nome);
+      atual = frente.proximo;
+    }
   }
 
 }

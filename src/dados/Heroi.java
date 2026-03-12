@@ -1,7 +1,7 @@
 package dados;
 import constantes.Cores;
-import deque.DequeCartas;
-import deque.escudos.FilaCartasEscudo;
+import usaveis.DequeCartas;
+import usaveis.escudos.FilaCartasEscudo;
 
 
 public class Heroi{
