@@ -1,6 +1,9 @@
 package mapa;
 import constantes.TamMapa;
 import java.util.Random;
+import java.util.Objects;
+
+import javax.lang.model.element.QualifiedNameable;
 
 public class Matriz {
   int lenX;
@@ -9,6 +12,8 @@ public class Matriz {
   int playerY;
   int numCidades;
   int[][] mapa;
+  int proporcao;
+  int[][] matrizRefQuadrantes;
   Camera camera;
   Random random;
 
@@ -20,35 +25,32 @@ public class Matriz {
     Cidade inimiga;
   }
 
-  private class Camera{
-    /* tavez seja mais facil fazer uma classe chamada quadrante que seja uma sub matriz */
-    int quadranteX;
-    int quadranteY;
-    /* vamos adicionar as coordernadas da camera */
+  private class Quadrante{
+    int x;
+    int y;
     int tamX;
     int tamY;
 
-    /* a camera funcionara da seguinte forma */
-    // o x x x  x x x x
-    // x x x x
-    // x x x x
-    // x x x x
+    private Quadrante(int x, int y){
+      this.x = calculaCoord(x);
+      this.y = calculaCoord(y);
+      this.tamX = TamMapa.displayX;
+      this.tamY = TamMapa.displayY;
+    }
+  }
 
-    // o := coordenada da camera
+  private class Camera{
+    Quadrante quadrante;
 
     private Camera(){
-      /* inicializemos ela no quadrante 1 de 25 */
-      quadranteX = 0;
-      quadranteY = 0;
-      tamX = TamMapa.displayX;
-      tamY = TamMapa.displayY;
+      this.quadrante = new Quadrante(0, 0);
     }
 
     private int calculaCoordX(){
-      return (quadranteX + 1) * tamX - tamX;
+      return (quadrante.x + 1) * quadrante.tamX - quadrante.tamX;
     }
     private int calculaCoordY(){
-      return (quadranteY + 1) * tamY - tamX;
+      return (quadrante.y + 1) * quadrante.tamY - quadrante.tamX;
     }
   }
 
@@ -58,14 +60,31 @@ public class Matriz {
     mapa = new int[lenY][lenX];
     camera = new Camera();
     random = new Random();
+    proporcao = lenX / TamMapa.displayX;
   }
 
+
+  private int calculaCoord(int x){
+    return (x + 1) * TamMapa.displayX - TamMapa.displayX;
+  }
+
+
   public void gerarMatriz(){
+    int xQuadranteAntigo = 0, xQuadranteNovo;
+    int yQuadranteAntigo = 0, yQuadranteNovo; 
+    Quadrante quadranteNovo = new Quadrante(0, 0);
+    /* inserir na matriz de quadrantes */
     for(int i = 0; i < lenY; i++){
       for(int j = 0; j < lenX; j++){
         mapa[i][j] = 0; 
+        xQuadranteNovo = calculaCoord(j);
+        yQuadranteNovo = calculaCoord(i);
+        if(xQuadranteAntigo != xQuadranteNovo){
+
+        }
       }
     }
+    /* geramos junto os quadrantes */
   }
 
   public void visualizarMapa(){
@@ -98,7 +117,7 @@ public class Matriz {
   /* agora precisamos fazer um algoritmo para fazer as cidades */
   public void decideQuadrante(){
     int aleatorio = random.nextInt(8);
-    if
+    
   }
 }
 
