@@ -8,12 +8,11 @@ import javax.lang.model.element.QualifiedNameable;
 public class Matriz {
   int lenX;
   int lenY;
-  int playerX;
-  int playerY;
   int numCidades;
   int[][] mapa;
   int proporcao;
-  int[][] matrizRefQuadrantes;
+  /* matriz que representa cada quadrante */
+  Quadrante[][] matrizQuadrantes;
   Camera camera;
   Random random;
 
@@ -26,6 +25,7 @@ public class Matriz {
   }
 
   private class Quadrante{
+    int[][] subMapa;
     int x;
     int y;
     int tamX;
@@ -34,9 +34,12 @@ public class Matriz {
     private Quadrante(int x, int y){
       this.x = calculaCoord(x);
       this.y = calculaCoord(y);
+      this.subMapa = new int[proporcao][proporcao];
       this.tamX = TamMapa.displayX;
       this.tamY = TamMapa.displayY;
     }
+
+    private void transfereSubMapa(){}
   }
 
   private class Camera{
@@ -61,6 +64,7 @@ public class Matriz {
     camera = new Camera();
     random = new Random();
     proporcao = lenX / TamMapa.displayX;
+    matrizQuadrantes = new Quadrante[proporcao][proporcao];
   }
 
 
@@ -70,38 +74,37 @@ public class Matriz {
 
 
   public void gerarMatriz(){
+
+    /* geramos junto a matriz quadrante */
     int xQuadranteAntigo = 0, xQuadranteNovo;
     int yQuadranteAntigo = 0, yQuadranteNovo; 
-    Quadrante quadranteNovo = new Quadrante(0, 0);
+    int x = 0;
+    int y = 0;
+    matrizQuadrantes[y][x] = new Quadrante(xQuadranteAntigo, yQuadranteAntigo);
+    x++;
     /* inserir na matriz de quadrantes */
     for(int i = 0; i < lenY; i++){
       for(int j = 0; j < lenX; j++){
         mapa[i][j] = 0; 
+
         xQuadranteNovo = calculaCoord(j);
         yQuadranteNovo = calculaCoord(i);
-        if(xQuadranteAntigo != xQuadranteNovo){
 
+        if(xQuadranteAntigo != xQuadranteNovo || yQuadranteAntigo != yQuadranteNovo){
+          matrizQuadrantes[y][x] = new Quadrante(xQuadranteNovo, yQuadranteNovo);
+          x++;
         }
       }
+      x = 0;
+      y++;
     }
-    /* geramos junto os quadrantes */
   }
 
   public void visualizarMapa(){
-    /* queremos sempre centralizar o mapa no player */
-    /* mas nem sempre isso sera possivel, pois o player pode estar no canto do mapa */
-    /* entao vamos centralizar a camera de 20 x 20 (x,y) neste mapa */
-    /* o mapa tera inicialmente 100 x 100 */
-    /* assim podemos dividi-lo em 5 quadrantes em x e 5 em y */
-    int inicioQuadranteX = camera.calculaCoordX();
-    int inicioQuadranteY = camera.calculaCoordY();
-
-    for(int i = inicioQuadranteY; i < inicioQuadranteY + camera.tamX; i++){
-      for(int j = inicioQuadranteX; j < inicioQuadranteX + camera.tamX; j++){
-        /* estamos percorrendo dentro do quadrante */
-        System.out.print(mapa[i][j] + " ");
+    for(int i = 0; i < matrizQuadrantes[0][0].tamY; i++){
+      for(int j = 0; j < matrizQuadrantes[0][0].tamX; j++){
+        System.out.println(matrizQuadrantes[][]);
       }
-      System.out.println();
     }
   }
 
