@@ -21,14 +21,21 @@ public class Matriz {
     Cidade inimiga;
   }
 
+  private class Estrada{
+  }
+
   public class Quadrante{
     public int[][] subMapa;
+    Cidade cidade;
+    Estrada estrada;
     int x;
     int y;
     int tamX;
     int tamY;
 
     private Quadrante(int x, int y){
+      this.cidade = null;
+      this.estrada = null;
       this.x = calculaCoord(x);
       this.y = calculaCoord(y);
       this.subMapa = new int[TamMapa.displayY][TamMapa.displayX];
@@ -50,6 +57,16 @@ public class Matriz {
         x = 0;
         y++;
       }
+    }
+
+    public void viraCidade(){
+      this.cidade = new Cidade();
+      this.estrada = null;
+    }
+
+    public void viraEstrada(){
+      this.cidade = null;
+      this.estrada = new Estrada();
     }
   }
 
@@ -131,8 +148,21 @@ public class Matriz {
   /* eu iria implementar para mapas nao quadrados, mas faremos para mapas quadrados */
   /* agora precisamos fazer um algoritmo para fazer as cidades */
   public void decideQuadrante(){
-    int aleatorio = random.nextInt(8);
-    
+    /* IMPORTANTE! Vamos querer que o primeiro quadrante sempre seja cidade */
+    matrizQuadrantes[0][0].viraCidade();
+
+    int aleatorio = random.nextInt(100);
+    /* 1/4 de chance do quadrante virar cidade */
+    /* aqui eu estou em duvida se transformo o quadrante em uma cidade ou apenas 4 quadrados (2x2) */
+    /* do mapa em cidade */
+    for(int i = 1; i < lenY; i++){
+      for(int j = 1; j < lenX; j++){
+        
+      }
+    }
+    if(aleatorio > 80){
+      
+    } 
   }
 }
 
