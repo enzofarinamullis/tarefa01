@@ -6,6 +6,7 @@ public class Inimigo {
   public int vida;
   public int escudo;
   public int dano;
+  int id;
 
   /* Construtor */
   public Inimigo(String nome, int vida, int escudo, int dano) {
@@ -13,6 +14,7 @@ public class Inimigo {
     this.vida = vida;
     this.escudo = escudo;
     this.dano = dano;
+    this.id = -1; // colocamos como -1 para quando nao tiver sido fornecido um id (ainda)
   }
 
   public void receberDano(int dano) {
@@ -21,16 +23,29 @@ public class Inimigo {
       int dano_no_escudo = Math.min(escudo, dano);
       escudo -= dano_no_escudo;
       dano -= dano_no_escudo;
-      System.out.println("O escudo absorveu" + dano_no_escudo + "de escudo.");
+      System.out.print("O ");
+      Cores.cprint(Cores.ANSI_BLUE, "escudo");
+      System.out.print(" absorveu ");
+      Cores.cprintInt(Cores.ANSI_RED ,dano_no_escudo);
+      Cores.cprintn(Cores.ANSI_RED, " de dano.");
+
     }
-    System.out.println(nome + "recebeu" + dano + "de dano.");
+    Cores.cprint(Cores.ANSI_YELLOW, nome);
+    System.out.println(" recebeu ");
+    Cores.cprintInt(Cores.ANSI_RED, dano);
+    System.out.print(" de dano.\n");
+
     vida -= dano;
     if (vida <= 0) {
-      System.out.println(nome + "morreu !");
+      Cores.cprint(Cores.ANSI_YELLOW, nome);
+      Cores.cprintn(Cores.ANSI_RED, " morreu!");
       vida = 0;
     }
     else{
-      System.out.println(nome + "tem" + vida + "de vida.");
+      Cores.cprint(Cores.ANSI_YELLOW, nome);
+      System.out.print(" tem "); 
+      Cores.cprintInt(Cores.ANSI_GREEN, vida);
+      System.out.print(" de vida.\n");
     }
   }
 
@@ -44,11 +59,13 @@ public class Inimigo {
 
   public Boolean estaVivo() {
     if (vida > 0) {
-      System.out.println(nome + "está vivo!");
+      Cores.cprint(Cores.ANSI_YELLOW, nome);
+      System.out.print(" está vivo!\n");
       return true;
     }
     else{
-      System.out.println(nome + "não está vivo!");
+      Cores.cprint(Cores.ANSI_YELLOW, nome);
+      System.out.print(" não está vivo!\n");
       return false;
     }
   }

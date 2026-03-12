@@ -70,7 +70,7 @@ public class SistemaTurnos {
 
       comando = teclado.nextInt(); // lemos o comando
       // verificamos se o comando eh valido
-      if(comando != 1 || comando != 2 || comando != 3 || comando != 0){
+      if(comando != 1 && comando != 2 && comando != 3 && comando != 0){
         comando = teclado.nextInt();
       }
 
@@ -130,13 +130,18 @@ public class SistemaTurnos {
 
       /* turno inimigo */
       /* queremos um inimigo random atacar o heroi */
-      System.out.println("Turno dos Inimigos");
-      indiceRand = random.nextInt(dados.listaInimigos.qntInimigos);
-      /* inimigo que for atacar estar na posicao indiceRand */
-      inimigo = dados.listaInimigos.buscarInimigo(indiceRand);
-      inimigo.atacar(dados.heroi);
-      
-      inimigoAgiu = 1;
+      if(dados.listaInimigos.qntInimigos != 0){
+        System.out.println("Turno dos Inimigos");
+        indiceRand = random.nextInt(dados.listaInimigos.qntInimigos);
+        /* inimigo que for atacar estar na posicao indiceRand */
+        inimigo = dados.listaInimigos.buscarInimigo(indiceRand);
+        inimigo.atacar(dados.heroi);
+        
+        inimigoAgiu = 1;
+      }
+      else{
+        return true;
+      }
     }
     
     return true; 

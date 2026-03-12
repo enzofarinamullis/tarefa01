@@ -35,4 +35,27 @@ public class Cores {
   public static final String COR_RUNA_3 = "\u001B[38;5;27m";
   public static final String COR_RUNA_4 = "\u001B[38;5;63m";
 
+  public static void cprintln(String cor, String texto){
+    System.out.println(cor + texto + Cores.ANSI_RESET);
+  }
+
+  public static void cprintn(String cor, String texto){
+    System.out.print(cor + texto + Cores.ANSI_RESET + "\n");
+  }
+
+  public static void cprint(String cor, String texto){
+    System.out.print(cor + texto + Cores.ANSI_RESET);
+  }
+
+  public static void cprintInt(String cor, int inteiro){
+    System.out.print(cor + inteiro + Cores.ANSI_RESET);
+  }
+  
+   public static void cprintIntln(String cor, int inteiro){
+    System.out.println(cor + inteiro + Cores.ANSI_RESET);
+  } 
+
+  public static void cprintIntn(String cor, int inteiro){
+    System.out.print(cor + inteiro + Cores.ANSI_RESET + "\n");
+  }
 }

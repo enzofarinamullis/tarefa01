@@ -17,12 +17,6 @@ public class Main {
 
   public static void main(String[] args) {
 
-    Matriz matriz = new Matriz();
-    matriz.gerarMatriz();
-    matriz.printMapaCompleto();
-    System.out.println();
-    matriz.visualizarMapa(0,0);
-
     Scanner teclado = new Scanner(System.in);
 
     DequeCartas deque = new DequeCartas();
@@ -34,7 +28,9 @@ public class Main {
     Cena cena = new CenaInicial2(dados);
     cena.carregaCena();
 
-    System.out.println("Digite o nome do seu heroi:");
+    System.out.print("Digite o "); 
+    Cores.cprint(Cores.ANSI_CYAN, "nome");
+    System.out.print(" do seu heroi!\n");
     String nome = teclado.nextLine();
     heroi.nome = nome;
 

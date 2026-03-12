@@ -2,7 +2,7 @@ package dados;
 
 public class ListaInimigos {
   public NoInimigo noInimigo;
-  public int  qntInimigos;
+  public int qntInimigos;
 
   public ListaInimigos(){
     this.noInimigo = null;
@@ -12,6 +12,8 @@ public class ListaInimigos {
   public void adicionarInimigo(Inimigo inimigoAdicionar){
     if(qntInimigos == 0){
       noInimigo = new NoInimigo(inimigoAdicionar);
+      noInimigo.inimigo.id = qntInimigos; // agora cada inimigo tem um id
+                                          // este id sera importante na remocao
       qntInimigos++;
     }
 
@@ -62,9 +64,19 @@ public class ListaInimigos {
   public void removerInimigo(Inimigo inimigoRemover){
     NoInimigo noMovel = this.noInimigo;
     NoInimigo noAnterior = null;
-    for(int i = 0; i < qntInimigos; i++){
+    /* check de sanidade */
+    if(this.noInimigo == null || this.qntInimigos == 0){
+      return;
+    }
+    else if(qntInimigos == 1){
+      this.noInimigo = null;
+      this.qntInimigos--;
+      return;
+    }
+
+    for(int i = 0; i < qntInimigos - 1; i++){
       noMovel = noMovel.prox;
-      if(noMovel.inimigo == inimigoRemover){
+      if(noMovel.inimigo.id == inimigoRemover.id){
         break;
       }
       else{

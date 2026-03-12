@@ -1,6 +1,8 @@
 package usaveis;
 import java.util.Random;
 
+import constantes.Cores;
+
 public class Precisao {
   private Random aleatorio;
 
@@ -29,7 +31,9 @@ public class Precisao {
   }
 
   public int rolarDesvantagem() {
-    System.out.println("Rolando D20 de precisão com desvantagem:");
+    System.out.print("> Rolando ");
+    Cores.cprint(Cores.ANSI_BLUE, "D20");
+    System.out.print(" de precisão com desvantagem <\n");
     int dado_1 = rolarDado();
     int dado_2 = rolarDado();
     int resultado = Math.min(dado_1, dado_2);
@@ -42,10 +46,12 @@ public class Precisao {
 
   public void critico(int resultado) {
     if (resultado == 20) {
-      System.out.println("Acerto crítico");
+      System.out.print("Acerto ");
+      Cores.cprintn(Cores.ANSI_PURPLE, "crítico!");
     }
     else if (resultado == 1) {
-      System.out.println("Erro crítico");
+      System.out.println("Erro ");
+      Cores.cprintn(Cores.ANSI_PURPLE, "crítico");
     }
   } 
 }
