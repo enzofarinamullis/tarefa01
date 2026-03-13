@@ -12,7 +12,7 @@ public class CenaSlime extends Cena{
   public CenaSlime(Dados dados) {
     super("Inimigo: Slime", dados);
     this.dados.listaInimigos = new ListaInimigos();
-    Inimigo slime = new Inimigo("Slime Selvagem", 5, 10, 1);
+    Inimigo slime = new Inimigo("Slime Selvagem", 30, 10, 1);
     dados.listaInimigos.adicionarInimigo(slime);
   }
 

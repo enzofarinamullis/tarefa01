@@ -29,24 +29,18 @@ public class Heroi{
       int dano_no_escudo = Math.min(escudo, dano);
       escudo -= dano_no_escudo;
       dano -= dano_no_escudo;
-      System.out.println("O escudo absorveu" + dano_no_escudo + "de escudo.");
+      System.out.println("O " + Cores.ANSI_BLUE + "escudo" + Cores.ANSI_RESET + " absorveu " + Cores.ANSI_RED + dano_no_escudo +
+       Cores.ANSI_RESET + " de " + Cores.ANSI_RED + "dano" + Cores.ANSI_RED);
     }
 
-    System.out.println(nome + "recebeu" + dano + "de dano.");
+    System.out.println(Cores.ANSI_CYAN + nome + Cores.ANSI_RESET + " recebeu " +
+      Cores.ANSI_RED + dano + Cores.ANSI_RESET + " de dano.");
     vida -= dano;
-
-    if(vida <= 0){
-      System.out.println(nome + "morreu !");
-      vida = 0;
-    }
-    else{
-      System.out.println(nome + "tem" + vida + "de vida.");
-    }
-      
   }
 
   public void ganharEscudo(int bonusDeEscudo) {
-    System.out.println(nome + "ganhou" + bonusDeEscudo + "de escudo.");
+    System.out.println("O " + Cores.ANSI_CYAN + nome + Cores.ANSI_RESET + " ganhou " +
+      Cores.ANSI_BLUE + bonusDeEscudo + Cores.ANSI_RESET + " de escudo.");
     escudo += bonusDeEscudo;
   }
 
@@ -57,11 +51,13 @@ public class Heroi{
 
   public Boolean estaVivo() {
     if (vida > 0) {
-      System.out.println(nome + Cores.ANSI_GREEN + "está vivo!" + Cores.ANSI_RESET);
+      System.out.println(Cores.ANSI_CYAN + nome + Cores.ANSI_RESET +
+        Cores.ANSI_GREEN + " está vivo!" + Cores.ANSI_RESET);
       return true;
     }
     else{
-      System.out.println(nome + Cores.ANSI_RED + "não está vivo!" + Cores.ANSI_RESET);
+      System.out.println(Cores.ANSI_CYAN + nome + Cores.ANSI_RESET +
+        Cores.ANSI_RED + " não está vivo!" + Cores.ANSI_RESET);
       return false;
     } 
   }

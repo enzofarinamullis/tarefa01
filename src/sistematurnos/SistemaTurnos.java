@@ -60,8 +60,13 @@ public class SistemaTurnos {
     int qntInimigosInicial = dados.listaInimigos.qntInimigos;
     while(true){
       dados.heroi.escudo = 0;
+      dados.heroi.energia = dados.heroi.energiaLimite;
       while(heroiAgiu == 0){
-        dados.heroi.energia = dados.heroi.energiaLimite;
+        if(dados.heroi.estaVivo() == false){
+          System.out.println(Cores.ANSI_PURPLE + "Você morreu!" + Cores.ANSI_RESET);
+          return true;
+        } 
+
         printAcoes();
 
         comando = teclado.nextInt(); // lemos o comando
@@ -138,6 +143,9 @@ public class SistemaTurnos {
             if(dados.heroi.energia == 0){
               heroiAgiu = 1;
             }
+          }
+          else if(carta.ehEscudo == true){
+            carta.usarEscudo(dados.heroi);
           }
 
         }

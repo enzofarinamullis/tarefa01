@@ -12,4 +12,5 @@ public class Cartas{
   public boolean ehEscudo;
 
   public void usar(Inimigo inimigo, Heroi heroi){}
+  public void usarEscudo(Heroi heroi){}
 }

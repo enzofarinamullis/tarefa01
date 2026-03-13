@@ -22,19 +22,19 @@ public class CartaDano extends Cartas{
     }
     int potencia = dx.rolarDado();
     if (precisao >= 2 && precisao <= 5) {
-      return potencia;
+      return potencia * 1;
     }
     else if (precisao >= 6 && precisao >= 10) {
-      return potencia*2;
+      return potencia * 2;
     }
     else if (precisao >= 11 && precisao <= 15) {
-      return potencia*3;
+      return potencia * 4;
     }
     else if (precisao >= 16 && precisao <= 19) {
-      return potencia*4;
+      return potencia * 16;
     }
     else {
-      return potencia*6;
+      return potencia * 64;
     }
   }
 
@@ -43,7 +43,7 @@ public class CartaDano extends Cartas{
   @Override
   public void usar(Inimigo inimigo, Heroi heroi){
     if (heroi.temEnergia(custoEnergia)) {
-      heroi.energia -= custoEnergia;
+      heroi.energia = heroi.energia - custoEnergia;
       int dano = calcularDano();
       inimigo.receberDano(dano);  
       System.out.println(dano + " causado em " + inimigo.nome + "!");

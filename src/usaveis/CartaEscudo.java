@@ -1,4 +1,5 @@
 package usaveis;
+import constantes.Cores;
 import dados.Heroi;
 
 public class CartaEscudo extends Cartas{
@@ -11,9 +12,9 @@ public class CartaEscudo extends Cartas{
     this.ehEscudo = true;
   }
 
-  public void usar(Heroi heroi){
+  @Override
+  public void usarEscudo(Heroi heroi){
       heroi.ganharEscudo(this.escudo);
-      System.out.println("O " + heroi.nome + " ganhou" + escudo + " de escudo.");
       heroi.energia = heroi.energia - custoEnergia;
   }
 }
