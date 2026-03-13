@@ -57,8 +57,14 @@ public class SistemaTurnos {
     int indiceRand = 0;
     int inimigosMortos = 0;
     Inimigo inimigo;
+    int qntInimigosInicial = dados.listaInimigos.qntInimigos;
     while(true){
       while(heroiAgiu == 0){
+        if(heroiAgiu == 1){
+          dados.heroi.escudo = 0;
+          heroiAgiu = 0;
+        }
+        dados.heroi.energia = dados.heroi.energiaLimite;
         printAcoes();
 
         comando = teclado.nextInt(); // lemos o comando
@@ -67,8 +73,22 @@ public class SistemaTurnos {
           comando = teclado.nextInt();
         }
 
-        if(heroiAgiu == 0 && comando == 0){
+        if(comando == 0){
           break;
+        }
+        if(comando == 2){
+          if(random.nextInt(100) <= 10){
+            for(int i = 1; i < dados.listaInimigos.qntInimigos + 1; i++){
+              inimigo = dados.listaInimigos.buscarInimigo(i);
+              dados.listaInimigos.removerInimigo(inimigo);
+            }
+            System.out.println(Cores.ANSI_PURPLE + " >> Dificilmente você escapará dessa << " + Cores.ANSI_RESET);
+            return true;
+          }
+          else{
+            System.out.println(Cores.ANSI_PURPLE + " >> Dificilmente você escapará dessa << " + Cores.ANSI_RESET);
+            break;
+          }
         }
         
         /* caso o comando seja usar carta */
@@ -111,7 +131,7 @@ public class SistemaTurnos {
             }
 
             /* verificamos se todos morreram e o turno deve acabar */
-            if(inimigosMortos == dados.listaInimigos.qntInimigos){
+            if(inimigosMortos == qntInimigosInicial){
               heroiAgiu = 1;
               return true;
             }
@@ -126,18 +146,13 @@ public class SistemaTurnos {
 
       /* turno inimigo */
       /* queremos um inimigo random atacar o heroi */
-      if(dados.listaInimigos.qntInimigos != 0){
-        System.out.println("Turno dos Inimigos");
-        indiceRand = random.nextInt(dados.listaInimigos.qntInimigos);
-        /* inimigo que for atacar estar na posicao indiceRand */
-        inimigo = dados.listaInimigos.buscarInimigo(indiceRand);
-        inimigo.atacar(dados.heroi);
-        
-        inimigoAgiu = 1;
-      }
-      else{
-        return true;
-      }
+      System.out.println("Turno dos Inimigos");
+      indiceRand = random.nextInt(dados.listaInimigos.qntInimigos);
+      /* inimigo que for atacar estar na posicao indiceRand */
+      inimigo = dados.listaInimigos.buscarInimigo(indiceRand);
+      inimigo.atacar(dados.heroi);
+      
+      inimigoAgiu = 1;
     }
   }
 

@@ -10,6 +10,7 @@ public class Heroi{
   public int vida;
   public int escudo;
   public int energia;
+  public int energiaLimite;
   public Mao mao;
 
   /* Construtor */
@@ -18,6 +19,7 @@ public class Heroi{
     this.vida = vida;
     this.escudo = escudo;
     this.energia = energia;
+    this.energiaLimite = 20;
     this.mao = new Mao();
   }
 

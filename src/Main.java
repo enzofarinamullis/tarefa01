@@ -41,8 +41,6 @@ public class Main {
     heroi.mao.adicionarCartaMao(escudoMadeira);
     heroi.mao.adicionarCartaMao(escudoFerro);
 
-    heroi.mao.printMao();
-
     SistemaTurnos sistemaTurnos = new SistemaTurnos(dados);
 
     cena = new CenaSlime(dados);

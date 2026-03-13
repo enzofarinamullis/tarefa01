@@ -14,5 +14,6 @@ public class CartaEscudo extends Cartas{
   public void usar(Heroi heroi){
       heroi.ganharEscudo(this.escudo);
       System.out.println("O " + heroi.nome + " ganhou" + escudo + " de escudo.");
+      heroi.energia = heroi.energia - custoEnergia;
   }
 }
