@@ -59,11 +59,8 @@ public class SistemaTurnos {
     Inimigo inimigo;
     int qntInimigosInicial = dados.listaInimigos.qntInimigos;
     while(true){
+      dados.heroi.escudo = 0;
       while(heroiAgiu == 0){
-        if(heroiAgiu == 1){
-          dados.heroi.escudo = 0;
-          heroiAgiu = 0;
-        }
         dados.heroi.energia = dados.heroi.energiaLimite;
         printAcoes();
 
@@ -86,13 +83,14 @@ public class SistemaTurnos {
             return true;
           }
           else{
-            System.out.println(Cores.ANSI_PURPLE + " >> Dificilmente você escapará dessa << " + Cores.ANSI_RESET);
+            System.out.println(Cores.ANSI_PURPLE + " >> Parabéns... você escapou... -_- << " + Cores.ANSI_RESET);
             break;
           }
         }
         
         /* caso o comando seja usar carta */
         if(comando == 1 && dados.heroi.verificaEnergia() == true){
+          System.out.println("Escolha uma opção:");
           dados.heroi.mao.printMao();;
           comando = teclado.nextInt(); // lemos o numero da carta que queremos usar
           
@@ -101,6 +99,7 @@ public class SistemaTurnos {
             carta = dados.heroi.mao.buscaCartaNum(comando);
             /* caso não exista, lemos de novo */
             if(carta == null){
+              System.out.println("Escolha uma opção:");
               dados.heroi.mao.printMao();
               comando = teclado.nextInt();
             }
@@ -149,7 +148,7 @@ public class SistemaTurnos {
       System.out.println("Turno dos Inimigos");
       indiceRand = random.nextInt(dados.listaInimigos.qntInimigos);
       /* inimigo que for atacar estar na posicao indiceRand */
-      inimigo = dados.listaInimigos.buscarInimigo(indiceRand);
+      inimigo = dados.listaInimigos.buscarInimigo(indiceRand + 1);
       inimigo.atacar(dados.heroi);
       
       inimigoAgiu = 1;

@@ -50,8 +50,9 @@ public class Inimigo {
   }
 
   public void atacar(Heroi heroi) {
-    System.out.println(nome + "ataca" + heroi.nome + "!");
-    System.out.println("Força do ataque:" + dano + "PF");
+    System.out.println(Cores.ANSI_YELLOW + nome + Cores.ANSI_RESET +
+       " ataca " + Cores.ANSI_CYAN + heroi.nome + Cores.ANSI_RESET + "!");
+    System.out.println("Força do ataque: " + Cores.ANSI_RED + dano + Cores.ANSI_RESET);
     if (dano > 0) {
       heroi.receberDano(dano);
     }

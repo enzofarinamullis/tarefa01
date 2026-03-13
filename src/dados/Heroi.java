@@ -14,10 +14,10 @@ public class Heroi{
   public Mao mao;
 
   /* Construtor */
-  public Heroi(String nome, int vida, int escudo, int energia){
+  public Heroi(String nome, int vida, int energia){
     this.nome = nome;
     this.vida = vida;
-    this.escudo = escudo;
+    this.escudo = 0;
     this.energia = energia;
     this.energiaLimite = 20;
     this.mao = new Mao();

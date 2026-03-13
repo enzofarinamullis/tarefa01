@@ -15,7 +15,7 @@ public class Main {
     Scanner teclado = new Scanner(System.in);
 
 
-    Heroi heroi = new Heroi(null, 200, 100,50); 
+    Heroi heroi = new Heroi(null, 200,50); 
     Dados dados = new Dados(heroi);
 
     Cena cena = new CenaInicial2(dados);
