@@ -70,6 +70,10 @@ Caso houver mais de um inimigo, um é sorteado aletóriamente para atacar. E ape
 #### Fim do combate
 O combate termina se o herói fugir, ou se o herói ou todos os inimigos morrerem.
 ## Instruções para compilar e executar o programa
-### Baixar o projeto
+### Para baixar o projeto:
+git clone https://github.com/enzofarinamullis/tarefa01.git
+### Executar e compilar:
+cd tarefa01
+javac -d bin $(find src -name "*.java")
+java -cp bin App
 
-### compilar
