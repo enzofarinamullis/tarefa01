@@ -33,7 +33,7 @@ O dado de precisão estabelece um multiplicador para o dado de potência conform
 
 O dano causado é calculado pela fórmula:
 
-DANO = DADO DE POTÊNCIA X MODIFICADOR
+DANO = DADO DE POTÊNCIA X MODIFICADORmd
 #### cartas escudo
 As cartas escudo possem um valor de escudo e um custo de energia. Elas podem ser acionadas somente se o herói possui energia maior ou igual ao custo da carta.
 
@@ -74,6 +74,9 @@ O combate termina se o herói fugir, ou se o herói ou todos os inimigos morrere
 git clone https://github.com/enzofarinamullis/tarefa01.git
 ### Executar e compilar:
 cd tarefa01
+
 javac -d bin $(find src -name "*.java")
+
 java -cp bin App
+
 
