@@ -15,7 +15,18 @@ public class CenaInicial extends Cena {
 
   /* Carrega a Cena */
   @Override
-  public void carregaCena(){
+  public void carregaCena(){  
+    /* mostramos o caminho para a animacao */
+    this.file = new File("animacoes/CabecalhoInicial.txt");
+    /* Fazemos a tentativa de ler o arquivo */
+    try{
+      this.leitor = new Scanner(file);
+      System.out.println("Você encontrou inimigos! Cuidado!\n");
+      dados.listaInimigos.mostrarInimigos(); // mostramos quais inimigos estao na tela!
+    }
+    catch(FileNotFoundException e){
+      System.out.println("Erro arquivo não encontrado!\n");
+    } 
     imprimeArquivo("animacoes/CabecalhoInicial.txt");
   }
 
@@ -30,16 +41,6 @@ public class CenaInicial extends Cena {
 
   @Override
   public void imprimeArquivo(String caminho){
-    /* mostramos o caminho para a animacao */
-    this.file = new File(caminho);
-    /* Fazemos a tentativa de ler o arquivo */
-    try{
-      this.leitor = new Scanner(file);
-    }
-    catch(FileNotFoundException e){
-      System.out.println("Erro arquivo não encontrado!\n");
-    } 
-
     String linha = "-";
     if(leitor.hasNextLine()){
       linha = leitor.nextLine();

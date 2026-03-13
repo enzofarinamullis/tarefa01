@@ -17,6 +17,7 @@ public class CenaInicial2 extends Cena {
   /* Carrega a Cena */
   @Override
   public void carregaCena(){
+    
     imprimeArquivo("animacoes/Cabecalho2.txt");
   }
 
