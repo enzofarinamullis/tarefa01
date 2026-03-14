@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import cenas.Cena;
-import cenas.CenaSlime;
-import cenas.CenaInicial2;
+import cenas.Slime;
+import cenas.Logo;
 import constantes.Cores;
 import dados.Dados;
 import dados.Heroi;
@@ -18,7 +18,7 @@ public class App {
     Heroi heroi = new Heroi(null, 5,50); 
     Dados dados = new Dados(heroi);
 
-    Cena cena = new CenaInicial2(dados);
+    Cena cena = new Logo(dados);
     cena.carregaCena();
 
     System.out.print("Digite o "); 
@@ -43,7 +43,7 @@ public class App {
 
     SistemaTurnos sistemaTurnos = new SistemaTurnos(dados);
 
-    cena = new CenaSlime(dados);
+    cena = new Slime(dados);
 
     sistemaTurnos.turno();
 

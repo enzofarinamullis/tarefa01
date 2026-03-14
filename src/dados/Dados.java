@@ -13,7 +13,7 @@ public class Dados {
 
   public Dados(Heroi heroi){
     this.heroi = heroi;
-    this.listaInimigos = null;
+    this.listaInimigos = new ListaInimigos();
     this.frame = 0;
   }
 

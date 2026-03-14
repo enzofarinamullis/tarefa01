@@ -1,24 +1,23 @@
 package cenas;
 import java.util.Scanner;
-
 import constantes.Cores;
 import dados.Dados;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class CenaInicial2 extends Cena {
+public class Logo extends Cena {
 
   /* Init */
-  public CenaInicial2(Dados dados){
-    super("Cena Inicial", dados);
+  public Logo(Dados dados){
+    this.dados = dados;
+    this.nome = "LOGO";
+    this.leitor = carregaLeitor("src/animacoes/Cabecalho2.txt");
   }
 
   /* Carrega a Cena */
   @Override
   public void carregaCena(){
-    
-    imprimeArquivo("src/animacoes/Cabecalho2.txt");
+    imprimeArquivo();
   }
 
   /* Atualiza a Cena */
@@ -31,17 +30,7 @@ public class CenaInicial2 extends Cena {
 
 
   @Override
-  public void imprimeArquivo(String caminho){
-    /* mostramos o caminho para a animacao */
-    this.file = new File(caminho);
-    /* Fazemos a tentativa de ler o arquivo */
-    try{
-      this.leitor = new Scanner(file);
-    }
-    catch(FileNotFoundException e){
-      System.out.println("Erro arquivo não encontrado!\n");
-    } 
-
+  public void imprimeArquivo(){
     String linha = "-";
     int comprimento;
     if(leitor.hasNextLine()){
