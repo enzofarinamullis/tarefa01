@@ -50,9 +50,11 @@ public class Matriz {
     public void geraRegiao(int tipo){
       int limiteX = this.x + this.tamX;
       int limiteY = this.y + this.tamY;
+      /* ja estamos trabalhado com o quadrante */
+      /* damos apenas um espacamento da borda para depois fazermos os caminhos */
+      int regiaoX = random.nextInt(1, this.tamX - 2);
+      int regiaoY = random.nextInt(1, this.tamY - 2);
       
-      int regiaoX = random.nextInt(this.x + 1, limiteX - 1);
-      int regiaoY = random.nextInt(this.y + 1, limiteY - 1);
       geraQuadrado(regiaoX, regiaoY, tipo);
     }
     
@@ -200,8 +202,14 @@ public class Matriz {
     
     /* agora damos uma chance para o quadrante virar algo */
     /* 30 % de chance de virar algo */
-    if(random.nextInt(100) < 30){
-      /* decidimos a probabilidade de oque virar */
+    for(int i = 0; i < proporcao; i++){
+      for(int j = 0; j < proporcao; j++){
+        if(random.nextInt(100) < TamMapa.probRegiao){
+          /* decidimos a probabilidade de oque virar */
+          matrizQuadrantes[i][j].geraRegiao(1);
+        }
+      }
     }
+
   }
 }
