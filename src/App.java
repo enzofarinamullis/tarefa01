@@ -14,9 +14,8 @@ public class App {
   public static void main(String[] args) {
     
     Matriz mapa = new Matriz();
-    mapa.gerarMatriz();
+    mapa.gerarMapa();
     mapa.printMapaCompleto();
-    mapa.decideQuadrante();
     
     Scanner teclado = new Scanner(System.in);
 
