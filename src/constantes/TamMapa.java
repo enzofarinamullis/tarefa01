@@ -6,5 +6,5 @@ public class TamMapa {
   public static int displayX = 20;
   public static int displayY = 20;
   
-  public static int probRegiao = 30;
+  public static int probRegiao = 50;
 }
