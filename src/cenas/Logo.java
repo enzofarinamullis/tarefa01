@@ -16,7 +16,7 @@ public class Logo extends Cena {
 
   /* Carrega a Cena */
   @Override
-  public void carregaCena(){
+  public void renderizaCena(){
     imprimeArquivo();
   }
 

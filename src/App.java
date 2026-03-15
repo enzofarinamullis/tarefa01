@@ -7,19 +7,24 @@ import dados.Dados;
 import dados.Heroi;
 import sistematurnos.SistemaTurnos;
 import usaveis.*;
+import mapa.Matriz;
 
 public class App {
 
   public static void main(String[] args) {
-
+    
+    Matriz mapa = new Matriz();
+    mapa.gerarMatriz();
+    mapa.printMapaCompleto();
+    mapa.decideQuadrante();
+    
     Scanner teclado = new Scanner(System.in);
-
 
     Heroi heroi = new Heroi(null, 5,50); 
     Dados dados = new Dados(heroi);
 
     Cena cena = new Logo(dados);
-    cena.carregaCena();
+    cena.renderizaCena();
 
     System.out.print("Digite o "); 
     Cores.cprint(Cores.ANSI_CYAN, "nome");

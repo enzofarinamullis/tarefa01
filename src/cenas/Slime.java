@@ -12,12 +12,13 @@ public class Slime extends Cena {
     dados.listaInimigos.adicionarInimigo(slime);
   }
 
- /* Carregamento da Cena */
+ /* Renderiza a Cena */
   @Override
-  public void carregaCena(){
+  public void renderizaCena(){
     imprimeArquivo();
   }
-
+  
+  /* Atualiza a Cena */
   public void atualizaCena(){
   }
 }

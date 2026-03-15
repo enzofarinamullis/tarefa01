@@ -12,16 +12,16 @@ public class Cena {
   Scanner leitor;
   int frame;
 
-  /* Construtor servirá como nosso Init */
+  /* Construtor servirá como nosso carregar Cena */
   public Cena(){
   }
 
   /* Update da cena */
   public void atualizaCena(){}
-
-  /* Carregamento da Cena */
-  public void carregaCena(){}
-
+  
+  /* renderiza cena como nosso Draw */
+  public void renderizaCena(){}
+  
   /* Unload sera feito pelo proprio Java */
   
   public void limpaTerminal(){

@@ -6,39 +6,24 @@ public class Matriz {
   int lenX;
   int lenY;
   int numCidades;
-  public int[][] mapa;
+  public char[][] mapa;
   int proporcao;
   /* matriz que representa cada quadrante */
   Quadrante[][] matrizQuadrantes;
   Camera camera;
   Random random;
 
-
-  private class Cidade{
-    String nome;
-    int populacao;
-    String origem;
-    Cidade inimiga;
-  }
-
-  private class Estrada{
-  }
-
   public class Quadrante{
-    public int[][] subMapa;
-    Cidade cidade;
-    Estrada estrada;
+    public char[][] subMapa;
     int x;
     int y;
     int tamX;
     int tamY;
 
     private Quadrante(int x, int y){
-      this.cidade = null;
-      this.estrada = null;
       this.x = calculaCoord(x);
       this.y = calculaCoord(y);
-      this.subMapa = new int[TamMapa.displayY][TamMapa.displayX];
+      this.subMapa = new char[TamMapa.displayY][TamMapa.displayX];
       this.tamX = TamMapa.displayX;
       this.tamY = TamMapa.displayY;
     }
@@ -59,14 +44,32 @@ public class Matriz {
       }
     }
 
-    public void viraCidade(){
-      this.cidade = new Cidade();
-      this.estrada = null;
-    }
 
-    public void viraEstrada(){
-      this.cidade = null;
-      this.estrada = new Estrada();
+    public void geraQuadrado(int x, int y, char tipo){
+      for(int i = y - 1; i < y + 2; i++){
+        for(int j = x - 1; j < x + 2; j++){
+          this.subMapa[i][j] = tipo;
+        }
+      }
+      subMapa[y][x] = 'o';
+    }
+    
+    public void geraRegiao(char tipo){
+      int limiteX = this.x + this.tamX;
+      int limiteY = this.y + this.tamY;
+      
+      int regiaoX = random.nextInt(this.x + 1, limiteX);
+      int regiaoY = random.nextInt(this.y + 1, limiteY);
+      geraQuadrado(regiaoX, regiaoY, tipo);
+    }
+    
+    public void printaQuadrante(){
+      for(int i = 0; i < this.tamY; i++){
+        for(int j = 0; j < this.tamX; j++){
+          System.out.print(this.subMapa[i][j] + " ");
+        }
+        System.out.print("\n");
+      }
     }
   }
 
@@ -85,7 +88,7 @@ public class Matriz {
   public Matriz(){
     this.lenX = TamMapa.x;
     this.lenY = TamMapa.y;
-    mapa = new int[lenY][lenX];
+    mapa = new char[lenY][lenX];
     camera = new Camera();
     random = new Random();
     proporcao = lenX / TamMapa.displayX;
@@ -106,11 +109,12 @@ public class Matriz {
     int x = 0;
     int y = 0;
     matrizQuadrantes[y][x] = new Quadrante(xQuadranteAntigo, yQuadranteAntigo);
+    matrizQuadrantes[y][x].transfereSubMapa(matrizQuadrantes[y][x]);
     x++;
     /* inserir na matriz de quadrantes */
     for(int i = 0; i < lenY; i++){
       for(int j = 0; j < lenX; j++){
-        mapa[i][j] = 0; 
+        mapa[i][j] = '░';
 
         xQuadranteNovo = calculaCoord(j);
         yQuadranteNovo = calculaCoord(i);
@@ -149,20 +153,10 @@ public class Matriz {
   /* agora precisamos fazer um algoritmo para fazer as cidades */
   public void decideQuadrante(){
     /* IMPORTANTE! Vamos querer que o primeiro quadrante sempre seja cidade */
-    matrizQuadrantes[0][0].viraCidade();
-
-    int aleatorio = random.nextInt(100);
-    /* 1/4 de chance do quadrante virar cidade */
-    /* aqui eu estou em duvida se transformo o quadrante em uma cidade ou apenas 4 quadrados (2x2) */
-    /* do mapa em cidade */
-    for(int i = 1; i < lenY; i++){
-      for(int j = 1; j < lenX; j++){
-        
-      }
-    }
-    if(aleatorio > 80){
-      
-    } 
+    //matrizQuadrantes[0][0].viraCidade();
+    matrizQuadrantes[0][0].geraRegiao('█');
+    matrizQuadrantes[0][0].printaQuadrante();
   }
+  
 }
 
