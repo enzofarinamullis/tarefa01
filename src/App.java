@@ -20,6 +20,11 @@ public class App {
     
     Matriz mapa = new Matriz();
     mapa.gerarMapa();
+    for(int i = 0; i < mapa.proporcao; i++){
+      for(int j = 0; j < mapa.proporcao; j++){
+        mapa.matrizQuadrantes[i][j].printaQuadrante();
+      }
+    }
     mapa.printMapaCompleto();
     
     Scanner teclado = new Scanner(System.in);

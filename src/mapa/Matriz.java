@@ -4,15 +4,15 @@ import constantes.TamMapa;
 import java.util.Random;
 
 public class Matriz {
-  int lenX;
-  int lenY;
-  int cidadeInicialX;
-  int cidadeInicialY;
-  int numCidades;
+  public int lenX;
+  public int lenY;
+  public int cidadeInicialX;
+  public int cidadeInicialY;
+  public int numCidades;
   public int[][] mapa;
-  int proporcao;
+  public int proporcao;
   /* matriz que representa cada quadrante */
-  Quadrante[][] matrizQuadrantes;
+  public Quadrante[][] matrizQuadrantes;
   Camera camera;
   Random random;
   
@@ -52,8 +52,8 @@ public class Matriz {
       int limiteY = this.y + this.tamY;
       /* ja estamos trabalhado com o quadrante */
       /* damos apenas um espacamento da borda para depois fazermos os caminhos */
-      int regiaoX = random.nextInt(1, this.tamX - 2);
-      int regiaoY = random.nextInt(1, this.tamY - 2);
+      int regiaoX = random.nextInt(2, this.tamX - 2);
+      int regiaoY = random.nextInt(2, this.tamY - 2);
       
       geraQuadrado(regiaoX, regiaoY, tipo);
     }
@@ -61,10 +61,16 @@ public class Matriz {
     public void printaQuadrante(){
       for(int i = 0; i < this.tamY; i++){
         for(int j = 0; j < this.tamX; j++){
-          System.out.print(this.subMapa[i][j] + " ");
+          if(subMapa[i][j] == 0) {
+            System.out.print(Cores.COR_MUSGO_1 + "▒ " + Cores.ANSI_RESET);
+          }
+          if(subMapa[i][j] == 1 || subMapa[i][j] == 9){
+            System.out.print(Cores.ANSI_RED + "█ " + Cores.ANSI_RESET);
+          }
         }
         System.out.print("\n");
       }
+      System.out.println();
     }
     
     public int buscaRegiaoX() {
@@ -203,7 +209,8 @@ public class Matriz {
     /* agora damos uma chance para o quadrante virar algo */
     /* 30 % de chance de virar algo */
     for(int i = 0; i < proporcao; i++){
-      for(int j = 0; j < proporcao; j++){
+      /* comecamos em 1, pois no quadrante 0 0 ja temos uma cidade 100 % das vezes*/
+      for(int j = 1; j < proporcao; j++){
         if(random.nextInt(100) < TamMapa.probRegiao){
           /* decidimos a probabilidade de oque virar */
           matrizQuadrantes[i][j].geraRegiao(1);
