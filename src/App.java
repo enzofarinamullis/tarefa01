@@ -5,13 +5,18 @@ import cenas.Logo;
 import constantes.Cores;
 import dados.Dados;
 import dados.Heroi;
+import musica.MusicaInicial;
 import sistematurnos.SistemaTurnos;
 import usaveis.*;
 import mapa.Matriz;
+import musica.*;
 
 public class App {
 
   public static void main(String[] args) {
+    
+    MidiPlayer midi = new MusicaInicial("src/musica/noname.mid");
+    midi.start();
     
     Matriz mapa = new Matriz();
     mapa.gerarMapa();
