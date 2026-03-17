@@ -9,4 +9,10 @@ public class PrintTerminal {
     }
     System.out.println(Cores.ANSI_RESET + "");
   }
+  
+  public static void limparTerminal(){
+    for(int i = 0; i < 100; i++){
+      System.out.println();
+    }
+  }
 }

@@ -10,10 +10,15 @@ import sistematurnos.SistemaTurnos;
 import usaveis.*;
 import mapa.Matriz;
 import musica.*;
-
+import anim.*;
 public class App {
 
   public static void main(String[] args) {
+    
+    Animacao animacao = new AnimacaoFogo();
+    /* damos run por enquanto */
+    animacao.run();
+    
     
     MidiPlayer midi = new MusicaInicial("src/musica/noname.mid");
     midi.start();

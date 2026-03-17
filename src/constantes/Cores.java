@@ -10,6 +10,7 @@ public class Cores {
   public static final String ANSI_PURPLE = "\u001B[35m";
   public static final String ANSI_CYAN = "\u001B[36m";
   public static final String ANSI_WHITE = "\u001B[37m";
+  public static final String ANSI_ORANGE = "\u001B[38;5;208m";
   
   /* cores de cabecalho */
   public static final String COR_DEQUE_CABECALHO = "\u001B[33m";
@@ -35,6 +36,16 @@ public class Cores {
   public static final String COR_RUNA_3 = "\u001B[38;5;27m";
   public static final String COR_RUNA_4 = "\u001B[38;5;63m";
 
+  /* Cores fogo */
+  public static final String cor03071e = "\u001B[38;5;17m";
+  public static final String cor1f1b1c = "\u001B[38;5;236m";
+  public static final String cor5b373a = "\u001B[38;5;174m";
+  public static final String cor9d0208 = "\u001B[38;5;196m";
+  public static final String core85d04 = "\u001B[38;5;202m";
+  public static final String cordc2f02 = "\u001B[38;5;166m";
+  public static final String corf48c06 = "\u001B[38;5;214m";
+  public static final String corfaa307 = "\u001B[38;5;220m";
+  
   public static void cprintln(String cor, String texto){
     System.out.println(cor + texto + Cores.ANSI_RESET);
   }
@@ -58,4 +69,6 @@ public class Cores {
   public static void cprintIntn(String cor, int inteiro){
     System.out.print(cor + inteiro + Cores.ANSI_RESET + "\n");
   }
+  
+  
 }
