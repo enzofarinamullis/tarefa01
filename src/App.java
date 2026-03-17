@@ -21,8 +21,7 @@ public class App {
     /* damos run por enquanto */
     //animacao.run();
     
-    Animacao anim = new DialogoInicial();
-    anim.run();
+
     
     
     MidiPlayer midi = new MusicaInicial("src/musica/noname.mid");
@@ -47,6 +46,9 @@ public class App {
     heroi.nome = nome;
 
     cena.atualizaCena();
+    
+    Animacao anim = new DialogoInicial(dados);
+    anim.run();
 
     heroi.status();
 

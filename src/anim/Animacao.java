@@ -5,6 +5,7 @@ import java.util.Scanner;
 import java.io.FileNotFoundException;
 
 import constantes.Cores;
+import dados.Dados;
 import utilitarios.PrintTerminal;
 
 public abstract class Animacao extends Thread {
@@ -12,6 +13,7 @@ public abstract class Animacao extends Thread {
   public File arquivo;
   public Scanner leitor;
   public int frame;
+  public Dados dados;
   
   public Animacao(String caminho) {
     leitor = carregaLeitor(caminho);

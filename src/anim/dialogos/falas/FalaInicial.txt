@@ -1,8 +1,12 @@
 
-Mary: $NOME$! Acorde!
+$M: $H! Acorde!
 
 ,
 
-$NOME$: opa!
+$H: Opa!
+
+,
+
+$M: Você tem dormido de mais, ultimamente. Você está bem?
 
 ,
