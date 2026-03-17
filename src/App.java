@@ -1,4 +1,6 @@
 import java.util.Scanner;
+
+import anim.dialogos.DialogoInicial;
 import cenas.Cena;
 import cenas.Slime;
 import cenas.Logo;
@@ -15,22 +17,20 @@ public class App {
 
   public static void main(String[] args) {
     
-    Animacao animacao = new AnimacaoChuva();
+    //Animacao animacao = new AnimacaoChuva();
     /* damos run por enquanto */
-    animacao.run();
+    //animacao.run();
+    
+    Animacao anim = new DialogoInicial();
+    anim.run();
     
     
     MidiPlayer midi = new MusicaInicial("src/musica/noname.mid");
     midi.start();
     
-    Matriz mapa = new Matriz();
-    mapa.gerarMapa();
-    for(int i = 0; i < mapa.proporcao; i++){
-      for(int j = 0; j < mapa.proporcao; j++){
-        mapa.matrizQuadrantes[i][j].printaQuadrante();
-      }
-    }
-    mapa.printMapaCompleto();
+    //Matriz mapa = new Matriz();
+    //mapa.gerarMapa();
+    //mapa.printMapaCompleto();
     
     Scanner teclado = new Scanner(System.in);
 

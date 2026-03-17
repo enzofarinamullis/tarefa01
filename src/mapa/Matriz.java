@@ -219,4 +219,12 @@ public class Matriz {
     }
 
   }
+  
+  public void imprimeTodosQuadrantes(){
+    for(int i = 0; i < proporcao; i++){
+      for(int j = 0; j < proporcao; j++){
+        matrizQuadrantes[i][j].printaQuadrante();
+      }
+    }
+  }
 }

@@ -8,10 +8,10 @@ import constantes.Cores;
 import utilitarios.PrintTerminal;
 
 public abstract class Animacao extends Thread {
-  String nome;
-  File arquivo;
-  Scanner leitor;
-  int frame;
+  public String nome;
+  public File arquivo;
+  public Scanner leitor;
+  public int frame;
   
   public Animacao(String caminho) {
     leitor = carregaLeitor(caminho);
@@ -21,6 +21,7 @@ public abstract class Animacao extends Thread {
   public void run() {
     try {
       while(leitor.hasNextLine()) {
+        PrintTerminal.limparTerminal();
         imprimeAnimacao();
         sleep(100);
       }
@@ -48,7 +49,6 @@ public abstract class Animacao extends Thread {
   
   public void imprimeAnimacao(){
     String linha = "-";
-    PrintTerminal.limparTerminal();
     if(leitor.hasNextLine()){
       linha = leitor.nextLine();
     }
