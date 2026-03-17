@@ -15,7 +15,7 @@ public class App {
 
   public static void main(String[] args) {
     
-    Animacao animacao = new AnimacaoFogo();
+    Animacao animacao = new AnimacaoChuva();
     /* damos run por enquanto */
     animacao.run();
     

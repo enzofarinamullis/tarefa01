@@ -80,41 +80,6 @@ public class AnimacaoFogo extends Animacao {
       }
     }
     /* printamos a quebra de linha */
-    System.out.print("\n");
-  }
-  @Override
-  public void imprimeAnimacao(){
-    String linha = "-";
-    
-    if(leitor.hasNextLine()){
-      linha = leitor.nextLine();
-    }
-    /* Fazemos a leitura enquanto tiver proxima linha */
-    for(int i = 0; leitor.hasNextLine(); i++){
-      /* Enquanto o leitor nao encontrar o final do frame */
-      /* e enquanto existir um proxima linha */
-      while(!linha.equals(",") && leitor.hasNextLine()){
-        /* como o leitor le o arquivo inteiro, linha por linha */
-        /* e como nao temos como especificar a linha de leitura */
-        /* temos que garantir que ele so imprima a linha que for correspondente do */
-        /* frame da animacao */
-        if(i == frame){
-          imprimeLinha(linha);
-          //System.out.println(linha);
-        }
-        linha = leitor.nextLine();
-      }
-      /* caso percorremos o arquivo e preenchemos o frame */
-      /* nao queremos ele percorrendo desnecessariamente */
-      if(i == frame){
-        return;
-      }
-      /* caso o leitor achou o final da linha */
-      if(linha.equals(",")){
-        /* removemos o "," */
-        linha = leitor.nextLine();
-        this.frame++;
-      }
-    }
+    System.out.print(Cores.ANSI_RESET + "\n");
   }
 }

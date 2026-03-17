@@ -46,6 +46,21 @@ public class Cores {
   public static final String corf48c06 = "\u001B[38;5;214m";
   public static final String corfaa307 = "\u001B[38;5;220m";
   
+  /* Cores chuva */
+  public static final String cor1e90ff = "\u001B[38;5;110m";
+  public static final String corb3dbff = "\u001B[38;5;111m";
+  public static final String cor4169e1 = "\u001B[38;5;105m";
+  public static final String cor483d8b = "\u001B[38;5;97m";
+  public static final String cor0000cd = "\u001B[38;5;20m";
+  public static final String cor191970 = "\u001B[38;5;56m";
+  public static final String corcce7ff = "\u001B[38;5;189m";
+  public static final String cor87cefa = "\u001B[38;5;153m";
+  public static final String cor6495ed = "\u001B[38;5;105m";
+  public static final String cor000080 = "\u001B[38;5;17m";
+  public static final String cor00bfff = "\u001B[38;5;39m";
+  public static final String cor87ceeb = "\u001B[38;5;81m";
+  
+  
   public static void cprintln(String cor, String texto){
     System.out.println(cor + texto + Cores.ANSI_RESET);
   }

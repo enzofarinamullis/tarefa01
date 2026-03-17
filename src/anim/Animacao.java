@@ -23,7 +23,6 @@ public abstract class Animacao extends Thread {
       while(leitor.hasNextLine()) {
         imprimeAnimacao();
         sleep(100);
-        PrintTerminal.limparTerminal();
       }
     }
     catch (Exception e){}
@@ -49,7 +48,7 @@ public abstract class Animacao extends Thread {
   
   public void imprimeAnimacao(){
     String linha = "-";
-    
+    PrintTerminal.limparTerminal();
     if(leitor.hasNextLine()){
       linha = leitor.nextLine();
     }
@@ -62,21 +61,23 @@ public abstract class Animacao extends Thread {
         /* e como nao temos como especificar a linha de leitura */
         /* temos que garantir que ele so imprima a linha que for correspondente do */
         /* frame da animacao */
-        System.out.println(linha);
         if(i == frame){
           imprimeLinha(linha);
-          return;
           //System.out.println(linha);
         }
         linha = leitor.nextLine();
-        if(linha.equals(",")){
-          /* removemos o "," */
-          linha = leitor.nextLine();
-          this.frame++;
-        }
+      }
+      /* caso percorremos o arquivo e preenchemos o frame */
+      /* nao queremos ele percorrendo desnecessariamente */
+      if(i == frame){
+        return;
       }
       /* caso o leitor achou o final da linha */
-      
+      if(linha.equals(",")){
+        /* removemos o "," */
+        linha = leitor.nextLine();
+        this.frame++;
+      }
     }
   }
 
