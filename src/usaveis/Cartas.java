@@ -10,6 +10,7 @@ public class Cartas{
   public Cartas prox;
   public boolean ehDano;
   public boolean ehEscudo;
+  public String descricao;
 
   public void usar(Inimigo inimigo, Heroi heroi){}
   public void usarEscudo(Heroi heroi){}

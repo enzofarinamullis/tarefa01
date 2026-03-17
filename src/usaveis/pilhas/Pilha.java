@@ -1,4 +1,4 @@
-package usaveis.Pilhas;
+package usaveis.pilhas;
 import usaveis.Cartas;
 
 public abstract class Pilha {

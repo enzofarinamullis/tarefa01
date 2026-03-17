@@ -4,12 +4,13 @@ import dados.Heroi;
 
 public class CartaDano extends Cartas{
 
-  public CartaDano(String nome, int custoEnergia, int nivel){
+  public CartaDano(String nome, int custoEnergia, int nivel, String descricao){
     this.nome = nome;
     this.custoEnergia = custoEnergia;
     this.nivel = nivel;
     this.ehDano = true;
     this.ehEscudo = false;
+    this.descricao = descricao;
   }
 
   public int calcularDano(){
