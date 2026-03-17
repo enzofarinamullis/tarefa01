@@ -45,10 +45,10 @@ public class App {
 
     heroi.status();
 
-    Cartas espadaEnferrujada = new CartaDano("Espada Enferrujada", 1, 5);
-    Cartas espadaTorta = new CartaDano("Espada Torta", 1, 5);
-    Cartas escudoMadeira = new CartaEscudo("Escudo de Madeira", 5, 1);
-    Cartas escudoFerro = new CartaEscudo("Escudo de Ferro", 10, 3);
+    Cartas espadaEnferrujada = new CartaDano("Espada Enferrujada", 1, 5, "");
+    Cartas espadaTorta = new CartaDano("Espada Torta", 1, 5, "");
+    Cartas escudoMadeira = new CartaEscudo("Escudo de Madeira", 5, 1, "");
+    Cartas escudoFerro = new CartaEscudo("Escudo de Ferro", 10, 3, "");
 
     heroi.mao.adicionarCartaMao(espadaEnferrujada);
     heroi.mao.adicionarCartaMao(espadaTorta);
