@@ -7,6 +7,7 @@ import cenas.Logo;
 import constantes.Cores;
 import dados.Dados;
 import dados.Heroi;
+import dados.Seres;
 import musica.MusicaInicial;
 import sistematurnos.SistemaTurnos;
 import usaveis.*;
@@ -33,7 +34,7 @@ public class App {
     
     Scanner teclado = new Scanner(System.in);
 
-    Heroi heroi = new Heroi(null, 5,50); 
+    Heroi heroi = new Heroi(null, 5,50);
     Dados dados = new Dados(heroi);
 
     Cena cena = new Logo(dados);
@@ -47,8 +48,8 @@ public class App {
 
     cena.atualizaCena();
     
-    Animacao anim = new DialogoInicial(dados);
-    anim.run();
+    //Animacao anim = new DialogoInicial(dados);
+    //anim.run();
 
     heroi.status();
 

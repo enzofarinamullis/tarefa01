@@ -1,12 +1,7 @@
 package dados;
 import constantes.Cores;
 
-public class Inimigo {
-  public String nome;
-  public int vida;
-  public int escudo;
-  public int dano;
-  int id;
+public class Inimigo extends Seres {
 
   /* Construtor */
   public Inimigo(String nome, int vida, int escudo, int dano) {
@@ -16,7 +11,8 @@ public class Inimigo {
     this.dano = dano;
     this.id = -1; // colocamos como -1 para quando nao tiver sido fornecido um id (ainda)
   }
-
+  
+  @Override
   public void receberDano(int dano) {
         
     if (escudo > 0){
@@ -47,35 +43,5 @@ public class Inimigo {
       Cores.cprintInt(Cores.ANSI_GREEN, vida);
       System.out.print(" de vida.\n");
     }
-  }
-
-  public void atacar(Heroi heroi) {
-    System.out.println(Cores.ANSI_YELLOW + nome + Cores.ANSI_RESET +
-       " ataca " + Cores.ANSI_CYAN + heroi.nome + Cores.ANSI_RESET + "!");
-    System.out.println("Força do ataque: " + Cores.ANSI_RED + dano + Cores.ANSI_RESET);
-    if (dano > 0) {
-      heroi.receberDano(dano);
-    }
-  }
-
-  public Boolean estaVivo() {
-    if (vida > 0) {
-      Cores.cprint(Cores.ANSI_YELLOW, nome);
-      System.out.print(" está vivo!\n");
-      return true;
-    }
-    else{
-      Cores.cprint(Cores.ANSI_YELLOW, nome);
-      System.out.print(" não está vivo!\n");
-      return false;
-    }
-  }
-
-  public void printStats(){
-    System.out.print(Cores.ANSI_YELLOW + nome + Cores.ANSI_RESET +
-      " Vida: " + Cores.ANSI_GREEN + vida + Cores.ANSI_RESET + 
-      " Dano: " + Cores.ANSI_RED + dano + Cores.ANSI_RESET +
-      " Escudo " + Cores.ANSI_BLUE + escudo + Cores.ANSI_RESET +
-      "\n");
   }
 }
