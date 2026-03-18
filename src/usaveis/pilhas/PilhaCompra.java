@@ -3,6 +3,7 @@ package usaveis.pilhas;
 import usaveis.*;
 import usaveis.danos.*;
 import usaveis.escudos.*;
+import java.util.Random;
 
 public class PilhaCompra extends Pilha {
   /* ja temos a pilha exatamente pronta */
@@ -10,20 +11,35 @@ public class PilhaCompra extends Pilha {
     super();
     /* criamos o deque */
     Cartas carta = new espadaCurta();
-    adicionaCartaInicio(carta);
+    pilha.add(carta);
     carta = new espadaMedia();
-    adicionaCartaInicio(carta);
+    pilha.add(carta);
     carta = new espadaLonga();
-    adicionaCartaInicio(carta);
+    pilha.add(carta);
     carta = new espadaEL();
-    adicionaCartaInicio(carta);
+    pilha.add(carta);
     carta = new escudoPequeno();
-    adicionaCartaInicio(carta);
+    pilha.add(carta);
     carta = new escudoMedio();
-    adicionaCartaInicio(carta);
+    pilha.add(carta);
     carta = new escudoGrande();
-    adicionaCartaInicio(carta);
+    pilha.add(carta);
     carta = new escudoEL();
-    adicionaCartaInicio(carta);
+    pilha.add(carta);
+  }
+  
+  public void embraralhaPlha() {
+    Pilha temp = new Pilha;
+    Cartas atual;
+    Random aleatorio = new Random();
+    while(pilha.size() != 0){
+      /* pegamos uma carta aleatoria da pilha */
+      atual = pilha.get(aleatorio.nextInt(pilha.size()));
+      /* colocamos na pilha temporaria */
+      temp.pilha.add(atual);
+      /* fazemos isto ate zerar a pilha */
+    }
+    /* copiamos a referencia para a pilha embaralhada */
+    pilha = temp.pilha;
   }
 }

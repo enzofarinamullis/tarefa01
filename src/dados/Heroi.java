@@ -2,11 +2,15 @@ package dados;
 import constantes.Cores;
 import usaveis.Cartas;
 import usaveis.Mao;
+import usaveis.pilhas.PilhaCompra;
+import usaveis.pilhas.PilhaDescarte;
 
 
 public class Heroi extends Seres {
   /* Atributos */
   public Mao mao;
+  public PilhaCompra pilhaCompra;
+  public PilhaDescarte pilhaDescarte;
 
   /* Construtor */
   public Heroi(String nome, int vida, int energia){
