@@ -21,15 +21,15 @@ public class App {
     /* damos run por enquanto */
     //animacao.run();
     
-
+    Matriz mapa = new Matriz();
+    mapa.gerarMapa();
+    mapa.printMapaCompleto();
     
     
     MidiPlayer midi = new MusicaInicial("src/musica/noname.mid");
     midi.start();
     
-    //Matriz mapa = new Matriz();
-    //mapa.gerarMapa();
-    //mapa.printMapaCompleto();
+
     
     Scanner teclado = new Scanner(System.in);
 

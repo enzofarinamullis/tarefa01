@@ -1,6 +1,14 @@
 package mapa;
 import constantes.Cores;
 import constantes.TamMapa;
+import mapa.estruturas.Cidade;
+import mapa.estruturas.Dungeon;
+import mapa.estruturas.Estrutura;
+import mapa.estruturas.nomes.Nomes;
+import mapa.estruturas.nomes.NomesCidades;
+import mapa.estruturas.nomes.NomesDungeon;
+import constantes.IdsEstruturas;
+
 import java.util.Random;
 
 public class Matriz {
@@ -15,11 +23,12 @@ public class Matriz {
   public Quadrante[][] matrizQuadrantes;
   Camera camera;
   Random random;
-  
-
+  Nomes nomesCidades;
+  Nomes nomesDungeon;
   
   public class Quadrante{
     public int[][] subMapa;
+    Estrutura estrutura;
     int x;
     int y;
     int tamX;
@@ -31,6 +40,7 @@ public class Matriz {
       this.subMapa = new int[TamMapa.displayY][TamMapa.displayX];
       this.tamX = TamMapa.displayX;
       this.tamY = TamMapa.displayY;
+      estrutura = null;
       for(int i = 0; i < tamY; i++){
         for(int j = 0; j < tamX; j++){
           this.subMapa[i][j] = 0;
@@ -43,6 +53,12 @@ public class Matriz {
         for(int j = x - 1; j < x + 2; j++){
           this.subMapa[i][j] = tipo;
         }
+      }
+      if(tipo == 101){
+        this.estrutura = new Cidade(x, y);
+      }
+      else if(tipo == 102){
+        this.estrutura = new Dungeon(x, y);
       }
       subMapa[y][x] = 9;
     }
@@ -116,6 +132,8 @@ public class Matriz {
     random = new Random();
     proporcao = lenX / TamMapa.displayX;
     matrizQuadrantes = new Quadrante[TamMapa.y][TamMapa.x];
+    nomesCidades = new NomesCidades();
+    nomesDungeon = new NomesDungeon();
   }
   
   
@@ -169,8 +187,8 @@ public class Matriz {
   public void gerarMapa(){
     this.geraSubMapas();
     decideQuadrante();
+    atribuiNomes();
     copiaSubMapas();
-    
   }
   
   public void visualizarMapa(int v, int h){
@@ -185,11 +203,17 @@ public class Matriz {
   public void printMapaCompleto(){
     for(int i = 0; i < lenY; i++){
       for(int j = 0; j < lenX; j++){
-        if(mapa[i][j] == 0) {
+        if(mapa[i][j] == IdsEstruturas.ID_GRAMA) {
           System.out.print(Cores.COR_MUSGO_1 + "▒ " + Cores.ANSI_RESET);
         }
-        if(mapa[i][j] == 1 || mapa[i][j] == 9){
-          System.out.print(Cores.ANSI_RED + "█ " + Cores.ANSI_RESET);
+        else if(mapa[i][j] == IdsEstruturas.ID_CIDADE){
+          System.out.print(Cores.ANSI_ORANGE + "█ " + Cores.ANSI_RESET);
+        }
+        else if(mapa[i][j] == IdsEstruturas.ID_DUNGEON){
+          System.out.print(Cores.COR_CIMENTO_1 + "█ " + Cores.ANSI_RESET);
+        }
+        else{
+          System.out.print(Cores.ANSI_CYAN + mapa[i][j] + " " + Cores.ANSI_RESET);
         }
       }
       System.out.println();
@@ -202,18 +226,25 @@ public class Matriz {
   public void decideQuadrante(){
     /* IMPORTANTE! Vamos querer que o primeiro quadrante sempre seja cidade */
     //matrizQuadrantes[0][0].viraCidade();
-    matrizQuadrantes[0][0].geraRegiao(1);
+    matrizQuadrantes[0][0].geraRegiao(101);
     this.cidadeInicialX = matrizQuadrantes[0][0].buscaRegiaoX();
     this.cidadeInicialY = matrizQuadrantes[0][0].buscaRegiaoY();
     
     /* agora damos uma chance para o quadrante virar algo */
     /* 30 % de chance de virar algo */
+    Quadrante atual;
     for(int i = 0; i < proporcao; i++){
       /* comecamos em 1, pois no quadrante 0 0 ja temos uma cidade 100 % das vezes*/
       for(int j = 1; j < proporcao; j++){
+        atual = matrizQuadrantes[i][j];
         if(random.nextInt(100) < TamMapa.probRegiao){
           /* decidimos a probabilidade de oque virar */
-          matrizQuadrantes[i][j].geraRegiao(1);
+          if(random.nextInt(1000) > 500) {
+            atual.geraRegiao(IdsEstruturas.ID_CIDADE);
+          }
+          else{
+            atual.geraRegiao(IdsEstruturas.ID_DUNGEON);
+          }
         }
       }
     }
@@ -224,6 +255,39 @@ public class Matriz {
     for(int i = 0; i < proporcao; i++){
       for(int j = 0; j < proporcao; j++){
         matrizQuadrantes[i][j].printaQuadrante();
+      }
+    }
+  }
+  
+  public void atribuiNomes() {
+    Quadrante atual;
+    int indice = 1;
+    int x;
+    int y;
+    for (int i = 0; i < proporcao; i++) {
+      for (int j = 0; j < proporcao; j++) {
+        atual = matrizQuadrantes[i][j];
+        if (atual.estrutura != null) {
+          /* verificamos o tipo da cidade */
+          if (atual.estrutura.ehCidade) {
+            /* Escolhemos o nome */
+            atual.estrutura.nome = nomesCidades.escolheNome();
+            /* definimos o indice */
+            atual.estrutura.indice = indice;
+            x = atual.estrutura.x;
+            y = atual.estrutura.y;
+            atual.subMapa[y][x] = indice;
+            indice++;
+          } else if (atual.estrutura.ehDungeon) {
+            atual.estrutura.nome = nomesDungeon.escolheNome();
+            atual.estrutura.indice = indice;
+            x = atual.estrutura.x;
+            y = atual.estrutura.y;
+            atual.subMapa[y][x] = indice;
+            indice++;
+          }
+          
+        }
       }
     }
   }
