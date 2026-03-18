@@ -30,6 +30,8 @@ public class Matriz {
   Nomes nomesDungeon;
   /* lista de todas as estruturas do game */
   List<Estrutura> Lugares = new ArrayList<>();
+  List<Estrutura> Cidades = new ArrayList<>();
+  List<Estrutura> Dungeons = new ArrayList<>();
   
   public class Quadrante{
     public int[][] subMapa;
@@ -194,7 +196,7 @@ public class Matriz {
   
   
   public void gerarMapa(){
-    while(Lugares.size() < 10) {
+    while(Lugares.size() < 10 && Cidades.size() < 5 && Dungeons.size() < 5) {
       this.geraSubMapas();
       decideQuadrante();
       atribuiNomes();
@@ -247,7 +249,7 @@ public class Matriz {
   public void decideQuadrante(){
     /* IMPORTANTE! Vamos querer que o primeiro quadrante sempre seja cidade */
     //matrizQuadrantes[0][0].viraCidade();
-    matrizQuadrantes[0][0].geraRegiao(101);
+    matrizQuadrantes[0][0].geraRegiao(IdsEstruturas.ID_CIDADE);
     this.cidadeInicialX = matrizQuadrantes[0][0].buscaRegiaoX();
     this.cidadeInicialY = matrizQuadrantes[0][0].buscaRegiaoY();
     
@@ -300,6 +302,7 @@ public class Matriz {
             atual.subMapa[y][x] = indice;
             indice++;
             Lugares.add(atual.estrutura);
+            Cidades.add(atual.estrutura);
           } else if (atual.estrutura.ehDungeon) {
             atual.estrutura.nome = nomesDungeon.escolheNome();
             atual.estrutura.indice = indice;
@@ -308,6 +311,7 @@ public class Matriz {
             atual.subMapa[y][x] = indice;
             indice++;
             Lugares.add(atual.estrutura);
+            Dungeons.add(atual.estrutura);
           }
         }
       }
