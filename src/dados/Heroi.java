@@ -20,6 +20,9 @@ public class Heroi extends Seres {
     this.energia = energia;
     this.energiaLimite = 20;
     this.mao = new Mao();
+    this.pilhaCompra = new PilhaCompra();
+    pilhaCompra.embraralhaPlha();
+    this.pilhaDescarte = new PilhaDescarte();
   }
 
   public boolean temEnergia(int energiaCarta) {
@@ -37,8 +40,9 @@ public class Heroi extends Seres {
   }
 
   public boolean verificaEnergia(){
-    Cartas atual = mao.raiz;
-    while(atual != null){
+    Cartas atual = mao.cartas.getFirst();
+    int indice = 0;
+    while(indice != mao.cartas.size()){
       if(atual.custoEnergia <= energia){
         return true;
       }

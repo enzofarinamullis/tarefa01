@@ -4,7 +4,7 @@ import usaveis.Cartas;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Pilha {
+public class Pilha {
   public List<Cartas> pilha;
   
   public Pilha() {

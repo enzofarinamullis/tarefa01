@@ -29,17 +29,24 @@ public class PilhaCompra extends Pilha {
   }
   
   public void embraralhaPlha() {
-    Pilha temp = new Pilha;
+    Pilha temp = new Pilha();
     Cartas atual;
     Random aleatorio = new Random();
     while(pilha.size() != 0){
       /* pegamos uma carta aleatoria da pilha */
-      atual = pilha.get(aleatorio.nextInt(pilha.size()));
+      atual = pilha.remove(aleatorio.nextInt(pilha.size()));
       /* colocamos na pilha temporaria */
       temp.pilha.add(atual);
       /* fazemos isto ate zerar a pilha */
     }
     /* copiamos a referencia para a pilha embaralhada */
     pilha = temp.pilha;
+  }
+  
+  public void compraCarta(Mao mao, int qnt) {
+    for(int i = 0; i < qnt; i++) {
+      Cartas carta = pilha.removeFirst();
+      mao.cartas.add(carta);
+    }
   }
 }
