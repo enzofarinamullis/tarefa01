@@ -50,7 +50,7 @@ public class App {
     
     //Animacao anim = new DialogoInicial(dados);
     //anim.run();
-
+    
     heroi.status();
 
     Cartas espadaEnferrujada = new CartaDano("Espada Enferrujada", 1, 5, "");
