@@ -45,7 +45,7 @@ public class SistemaTurnos {
 
 
   public boolean turno(){
-    
+    int numTurno = -1;
     /* sanity check: verificamos se nao existem inimigos */
     if(dados.listaInimigos == null || dados.listaInimigos.qntInimigos == 0){
       System.out.println("Não há inimigos, por aqui!");
@@ -81,6 +81,13 @@ public class SistemaTurnos {
       dados.heroi.escudo = 0;
       /* completamos a energia do heroi como pedido no enunciado */
       dados.heroi.energia = dados.heroi.energiaLimite;
+      
+      /* como pedido pelo enunciado remover a mao inteira no inicio do turno */
+      /* colocar a Mao inteira no descarte */
+      /* comprar 5 cartas */
+      numTurno++;
+      pilhaDescarte.removeMao();
+      pilhaCompra.compraCarta(Mao,5);
       
       /* turno do heroi */
       while(heroiAgiu == 0){
@@ -132,8 +139,9 @@ public class SistemaTurnos {
             mao.printMao();
           }
           
-          
+          /* removemos a carta da mao e colocamos em descarte */
           carta = mao.cartas.remove(comando);
+          pilhaDescarte.pilha.add(carta);
           
           /* usamos a carta */
           if(carta.ehDano){
@@ -152,6 +160,7 @@ public class SistemaTurnos {
             inimigo = this.dados.listaInimigos.buscarInimigo(comando);
             /* aplicamos o dano ao inimigo */
             carta.usar(inimigo, dados.heroi);
+            
 
             /* verificamos se o inimigo morreu */
             if(inimigo.estaVivo() == false){
