@@ -9,6 +9,9 @@ import mapa.estruturas.nomes.NomesCidades;
 import mapa.estruturas.nomes.NomesDungeon;
 import constantes.IdsEstruturas;
 
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Matriz {
@@ -25,6 +28,8 @@ public class Matriz {
   Random random;
   Nomes nomesCidades;
   Nomes nomesDungeon;
+  /* lista de todas as estruturas do game */
+  List<Estrutura> Lugares = new ArrayList<>();
   
   public class Quadrante{
     public int[][] subMapa;
@@ -54,10 +59,10 @@ public class Matriz {
           this.subMapa[i][j] = tipo;
         }
       }
-      if(tipo == 101){
+      if(tipo == IdsEstruturas.ID_CIDADE){
         this.estrutura = new Cidade(x, y);
       }
-      else if(tipo == 102){
+      else if(tipo == IdsEstruturas.ID_DUNGEON){
         this.estrutura = new Dungeon(x, y);
       }
       subMapa[y][x] = 9;
@@ -77,12 +82,16 @@ public class Matriz {
     public void printaQuadrante(){
       for(int i = 0; i < this.tamY; i++){
         for(int j = 0; j < this.tamX; j++){
-          if(subMapa[i][j] == 0) {
+          if(subMapa[i][j] == IdsEstruturas.ID_GRAMA) {
             System.out.print(Cores.COR_MUSGO_1 + "▒ " + Cores.ANSI_RESET);
           }
-          if(subMapa[i][j] == 1 || subMapa[i][j] == 9){
+          else if(subMapa[i][j] == IdsEstruturas.ID_CIDADE){
             System.out.print(Cores.ANSI_RED + "█ " + Cores.ANSI_RESET);
           }
+          else if(subMapa[i][j] == IdsEstruturas.ID_DUNGEON){
+            System.out.print(Cores.COR_CIMENTO_1 + "█ " + Cores.ANSI_RESET);
+          }
+          
         }
         System.out.print("\n");
       }
@@ -185,10 +194,12 @@ public class Matriz {
   
   
   public void gerarMapa(){
-    this.geraSubMapas();
-    decideQuadrante();
-    atribuiNomes();
-    copiaSubMapas();
+    while(Lugares.size() < 10) {
+      this.geraSubMapas();
+      decideQuadrante();
+      atribuiNomes();
+      copiaSubMapas();
+    }
   }
   
   public void visualizarMapa(int v, int h){
@@ -212,11 +223,21 @@ public class Matriz {
         else if(mapa[i][j] == IdsEstruturas.ID_DUNGEON){
           System.out.print(Cores.COR_CIMENTO_1 + "█ " + Cores.ANSI_RESET);
         }
+        else if(mapa[i][j] > 9){
+          System.out.print(Cores.ANSI_CYAN + mapa[i][j] + Cores.ANSI_RESET);
+        }
         else{
           System.out.print(Cores.ANSI_CYAN + mapa[i][j] + " " + Cores.ANSI_RESET);
         }
       }
       System.out.println();
+    }
+    System.out.println("Lugares:");
+    Estrutura atual;
+    for(int i = 0; i < Lugares.size(); i++){
+      atual = Lugares.get(i);
+      System.out.println(Cores.ANSI_CYAN + atual.indice + " - " +
+        Cores.ANSI_YELLOW + atual.nome + Cores.ANSI_RESET);
     }
   }
   
@@ -278,6 +299,7 @@ public class Matriz {
             y = atual.estrutura.y;
             atual.subMapa[y][x] = indice;
             indice++;
+            Lugares.add(atual.estrutura);
           } else if (atual.estrutura.ehDungeon) {
             atual.estrutura.nome = nomesDungeon.escolheNome();
             atual.estrutura.indice = indice;
@@ -285,8 +307,8 @@ public class Matriz {
             y = atual.estrutura.y;
             atual.subMapa[y][x] = indice;
             indice++;
+            Lugares.add(atual.estrutura);
           }
-          
         }
       }
     }
