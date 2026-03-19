@@ -16,6 +16,6 @@ public class CartaEscudo extends Cartas{
   @Override
   public void usarEscudo(Heroi heroi){
       heroi.ganharEscudo(this.escudo);
-      heroi.energia = heroi.energia - custoEnergia;
+      heroi.setaEnergia(heroi.getEnergia() - custoEnergia);
   }
 }

@@ -5,7 +5,7 @@ public class Inimigo extends Seres {
 
   /* Construtor */
   public Inimigo(String nome, int vida, int escudo, int dano) {
-    this.nome = nome;
+    setNome(nome);
     this.vida = vida;
     this.escudo = escudo;
     this.dano = dano;

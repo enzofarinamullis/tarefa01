@@ -13,11 +13,10 @@ public class Heroi extends Seres {
   public PilhaDescarte pilhaDescarte;
 
   /* Construtor */
-  public Heroi(String nome, int vida, int energia){
-    this.nome = nome;
-    this.vida = vida;
+  public Heroi(){
+    this.vida = 5;
     this.escudo = 0;
-    this.energia = energia;
+    this.energia = 20;
     this.energiaLimite = 20;
     this.mao = new Mao();
     this.pilhaCompra = new PilhaCompra();
@@ -30,7 +29,7 @@ public class Heroi extends Seres {
   }
   
   public void status(){
-    System.out.println(Cores.ANSI_CYAN + "Status de " + Cores.ANSI_RESET + nome +
+    System.out.println(Cores.ANSI_CYAN + "Status de " + Cores.ANSI_RESET + getNome() +
      Cores.ANSI_CYAN + ":" + Cores.ANSI_RESET);
     System.out.println("Vida: " + Cores.ANSI_RED + vida + Cores.ANSI_RESET);
     System.out.println("Escudo: " + Cores.ANSI_BLUE + escudo + Cores.ANSI_RESET);

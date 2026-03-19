@@ -78,16 +78,16 @@ public class SistemaTurnos {
     
     while(true){
       /* resetamos o valor de escudo como pedido no enunciado */
-      dados.heroi.escudo = 0;
+      heroi.setaEscudo(0);
       /* completamos a energia do heroi como pedido no enunciado */
-      dados.heroi.energia = dados.heroi.energiaLimite;
+      heroi.setaEnergia(heroi.getEnergiaLimite());
       
       /* como pedido pelo enunciado remover a mao inteira no inicio do turno */
       /* colocar a Mao inteira no descarte */
       /* comprar 5 cartas */
       numTurno++;
-      pilhaDescarte.removeMao();
-      pilhaCompra.compraCarta(Mao,5);
+      pilhaDescarte.removeMao(mao);
+      pilhaCompra.compraCarta(mao,5);
       
       /* turno do heroi */
       while(heroiAgiu == 0){
@@ -175,7 +175,7 @@ public class SistemaTurnos {
               return true;
             }
 
-            if(dados.heroi.energia == 0){
+            if(heroi.getEnergia() == 0){
               heroiAgiu = 1;
             }
           }

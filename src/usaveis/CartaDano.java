@@ -44,7 +44,7 @@ public class CartaDano extends Cartas{
   @Override
   public void usar(Inimigo inimigo, Heroi heroi){
     if (heroi.temEnergia(custoEnergia)) {
-      heroi.energia = heroi.energia - custoEnergia;
+      heroi.setaEnergia(heroi.getEnergia() - custoEnergia);
       int dano = calcularDano();
       inimigo.receberDano(dano);  
       System.out.println(dano + " causado em " + inimigo.nome + "!");

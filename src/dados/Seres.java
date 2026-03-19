@@ -2,14 +2,14 @@ package dados;
 
 import constantes.Cores;
 
-public class Seres {
-  public int vida;
-  public int dano;
-  public int escudo;
-  public int energia;
-  public int energiaLimite;
-  public int id;
-  public String nome;
+public abstract class Seres {
+  protected int vida;
+  protected int dano;
+  protected int escudo;
+  protected int energia;
+  protected int energiaLimite;
+  protected int id;
+  private String nome;
   
   public void receberDano(int dano){
     if(escudo > 0) {
@@ -67,6 +67,36 @@ public class Seres {
     escudo += bonusDeEscudo;
   }
   
+  public void setaEscudo(int escudo){
+    if(escudo < 0){
+      return;
+    }
+    this.escudo = escudo;
+  }
   
+  public void setaEnergia(int energia){
+    this.energia = energia;
+  }
   
+  public int getEnergia(){
+    return energia;
+  }
+  
+  public int getEnergiaLimite(){
+    return energiaLimite;
+  }
+  
+  public String getNome(){
+    return nome;
+  }
+  
+  public boolean setNome(String nome){
+    if(nome.length() < 3 || nome.length() > 10){
+      return false;
+    }
+    else{
+      this.nome = nome;
+      return true;
+    }
+  }
 }
