@@ -2,6 +2,7 @@ package anim.dialogos.falas;
 
 import anim.Animacao;
 import constantes.Cores;
+import constantes.Dialogos;
 import utilitarios.PrintTerminal;
 
 public abstract class Dialogo extends Animacao {
@@ -16,11 +17,13 @@ public abstract class Dialogo extends Animacao {
       PrintTerminal.limparTerminal();
       while(leitor.hasNextLine()) {
         imprimeAnimacao();
-        sleep(5000);
+        sleep(Dialogos.PAUSA_MEDIA);
       }
     }
-    catch (Exception e){}
+    catch (Exception _){}
   }
+  
+  public abstract void rodar();
   
   @Override
   public void imprimeLinha(String linha){

@@ -1,6 +1,8 @@
 import java.util.Scanner;
 
 import anim.dialogos.DialogoInicial;
+import anim.dialogos.DialogoPrimeiraBatalha;
+import anim.dialogos.falas.Dialogo;
 import cenas.Cena;
 import cenas.Slime;
 import cenas.Logo;
@@ -17,10 +19,6 @@ import anim.*;
 public class App {
 
   public static void main(String[] args) {
-    
-    //Animacao animacao = new AnimacaoChuva();
-    /* damos run por enquanto */
-    //animacao.run();
     
     Matriz mapa = new Matriz();
     mapa.gerarMapa();
@@ -50,8 +48,8 @@ public class App {
 
     cena.atualizaCena();
     
-    //Animacao anim = new DialogoInicial(dados);
-    //anim.run();
+    Dialogo dialogo = new DialogoInicial(dados);
+    dialogo.rodar();
     
     heroi.status();
 
