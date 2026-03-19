@@ -2,14 +2,16 @@ package dados;
 import constantes.Cores;
 
 public class Inimigo extends Entidade {
-
+  protected String anuncio;
+  
   /* Construtor */
-  public Inimigo(String nome, int vida, int escudo, int dano) {
+  public Inimigo(String nome, int vida, int escudo, int dano, String anuncio) {
     setNome(nome);
     this.vida = vida;
     this.escudo = escudo;
     this.dano = dano;
     this.id = -1; // colocamos como -1 para quando nao tiver sido fornecido um id (ainda)
+    this.anuncio = anuncio;
   }
   
   @Override
@@ -43,5 +45,16 @@ public class Inimigo extends Entidade {
       Cores.cprintInt(Cores.ANSI_GREEN, vida);
       System.out.print(" de vida.\n");
     }
+  }
+  
+  public String getAnuncio(){
+    return anuncio;
+  }
+  
+  public void anunciar(){
+    System.out.println();
+    System.out.println("Anúncio:");
+    System.out.println(Cores.ANSI_RED + getNome() + ": " +
+      Cores.ANSI_BLUE + getAnuncio() + Cores.ANSI_RESET);
   }
 }

@@ -2,6 +2,7 @@ package sistematurnos;
 import java.util.Scanner;
 import java.util.Random;
 
+import com.sun.security.jgss.GSSUtil;
 import constantes.Cabecalho;
 import constantes.Cores;
 import dados.Dados;
@@ -30,6 +31,7 @@ public class SistemaTurnos {
   }
 
   public void printAcoes(){
+    System.out.println();
     PrintTerminal.printLinha(Cores.ANSI_RESET, Cabecalho.TAM_LINHA_DEQUE);
     dados.heroi.status();
     PrintTerminal.printLinha(Cores.ANSI_RESET, Cabecalho.TAM_LINHA_DEQUE);
@@ -80,6 +82,11 @@ public class SistemaTurnos {
     int qntInimigosInicial = listaInimigos.getTamanho();
     
     while(true){
+      /* escolhemos o inimigo que ira atacar */
+      indiceRand = random.nextInt(listaInimigos.getTamanho());
+      /* inimigo que for atacar estar na posicao indiceRand */
+      inimigo = listaInimigos.buscarInimigo(indiceRand + 1);
+      inimigo.anunciar(); // fazemos o seu anuncio
       /* resetamos o valor de escudo como pedido no enunciado */
       heroi.setaEscudo(0);
       /* completamos a energia do heroi como pedido no enunciado */
@@ -194,9 +201,17 @@ public class SistemaTurnos {
       /* turno inimigo */
       /* queremos um inimigo random atacar o heroi */
       System.out.println("Turno dos Inimigos");
-      indiceRand = random.nextInt(listaInimigos.getTamanho());
-      /* inimigo que for atacar estar na posicao indiceRand */
-      inimigo = listaInimigos.buscarInimigo(indiceRand + 1);
+      /* verificamos se o inimigo que iria atacar morreu */
+      if(!inimigo.estaVivo()) {
+        System.out.println();
+        System.out.println("O inimigo que iria te atacar morreu...");
+        System.out.println("Cuidado, que outro irá atacar:");
+        /* caso nao esteja vivo */
+        indiceRand = random.nextInt(listaInimigos.getTamanho());
+        /* inimigo que for atacar estar na posicao indiceRand */
+        inimigo = listaInimigos.buscarInimigo(indiceRand + 1);
+        inimigo.anunciar();
+      }
       inimigo.atacar(heroi);
       
       inimigoAgiu = 1;

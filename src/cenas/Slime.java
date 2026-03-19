@@ -6,7 +6,7 @@ public class Slime extends Cena {
   
   public Slime(Dados dados) {
     this.nome = "Slime Selvagem";
-    Inimigo slime = new Inimigo("Slime Selvagem", 30, 10, 1);
+    Inimigo slime = new dados.inimigos.Slime();
     dados.listaInimigos.adicionarInimigo(slime);
   }
 
