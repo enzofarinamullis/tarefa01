@@ -9,7 +9,7 @@ import cenas.Logo;
 import constantes.Cores;
 import dados.Dados;
 import dados.Heroi;
-import dados.Seres;
+import dados.Entidade;
 import musica.MusicaInicial;
 import sistematurnos.SistemaTurnos;
 import usaveis.*;
@@ -50,6 +50,9 @@ public class App {
     
     Dialogo dialogo = new DialogoInicial(dados);
     dialogo.rodar();
+
+    Animacao animacao = new AnimacaoFogo();
+    animacao.run();
     
     heroi.status();
 

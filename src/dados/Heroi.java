@@ -1,12 +1,12 @@
 package dados;
 import constantes.Cores;
-import usaveis.Cartas;
+import usaveis.Carta;
 import usaveis.Mao;
 import usaveis.pilhas.PilhaCompra;
 import usaveis.pilhas.PilhaDescarte;
 
 
-public class Heroi extends Seres {
+public class Heroi extends Entidade {
   /* Atributos */
   private Mao mao;
   private PilhaCompra pilhaCompra;
@@ -39,7 +39,7 @@ public class Heroi extends Seres {
   }
 
   public boolean verificaEnergia(Mao mao){
-    Cartas atual = mao.cartas.getFirst();
+    Carta atual = mao.cartas.getFirst();
     int indice = 0;
     while(indice != mao.cartas.size()){
       if(atual.getCustoEnergia() <= energia){

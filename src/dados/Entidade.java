@@ -2,7 +2,7 @@ package dados;
 
 import constantes.Cores;
 
-public abstract class Seres {
+public abstract class Entidade {
   protected int vida;
   protected int dano;
   protected int escudo;

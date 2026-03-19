@@ -1,19 +1,18 @@
 package usaveis.pilhas;
 
 import constantes.Cores;
+import java.util.NoSuchElementException;
+import java.util.Random;
 import usaveis.*;
 import usaveis.danos.*;
 import usaveis.escudos.*;
-
-import java.util.NoSuchElementException;
-import java.util.Random;
 
 public class PilhaCompra extends Pilha {
   /* ja temos a pilha exatamente pronta */
   public PilhaCompra() {
     super();
     /* criamos o deque */
-    Cartas carta = new espadaCurta();
+    Carta carta = new espadaCurta();
     pilha.add(carta);
     carta = new espadaMedia();
     pilha.add(carta);
@@ -33,7 +32,7 @@ public class PilhaCompra extends Pilha {
   
   public void embraralhaPlha() {
     Pilha temp = new Pilha();
-    Cartas atual;
+    Carta atual;
     Random aleatorio = new Random();
     while(pilha.size() != 0){
       /* pegamos uma carta aleatoria da pilha */
@@ -47,7 +46,7 @@ public class PilhaCompra extends Pilha {
   }
   
   private void transfereDescarte(PilhaDescarte pilhaDescarte){
-    Cartas carta;
+    Carta carta;
     while(!pilhaDescarte.pilha.isEmpty()){
       carta = pilhaDescarte.pilha.removeFirst();
       pilha.add(carta);
@@ -60,7 +59,7 @@ public class PilhaCompra extends Pilha {
   public void compraCarta(Mao mao, PilhaDescarte pilhaDescarte, int qnt) {
     try {
       for (int i = 0; i < qnt; i++) {
-        Cartas carta = pilha.removeFirst();
+        Carta carta = pilha.removeFirst();
         mao.cartas.add(carta);
       }
     } catch (NoSuchElementException e) {

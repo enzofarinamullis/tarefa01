@@ -1,12 +1,10 @@
 package usaveis;
-import usaveis.Cartas;
 import constantes.Cores;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Mao{
-  public List<Cartas> cartas;
+  public List<Carta> cartas;
   
   public Mao(){
     cartas = new ArrayList<>();
@@ -18,7 +16,7 @@ public class Mao{
       System.out.println("Mão vazia");
       return;
     }
-    Cartas atual;
+    Carta atual;
     int num = 0;
     while(num != cartas.size()){
       atual = cartas.get(num);
@@ -26,7 +24,7 @@ public class Mao{
       Cores.cprint(Cores.ANSI_BLUE, " - ");
       System.out.print(atual.getNome() + "\n");
 
-      /* colocar funcoes printCarta em Cartas */
+      /* colocar funcoes printCarta em Carta */
       if(atual.isDano()){
         Cores.cprint(Cores.ANSI_RED, "> ");
         System.out.print("Dano Base: ");

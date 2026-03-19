@@ -1,8 +1,6 @@
 package cenas;
 import dados.Dados;
 import dados.Inimigo;
-import dados.ListaInimigos;
-import dados.Seres;
 
 public class Slime extends Cena {
   

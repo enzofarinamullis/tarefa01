@@ -1,7 +1,7 @@
 package dados;
 import constantes.Cores;
 
-public class Inimigo extends Seres {
+public class Inimigo extends Entidade {
 
   /* Construtor */
   public Inimigo(String nome, int vida, int escudo, int dano) {

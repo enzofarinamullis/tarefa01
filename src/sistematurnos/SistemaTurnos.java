@@ -73,7 +73,7 @@ public class SistemaTurnos {
     pilhaCompra.compraCarta(mao, pilhaDescarte, 5);
     
     int comando;
-    Cartas carta = null;
+    Carta carta = null;
     int indiceRand = 0;
     int inimigosMortos = 0;
     Inimigo inimigo;

@@ -2,7 +2,7 @@ package usaveis;
 import dados.Inimigo;
 import dados.Heroi;
 
-public abstract class Cartas{
+public abstract class Carta{
   private String nome;
   protected int custoEnergia;
   protected int nivel;

@@ -1,8 +1,8 @@
 package usaveis;
-import dados.Inimigo;
 import dados.Heroi;
+import dados.Inimigo;
 
-public class CartaDano extends Cartas{
+public class CartaDano extends Carta{
 
   public CartaDano(String nome, int custoEnergia, int nivel, String descricao){
     setNome(nome);

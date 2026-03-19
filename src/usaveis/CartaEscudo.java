@@ -2,7 +2,7 @@ package usaveis;
 import dados.Heroi;
 import dados.Inimigo;
 
-public class CartaEscudo extends Cartas{
+public class CartaEscudo extends Carta{
 
   public CartaEscudo(String nome, int escudo, int custoEnergia, String descricao){
     setNome(nome);

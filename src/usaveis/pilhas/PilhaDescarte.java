@@ -1,6 +1,5 @@
 package usaveis.pilhas;
 
-import usaveis.Cartas;
 import usaveis.Mao;
 
 public class PilhaDescarte extends Pilha {
