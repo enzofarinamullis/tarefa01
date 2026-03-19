@@ -22,7 +22,6 @@ public class App {
     
     Matriz mapa = new Matriz();
     mapa.gerarMapa();
-    mapa.printMapaCompleto();
     
     
     MidiPlayer midi = new MusicaInicial("src/musica/noname.mid");
