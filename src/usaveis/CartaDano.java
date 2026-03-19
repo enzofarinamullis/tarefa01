@@ -5,7 +5,7 @@ import dados.Heroi;
 public class CartaDano extends Cartas{
 
   public CartaDano(String nome, int custoEnergia, int nivel, String descricao){
-    this.nome = nome;
+    setNome(nome);
     this.custoEnergia = custoEnergia;
     this.nivel = nivel;
     this.ehDano = true;
@@ -41,7 +41,6 @@ public class CartaDano extends Cartas{
 
 
   /* Usar carta no inimigo ja pronta */
-  @Override
   public void usar(Inimigo inimigo, Heroi heroi){
     if (heroi.temEnergia(custoEnergia)) {
       heroi.setaEnergia(heroi.getEnergia() - custoEnergia);

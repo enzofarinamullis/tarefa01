@@ -1,10 +1,11 @@
 package usaveis;
 import dados.Heroi;
+import dados.Inimigo;
 
 public class CartaEscudo extends Cartas{
 
   public CartaEscudo(String nome, int escudo, int custoEnergia, String descricao){
-    this.nome = nome;
+    setNome(nome);
     this.escudo = escudo;
     this.custoEnergia = custoEnergia;
     this.ehDano = false;
@@ -12,8 +13,7 @@ public class CartaEscudo extends Cartas{
     this.descricao = descricao;
   }
 
-  @Override
-  public void usarEscudo(Heroi heroi){
+  public void usar(Inimigo inimigo, Heroi heroi){
       heroi.ganharEscudo(this.escudo);
       heroi.setaEnergia(heroi.getEnergia() - custoEnergia);
   }

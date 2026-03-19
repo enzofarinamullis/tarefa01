@@ -3,10 +3,22 @@ $M: $H! Acorde!
 
 ,
 
-$H: Opa!
+$H: Ah... oi! Oi $M.
 
 ,
 
 $M: Você tem dormido de mais, ultimamente. Você está bem?
+
+,
+
+$H: Ah...
+
+,
+
+$H: Estou sim! Eu acho...
+
+,
+
+$M: Eu ascendi o fogo para te aquecer.
 
 ,

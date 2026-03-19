@@ -38,14 +38,15 @@ public class Heroi extends Seres {
      Cores.ANSI_RED + "Morto" + Cores.ANSI_RESET));
   }
 
-  public boolean verificaEnergia(){
+  public boolean verificaEnergia(Mao mao){
     Cartas atual = mao.cartas.getFirst();
     int indice = 0;
     while(indice != mao.cartas.size()){
-      if(atual.custoEnergia <= energia){
+      if(atual.getCustoEnergia() <= energia){
         return true;
       }
-      atual = atual.prox;
+      atual = mao.cartas.get(indice);
+      indice++;
     }
     return false;
   }
