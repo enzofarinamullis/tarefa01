@@ -44,7 +44,9 @@ public class App {
     Cores.cprint(Cores.ANSI_CYAN, "nome");
     System.out.print(" do seu heroi!\n");
     String nome = teclado.nextLine();
-    heroi.nome = nome;
+    while(!heroi.setNome(nome)){
+      nome = teclado.nextLine();
+    }
 
     cena.atualizaCena();
     

@@ -1,5 +1,6 @@
 package usaveis.pilhas;
 
+import usaveis.Cartas;
 import usaveis.Mao;
 
 public class PilhaDescarte extends Pilha {
@@ -8,8 +9,8 @@ public class PilhaDescarte extends Pilha {
   }
   
   public void removeMao(Mao mao){
-    for(int i = 0; i < mao.cartas.size(); i++){
-      pilha.add(mao.cartas.remove(i));
+    while(!mao.cartas.isEmpty()){
+      pilha.add(mao.cartas.removeFirst());
     }
   }
 }

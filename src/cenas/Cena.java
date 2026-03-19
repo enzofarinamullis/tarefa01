@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 
-public class Cena {
+public abstract class Cena {
   String nome;
   Dados dados;
   File file;
@@ -23,12 +23,6 @@ public class Cena {
   public void renderizaCena(){}
   
   /* Unload sera feito pelo proprio Java */
-  
-  public void limpaTerminal(){
-    for(int i = 0; i < 100; i++){
-      System.out.println("\n");
-    }
-  }
   
   public Scanner carregaLeitor(String caminho){
     /* mostramos o caminho para a animacao */

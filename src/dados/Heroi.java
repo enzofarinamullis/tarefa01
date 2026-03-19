@@ -8,9 +8,9 @@ import usaveis.pilhas.PilhaDescarte;
 
 public class Heroi extends Seres {
   /* Atributos */
-  public Mao mao;
-  public PilhaCompra pilhaCompra;
-  public PilhaDescarte pilhaDescarte;
+  private Mao mao;
+  private PilhaCompra pilhaCompra;
+  private PilhaDescarte pilhaDescarte;
 
   /* Construtor */
   public Heroi(){
@@ -48,5 +48,15 @@ public class Heroi extends Seres {
       atual = atual.prox;
     }
     return false;
+  }
+  
+  public Mao getMao(){
+    return mao;
+  }
+  public PilhaCompra getPilhaCompra(){
+    return pilhaCompra;
+  }
+  public PilhaDescarte getPilhaDescarte(){
+    return pilhaDescarte;
   }
 }

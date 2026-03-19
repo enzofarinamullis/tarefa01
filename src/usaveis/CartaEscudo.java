@@ -1,5 +1,4 @@
 package usaveis;
-import constantes.Cores;
 import dados.Heroi;
 
 public class CartaEscudo extends Cartas{

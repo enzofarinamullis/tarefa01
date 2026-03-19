@@ -47,7 +47,7 @@ public class SistemaTurnos {
   public boolean turno(){
     int numTurno = -1;
     /* sanity check: verificamos se nao existem inimigos */
-    if(dados.listaInimigos == null || dados.listaInimigos.qntInimigos == 0){
+    if(dados.listaInimigos.getTamanho() == 0){
       System.out.println("Não há inimigos, por aqui!");
       return true;
     }
@@ -60,21 +60,21 @@ public class SistemaTurnos {
     
     /* para facilitar a leitura */
     Heroi heroi = dados.heroi;
-    Mao mao = heroi.mao;
-    PilhaCompra pilhaCompra = heroi.pilhaCompra;
-    PilhaDescarte pilhaDescarte = heroi.pilhaDescarte;
+    Mao mao = heroi.getMao();
+    PilhaCompra pilhaCompra = heroi.getPilhaCompra();
+    PilhaDescarte pilhaDescarte = heroi.getPilhaDescarte();
     
     /* embaralhamos a pilha de compra do heroi do heroi */
     pilhaCompra.embraralhaPlha();
     /* compramos 5 cartas */
-    pilhaCompra.compraCarta(mao, 5);
+    pilhaCompra.compraCarta(mao, pilhaDescarte, 5);
     
     int comando;
     Cartas carta = null;
     int indiceRand = 0;
     int inimigosMortos = 0;
     Inimigo inimigo;
-    int qntInimigosInicial = dados.listaInimigos.qntInimigos;
+    int qntInimigosInicial = dados.listaInimigos.getTamanho();
     
     while(true){
       /* resetamos o valor de escudo como pedido no enunciado */
@@ -86,8 +86,10 @@ public class SistemaTurnos {
       /* colocar a Mao inteira no descarte */
       /* comprar 5 cartas */
       numTurno++;
-      pilhaDescarte.removeMao(mao);
-      pilhaCompra.compraCarta(mao,5);
+      if(numTurno > 0) {
+        pilhaDescarte.removeMao(mao);
+        pilhaCompra.compraCarta(mao, pilhaDescarte, 5);
+      }
       
       /* turno do heroi */
       while(heroiAgiu == 0){
@@ -112,7 +114,7 @@ public class SistemaTurnos {
         if(comando == Turnos.FUGIR){
           /* calculamos a chance de fuga */
           if(random.nextInt(100) <= 10){
-            for(int i = 1; i < dados.listaInimigos.qntInimigos + 1; i++){
+            for(int i = 1; i < dados.listaInimigos.getTamanho() + 1; i++){
               inimigo = dados.listaInimigos.buscarInimigo(i);
               dados.listaInimigos.removerInimigo(inimigo);
             }
@@ -150,7 +152,7 @@ public class SistemaTurnos {
             comando = teclado.nextInt();
             
             /* caso o numero nao tenha sido aprovado lemos o numero denovo*/
-            while(comando <= 0 || comando > dados.listaInimigos.qntInimigos){
+            while(comando <= 0 || comando > dados.listaInimigos.getTamanho()){
               System.out.println("Numero inválido, escolha outro:");
               dados.listaInimigos.mostrarInimigos();;
               comando = teclado.nextInt();
@@ -189,7 +191,7 @@ public class SistemaTurnos {
       /* turno inimigo */
       /* queremos um inimigo random atacar o heroi */
       System.out.println("Turno dos Inimigos");
-      indiceRand = random.nextInt(dados.listaInimigos.qntInimigos);
+      indiceRand = random.nextInt(dados.listaInimigos.getTamanho());
       /* inimigo que for atacar estar na posicao indiceRand */
       inimigo = dados.listaInimigos.buscarInimigo(indiceRand + 1);
       inimigo.atacar(dados.heroi);

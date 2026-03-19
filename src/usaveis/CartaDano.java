@@ -23,9 +23,9 @@ public class CartaDano extends Cartas{
     }
     int potencia = dx.rolarDado();
     if (precisao >= 2 && precisao <= 5) {
-      return potencia * 1;
+      return potencia;
     }
-    else if (precisao >= 6 && precisao >= 10) {
+    else if (precisao >= 6 && precisao <= 10) {
       return potencia * 2;
     }
     else if (precisao >= 11 && precisao <= 15) {
@@ -47,7 +47,7 @@ public class CartaDano extends Cartas{
       heroi.setaEnergia(heroi.getEnergia() - custoEnergia);
       int dano = calcularDano();
       inimigo.receberDano(dano);  
-      System.out.println(dano + " causado em " + inimigo.nome + "!");
+      System.out.println(dano + " causado em " + inimigo.getNome() + "!");
     }
     else{
       System.out.println("Energia Insuficiente!");

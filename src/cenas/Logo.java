@@ -23,7 +23,7 @@ public class Logo extends Cena {
   /* Atualiza a Cena */
   @Override
   public void atualizaCena(){
-    System.out.println("Bem vindo, " + dados.heroi.nome + ", ao mundo de " +
+    System.out.println("Bem vindo, " + dados.heroi.getNome() + ", ao mundo de " +
     Cores.COR_SANGUE_2 + "Sangue" + Cores.COR_MUSGO_1 + " e " +
     Cores.COR_RUNA_1 + "Runas" + Cores.ANSI_RESET + "!");
   }

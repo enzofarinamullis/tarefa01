@@ -26,19 +26,19 @@ public class Inimigo extends Seres {
       Cores.cprintn(Cores.ANSI_RED, " de dano.");
 
     }
-    Cores.cprint(Cores.ANSI_YELLOW, nome);
+    Cores.cprint(Cores.ANSI_YELLOW, getNome());
     System.out.println(" recebeu ");
     Cores.cprintInt(Cores.ANSI_RED, dano);
     System.out.print(" de dano.\n");
 
     vida -= dano;
     if (vida <= 0) {
-      Cores.cprint(Cores.ANSI_YELLOW, nome);
+      Cores.cprint(Cores.ANSI_YELLOW, getNome());
       Cores.cprintn(Cores.ANSI_RED, " morreu!");
       vida = 0;
     }
     else{
-      Cores.cprint(Cores.ANSI_YELLOW, nome);
+      Cores.cprint(Cores.ANSI_YELLOW, getNome());
       System.out.print(" tem "); 
       Cores.cprintInt(Cores.ANSI_GREEN, vida);
       System.out.print(" de vida.\n");

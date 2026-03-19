@@ -1,97 +1,46 @@
 package dados;
-
+import java.util.ArrayList;
+import java.util.List;
 public class ListaInimigos {
-  public NoInimigo noInimigo;
-  public int qntInimigos;
-
+  private List<Inimigo> inimigos;
+  
   public ListaInimigos(){
-    this.noInimigo = null;
-    qntInimigos = 0;
+    inimigos = new ArrayList<>();
   }
-
-  public void adicionarInimigo(Inimigo inimigoAdicionar){
-    if(qntInimigos == 0){
-      noInimigo = new NoInimigo(inimigoAdicionar);
-      noInimigo.inimigo.id = qntInimigos; // agora cada inimigo tem um id
-                                          // este id sera importante na remocao
-      qntInimigos++;
-    }
-
-    else{
-      NoInimigo noMovel;
-      noMovel = noInimigo;
-      for(int i = 1; i < qntInimigos; i++){
-        noMovel = noMovel.prox;
-      }
-      /* achamos o ultimo elemento */
-      NoInimigo proxNo = new NoInimigo(inimigoAdicionar);
-      noMovel.prox = proxNo;
-      qntInimigos++;
-    }
+  
+  public void adicionarInimigo(Inimigo inimigo){
+    inimigos.add(inimigo);
   }
-
-
+  
   public void mostrarInimigos(){
-    NoInimigo noMovel = noInimigo;
     int indice = 0;
-    for(int i = 0; i < qntInimigos; i++){
+    Inimigo atual;
+    for(int i = 0; i < inimigos.size(); i++){
       indice = i + 1;
       System.out.print(indice + " ");
-      noMovel.inimigo.printStats();
-      noMovel = noMovel.prox;
+      atual = inimigos.get(i);
+      atual.printStats();
     }
   }
 
   public void printInimigosSemIndice(){
-    NoInimigo atual = noInimigo;
-    for(int i = 0; i < qntInimigos; i++){
-      atual.inimigo.printStats();
-      atual = atual.prox;
+    Inimigo atual;
+    for(int i = 0; i < inimigos.size(); i++){
+      atual = inimigos.get(i);
+      atual.printStats();
     }
   }
 
   public Inimigo buscarInimigo(int numero){
-    NoInimigo noMovel;
-    noMovel = noInimigo;
     int indice = numero - 1;
-    for(int i = 0; i < indice; i++){
-      noMovel = noMovel.prox;
-    }
-    /* achamos o inimigo */
-    return noMovel.inimigo;
+    return inimigos.get(indice);
   }
 
   public void removerInimigo(Inimigo inimigoRemover){
-    NoInimigo noMovel = this.noInimigo;
-    NoInimigo noAnterior = null;
-    /* check de sanidade */
-    if(this.noInimigo == null || this.qntInimigos == 0){
-      return;
-    }
-    else if(qntInimigos == 1){
-      this.noInimigo = null;
-      this.qntInimigos--;
-      return;
-    }
-
-    for(int i = 0; i < qntInimigos - 1; i++){
-      noMovel = noMovel.prox;
-      if(noMovel.inimigo.id == inimigoRemover.id){
-        break;
-      }
-      else{
-        noAnterior = noMovel;
-      }
-    }
-
-    /* ant->prox -> prox */
-    if(noAnterior != null){
-      noAnterior.prox = noMovel.prox;
-      this.qntInimigos--;
-    }
-    else{
-      this.noInimigo = null;
-      this.qntInimigos--;
-    }
+    inimigos.remove(inimigoRemover);
+  }
+  
+  public int getTamanho(){
+    return inimigos.size();
   }
 }

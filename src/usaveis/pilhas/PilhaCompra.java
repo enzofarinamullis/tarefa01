@@ -1,8 +1,11 @@
 package usaveis.pilhas;
 
+import constantes.Cores;
 import usaveis.*;
 import usaveis.danos.*;
 import usaveis.escudos.*;
+
+import java.util.NoSuchElementException;
 import java.util.Random;
 
 public class PilhaCompra extends Pilha {
@@ -43,10 +46,30 @@ public class PilhaCompra extends Pilha {
     pilha = temp.pilha;
   }
   
-  public void compraCarta(Mao mao, int qnt) {
-    for(int i = 0; i < qnt; i++) {
-      Cartas carta = pilha.removeFirst();
-      mao.cartas.add(carta);
+  private void transfereDescarte(PilhaDescarte pilhaDescarte){
+    Cartas carta;
+    while(!pilhaDescarte.pilha.isEmpty()){
+      carta = pilhaDescarte.pilha.removeFirst();
+      pilha.add(carta);
+    }
+    System.out.println("Transferindo:");
+    System.out.println(Cores.COR_CIMENTO_3 + "Pilha de Descarte" +
+      Cores.ANSI_RESET + "->" + Cores.ANSI_BLUE + "Pilha Compra" + Cores.ANSI_RESET);
+  }
+  
+  public void compraCarta(Mao mao, PilhaDescarte pilhaDescarte, int qnt) {
+    try {
+      for (int i = 0; i < qnt; i++) {
+        Cartas carta = pilha.removeFirst();
+        mao.cartas.add(carta);
+      }
+    } catch (NoSuchElementException e) {
+      /* caso estiver vazia */
+      /* colocamos a pilha de descarte embaralhada */
+      pilhaDescarte.removeMao(mao); // removemos todas as cartas da mao
+      transfereDescarte(pilhaDescarte);
+      embraralhaPlha();
+      compraCarta(mao, pilhaDescarte, qnt);
     }
   }
 }

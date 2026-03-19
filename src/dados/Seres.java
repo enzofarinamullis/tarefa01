@@ -45,7 +45,7 @@ public abstract class Seres {
   
   public void atacar(Heroi heroi) {
     System.out.println(Cores.ANSI_YELLOW + nome + Cores.ANSI_RESET +
-      " ataca " + Cores.ANSI_CYAN + heroi.nome + Cores.ANSI_RESET + "!");
+      " ataca " + Cores.ANSI_CYAN + heroi.getNome() + Cores.ANSI_RESET + "!");
     System.out.println("Força do ataque: " + Cores.ANSI_RED + dano + Cores.ANSI_RESET);
     if (dano > 0) {
       heroi.receberDano(dano);
@@ -91,12 +91,7 @@ public abstract class Seres {
   }
   
   public boolean setNome(String nome){
-    if(nome.length() < 3 || nome.length() > 10){
-      return false;
-    }
-    else{
-      this.nome = nome;
-      return true;
-    }
+    this.nome = nome;
+    return true;
   }
 }

@@ -39,7 +39,7 @@ public class DialogoInicial extends Animacao {
           System.out.print("$");
         }
         else if(linha.charAt(i) == 'H'){
-          System.out.print(Cores.ANSI_CYAN + dados.heroi.nome + Cores.ANSI_RESET);
+          System.out.print(Cores.ANSI_CYAN + dados.heroi.getNome() + Cores.ANSI_RESET);
         }
         else if(linha.charAt(i) == 'M'){
           System.out.print(Cores.ANSI_CYAN + "Mary" + Cores.ANSI_RESET);
