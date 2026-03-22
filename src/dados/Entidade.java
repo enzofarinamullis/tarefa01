@@ -81,7 +81,10 @@ public abstract class Entidade {
   public int getEnergia(){
     return energia;
   }
-  
+  public int getVida() {
+    return vida;
+  }
+
   public int getEnergiaLimite(){
     return energiaLimite;
   }

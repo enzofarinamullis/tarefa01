@@ -1,6 +1,7 @@
 package usaveis.cartas;
 
 import dados.Entidade;
+import java.util.List;
 
 public abstract class Efeito {
   private String nome;
@@ -12,9 +13,13 @@ public abstract class Efeito {
     this.duracao = duracao;
     this.intensidade = intensidade;
   }
-
+  
   public abstract void aplicar(Entidade entidade);
-
+  public void aplicar(List<Entidade> entidades) {
+    for (Entidade e : entidades) {
+      aplicar(e);
+    }
+  }
 
   public String getNome() {
     return nome;
