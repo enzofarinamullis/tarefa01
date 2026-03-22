@@ -1,5 +1,7 @@
 package usaveis;
 import constantes.Cores;
+import usaveis.cartas.Carta;
+
 import java.util.ArrayList;
 import java.util.List;
 

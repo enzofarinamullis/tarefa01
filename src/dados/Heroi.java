@@ -1,7 +1,7 @@
 package dados;
 import constantes.Cores;
-import usaveis.Carta;
 import usaveis.Mao;
+import usaveis.cartas.Carta;
 import usaveis.pilhas.PilhaCompra;
 import usaveis.pilhas.PilhaDescarte;
 

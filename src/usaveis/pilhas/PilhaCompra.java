@@ -4,6 +4,7 @@ import constantes.Cores;
 import java.util.NoSuchElementException;
 import java.util.Random;
 import usaveis.*;
+import usaveis.cartas.Carta;
 import usaveis.danos.*;
 import usaveis.escudos.*;
 

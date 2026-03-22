@@ -50,7 +50,7 @@ public class Inimigo extends Entidade {
   public String getAnuncio(){
     return anuncio;
   }
-  
+
   public void anunciar(){
     System.out.println();
     System.out.println("Anúncio:");

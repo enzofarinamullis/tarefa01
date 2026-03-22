@@ -1,6 +1,10 @@
-package usaveis;
+package usaveis.cartas;
 import dados.Heroi;
 import dados.Inimigo;
+import java.util.ArrayList;
+import usaveis.D.Potencia;
+import usaveis.D.Precisao;
+
 
 public class CartaDano extends Carta{
 
@@ -11,6 +15,7 @@ public class CartaDano extends Carta{
     this.ehDano = true;
     this.ehEscudo = false;
     this.descricao = descricao;
+    this.efeitos = new ArrayList<>();
   }
 
   public int calcularDano(){
@@ -45,8 +50,19 @@ public class CartaDano extends Carta{
     if (heroi.temEnergia(custoEnergia)) {
       heroi.setaEnergia(heroi.getEnergia() - custoEnergia);
       int dano = calcularDano();
-      inimigo.receberDano(dano);  
-      System.out.println(dano + " causado em " + inimigo.getNome() + "!");
+      int danoRecebido = dano - inimigo.getEscudo();
+      inimigo.receberDano(dano);
+      if (danoRecebido > 0) {
+        System.out.println(dano + " causado em " + inimigo.getNome() + "!");
+        if (!efeitos.isEmpty()) {
+          for (int i = 0; i < efeitos.size(); i++) {
+            efeitos.get(i).aplicar(inimigo);
+          }
+        }
+      }
+      else {
+        System.out.println("0 causado em " + inimigo.getNome() + "!");
+      }
     }
     else{
       System.out.println("Energia Insuficiente!");

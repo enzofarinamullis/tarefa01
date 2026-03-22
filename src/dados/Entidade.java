@@ -94,4 +94,9 @@ public abstract class Entidade {
     this.nome = nome;
     return true;
   }
+
+  public int getEscudo() {
+    return escudo;
+  }
+
 }

@@ -1,4 +1,4 @@
-package usaveis;
+package usaveis.D;
 import java.util.Random;
 
 public class Potencia {

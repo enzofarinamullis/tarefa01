@@ -1,9 +1,6 @@
 package cenas;
-import java.util.Scanner;
 import constantes.Cores;
 import dados.Dados;
-import java.io.File;
-import java.io.FileNotFoundException;
 
 public class Logo extends Cena {
 

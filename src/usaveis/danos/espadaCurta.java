@@ -1,6 +1,6 @@
 package usaveis.danos;
 
-import usaveis.CartaDano;
+import usaveis.cartas.CartaDano;
 
 public class espadaCurta extends CartaDano {
   public espadaCurta() {

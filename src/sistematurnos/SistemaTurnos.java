@@ -1,19 +1,18 @@
 package sistematurnos;
-import java.util.Scanner;
-import java.util.Random;
-
-import com.sun.security.jgss.GSSUtil;
 import constantes.Cabecalho;
 import constantes.Cores;
+import constantes.Turnos;
 import dados.Dados;
 import dados.Heroi;
 import dados.Inimigo;
 import dados.ListaInimigos;
+import java.util.Random;
+import java.util.Scanner;
+import usaveis.*;
+import usaveis.cartas.Carta;
 import usaveis.pilhas.PilhaCompra;
 import usaveis.pilhas.PilhaDescarte;
 import utilitarios.PrintTerminal;
-import usaveis.*;
-import constantes.Turnos;
 
 public class SistemaTurnos {
   Dados dados;
