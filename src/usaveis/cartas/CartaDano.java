@@ -17,7 +17,7 @@ public class CartaDano extends Carta{
     this.descricao = descricao;
     this.efeitos = new ArrayList<>();
   }
-
+  
   public int calcularDano(){
     Precisao d20 = new Precisao();
     Potencia dx = new Potencia(nivel);
@@ -68,4 +68,5 @@ public class CartaDano extends Carta{
       System.out.println("Energia Insuficiente!");
     }
   } 
-} 
+}
+

@@ -1,6 +1,6 @@
 package usaveis.escudos;
 
-import usaveis.CartaEscudo;
+import usaveis.cartas.CartaEscudo;
 
 public class escudoMedio extends CartaEscudo {
   public escudoMedio() {

@@ -6,8 +6,8 @@ import dados.Inimigo;
 import usaveis.cartas.Efeito;
 
 public class Envenenamento extends Efeito {
-  public Envenenamento(String nome, int duracao, int intensidade) {
-    super(nome, duracao, intensidade);
+  public Envenenamento(String nome, int duracao, int intensidade, int alcance) {
+    super(nome, duracao, intensidade, alcance);
   }
   public void aplicar(Entidade entidade) {
     if (entidade != null) {

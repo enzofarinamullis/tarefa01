@@ -45,6 +45,9 @@ public abstract class Carta{
     return this.ehEscudo;
   }
   public Efeito BuscaEfeito(String nome) {
+    if (efeitos == null || efeitos.isEmpty()) {
+      return null;
+    }
     for (int i = 0; i < efeitos.size(); i++) {
       if (efeitos.get(i).getNome().equals(nome)) {
         return efeitos.get(i);
@@ -54,8 +57,9 @@ public abstract class Carta{
   }
 
   public void listarEfeitos() {
-    if (efeitos.isEmpty()) {
+    if (efeitos.isEmpty() || efeitos == null) {
       System.out.println("Sem efeitos.");
+      return;
     }
 
     System.out.println("Listando Efeitos da carta:");
@@ -63,18 +67,36 @@ public abstract class Carta{
       if( i < efeitos.size() - 1) {
         System.out.print(efeitos.get(i).getNome() + " <-> ");
       } else {
-        System.out.print(efeitos.get(i).getNome());
+        System.out.println(efeitos.get(i).getNome());
       }
     }
   }
 
   public void aplicarEfeito(Entidade alvo) {
-    if (!efeitos.isEmpty()) {
+    if (!efeitos.isEmpty() && efeitos != null) {
       for (Efeito efeito : efeitos) {
         System.out.println("O efeito " + efeito.getNome() + " foi aplicado");
         efeito.aplicar(alvo);
         }
+    } else {
+      return;
     }
+  }
+
+  public boolean temEfeito() {
+    if (efeitos == null || efeitos.isEmpty()) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
+  public void adicionarEfeito(Efeito efeito) {
+    if (efeito == null) {
+      return;
+    }
+    efeitos.add(efeito);
   }
 
   public void info(){

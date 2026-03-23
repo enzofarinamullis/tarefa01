@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
 import java.util.Random;
 import usaveis.*;
 import usaveis.cartas.Carta;
-import usaveis.danos.*;
+import usaveis.cartas.danos.*;
 import usaveis.escudos.*;
 
 public class PilhaCompra extends Pilha {
