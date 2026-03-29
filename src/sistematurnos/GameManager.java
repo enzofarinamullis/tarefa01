@@ -21,6 +21,7 @@ public class GameManager {
   Scanner teclado;
   boolean heroiAgiu;
   boolean inimigoAgiu;
+  int tentativasFuga;
   Random random;
   
   public GameManager(Dados dados){
@@ -29,6 +30,7 @@ public class GameManager {
     this.inimigoAgiu = false;
     this.teclado = new Scanner(System.in);
     this.random = new Random();
+    tentativasFuga = 0;
   }
   
   public void printAcoes(){
@@ -62,7 +64,8 @@ public class GameManager {
     }
   }
   
-  private Inimigo escolheInimigo(ListaInimigos listaInimigos){
+  private Inimigo escolheInimigoAleatorio(){
+    ListaInimigos listaInimigos = dados.listaInimigos;
     int indiceRand = 0;
     indiceRand = random.nextInt(listaInimigos.getTamanho());
     /* inimigo que for atacar estar na posicao indiceRand */
@@ -76,24 +79,137 @@ public class GameManager {
     heroi.setaEnergia(heroi.getEnergiaLimite());
   }
   
-  private void embaralhaECompra(PilhaCompra pilhaCompra, PilhaDescarte pilhaDescarte,
-                                Mao mao, int quantidade){
+  private void embaralhaECompra(){
+    Heroi heroi = dados.heroi;
+    PilhaCompra pilhaCompra = heroi.getPilhaCompra();
+    PilhaDescarte pilhaDescarte = heroi.getPilhaDescarte();
+    Mao mao = heroi.getMao();
+    
     /* embaralhamos a pilha de compra do heroi do heroi */
     pilhaCompra.embraralhaPlha();
     /* compramos 5 cartas */
-    pilhaCompra.compraCarta(mao, pilhaDescarte, quantidade);
+    pilhaCompra.compraCarta(mao, pilhaDescarte, Turnos.QNT_COMPRAR);
   }
   
   /* como pedido pelo enunciado remover a mao inteira no inicio do turno */
   /* colocar a Mao inteira no descarte */
   /* comprar 5 cartas */
-  private void descarteECompra(PilhaCompra pilhaCompra, PilhaDescarte pilhaDescarte, Mao mao){
+  private void descarteECompra(){
+    Heroi heroi = dados.heroi;
+    PilhaCompra pilhaCompra = heroi.getPilhaCompra();
+    PilhaDescarte pilhaDescarte = heroi.getPilhaDescarte();
+    Mao mao = heroi.getMao();
     pilhaDescarte.removeMao(mao);
-    pilhaCompra.compraCarta(mao, pilhaDescarte, 5);
+    pilhaCompra.compraCarta(mao, pilhaDescarte, Turnos.QNT_COMPRAR);
+  }
+  
+  private int leComando(){
+    int comando = teclado.nextInt(); // lemos o comando
+    // verificamos se o comando eh valido
+    if(comando != Turnos.USAR && comando != Turnos.FUGIR && comando != Turnos.PASSAR){
+      comando = teclado.nextInt();
+    }
+    return comando;
+  }
+  
+  private void limpaInimigos(ListaInimigos listaInimigos){
+    Inimigo inimigo = null;
+    for(int i = 1; i < listaInimigos.getTamanho() + 1; i++){
+      inimigo = listaInimigos.buscarInimigo(i);
+      listaInimigos.removerInimigo(inimigo);
+    }
+  }
+  
+  private boolean calculaChangeFuga(){
+    if(tentativasFuga > 2){
+      System.out.println("Não há chance alguma de você escapar dessa!");
+    }
+    if(random.nextInt(100) <= 10){
+      limpaInimigos(dados.listaInimigos);
+      System.out.println(Cores.ANSI_PURPLE + " >> Parabéns... você escapou... -_- << " + Cores.ANSI_RESET);
+      return true;
+    }
+    else{
+      System.out.println(Cores.ANSI_PURPLE + " >> Dificilmente você escapará dessa << " + Cores.ANSI_RESET);
+      tentativasFuga++;
+      return false;
+    }
+  }
+  
+  private void mostraCartas(){
+    Mao mao = dados.heroi.getMao();
+    System.out.println("Escolha uma opção:");
+    mao.printMao();
+    
+    System.out.println();
+    System.out.println("-1 - Voltar");
+  }
+  
+  public Carta leCarta(){
+    int comando;
+    Heroi heroi = dados.heroi;
+    PilhaCompra pilhaCompra = heroi.getPilhaCompra();
+    PilhaDescarte pilhaDescarte = heroi.getPilhaDescarte();
+    Mao mao = heroi.getMao();
+    Carta carta = null;
+    
+    comando = teclado.nextInt(); // lemos o numero da carta que queremos usar
+    
+    /* tentamos puxar a carta */
+    while(-1 > comando  || comando > mao.cartas.size()){
+      if(comando == -1){
+        return null;
+      }
+      System.out.println("Comando inválido");
+      comando = teclado.nextInt();
+      mao.printMao();
+    }
+    
+    /* removemos a carta da mao e colocamos em descarte */
+    carta = mao.cartas.remove(comando);
+    pilhaDescarte.pilha.add(carta);
+  }
+  
+  private Inimigo escolheInimigo(){
+    ListaInimigos listaInimigos = dados.listaInimigos;
+    int comando;
+    
+    System.out.println("Escolha um alvo:\n");
+    listaInimigos.mostrarInimigos();
+    comando = teclado.nextInt();
+    
+    /* caso o numero nao tenha sido aprovado lemos o numero denovo*/
+    while (comando <= 0 || comando > listaInimigos.getTamanho()) {
+      System.out.println("Numero inválido, escolha outro:");
+      listaInimigos.mostrarInimigos();
+      comando = teclado.nextInt();
+    }
+    
+    /* buscamos o inimigo */
+    return listaInimigos.buscarInimigo(comando);
+  }
+  
+  private Inimigo escolheAtacante(Inimigo inimigoAnunciar){
+    int indiceRand;
+    ListaInimigos listaInimigos = dados.listaInimigos;
+    Heroi heroi = dados.heroi;
+    /* verificamos se o inimigo que iria atacar morreu */
+    if(!inimigoAnunciar.estaVivo()) {
+      System.out.println();
+      System.out.println("O inimigo que iria te atacar morreu...");
+      System.out.println("Cuidado, que outro irá atacar:");
+      /* caso nao esteja vivo */
+      indiceRand = random.nextInt(listaInimigos.getTamanho());
+      /* inimigo que for atacar estar na posicao indiceRand */
+      inimigoAnunciar = listaInimigos.buscarInimigo(indiceRand + 1);
+      inimigoAnunciar.anunciar();
+    }
+    inimigoAnunciar.atacar(heroi);
   }
   
   public void turno(){
     int numTurno = 0;
+    boolean voltar = false;
     mensagemCombate();
     
     /* para facilitar a leitura */
@@ -103,139 +219,93 @@ public class GameManager {
     PilhaDescarte pilhaDescarte = heroi.getPilhaDescarte();
     ListaInimigos listaInimigos = dados.listaInimigos;
     
-    embaralhaECompra(pilhaCompra, pilhaDescarte, mao, Turnos.QNT_COMPRAR);
+    embaralhaECompra();
     
     int comando;
     Carta carta = null;
     int inimigosMortos = 0;
+    Inimigo inimigoAnunciar;
     Inimigo inimigo;
     int qntInimigosInicial = listaInimigos.getTamanho();
     
     while(true){
       /* escolhemos o inimigo que ira atacar */
-      inimigo = escolheInimigo(listaInimigos);
-      inimigo.anunciar(); // fazemos o seu anuncio
+      inimigoAnunciar = escolheInimigoAleatorio();
+      inimigoAnunciar.anunciar(); // fazemos o seu anuncio
       
       resetStatus(heroi);
       
       if(numTurno != 0) {
-        descarteECompra(pilhaCompra, pilhaDescarte, mao);
+        descarteECompra();
       }
       
       /* turno do heroi */
-      while(heroiAgiu == false){
+      while(!heroiAgiu){
         
-        if(heroi.estaVivo() == false){
+        if(!heroi.estaVivo()){
           System.out.println(Cores.ANSI_PURPLE + "Você morreu!" + Cores.ANSI_RESET);
-          return true;
+          return;
         }
         
         /* Vemos qual acao o heroi quer tomar */
         printAcoes();
-        comando = teclado.nextInt(); // lemos o comando
-        // verificamos se o comando eh valido
-        if(comando != Turnos.USAR && comando != Turnos.FUGIR && comando != Turnos.PASSAR){
-          comando = teclado.nextInt();
-        }
+        comando = leComando();
         
         if(comando == Turnos.PASSAR){
+          heroiAgiu = true;
           break;
         }
         
         if(comando == Turnos.FUGIR){
-          /* calculamos a chance de fuga */
-          if(random.nextInt(100) <= 10){
-            for(int i = 1; i < listaInimigos.getTamanho() + 1; i++){
-              inimigo = listaInimigos.buscarInimigo(i);
-              listaInimigos.removerInimigo(inimigo);
-            }
-            System.out.println(Cores.ANSI_PURPLE + " >> Dificilmente você escapará dessa << " + Cores.ANSI_RESET);
-            return true;
-          }
-          else{
-            System.out.println(Cores.ANSI_PURPLE + " >> Parabéns... você escapou... -_- << " + Cores.ANSI_RESET);
-            break;
-          }
+          if(calculaChangeFuga()){ return; }
+          else{ break; }
         }
         
         /* Caso a escolha seja USAR, verificamos se ha energia suficiente */
-        if(comando == Turnos.USAR && heroi.verificaEnergia(mao)){
-          System.out.println("Escolha uma opção:");
-          mao.printMao();;
-          comando = teclado.nextInt(); // lemos o numero da carta que queremos usar
+        if(comando == Turnos.USAR && heroi.verificaEnergia()){
+          mostraCartas();
+          carta = leCarta(); // caso o jogador deseja retornar ao menu anterior
+                             // a carta lida sera null
           
-          /* tentamos puxar a carta */
-          carta = null;
-          while(0 > comando  || comando > mao.cartas.size()){
-            System.out.println("Comando inválido");
-            comando = teclado.nextInt();
-            mao.printMao();
-          }
-          
-          /* removemos a carta da mao e colocamos em descarte */
-          carta = mao.cartas.remove(comando);
-          pilhaDescarte.pilha.add(carta);
-          
-          /* usamos a carta */
-          if(carta.isDano()){
-            System.out.println("Escolha um alvo:\n");
-            listaInimigos.mostrarInimigos();
-            comando = teclado.nextInt();
-            
-            /* caso o numero nao tenha sido aprovado lemos o numero denovo*/
-            while(comando <= 0 || comando > listaInimigos.getTamanho()){
-              System.out.println("Numero inválido, escolha outro:");
-              listaInimigos.mostrarInimigos();;
-              comando = teclado.nextInt();
-            }
-            
-            /* buscamos o inimigo */
-            inimigo = listaInimigos.buscarInimigo(comando);
-            /* aplicamos o dano ao inimigo */
-            carta.usar(inimigo, heroi);
-            
-            
-            /* verificamos se o inimigo morreu */
-            if(inimigo.estaVivo() == false){
-              inimigosMortos++;
-              /* caso ele morreu removemos ele da lista de inimigos */
-              listaInimigos.removerInimigo(inimigo);
-            }
-            
-            /* verificamos se todos morreram e o turno deve acabar */
-            if(inimigosMortos == qntInimigosInicial){
-              heroiAgiu = 1;
-              return true;
-            }
-            
-            if(heroi.getEnergia() == 0){
-              heroiAgiu = 1;
+          if(carta != null){
+            if (carta.isDano()) {
+              /* escolhemos o inimigo que queremos atacar */
+              inimigo = escolheInimigo();
+              carta.usar(inimigo, heroi);
+              
+              /* verificamos se o inimigo morreu */
+              if (!inimigo.estaVivo()) {
+                inimigosMortos++;
+                listaInimigos.removerInimigo(inimigo); // removemos ele da lista de inimigos
+              }
+              
+              /* verificamos se todos morreram e o turno deve acabar */
+              if (listaInimigos.getTamanho() == 0) {
+                return;
+              }
+              
+              /* verificamos se o heroi ainda possui energia */
+              if (heroi.getEnergia() == 0) {
+                heroiAgiu = true;
+              }
+            } else if (carta.isEscudo()) {
+              carta.usar(null, heroi);
             }
           }
-          else if(carta.isEscudo()){
-            carta.usar(null, heroi);
-          }
-          
         }
       }
+      
+      /* Agora que o turno do heroi acabou */
+      /* NOTIFICAR */
       
       /* turno inimigo */
       /* queremos um inimigo random atacar o heroi */
       System.out.println("Turno dos Inimigos");
       /* verificamos se o inimigo que iria atacar morreu */
-      if(!inimigo.estaVivo()) {
-        System.out.println();
-        System.out.println("O inimigo que iria te atacar morreu...");
-        System.out.println("Cuidado, que outro irá atacar:");
-        /* caso nao esteja vivo */
-        indiceRand = random.nextInt(listaInimigos.getTamanho());
-        /* inimigo que for atacar estar na posicao indiceRand */
-        inimigo = listaInimigos.buscarInimigo(indiceRand + 1);
-        inimigo.anunciar();
-      }
-      inimigo.atacar(heroi);
+      inimigoAnunciar = escolheAtacante(inimigoAnunciar);
+      inimigoAnunciar.atacar(heroi);
       
-      inimigoAgiu = 1;
+      inimigoAgiu = true;
       numTurno++;
     }
   }

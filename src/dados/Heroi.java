@@ -38,7 +38,7 @@ public class Heroi extends Entidade {
      Cores.ANSI_RED + "Morto" + Cores.ANSI_RESET));
   }
 
-  public boolean verificaEnergia(Mao mao){
+  public boolean verificaEnergia(){
     Carta atual = mao.cartas.getFirst();
     int indice = 0;
     while(indice != mao.cartas.size()){
