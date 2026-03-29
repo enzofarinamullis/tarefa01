@@ -1,6 +1,7 @@
 package dados;
 
 import constantes.Cores;
+import usaveis.cartas.Efeito;
 
 public abstract class Entidade {
   protected int vida;
@@ -101,5 +102,4 @@ public abstract class Entidade {
   public int getEscudo() {
     return escudo;
   }
-
 }

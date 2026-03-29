@@ -1,4 +1,6 @@
 package dados;
+import sistematurnos.observer.Publisher;
+
 public class Dados {
   /* Nesta classe de dados, salvaremos todos os dados necessarios */
   /* para uma Cena, ou seja... qntInimigos, e o proprio Heroi que */
@@ -8,7 +10,8 @@ public class Dados {
   // onde cada inimigo sera um elemento da lista!
   public Heroi heroi;
   public ListaInimigos listaInimigos;
-  
+  /* colocamos o publisher em dados, pois queremos armazenar os efeitos para alem do combate */
+  private Publisher publisher;
   public int frame;
 
   public Dados(Heroi heroi){
