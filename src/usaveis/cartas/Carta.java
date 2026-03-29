@@ -99,10 +99,10 @@ public abstract class Carta{
     efeitos.add(efeito);
   }
 
-  public void info(){
-    System.out.println("\n╔════════════════════════════════╗");
-    System.out.println("║ Carta: " + nome);
-    System.out.println("╠════════════════════════════════╣");
+  public void info(int indice){
+    System.out.println("\n╔═════════════════════════════════");
+    System.out.println("║ " + indice + " - Carta: " + nome);
+    System.out.println("╠═════════════════════════════════");
     System.out.println("║ Custo Energia: " + custoEnergia);
     System.out.println("║ Nível: " + nivel);
     System.out.println("║ Descrição: " + descricao);
@@ -115,7 +115,7 @@ public abstract class Carta{
     }
     
     if (efeitos != null && !efeitos.isEmpty()) {
-      System.out.println("╠════════════════════════════════╣");
+      System.out.println("╠═════════════════════════════════");
       System.out.println("║ Efeitos:");
       for (Efeito e : efeitos) {
         System.out.println("║   • " + e.getNome() +
@@ -123,7 +123,7 @@ public abstract class Carta{
                        ", Int: " + e.getIntensidade() + ")");
         }
     }
-    System.out.println("╚════════════════════════════════╝");
+    System.out.println("╚═════════════════════════════════");
   }
 }
   
