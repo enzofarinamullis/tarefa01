@@ -1,21 +1,20 @@
 import java.util.Scanner;
 
 import anim.dialogos.DialogoInicial;
-import anim.dialogos.DialogoPrimeiraBatalha;
 import anim.dialogos.falas.Dialogo;
 import cenas.Cena;
 import cenas.Slime;
 import cenas.Logo;
 import constantes.Cores;
 import dados.Dados;
-import dados.Entidade;
 import dados.Heroi;
 import musica.MusicaInicial;
-import sistematurnos.SistemaTurnos;
+import sistematurnos.GameManager;
 import usaveis.*;
 import mapa.Matriz;
 import musica.*;
 import anim.*;
+
 public class App {
 
   public static void main(String[] args) {
@@ -54,11 +53,11 @@ public class App {
     
     heroi.status();
 
-    SistemaTurnos sistemaTurnos = new SistemaTurnos(dados);
+     GameManager gameManager = new GameManager(dados);
 
     cena = new Slime(dados);
 
-    sistemaTurnos.turno();
+    gameManager.turno();
 
     /* fechamos o teclado quando terminarmos o programa */
     teclado.close();

@@ -31,11 +31,13 @@ public class Mao{
         Cores.cprint(Cores.ANSI_RED, "> ");
         System.out.print("Dano Base: ");
         Cores.cprintIntn(Cores.ANSI_RED, atual.getNivel());
+        atual.info();
       }
       else if(atual.isEscudo()){
         Cores.cprint(Cores.ANSI_BLUE, "> ");
         System.out.print("Escudo Base: ");
         Cores.cprintIntn(Cores.ANSI_BLUE, atual.getEscudo());
+        atual.info();
       }
       Cores.cprint(Cores.ANSI_GREEN, "> ");
       System.out.print("Custo: ");

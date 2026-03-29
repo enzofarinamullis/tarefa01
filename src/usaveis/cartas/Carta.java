@@ -57,7 +57,7 @@ public abstract class Carta{
   }
 
   public void listarEfeitos() {
-    if (efeitos.isEmpty() || efeitos == null) {
+    if (efeitos.isEmpty()) {
       System.out.println("Sem efeitos.");
       return;
     }
@@ -73,7 +73,7 @@ public abstract class Carta{
   }
 
   public void aplicarEfeito(Entidade alvo) {
-    if (!efeitos.isEmpty() && efeitos != null) {
+    if (!efeitos.isEmpty()) {
       for (Efeito efeito : efeitos) {
         System.out.println("O efeito " + efeito.getNome() + " foi aplicado");
         efeito.aplicar(alvo);
@@ -101,29 +101,29 @@ public abstract class Carta{
 
   public void info(){
     System.out.println("\n╔════════════════════════════════╗");
-        System.out.println("║ Carta: " + nome);
-        System.out.println("╠════════════════════════════════╣");
-        System.out.println("║ Custo Energia: " + custoEnergia);
-        System.out.println("║ Nível: " + nivel);
-        System.out.println("║ Descrição: " + descricao);
+    System.out.println("║ Carta: " + nome);
+    System.out.println("╠════════════════════════════════╣");
+    System.out.println("║ Custo Energia: " + custoEnergia);
+    System.out.println("║ Nível: " + nivel);
+    System.out.println("║ Descrição: " + descricao);
         
-        if (ehDano) {
-            System.out.println("║ Tipo: 🔥 Dano");
+    if (ehDano) {
+      System.out.println("║ Tipo: 🔥 Dano");
+    }
+    if (ehEscudo) {
+      System.out.println("║ Tipo: 🛡️ Escudo (" + escudo + ")");
+    }
+    
+    if (efeitos != null && !efeitos.isEmpty()) {
+      System.out.println("╠════════════════════════════════╣");
+      System.out.println("║ Efeitos:");
+      for (Efeito e : efeitos) {
+        System.out.println("║   • " + e.getNome() +
+                       " (Dur: " + e.getDuracao() +
+                       ", Int: " + e.getIntensidade() + ")");
         }
-        if (ehEscudo) {
-            System.out.println("║ Tipo: 🛡️ Escudo (" + escudo + ")");
-        }
-        
-        if (efeitos != null && !efeitos.isEmpty()) {
-            System.out.println("╠════════════════════════════════╣");
-            System.out.println("║ Efeitos:");
-            for (Efeito e : efeitos) {
-                System.out.println("║   • " + e.getNome() + 
-                                 " (Dur: " + e.getDuracao() + 
-                                 ", Int: " + e.getIntensidade() + ")");
-            }
-        }
-        System.out.println("╚════════════════════════════════╝");
+    }
+    System.out.println("╚════════════════════════════════╝");
   }
 }
   

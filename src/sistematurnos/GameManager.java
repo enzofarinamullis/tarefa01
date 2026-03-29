@@ -66,7 +66,7 @@ public class GameManager {
   
   private Inimigo escolheInimigoAleatorio(){
     ListaInimigos listaInimigos = dados.listaInimigos;
-    int indiceRand = 0;
+    int indiceRand;
     indiceRand = random.nextInt(listaInimigos.getTamanho());
     /* inimigo que for atacar estar na posicao indiceRand */
     return listaInimigos.buscarInimigo(indiceRand + 1);
@@ -113,7 +113,7 @@ public class GameManager {
   }
   
   private void limpaInimigos(ListaInimigos listaInimigos){
-    Inimigo inimigo = null;
+    Inimigo inimigo;
     for(int i = 1; i < listaInimigos.getTamanho() + 1; i++){
       inimigo = listaInimigos.buscarInimigo(i);
       listaInimigos.removerInimigo(inimigo);
@@ -148,26 +148,27 @@ public class GameManager {
   public Carta leCarta(){
     int comando;
     Heroi heroi = dados.heroi;
-    PilhaCompra pilhaCompra = heroi.getPilhaCompra();
     PilhaDescarte pilhaDescarte = heroi.getPilhaDescarte();
     Mao mao = heroi.getMao();
-    Carta carta = null;
+    Carta carta;
     
     comando = teclado.nextInt(); // lemos o numero da carta que queremos usar
     
     /* tentamos puxar a carta */
     while(-1 > comando  || comando > mao.cartas.size()){
-      if(comando == -1){
-        return null;
-      }
       System.out.println("Comando inválido");
       comando = teclado.nextInt();
       mao.printMao();
     }
     
+    if(comando == -1){
+      return null;
+    }
+    
     /* removemos a carta da mao e colocamos em descarte */
     carta = mao.cartas.remove(comando);
     pilhaDescarte.pilha.add(carta);
+    return carta;
   }
   
   private Inimigo escolheInimigo(){
@@ -192,7 +193,6 @@ public class GameManager {
   private Inimigo escolheAtacante(Inimigo inimigoAnunciar){
     int indiceRand;
     ListaInimigos listaInimigos = dados.listaInimigos;
-    Heroi heroi = dados.heroi;
     /* verificamos se o inimigo que iria atacar morreu */
     if(!inimigoAnunciar.estaVivo()) {
       System.out.println();
@@ -204,29 +204,23 @@ public class GameManager {
       inimigoAnunciar = listaInimigos.buscarInimigo(indiceRand + 1);
       inimigoAnunciar.anunciar();
     }
-    inimigoAnunciar.atacar(heroi);
+    return inimigoAnunciar;
   }
   
   public void turno(){
     int numTurno = 0;
-    boolean voltar = false;
     mensagemCombate();
     
     /* para facilitar a leitura */
     Heroi heroi = dados.heroi;
-    Mao mao = heroi.getMao();
-    PilhaCompra pilhaCompra = heroi.getPilhaCompra();
-    PilhaDescarte pilhaDescarte = heroi.getPilhaDescarte();
     ListaInimigos listaInimigos = dados.listaInimigos;
     
     embaralhaECompra();
     
     int comando;
-    Carta carta = null;
-    int inimigosMortos = 0;
+    Carta carta;
     Inimigo inimigoAnunciar;
     Inimigo inimigo;
-    int qntInimigosInicial = listaInimigos.getTamanho();
     
     while(true){
       /* escolhemos o inimigo que ira atacar */
@@ -275,7 +269,6 @@ public class GameManager {
               
               /* verificamos se o inimigo morreu */
               if (!inimigo.estaVivo()) {
-                inimigosMortos++;
                 listaInimigos.removerInimigo(inimigo); // removemos ele da lista de inimigos
               }
               

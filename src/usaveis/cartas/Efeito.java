@@ -4,7 +4,7 @@ import constantes.Cores;
 import dados.Entidade;
 import java.util.List;
 
-public abstract class Efeito {
+public abstract class Efeito{
   private String nome;
   private int duracao;
   private int intensidade;
