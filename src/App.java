@@ -3,8 +3,8 @@ import java.util.Scanner;
 import anim.dialogos.DialogoInicial;
 import anim.dialogos.falas.Dialogo;
 import cenas.Cena;
-import cenas.Slime;
 import cenas.Logo;
+import cenas.TresSlimes;
 import constantes.Cores;
 import dados.Dados;
 import dados.Heroi;
@@ -55,7 +55,7 @@ public class App {
 
      GameManager gameManager = new GameManager(dados);
 
-    cena = new Slime(dados);
+    cena = new TresSlimes(dados);
 
     gameManager.turno();
 

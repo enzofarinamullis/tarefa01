@@ -11,7 +11,7 @@ public class Sangramento extends Efeito {
   }
   public void aplicar(Entidade entidade) {
     if (entidade != null) {
-      int dano = getIntensidade()*5;
+      int dano = getIntensidade()*2;
       if (entidade instanceof Inimigo) {
         Inimigo inimigo = (Inimigo) entidade;
         inimigo.receberDano(dano);

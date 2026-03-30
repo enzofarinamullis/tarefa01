@@ -231,6 +231,25 @@ public class GameManager {
     
   }
   
+  
+  /*
+   * Caso nao houverem mais inimigos a funcao retornara true
+   * indicando que a luta acabou
+   */
+  private boolean atualizaInimigosMortos(){
+    ListaInimigos listaInimigos = dados.listaInimigos;
+    Inimigo inimigo;
+    for(int i = 0; i < listaInimigos.getTamanho(); i++){
+      inimigo = listaInimigos.buscarInimigo(i + 1);
+      if(!inimigo.estaVivo()){
+        /* se morreu */
+        listaInimigos.removerInimigo(inimigo);
+      }
+    }
+    return listaInimigos.getTamanho() == 0;
+  }
+  
+  
   public void turno(){
     int numTurno = 0;
     mensagemCombate();
@@ -263,6 +282,9 @@ public class GameManager {
       
       /* turno do heroi */
       acionaPublisher(Turnos.INICIO_TURNO_JOAGADOR); // notificamos os efeitos do inicio do combate
+      if(atualizaInimigosMortos()){
+        return;
+      }
       
       while(!heroiAgiu){
         
@@ -338,6 +360,9 @@ public class GameManager {
                   publisher.inscrever(subscriber);
                   /* notificamos todos os efeitos instantaneos */
                   acionaPublisher(Turnos.INSTANTANEO);
+                  if(atualizaInimigosMortos()){
+                    return;
+                  }
                 }
               }
             }
@@ -355,14 +380,7 @@ public class GameManager {
        pois nao queremos entrar no turno dos inimigos sem inimigos
        */
       
-      for(int i = 0; i < listaInimigos.getTamanho(); i++){
-        inimigo = listaInimigos.buscarInimigo(i + 1);
-        if(!inimigo.estaVivo()){
-          /* se morreu */
-          listaInimigos.removerInimigo(inimigo);
-        }
-      }
-      if(listaInimigos.getTamanho() == 0){
+      if(atualizaInimigosMortos()){
         return;
       }
       
