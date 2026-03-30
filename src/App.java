@@ -19,8 +19,8 @@ public class App {
 
   public static void main(String[] args) {
     
-    Matriz mapa = new Matriz();
-    mapa.gerarMapa();
+    //Matriz mapa = new Matriz();
+    //mapa.gerarMapa();
     
     MidiPlayer midi = new MusicaInicial("src/musica/noname.mid");
     midi.start();
@@ -45,11 +45,11 @@ public class App {
 
     cena.atualizaCena();
     
-    Dialogo dialogo = new DialogoInicial(dados);
-    dialogo.rodar();
+    //Dialogo dialogo = new DialogoInicial(dados);
+    //dialogo.rodar();
 
-    Animacao animacao = new AnimacaoFogo();
-    animacao.run();
+    //Animacao animacao = new AnimacaoFogo();
+    //animacao.run();
     
     heroi.status();
 

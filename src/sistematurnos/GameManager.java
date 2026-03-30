@@ -7,8 +7,12 @@ import dados.Dados;
 import dados.Heroi;
 import dados.Inimigo;
 import dados.ListaInimigos;
+import sistematurnos.observer.Publisher;
+import sistematurnos.observer.Subscriber;
+import sistematurnos.observer.SubscriberEfeito;
 import usaveis.Mao;
 import usaveis.cartas.Carta;
+import usaveis.cartas.Efeito;
 import usaveis.pilhas.PilhaCompra;
 import usaveis.pilhas.PilhaDescarte;
 import utilitarios.PrintTerminal;
@@ -220,7 +224,11 @@ public class GameManager {
     int comando;
     Carta carta;
     Inimigo inimigoAnunciar;
-    Inimigo inimigo;
+    Inimigo inimigo = null;
+    Publisher publisher = dados.getPublisher();
+    Subscriber subscriber = null;
+    Efeito efeito;
+    
     
     while(true){
       /* escolhemos o inimigo que ira atacar */
@@ -270,6 +278,8 @@ public class GameManager {
               /* verificamos se o inimigo morreu */
               if (!inimigo.estaVivo()) {
                 listaInimigos.removerInimigo(inimigo); // removemos ele da lista de inimigos
+                inimigo = null; // apontar para null sera importante para podermos
+                                // nao aplicar efeito em inimgios mortos
               }
               
               /* verificamos se todos morreram e o turno deve acabar */
@@ -284,12 +294,52 @@ public class GameManager {
             } else if (carta.isEscudo()) {
               carta.usar(null, heroi);
             }
+            
+            /* colocamos o efeito, caso houver no publisher */
+            if(carta.temEfeito()) {
+              for (int i = 0; i < carta.quantidadeEfeitos(); i++) {
+                
+                efeito = carta.retornarEfeito(i);
+                
+                if (efeito.ehCura()) {
+                  subscriber = new SubscriberEfeito(heroi, efeito);
+                  
+                } else if (efeito.ehEnvenamento() || efeito.ehSangramento()) {
+                  /* como os efeito de dano, inicialmente so estarao nas espadas
+                   * o inimigo estara selecionado, a nao ser que ele tenha morrido */
+                  
+                  if(inimigo != null) {
+                    subscriber = new SubscriberEfeito(inimigo, efeito);
+                  }
+                }
+                if(subscriber != null) {
+                  publisher.inscrever(subscriber);
+                }
+              }
+            }
           }
         }
       }
       
       /* Agora que o turno do heroi acabou */
-      /* NOTIFICAR */
+      /* aplicamos os efeitos */
+      publisher.notificar();
+      /* devemos fazer duas verificacoes
+       verificamos se alguem morreu e
+       verificamos se ainda existem inimigos vivos
+       pois nao queremos entrar no turno dos inimigos sem inimigos
+       */
+      
+      for(int i = 0; i < listaInimigos.getTamanho(); i++){
+        inimigo = listaInimigos.buscarInimigo(i + 1);
+        if(!inimigo.estaVivo()){
+          /* se morreu */
+          listaInimigos.removerInimigo(inimigo);
+        }
+      }
+      if(listaInimigos.getTamanho() == 0){
+        return;
+      }
       
       /* turno inimigo */
       /* queremos um inimigo random atacar o heroi */

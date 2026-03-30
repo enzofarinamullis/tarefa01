@@ -27,5 +27,9 @@ public class Envenenamento extends Efeito {
     }
 
   }
-
+  
+  @Override
+  public boolean ehEnvenamento(){
+    return true;
+  }
 }

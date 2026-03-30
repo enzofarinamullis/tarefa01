@@ -121,4 +121,16 @@ public abstract class Efeito{
   public void setAlcance(int alcance) {
     this.alcance = alcance;
   }
+  
+  public boolean ehCura(){
+    return false;
+  }
+  
+  public boolean ehEnvenamento(){
+    return false;
+  }
+  
+  public boolean ehSangramento(){
+    return false;
+  }
 }

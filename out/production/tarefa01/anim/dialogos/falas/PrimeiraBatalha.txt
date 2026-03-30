@@ -1,0 +1,12 @@
+
+$M: Parabéns... $H! Você matou sua primeira criatura!
+
+,
+
+$M: Como se sente?
+
+,
+
+$H: Hmm... Difícil de dizer...
+
+,

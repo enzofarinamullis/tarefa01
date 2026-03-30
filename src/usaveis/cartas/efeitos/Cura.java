@@ -5,7 +5,7 @@ import dados.Heroi;
 import dados.Inimigo;
 import usaveis.cartas.Efeito;
 
-public class Cura extends Efeito {
+public class Cura extends Efeito{
   public Cura(String nome, int duracao, int intensidade, int alcance) {
     super(nome, duracao, intensidade, alcance);
   }
@@ -22,5 +22,10 @@ public class Cura extends Efeito {
         inimigo.ganharVida(cura);
       }
     }
+  }
+  
+  @Override
+  public boolean ehCura(){
+    return true;
   }
 }

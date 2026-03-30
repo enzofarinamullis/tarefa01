@@ -6,19 +6,19 @@ import java.util.List;
 public class Publisher {
   List<Subscriber> subscribers;
   
-  protected Publisher(){
+  public Publisher(){
     subscribers = new ArrayList<>();
   }
   
-  private void inscrever(Subscriber adicionar){
+  public void inscrever(Subscriber adicionar){
     subscribers.add(adicionar);
   }
   
-  private void desinscrever(Subscriber remover){
+  public void desinscrever(Subscriber remover){
     subscribers.remove(remover);
   }
   
-  private void notificar(){
+  public void notificar(){
     /* chama um metodo para todos os subscribers */
     for(int i = 0; i < subscribers.size(); i++){
       subscribers.get(i).serNotificado();

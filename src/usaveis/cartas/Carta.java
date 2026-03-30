@@ -91,7 +91,15 @@ public abstract class Carta{
       return true;
     }
   }
-
+  
+  public int quantidadeEfeitos(){
+    return efeitos.size();
+  }
+  
+  public Efeito retornarEfeito(int indice){
+    return efeitos.get(indice);
+  }
+  
   public void adicionarEfeito(Efeito efeito) {
     if (efeito == null) {
       return;

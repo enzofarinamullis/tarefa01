@@ -24,5 +24,11 @@ public class Sangramento extends Efeito {
     }
 
   }
+  
+  @Override
+  public boolean ehSangramento(){
+    return true;
+  }
+  
 }
 

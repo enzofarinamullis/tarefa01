@@ -18,6 +18,10 @@ public class Dados {
     this.heroi = heroi;
     this.listaInimigos = new ListaInimigos();
     this.frame = 0;
+    this.publisher = new Publisher();
   }
-
+  
+  public Publisher getPublisher(){
+    return publisher;
+  }
 }
