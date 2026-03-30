@@ -6,15 +6,22 @@ import java.util.List;
 
 public abstract class Efeito{
   private String nome;
-  private int duracao;
+  private String dono;
+  private int acumulos;
   private int intensidade;
+  private int idAtivacao;
   private int alcance; // sempre vai ser ímpar (1, 3, 5, 7...)
 
-  public Efeito(String nome, int duracao, int intensidade, int alcance) {
+  public Efeito(String nome, int duracao, int intensidade, int alcance, int idAtivacao) {
     this.nome = nome;
-    this.duracao = duracao;
+    this.acumulos = duracao;
     this.intensidade = intensidade;
     this.alcance = alcance;
+    this.idAtivacao = idAtivacao;
+  }
+  
+  public int getIdAtivacao() {
+    return idAtivacao;
   }
   
   // Método abstrato para aplicar em um único alvo
@@ -94,7 +101,7 @@ public abstract class Efeito{
   }
   
   public int getDuracao() {
-    return duracao;
+    return acumulos;
   }
   
   public int getIntensidade() {
@@ -111,7 +118,7 @@ public abstract class Efeito{
   }
   
   public void setDuracao(int duracao) {
-    this.duracao = duracao;
+    this.acumulos = duracao;
   }
   
   public void setIntensidade(int intensidade) {

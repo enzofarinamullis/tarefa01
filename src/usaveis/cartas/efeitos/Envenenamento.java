@@ -1,5 +1,6 @@
 package usaveis.cartas.efeitos;
 
+import constantes.Turnos;
 import dados.Entidade;
 import dados.Heroi;
 import dados.Inimigo;
@@ -7,7 +8,7 @@ import usaveis.cartas.Efeito;
 
 public class Envenenamento extends Efeito {
   public Envenenamento(String nome, int duracao, int intensidade, int alcance) {
-    super(nome, duracao, intensidade, alcance);
+    super(nome, duracao, intensidade, alcance, Turnos.INICIO_TURNO_JOAGADOR);
   }
   public void aplicar(Entidade entidade) {
     if (entidade != null) {

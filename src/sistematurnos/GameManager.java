@@ -242,6 +242,8 @@ public class GameManager {
       }
       
       /* turno do heroi */
+      publisher.notificar(Turnos.INICIO_TURNO_JOAGADOR); // notificamos os efeitos de inicio de combate
+      
       while(!heroiAgiu){
         
         if(!heroi.estaVivo()){
@@ -302,18 +304,20 @@ public class GameManager {
                 efeito = carta.retornarEfeito(i);
                 
                 if (efeito.ehCura()) {
-                  subscriber = new SubscriberEfeito(heroi, efeito);
+                  subscriber = new SubscriberEfeito(heroi, efeito, efeito.getIdAtivacao());
                   
                 } else if (efeito.ehEnvenamento() || efeito.ehSangramento()) {
                   /* como os efeito de dano, inicialmente so estarao nas espadas
                    * o inimigo estara selecionado, a nao ser que ele tenha morrido */
                   
                   if(inimigo != null) {
-                    subscriber = new SubscriberEfeito(inimigo, efeito);
+                    subscriber = new SubscriberEfeito(inimigo, efeito, efeito.getIdAtivacao());
                   }
                 }
                 if(subscriber != null) {
                   publisher.inscrever(subscriber);
+                  /* notificamos todos os efeitos instantaneos */
+                  publisher.notificar(Turnos.INSTANTANEO);
                 }
               }
             }
@@ -323,7 +327,8 @@ public class GameManager {
       
       /* Agora que o turno do heroi acabou */
       /* aplicamos os efeitos */
-      publisher.notificar();
+      publisher.notificar(Turnos.FINAL_TURNO_JOGADOR);
+      
       /* devemos fazer duas verificacoes
        verificamos se alguem morreu e
        verificamos se ainda existem inimigos vivos
@@ -349,6 +354,7 @@ public class GameManager {
       inimigoAnunciar.atacar(heroi);
       
       inimigoAgiu = true;
+      heroiAgiu = false;
       numTurno++;
     }
   }

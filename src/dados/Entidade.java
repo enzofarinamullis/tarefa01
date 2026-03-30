@@ -28,11 +28,13 @@ public abstract class Entidade {
   
   public Boolean estaVivo() {
     if (vida > 0) {
+      System.out.println();
       System.out.println(Cores.ANSI_CYAN + nome + Cores.ANSI_RESET +
         Cores.ANSI_GREEN + " está vivo!" + Cores.ANSI_RESET);
       return true;
     }
     else{
+      System.out.println();
       System.out.println(Cores.ANSI_CYAN + nome + Cores.ANSI_RESET +
         Cores.ANSI_RED + " não está vivo!" + Cores.ANSI_RESET);
       return false;

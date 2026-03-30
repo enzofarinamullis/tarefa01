@@ -1,4 +1,5 @@
 package usaveis.cartas.efeitos;
+import constantes.Turnos;
 import dados.Entidade;
 import dados.Heroi;
 import dados.Inimigo;
@@ -6,7 +7,7 @@ import usaveis.cartas.Efeito;
 
 public class Sangramento extends Efeito {
   public Sangramento(String nome, int duracao, int intensidade, int alcance) {
-    super(nome, duracao, intensidade, alcance);
+    super(nome, duracao, intensidade, alcance, Turnos.FINAL_TURNO_JOGADOR);
   }
   public void aplicar(Entidade entidade) {
     if (entidade != null) {

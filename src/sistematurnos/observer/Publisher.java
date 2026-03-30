@@ -18,10 +18,16 @@ public class Publisher {
     subscribers.remove(remover);
   }
   
-  public void notificar(){
-    /* chama um metodo para todos os subscribers */
+  public void notificar(int idAtivacao){
+    /* chama um metodo para todos os subscribers com o id de ativacao especificado */
+    Subscriber subscriber;
+    List<Subscriber> acabaram = new ArrayList<>();
     for(int i = 0; i < subscribers.size(); i++){
-      subscribers.get(i).serNotificado();
+      subscriber = subscribers.get(i);
+      if(subscriber.getIdAtivacao() == idAtivacao) {
+        subscriber.serNotificado();
+        if(subscriber)
+      }
     }
   }
   
