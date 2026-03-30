@@ -14,15 +14,15 @@ public class PilhaCompra extends Pilha {
     super();
     /* criamos o deque */
     Carta carta = new espadaCurta();
-    //pilha.add(carta);
-    //carta = new espadaMedia();
-    //pilha.add(carta);
-    //carta = new espadaLonga();
-    //pilha.add(carta);
-    //carta = new espadaEL();
-    //pilha.add(carta);
-    //carta = new escudoPequeno();
-    //pilha.add(carta);
+    pilha.add(carta);
+    carta = new espadaMedia();
+    pilha.add(carta);
+    carta = new espadaLonga();
+    pilha.add(carta);
+    carta = new espadaEL();
+    pilha.add(carta);
+    carta = new escudoPequeno();
+    pilha.add(carta);
     carta = new escudoMedio();
     pilha.add(carta);
     carta = new escudoGrande();
