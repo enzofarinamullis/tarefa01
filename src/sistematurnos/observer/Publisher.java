@@ -1,5 +1,7 @@
 package sistematurnos.observer;
 
+import constantes.IdsSubscribers;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,10 +28,20 @@ public class Publisher {
       subscriber = subscribers.get(i);
       if(subscriber.getIdAtivacao() == idAtivacao) {
         subscriber.serNotificado();
-        if(subscriber)
       }
     }
   }
   
-  
+  public List<SubscriberEfeito> getSubscribersEfeitos(){
+    List<SubscriberEfeito> subscriberEfeitos = new ArrayList<>();
+    Subscriber subscriber;
+    for(int i = 0; i < subscribers.size(); i++){
+      subscriber = subscribers.get(i);
+      if(subscriber.ehEfeito()) {
+        /* fazemos um cast para especificar que sera um efeito */
+        subscriberEfeitos.add((SubscriberEfeito) subscriber);
+      }
+    }
+    return subscriberEfeitos;
+  }
 }

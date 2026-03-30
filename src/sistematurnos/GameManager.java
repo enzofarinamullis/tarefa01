@@ -17,6 +17,7 @@ import usaveis.pilhas.PilhaCompra;
 import usaveis.pilhas.PilhaDescarte;
 import utilitarios.PrintTerminal;
 
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -211,6 +212,25 @@ public class GameManager {
     return inimigoAnunciar;
   }
   
+  private void acionaPublisher(int idAtivacao){
+    Publisher publisher = dados.getPublisher();
+    SubscriberEfeito finalizou;
+    List<SubscriberEfeito> subscribersEfeito;
+    
+    publisher.notificar(idAtivacao);
+    
+    subscribersEfeito = publisher.getSubscribersEfeitos();
+    
+    /* verificamos se algum efeito acabou */
+    for(int i = 0; i < subscribersEfeito.size(); i++){
+      finalizou = subscribersEfeito.get(i);
+      if(finalizou.acabou()){
+        publisher.desinscrever(finalizou);
+      }
+    }
+    
+  }
+  
   public void turno(){
     int numTurno = 0;
     mensagemCombate();
@@ -242,7 +262,7 @@ public class GameManager {
       }
       
       /* turno do heroi */
-      publisher.notificar(Turnos.INICIO_TURNO_JOAGADOR); // notificamos os efeitos de inicio de combate
+      acionaPublisher(Turnos.INICIO_TURNO_JOAGADOR); // notificamos os efeitos do inicio do combate
       
       while(!heroiAgiu){
         
@@ -317,7 +337,7 @@ public class GameManager {
                 if(subscriber != null) {
                   publisher.inscrever(subscriber);
                   /* notificamos todos os efeitos instantaneos */
-                  publisher.notificar(Turnos.INSTANTANEO);
+                  acionaPublisher(Turnos.INSTANTANEO);
                 }
               }
             }
@@ -327,7 +347,7 @@ public class GameManager {
       
       /* Agora que o turno do heroi acabou */
       /* aplicamos os efeitos */
-      publisher.notificar(Turnos.FINAL_TURNO_JOGADOR);
+      acionaPublisher(Turnos.FINAL_TURNO_JOGADOR);
       
       /* devemos fazer duas verificacoes
        verificamos se alguem morreu e

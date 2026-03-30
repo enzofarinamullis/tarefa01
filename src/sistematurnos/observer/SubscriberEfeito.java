@@ -1,5 +1,6 @@
 package sistematurnos.observer;
 
+import constantes.IdsSubscribers;
 import dados.Entidade;
 import usaveis.cartas.Efeito;
 
@@ -12,21 +13,24 @@ public class SubscriberEfeito extends Subscriber{
     this.alvo = alvo;
     this.efeito = efeito;
     this.idAtivacao = idAtivacao;
+    usos = 0;
   }
   
   protected void serNotificado(){
     efeito.aplicar(alvo);
+    usos++;
   }
-  
-  protected void incrementaUso(){ this.usos++; }
   
   /**
    *  Esta função nos retornara o efeito utilizado caso seus usos acabaram
-   *  assim podemos com o publisher removê-lo
+   *  assim podemos com o publisher removê-lo com o publisher
    */
-  protected Efeito verificaUso(){
-    if(this.usos == efeito.getDuracao()){
-      return efeito;
-    }
+  public boolean acabou(){
+    return this.usos == efeito.getDuracao();
+  }
+  
+  @Override
+  public boolean ehEfeito(){
+    return true;
   }
 }
