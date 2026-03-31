@@ -7,7 +7,7 @@ public class espadaEnvenenada extends CartaDano{
   
   public espadaEnvenenada() {
     super("Espada Envenenada", 5,5, "Espada banhada em veneno de rato" );
-    Envenenamento envenenamentoV = new Envenenamento("Envenenamento V", 5, 10, 5);
+    Envenenamento envenenamentoV = new Envenenamento("Envenenamento V", 5, 5, 5);
     adicionarEfeito(envenenamentoV);
   }
 }

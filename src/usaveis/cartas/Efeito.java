@@ -72,7 +72,7 @@ public abstract class Efeito{
     Cores.cprint(Cores.ANSI_GREEN, "   ✅ Efeito aplicado a ");
     Cores.cprintInt(Cores.ANSI_GREEN, (fim - inicio + 1));
     Cores.cprintn(Cores.ANSI_GREEN, " alvos!");
-  }
+  };
   
   // Método alternativo usando índice diretamente
   public void aplicarEmArea(List<Entidade> entidades, int indiceAlvo) {
