@@ -77,6 +77,7 @@ Similar ao sangramento, o envenenamento causa dano contínuo ao longo do tempo.
 | **Custo** | Energia necessária para aplicar o efeito |
 | **Alcance**| Quantos inimigos sofrem o dano|
 
+
 **Diferença mecânica:** Enquanto sangramento é dano físico, envenenamento é dano mágico/natureza — alguns inimigos podem ser imunes a um ou outro.
 
 ### 2- Mecânica de combate
