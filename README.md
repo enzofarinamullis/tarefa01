@@ -143,6 +143,7 @@ O combate termina se o herói fugir, ou se o herói ou todos os inimigos morrere
 | Duração | 3 turnos |
 | Custo | 1 |
 | Dano total do efeito | 6 |
+|Alcance | 1|
 
 ---
 
@@ -163,7 +164,7 @@ O combate termina se o herói fugir, ou se o herói ou todos os inimigos morrere
 | Duração | 5 turnos |
 | Custo | 3 |
 | Dano total do efeito | 15 |
-
+|Alcance | 3|
 ---
 
 ### Espada Envenenada
@@ -183,7 +184,7 @@ O combate termina se o herói fugir, ou se o herói ou todos os inimigos morrere
 | Duração | 10 turnos |
 | Custo | 5 |
 | Dano total do efeito | 50 |
-
+|Alcance | 5|
 ---
 
 ### Espada da Lua Sangrenta
@@ -203,6 +204,7 @@ O combate termina se o herói fugir, ou se o herói ou todos os inimigos morrere
 | Duração | 10 turnos |
 | Custo | 5 |
 | Dano total do efeito | 50 |
+|Alcance | 5|
 
 ---
 
