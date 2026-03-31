@@ -33,8 +33,9 @@ O dado de precisão estabelece um multiplicador para o dado de potência conform
 
 O dano causado é calculado pela fórmula:
 
-DANO = DADO DE POTÊNCIA X MODIFICADORmd
-#### cartas escudo
+DANO = DADO DE POTÊNCIA X MODIFICADOR
+
+#### Cartas escudo
 As cartas escudo possem um valor de escudo e um custo de energia. Elas podem ser acionadas somente se o herói possui energia maior ou igual ao custo da carta.
 
 Quando acionadas elas recarregam a barra de escudo do heroi, assim o escudo irá absorver todo ou uma parecela do dano incidente.
@@ -48,8 +49,33 @@ D = DANO DO INIMIGO - ESCUDO
 | > 0 | D |
 | <= 0 | 0 |
 
+### 3-Efeitos Especiais
 
+Algumas cartas possuem **efeitos de status** que persistem por múltiplos turnos.
 
+#### Sangramento
+
+O efeito de sangramento causa dano contínuo ao alvo ao longo do tempo.
+
+| Atributo | Descrição |
+|----------|-----------|
+| **Dano por tick** | Quantidade de dano causada por turno |
+| **Duração** | Número de turnos que o efeito persiste |
+| **Custo** | Energia necessária para aplicar o efeito |
+
+O dano do sangramento é aplicado **no início de cada turno do afetado** e **ignora armadura/escudo**.
+
+#### Envenenamento
+
+Similar ao sangramento, o envenenamento causa dano contínuo ao longo do tempo.
+
+| Atributo | Descrição |
+|----------|-----------|
+| **Dano por tick** | Quantidade de dano causada por turno |
+| **Duração** | Número de turnos que o efeito persiste |
+| **Custo** | Energia necessária para aplicar o efeito |
+
+**Diferença mecânica:** Enquanto sangramento é dano físico, envenenamento é dano mágico/natureza — alguns inimigos podem ser imunes a um ou outro.
 
 ### 2- Mecânica de combate
 #### Turno do herói
@@ -69,6 +95,130 @@ O inimgo possui dano fixo ele sempre ataca no turno
 Caso houver mais de um inimigo, um é sorteado aletóriamente para atacar. E apenas um ataca por turno. Quando um inimigo ataca é encerrado o fim do turno, dando sequencia para o turno do protagonista.
 #### Fim do combate
 O combate termina se o herói fugir, ou se o herói ou todos os inimigos morrerem.
+
+---
+
+## 🗡️ Catálogo de Cartas
+
+### Espada Curta
+| Atributo | Valor |
+|----------|-------|
+| **Tipo** | Dano |
+| **Nível** | 1 |
+| **Custo** | 1 |
+| **Dano base** | 1 |
+| **Efeito** | Nenhum |
+| **Descrição** | "Uma espada curta até de mais" |
+
+---
+
+### Espada Média
+| Atributo | Valor |
+|----------|-------|
+| **Tipo** | Dano |
+| **Nível** | 3 |
+| **Custo** | 3 |
+| **Dano base** | 3 |
+| **Efeito** | Nenhum |
+| **Descrição** | "Uma espada na média" |
+
+---
+
+### Espada Longa
+| Atributo | Valor |
+|----------|-------|
+| **Tipo** | Dano |
+| **Nível** | 3 |
+| **Custo** | 3 |
+| **Dano base** | 3 |
+| **Efeito** | Sangramento I |
+| **Descrição** | "Uma espada estranhamente longa" |
+
+#### Efeito: Sangramento I
+| Atributo | Valor |
+|----------|-------|
+| Dano por tick | 2 |
+| Duração | 3 turnos |
+| Custo | 1 |
+| Dano total do efeito | 6 |
+
+---
+
+### Espada Estranhamente Longa
+| Atributo | Valor |
+|----------|-------|
+| **Tipo** | Dano |
+| **Nível** | 4 |
+| **Custo** | 4 |
+| **Dano base** | 4 |
+| **Efeito** | Sangramento III |
+| **Descrição** | "Uma espada comicamente longa" |
+
+#### Efeito: Sangramento III
+| Atributo | Valor |
+|----------|-------|
+| Dano por tick | 3 |
+| Duração | 5 turnos |
+| Custo | 3 |
+| Dano total do efeito | 15 |
+
+---
+
+### Espada Envenenada
+| Atributo | Valor |
+|----------|-------|
+| **Tipo** | Dano |
+| **Nível** | 5 |
+| **Custo** | 5 |
+| **Dano base** | 5 |
+| **Efeito** | Envenenamento V |
+| **Descrição** | "Espada banhada em veneno de rato" |
+
+#### Efeito: Envenenamento V
+| Atributo | Valor |
+|----------|-------|
+| Dano por tick | 5 |
+| Duração | 10 turnos |
+| Custo | 5 |
+| Dano total do efeito | 50 |
+
+---
+
+### Espada da Lua Sangrenta
+| Atributo | Valor |
+|----------|-------|
+| **Tipo** | Dano |
+| **Nível** | 5 |
+| **Custo** | 5 |
+| **Dano base** | 5 |
+| **Efeito** | Sangramento V |
+| **Descrição** | "Espada com magia sangrenta" |
+
+#### Efeito: Sangramento V
+| Atributo | Valor |
+|----------|-------|
+| Dano por tick | 5 |
+| Duração | 10 turnos |
+| Custo | 5 |
+| Dano total do efeito | 50 |
+
+---
+
+### Tabela Resumo das Espadas
+
+| Carta | Nível | Custo | Dano Base | Efeito | Dano Total* |
+|-------|-------|-------|-----------|--------|--------------|
+| Espada Curta | 1 | 1 | 1 | Nenhum | 1 |
+| Espada Média | 3 | 3 | 3 | Nenhum | 3 |
+| Espada Longa | 3 | 3 | 3 | Sangramento I (6) | 9 |
+| Espada Estranhamente Longa | 4 | 4 | 4 | Sangramento III (15) | 19 |
+| Espada Envenenada | 5 | 5 | 5 | Envenenamento V (50) | 55 |
+| Espada da Lua Sangrenta | 5 | 5 | 5 | Sangramento V (50) | 55 |
+
+*Dano total considerando dano base + dano total do efeito
+
+---
+
 ## Instruções para compilar e executar o programa
 ### Para baixar o projeto:
 git clone https://github.com/enzofarinamullis/tarefa01.git
