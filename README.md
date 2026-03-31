@@ -62,6 +62,7 @@ O efeito de sangramento causa dano contínuo ao alvo ao longo do tempo.
 | **Dano por tick** | Quantidade de dano causada por turno |
 | **Duração** | Número de turnos que o efeito persiste |
 | **Custo** | Energia necessária para aplicar o efeito |
+| **Alcance**| QUantos inimigos sofrem o dano|
 
 O dano do sangramento é aplicado **no início de cada turno do afetado** e **ignora armadura/escudo**.
 
@@ -74,6 +75,7 @@ Similar ao sangramento, o envenenamento causa dano contínuo ao longo do tempo.
 | **Dano por tick** | Quantidade de dano causada por turno |
 | **Duração** | Número de turnos que o efeito persiste |
 | **Custo** | Energia necessária para aplicar o efeito |
+| **Alcance**| Quantos inimigos sofrem o dano|
 
 **Diferença mecânica:** Enquanto sangramento é dano físico, envenenamento é dano mágico/natureza — alguns inimigos podem ser imunes a um ou outro.
 
