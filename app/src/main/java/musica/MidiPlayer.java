@@ -1,6 +1,7 @@
 package musica;
 
 import javax.sound.midi.*;
+import java.io.InputStream;
 import java.util.*;
 import java.io.File;
 /* ref: https://docs.oracle.com/en/java/javase/21/docs//api/java.desktop/javax/sound/midi/spi/MidiFileReader.html */
@@ -19,7 +20,12 @@ public abstract class MidiPlayer extends Thread {
       sequencer.open();
       
       /* criamos sequencia */
-      Sequence sequence = MidiSystem.getSequence(new File(caminho));
+      InputStream entrada = getClass().getResourceAsStream(caminho);
+      if(entrada == null){
+        System.out.println("Arquivo Nao encontrado");
+        return;
+      }
+      Sequence sequence = MidiSystem.getSequence(entrada);
       
       
       sequencer.setSequence(sequence);

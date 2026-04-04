@@ -22,7 +22,7 @@ public class App {
     //Matriz mapa = new Matriz();
     //mapa.gerarMapa();
     
-    MidiPlayer midi = new MusicaInicial("src/musica/noname.mid");
+    MidiPlayer midi = new MusicaInicial("/musica/noname.mid");
     midi.start();
     
 

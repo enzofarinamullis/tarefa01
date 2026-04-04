@@ -42,3 +42,16 @@ application {
     // Define the main class for the application.
     mainClass = 'App'
 }
+
+tasks.withType(JavaExec) {
+    standardInput = System.in
+}
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'App' // ou pacote.App se tiver package
+        )
+    }
+}
+

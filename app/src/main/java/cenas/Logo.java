@@ -8,7 +8,7 @@ public class Logo extends Cena {
   public Logo(Dados dados){
     this.dados = dados;
     this.nome = "LOGO";
-    this.leitor = carregaLeitor("src/animacoes/Cabecalho2.txt");
+    this.leitor = carregaLeitor("/animacoes/Cabecalho2.txt");
   }
 
   /* Carrega a Cena */

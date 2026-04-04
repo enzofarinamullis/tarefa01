@@ -2,6 +2,7 @@ package cenas;
 import dados.Dados;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Scanner;
 
 
@@ -25,17 +26,13 @@ public abstract class Cena {
   /* Unload sera feito pelo proprio Java */
   
   public Scanner carregaLeitor(String caminho){
-    /* mostramos o caminho para a animacao */
-    this.file = new File(caminho);
-    /* Fazemos a tentativa de ler o arquivo */
-    try{
-      this.leitor = new Scanner(file);
-      return leitor;
-    }
-    catch(FileNotFoundException e){
-      System.out.println("Erro arquivo não encontrado!\n");
+    InputStream entrada = getClass().getResourceAsStream(caminho);
+    if(entrada == null){
+      System.out.println("Arquivo nao encontrado");
       return null;
     }
+    
+    return new Scanner(entrada);
   }
   
   public void imprimeArquivo(){
