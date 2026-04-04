@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="98683573-0a00-4ab9-ad11-5a67a650970d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/taskHistory/taskHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/taskHistory/taskHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/anim/Animacao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/anim/AnimacaoChuva.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/anim/AnimacaoFogo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/anim/FireCor.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/anim/Rain.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/anim/animacaoFogo.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/anim/dialogos/DialogoInicial.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/anim/dialogos/DialogoPrimeiraBatalha.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/anim/dialogos/falas/Dialogo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/anim/dialogos/falas/FalaInicial.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/anim/dialogos/falas/PrimeiraBatalha.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/animacoes/Cabecalho2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/animacoes/imagemSlime.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/better-comments.tags" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cenas/Cena.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cenas/Logo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cenas/TresSlimes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constantes/Cabecalho.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constantes/Cores.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constantes/Danos.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constantes/Dialogos.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constantes/IdsEstruturas.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constantes/IdsSubscribers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constantes/TamMapa.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constantes/Turnos.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dados/Aliado.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dados/Dados.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dados/Entidade.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dados/Heroi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dados/Inimigo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dados/ListaAliados.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dados/ListaInimigos.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dados/inimigos/Slime.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mapa/Mapa.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mapa/Matriz.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mapa/estruturas/Cidade.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mapa/estruturas/Dungeon.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mapa/estruturas/Estrutura.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mapa/estruturas/nomes/Nomes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mapa/estruturas/nomes/NomesCidades.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mapa/estruturas/nomes/NomesDungeon.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/musica/MidiPlayer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/musica/MusicaInicial.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/musica/noname.mid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/Cabecalho2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/animacoes/Cabecalho2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/animacoes/imagemSlime.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/better-comments.tags" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/cenas/HistoriaInicial.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/constantes/Cabecalho.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/constantes/Cores.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/constantes/TamMapa.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/mapa/Mapa.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/mapa/Matriz$Camera.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/mapa/Matriz$Cidade.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/mapa/Matriz$Estrada.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/mapa/Matriz$Quadrante.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/mapa/Matriz.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/sistematurnos/SistemaTurnos.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/tarefa01.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/usaveis/CartaDano.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/usaveis/CartaEscudo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/usaveis/Cartas.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/usaveis/Mao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/usaveis/Potencia.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/usaveis/Precisao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/tarefa01/utilitarios/PrintTerminal.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sistematurnos/GameManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sistematurnos/Observer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sistematurnos/observer/Publisher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sistematurnos/observer/Subscriber.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sistematurnos/observer/SubscriberEfeito.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tarefa01.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/D/Potencia.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/D/Precisao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/Mao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/cartas/Carta.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/cartas/CartaDano.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/cartas/CartaEscudo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/cartas/Efeito.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/cartas/danos/espadaCurta.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/cartas/danos/espadaDaLuaSangrenta.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/cartas/danos/espadaEL.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/cartas/danos/espadaEnvenenada.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/cartas/danos/espadaLonga.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/cartas/danos/espadaMedia.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/cartas/efeitos/Cura.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/cartas/efeitos/Envenenamento.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/cartas/efeitos/Sangramento.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/escudos/escudoDaInstropeccao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/escudos/escudoEL.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/escudos/escudoGrande.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/escudos/escudoMedio.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/escudos/escudoPequeno.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/pilhas/Pilha.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/pilhas/PilhaCompra.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usaveis/pilhas/PilhaDescarte.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utilitarios/PrintTerminal.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="3BgfHZCAGZyEjyF5Dpaf3cECPPY" />
+  <component name="ProjectViewState">
+    <option name="showExcludedFiles" value="false" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showScratchesAndConsoles" value="false" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "gradle-setup",
+    "kotlin-language-version-configured": "true"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="98683573-0a00-4ab9-ad11-5a67a650970d" name="Changes" comment="" />
+      <created>1774915548350</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1774915548350</updated>
+    </task>
+    <servers />
+  </component>
+</project>

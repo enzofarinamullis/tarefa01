@@ -14,6 +14,6 @@ public class DialogoPrimeiraBatalha extends Dialogo {
       TimeUnit.SECONDS.sleep(7);
       run();
     }
-    catch (Exception _){}
+    catch (Exception e){}
   }
 }

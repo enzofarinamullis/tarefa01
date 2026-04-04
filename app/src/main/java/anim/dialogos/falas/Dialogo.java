@@ -20,7 +20,7 @@ public abstract class Dialogo extends Animacao {
         sleep(Dialogos.PAUSA_MEDIA);
       }
     }
-    catch (Exception _){}
+    catch (Exception e){}
   }
   
   public abstract void rodar();
