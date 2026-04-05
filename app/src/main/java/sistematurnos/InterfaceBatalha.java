@@ -2,8 +2,11 @@ package sistematurnos;
 
 import dados.Dados;
 import dados.Inimigo;
+import dados.ListaInimigos;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class InterfaceBatalha {
@@ -13,8 +16,9 @@ public class InterfaceBatalha {
   /* iremos usar 8x16 para a printagem ficar bonita no terminal */
   private int qntInimigos;
   private int inimigoPorLinha;
-  private int linha;
+  private int numLinha;
   private Scanner leitor;
+  private Dados dados;
   
   public InterfaceBatalha(Dados dados){
     /* vamos colocar apenas 2 inimigos por linha,
@@ -22,9 +26,11 @@ public class InterfaceBatalha {
     */
     qntInimigos = dados.listaInimigos.getTamanho();
     inimigoPorLinha = 2;
-    linha = 0;
+    numLinha = 0;
+    this.dados = dados;
   }
-  private Scanner carregaLeitor(String caminho){
+  private Scanner carregaLeitor(Inimigo inimigo){
+    String caminho = inimigo.getCaminho();
     InputStream entrada = getClass().getResourceAsStream(caminho);
     if(entrada == null){
       System.out.println("Arquivo não encontrado");
@@ -34,31 +40,68 @@ public class InterfaceBatalha {
     return leitor;
   }
   
+  /* simplesmente imprimimos arquivo */
   protected void imprimeUmInimigo(Inimigo inimigo){
+    carregaLeitor(inimigo);
+    String linha;
     for(int i = 0; i < 8; i++){
-      /* imrpime linha i */
-      linha++;
+      if(leitor.hasNextLine()){
+        linha = leitor.nextLine();
+        System.out.println(linha);
+      }
+      numLinha++;
     }
   }
   
-  protected void imprimeDoisInimigos(Inimigo inimigo){
+  private List<String> carregaASCII(Inimigo inimigo){
+    List<String> ASCII = new ArrayList<>();
+    String linha;
+    carregaLeitor(inimigo);
+    for(int i = 0; i < 8; i++){
+      linha = leitor.nextLine();
+      ASCII.add(linha);
+    }
+    return ASCII;
+  }
+  
+  
+  /* juntamos dois arquivos */
+  protected void imprimeDoisInimigos(Inimigo inimigo1, Inimigo inimigo2){
     System.out.println();
-    for(int i = 0; i < 8; i++) {
-      /* imprime linha i inimigo 1 */
-      /* imprime linha i inimigo 2 */
-      linha++;
+    List<String> ASCIIInimigo1 = carregaASCII(inimigo1);
+    List<String> ASCIIInimigo2 = carregaASCII(inimigo2);
+    
+    int numLinhas = 8;
+    
+    for(int i = 0; i < numLinhas; i++){
+      String linha1 = ASCIIInimigo1.get(i);
+      String linha2 = ASCIIInimigo2.get(i);
+      
+      System.out.println(linha1 + linha2);
     }
   }
   
   protected void imprimeTodosInimigos(){
     int inimigosRestante = 0;
+    Inimigo inimigo1;
+    Inimigo inimigo2;
+    ListaInimigos listaInimigos;
+    listaInimigos = dados.listaInimigos;
     for(int i = 0; i < qntInimigos; i+= 2){
       inimigosRestante = qntInimigos - i;
       if(inimigosRestante == 1){
-      
+        inimigo1 = listaInimigos.buscarInimigo(i);
+        imprimeUmInimigo(inimigo1);
+      }
+      else{
+        inimigo1 = listaInimigos.buscarInimigo(i);
+        inimigo2 = listaInimigos.buscarInimigo(i + 1);
+        imprimeDoisInimigos(inimigo1, inimigo2);
       }
     }
     System.out.println();
   }
+  
+  
   
 }

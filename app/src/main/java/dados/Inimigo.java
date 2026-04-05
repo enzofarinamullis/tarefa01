@@ -3,6 +3,7 @@ import constantes.Cores;
 
 public class Inimigo extends Entidade {
   protected String anuncio;
+  protected String ASCII;
   
   /* Construtor */
   public Inimigo(String nome, int vida, int escudo, int dano, String anuncio) {
@@ -56,5 +57,9 @@ public class Inimigo extends Entidade {
     System.out.println("Anúncio:");
     System.out.println(Cores.ANSI_RED + getNome() + ": " +
       Cores.ANSI_BLUE + getAnuncio() + Cores.ANSI_RESET);
+  }
+  
+  public String getCaminho(){
+    return ASCII;
   }
 }
