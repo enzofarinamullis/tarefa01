@@ -4,7 +4,7 @@ import constantes.Cores;
 
 public class AnimacaoFogo extends Animacao {
   public AnimacaoFogo() {
-    super("src/anim/FireCor.txt");
+    super("/animacoes/FireCor.txt");
   }
   
   @Override

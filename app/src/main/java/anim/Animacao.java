@@ -1,6 +1,7 @@
 package anim;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 
@@ -34,16 +35,15 @@ public abstract class Animacao extends Thread {
   
   public Scanner carregaLeitor(String caminho){
     /* mostramos o caminho para a animacao */
-    this.arquivo = new File(caminho);
+    InputStream entrada = getClass().getResourceAsStream(caminho);
+    
     /* Fazemos a tentativa de ler o arquivo */
-    try{
-      this.leitor = new Scanner(arquivo);
-      return leitor;
-    }
-    catch(FileNotFoundException e){
-      System.out.println("Erro arquivo não encontrado!\n");
+    if(entrada == null){
+      System.out.println("Arquivo Nao encontrado");
       return null;
     }
+    this.leitor = new Scanner(entrada);
+    return leitor;
   }
   
   public void imprimeLinha(String linha){

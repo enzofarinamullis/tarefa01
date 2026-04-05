@@ -48,8 +48,8 @@ public class App {
     //Dialogo dialogo = new DialogoInicial(dados);
     //dialogo.rodar();
 
-    //Animacao animacao = new AnimacaoFogo();
-    //animacao.run();
+    Animacao animacao = new AnimacaoFogo();
+    animacao.run();
     
     heroi.status();
 
