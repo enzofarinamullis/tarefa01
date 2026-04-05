@@ -20,11 +20,19 @@ public abstract class Animacao extends Thread {
     leitor = carregaLeitor(caminho);
   }
   
+  
+  /**
+   * Executa uma animacao, movendo o cursor para o topo do terminal
+   * e imprimindo ela
+   */
   @Override
   public void run() {
     try {
       while(leitor.hasNextLine()) {
-        PrintTerminal.limparTerminal();
+        /* para tentarmos diminuir as piscagens da animacao */
+        /* inves de limparmos o terminal a cada frame */
+        /* movemos o cursor para o topo do terminal */
+        System.out.print("\033[H");
         imprimeAnimacao();
         sleep(100);
       }
@@ -33,6 +41,10 @@ public abstract class Animacao extends Thread {
     
   }
   
+  /**
+   * Prepara o leitor da animacao
+   * fornecendo o caminho para busca do arquivo em /resources
+   */
   public Scanner carregaLeitor(String caminho){
     /* mostramos o caminho para a animacao */
     InputStream entrada = getClass().getResourceAsStream(caminho);
@@ -46,6 +58,11 @@ public abstract class Animacao extends Thread {
     return leitor;
   }
   
+  /**
+   * Imprime linha será distinto em cada arquivo,
+   * imprimeLinha fornecerá os comandos de cores a usar
+   * para cada caracter da animação ASCII
+   */
   public void imprimeLinha(String linha){
   }
   
@@ -53,6 +70,9 @@ public abstract class Animacao extends Thread {
     String linha = "-";
     if(leitor.hasNextLine()){
       linha = leitor.nextLine();
+    }
+    else{
+      return;
     }
     /* Fazemos a leitura enquanto tiver proxima linha */
     for(int i = 0; leitor.hasNextLine(); i++){
