@@ -36,13 +36,13 @@ public class InterfaceBatalha {
       System.out.println("Arquivo não encontrado");
       return null;
     }
-    leitor = new Scanner(caminho);
+    leitor = new Scanner(entrada);
     return leitor;
   }
   
   /* simplesmente imprimimos arquivo */
   protected void imprimeUmInimigo(Inimigo inimigo){
-    carregaLeitor(inimigo);
+    leitor = carregaLeitor(inimigo);
     String linha;
     for(int i = 0; i < 8; i++){
       if(leitor.hasNextLine()){
@@ -56,9 +56,9 @@ public class InterfaceBatalha {
   private List<String> carregaASCII(Inimigo inimigo){
     List<String> ASCII = new ArrayList<>();
     String linha;
-    carregaLeitor(inimigo);
-    for(int i = 0; i < 8; i++){
-      linha = leitor.nextLine();
+    Scanner scanner = carregaLeitor(inimigo);
+    while(scanner.hasNextLine()){
+      linha = scanner.nextLine();
       ASCII.add(linha);
     }
     return ASCII;
@@ -88,16 +88,16 @@ public class InterfaceBatalha {
     ListaInimigos listaInimigos;
     listaInimigos = dados.listaInimigos;
     for(int i = 0; i < qntInimigos; i+= 2){
-      inimigosRestante = qntInimigos - i;
       if(inimigosRestante == 1){
-        inimigo1 = listaInimigos.buscarInimigo(i);
+        inimigo1 = listaInimigos.buscarInimigo(i + 1);
         imprimeUmInimigo(inimigo1);
       }
       else{
-        inimigo1 = listaInimigos.buscarInimigo(i);
-        inimigo2 = listaInimigos.buscarInimigo(i + 1);
+        inimigo1 = listaInimigos.buscarInimigo(i + 1);
+        inimigo2 = listaInimigos.buscarInimigo(i + 2);
         imprimeDoisInimigos(inimigo1, inimigo2);
       }
+      inimigosRestante = qntInimigos - 2;
     }
     System.out.println();
   }

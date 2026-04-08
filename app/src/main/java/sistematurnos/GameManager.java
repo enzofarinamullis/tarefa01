@@ -16,6 +16,7 @@ import usaveis.cartas.Efeito;
 import usaveis.pilhas.PilhaCompra;
 import usaveis.pilhas.PilhaDescarte;
 import utilitarios.PrintTerminal;
+import sistematurnos.InterfaceBatalha;
 
 import java.util.List;
 import java.util.Random;
@@ -270,6 +271,8 @@ public class GameManager {
     
     
     while(true){
+      InterfaceBatalha interfaceBatalha = new InterfaceBatalha(dados);
+      interfaceBatalha.imprimeTodosInimigos();
       /* escolhemos o inimigo que ira atacar */
       inimigoAnunciar = escolheInimigoAleatorio();
       inimigoAnunciar.anunciar(); // fazemos o seu anuncio
