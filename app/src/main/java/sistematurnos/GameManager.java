@@ -393,6 +393,8 @@ public class GameManager {
       /* verificamos se o inimigo que iria atacar morreu */
       inimigoAnunciar = escolheAtacante(inimigoAnunciar);
       inimigoAnunciar.atacar(heroi);
+      /* caso o inimigo tenha efeito, ele ira usa-lo no heroi */
+      inimigoAnunciar.usarEfeitoHeroi(heroi);
       
       inimigoAgiu = true;
       heroiAgiu = false;

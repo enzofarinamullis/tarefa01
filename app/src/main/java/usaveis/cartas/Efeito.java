@@ -2,6 +2,7 @@ package usaveis.cartas;
 
 import constantes.Cores;
 import dados.Entidade;
+import dados.Heroi;
 import java.util.List;
 
 public abstract class Efeito{

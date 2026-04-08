@@ -1,9 +1,14 @@
 package dados;
+import java.util.ArrayList;
+import java.util.List;
+
 import constantes.Cores;
+import usaveis.cartas.Efeito;
 
 public class Inimigo extends Entidade {
   protected String anuncio;
   protected String ASCII;
+  protected List<Efeito> listaEfeitos;
   
   /* Construtor */
   public Inimigo(String nome, int vida, int escudo, int dano, String anuncio) {
@@ -13,6 +18,7 @@ public class Inimigo extends Entidade {
     this.dano = dano;
     this.id = -1; // colocamos como -1 para quando nao tiver sido fornecido um id (ainda)
     this.anuncio = anuncio;
+    this.listaEfeitos = new ArrayList<>();
   }
   
   @Override
@@ -57,6 +63,16 @@ public class Inimigo extends Entidade {
     System.out.println("Anúncio:");
     System.out.println(Cores.ANSI_RED + getNome() + ": " +
       Cores.ANSI_BLUE + getAnuncio() + Cores.ANSI_RESET);
+  }
+
+  public void usarEfeitoHeroi(Heroi heroi){
+    Efeito efeito;
+    if(!listaEfeitos.isEmpty()){
+      for(int i = 0; i < listaEfeitos.size(); i++){
+        efeito = listaEfeitos.get(i);
+        efeito.aplicar(heroi);
+      }
+    }
   }
   
   public String getCaminho(){

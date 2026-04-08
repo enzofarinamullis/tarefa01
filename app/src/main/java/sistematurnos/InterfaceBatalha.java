@@ -87,6 +87,7 @@ public class InterfaceBatalha {
     Inimigo inimigo2;
     ListaInimigos listaInimigos;
     listaInimigos = dados.listaInimigos;
+    inimigosRestante = qntInimigos;
     for(int i = 0; i < qntInimigos; i+= 2){
       if(inimigosRestante == 1){
         inimigo1 = listaInimigos.buscarInimigo(i + 1);
