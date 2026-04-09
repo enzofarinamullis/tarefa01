@@ -92,17 +92,90 @@ public class InterfaceBatalha {
       if(inimigosRestante == 1){
         inimigo1 = listaInimigos.buscarInimigo(i + 1);
         imprimeUmInimigo(inimigo1);
+        printaHeaderUmInimigo(inimigo1);
       }
       else{
         inimigo1 = listaInimigos.buscarInimigo(i + 1);
         inimigo2 = listaInimigos.buscarInimigo(i + 2);
         imprimeDoisInimigos(inimigo1, inimigo2);
+        printaHeaderDoisInimigos(inimigo1, inimigo2);
       }
-      inimigosRestante = qntInimigos - 2;
+      inimigosRestante = inimigosRestante - 2;
     }
     System.out.println();
   }
   
+  private void printaHeaderUmInimigo(Inimigo inimigo){
+    /* como o inimigo unico somente será impresso sozinho:
+      não vamos precisar nos preocupar com alinhamento
+     */
+    int vida = inimigo.getVida();
+    int escudo = inimigo.getEscudo();
+    String nome = inimigo.getNome();
+    
+    System.out.println("Nome: ");
+    System.out.println(nome);
+    System.out.println("Vida: ");
+    System.out.println(vida);
+    System.out.println("Escudo: ");
+    System.out.println(escudo);
+  }
   
+  private void imprimeEspacos(int qnt){
+    for(int i = 0; i < qnt; i++){
+      System.out.print(" ");
+    }
+  }
   
+  private void printaHeaderDoisInimigos(Inimigo inimigo1, Inimigo inimigo2){
+    String nome1 = inimigo1.getNome();
+    String nome2 = inimigo2.getNome();
+    
+    int vida1 = inimigo1.getVida();
+    int vida2 = inimigo2.getVida();
+    
+    int escudo1 = inimigo1.getEscudo();
+    int escudo2 = inimigo2.getEscudo();
+    
+    List<String> texto = new ArrayList<>();
+    /* queremos tudo alinhado */
+    /* "Nome: " ocupa 6 caracteres */
+    /* queremos printar: Nome: //////////Nome: \n
+                         nomeInimigo1    nomeInimigo2\n
+                         Vida: //////////Vida: \n
+                         ...
+                         Escudo: ////////Escudo:
+     */
+    
+    System.out.print("Nome: ");
+    imprimeEspacos(10);
+    System.out.print("Nome: \n");
+    
+    /* agora fazemos a contagem de espacos */
+    /* para ficar alinhado eh necessario qntEspacos = 16 - nome1.lenght() */
+    int qntEspacos = 16 - nome1.length();
+    System.out.print(nome1);
+    imprimeEspacos(qntEspacos);
+    System.out.print(nome2 + "\n");
+    
+    System.out.print("Vida: ");
+    imprimeEspacos(10);
+    System.out.print("Vida: \n");
+    
+    /* para pegarmos quantos dígitos tem no número de forma fácil,
+    * podemos apenas o converter para uma string e ver o seu tamanho */
+    int digitosVida1 = String.valueOf(vida1).length();
+    System.out.print(vida1);
+    imprimeEspacos(16 - digitosVida1);
+    System.out.print(vida2 + "\n");
+    
+    System.out.print("Escudo: ");
+    imprimeEspacos(8);
+    System.out.print("Escudo: \n");
+    
+    int digitosEscudo = String.valueOf(escudo1).length();
+    System.out.print(escudo1);
+    imprimeEspacos(16 - digitosEscudo);
+    System.out.print(escudo2 + "\n");
+  }
 }

@@ -6,6 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="98683573-0a00-4ab9-ad11-5a67a650970d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/cenas/TresSlimes.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/cenas/TresSlimes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sistematurnos/InterfaceBatalha.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sistematurnos/InterfaceBatalha.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/ASCIIInimigos/lesmaVenenosa.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/ASCIIInimigos/lesmaVenenosa.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/ASCIIInimigos/morcego.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/ASCIIInimigos/morcego.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/ASCIIInimigos/privada.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/ASCIIInimigos/privada.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/ASCIIInimigos/slime.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/ASCIIInimigos/slime.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
