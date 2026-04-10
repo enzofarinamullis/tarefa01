@@ -2,11 +2,11 @@ package cenas;
 import dados.Dados;
 import dados.Inimigo;
 
-public class TresSlimes extends Cena {
+public class DoisSlimesELesma extends Cena {
   
-  public TresSlimes(Dados dados) {
-    this.nome = "Três Slimes Selvagens";
-    for(int i = 0; i < 3; i++) {
+  public DoisSlimesELesma(Dados dados) {
+    this.nome = "Dois Slimes Selvagens e uma Lesma Venenosa";
+    for(int i = 0; i < 2; i++) {
       Inimigo slime = new dados.inimigos.Slime();
       dados.listaInimigos.adicionarInimigo(slime);
     }

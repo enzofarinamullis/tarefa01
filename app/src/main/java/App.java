@@ -3,28 +3,34 @@ import java.util.Scanner;
 import anim.dialogos.DialogoInicial;
 import anim.dialogos.falas.Dialogo;
 import cenas.Cena;
+import cenas.DoisSlimesELesma;
 import cenas.Logo;
-import cenas.TresSlimes;
 import constantes.Cores;
 import dados.Dados;
-import dados.Entidade;
 import dados.Heroi;
-import dados.inimigos.Slime;
 import musica.MusicaInicial;
 import sistematurnos.GameManager;
 import usaveis.*;
-import mapa.Matriz;
 import musica.*;
 import anim.*;
 
+/**
+ * Classe principal responsável por iniciar e executar o jogo.
+ *
+ * <p>
+ * Realiza a configuração inicial do sistema, incluindo:<br>
+ *  - Inicialização da música<br>
+ *  - Criação do herói e dos dados iniciais<br>
+ *  - Execução da cena inicial ({@link Logo})<br>
+ *  - Reprodução de diálogos e animações
+ * </p>
+ *
+ */
 public class App {
-
   public static void main(String[] args) {
     
     MidiPlayer midi = new MusicaInicial("/musica/noname.mid");
     midi.start();
-    
-
     
     Scanner teclado = new Scanner(System.in);
 
@@ -54,7 +60,7 @@ public class App {
 
      GameManager gameManager = new GameManager(dados);
 
-    cena = new TresSlimes(dados);
+    cena = new DoisSlimesELesma(dados);
 
     gameManager.turno();
 
