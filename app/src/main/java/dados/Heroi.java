@@ -12,16 +12,16 @@ import usaveis.pilhas.PilhaDescarte;
  * incluindo mão, pilha de compra (baralho) e pilha de descarte.
  * </p>
  * <p>
- * Responsabilidades:
- *  - Gerenciar recursos como vida, escudo e energia
- *  - Controlar o uso de cartas baseado na energia disponível
- *  - Manter e manipular o estado do baralho do jogador
+ * Responsabilidades:<br>
+ *  - Gerenciar recursos como vida, escudo e energia<br>
+ *  - Controlar o uso de cartas baseado na energia disponível<br>
+ *  - Manter e manipular o estado do baralho do jogador<br>
  * </p>
  *
  * Exemplo de uso:<br>
- * Heroi heroi = new Heroi();
- * if(heroi.temEnergia(3)){
- *   // pode jogar carta
+ * Heroi heroi = new Heroi();<br>
+ * if(heroi.temEnergia(3)){<br>
+ *   // pode jogar carta<br>
  * }
  */
 public class Heroi extends Entidade {

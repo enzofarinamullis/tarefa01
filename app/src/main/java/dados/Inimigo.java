@@ -14,10 +14,10 @@ import usaveis.cartas.Efeito;
  *  como o anúncio de ataque e aplicação de efeitos no herói.
  * </p>
  * <p>
- *   Responsabilidades:
- *    - Gerenciar o dano recebido com lógica de escudo
- *    - Exibir mensagens de combate no terminal
- *    - Aplicar efeitos ao herói
+ *   Responsabilidades:<br>
+ *    - Gerenciar o dano recebido com lógica de escudo<br>
+ *    - Exibir mensagens de combate no terminal<br>
+ *    - Aplicar efeitos ao herói<br>
  * </p>
  * <p>
  *   Cada inimigo pode possuir uma lista de {@link Efeito} que são aplicados

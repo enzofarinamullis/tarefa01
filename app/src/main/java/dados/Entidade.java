@@ -11,7 +11,7 @@ import usaveis.cartas.Efeito;
  * Serve como superclasse para os inimigos e o personagem jogável (Herói).
  * </p>
  * <p>
- * Fornecendo métodos importantes para:
+ * Fornecendo métodos importantes para:<br>
  *  - Gerenciar ataques entre as entidades; <br>
  *  - Verificar o estado da entidade (vivo/morto); <br>
  *  - Gerenciar o recebimento de dano, vida e escudo; <br>
