@@ -32,11 +32,15 @@ public class CartaEscudo extends Carta{
     this.efeitos = new ArrayList<>();
   }
 
-  public void usar(Inimigo inimigo, Heroi heroi){
+  public void usar(Inimigo inimigo, Heroi heroi) {
+    if (heroi.getEnergia() >= custoEnergia) {
       heroi.ganharEscudo(this.escudo);
       heroi.setaEnergia(heroi.getEnergia() - custoEnergia);
       for (int i = 0; i < efeitos.size(); i++) {
         efeitos.get(i).aplicar(heroi);
       }
+    } else {
+      System.out.println("Energia insuficiente para usar " + getNome() + "!");
+    }
   }
 }

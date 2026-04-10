@@ -6,14 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="98683573-0a00-4ab9-ad11-5a67a650970d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/Carta.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/Carta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/CartaDano.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/CartaDano.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/CartaEscudo.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/CartaEscudo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_/home/max/Java/Tarefas/tarefa01" value="3BgfHZCAGZyEjyF5Dpaf3cECPPY" />
+    </persistenceIdMap>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
