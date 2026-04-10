@@ -46,6 +46,13 @@ public class Sangramento extends Efeito {
     }
 
   }
+
+  /**
+    * 💀 VERIFICA SE ESTE EFEITO É UM SANGRAMENTO 💀
+    * <p>
+    *   Este método sobrescrito retorna {@code true} para indicar que esta
+    *   instância representa um efeito de sangramento.
+    */
   
   @Override
   public boolean ehSangramento(){

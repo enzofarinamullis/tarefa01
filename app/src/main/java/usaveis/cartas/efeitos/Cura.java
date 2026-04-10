@@ -38,6 +38,7 @@ public class Cura extends Efeito{
       if (entidade instanceof Heroi) {
         Heroi heroi = (Heroi) entidade;
         heroi.ganharVida(cura);
+        System.out.println("❤️‍🩹 " +  heroi.getNome() + " foi curado! Cura = " + cura);
       }
       else if (entidade instanceof Inimigo) {
         Inimigo inimigo = (Inimigo) entidade;
@@ -46,6 +47,12 @@ public class Cura extends Efeito{
     }
   }
   
+  /**
+    * ❤️‍🩹 VERIFICA SE ESTE EFEITO É UMA CURA ❤️‍🩹
+    * <p>
+    *   Este método sobrescrito retorna {@code true} para indicar que esta
+    *   instância representa um efeito de cura.
+    */
   @Override
   public boolean ehCura(){
     return true;

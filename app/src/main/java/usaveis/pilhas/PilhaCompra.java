@@ -137,3 +137,4 @@ public class PilhaCompra extends Pilha {
     }
   }
 }
+compraCarta(mao, pilhaDescarte, qnt - compradas)
