@@ -16,7 +16,7 @@ import usaveis.cartas.Efeito;
  * </p>
  *
  * <p>
- *    Este efeito é ativado no início do pushturno do jogador, causando dano contínuo
+ *    Este efeito é ativado no início do turno do jogador, causando dano contínuo
  *    enquanto durar.
  * </p>
  *
@@ -43,6 +43,8 @@ public class Envenenamento extends Efeito {
         heroi.receberDano(dano);
         System.out.println("💀 " + heroi.getNome() + "envenenado! Dano: " + dano);
       }
+      entidade.receberDano(dano);
+      System.out.println("☠️ " + entidade.getNome() + " envenenado! Perdeu " + dano + " HP");
     }
 
   }

@@ -44,6 +44,7 @@ public class Cura extends Efeito{
         Inimigo inimigo = (Inimigo) entidade;
         inimigo.ganharVida(cura);
       }
+      entidade.ganharVida(cura);
     }
   }
   
