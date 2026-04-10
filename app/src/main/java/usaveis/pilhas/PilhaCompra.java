@@ -8,6 +8,19 @@ import usaveis.cartas.Carta;
 import usaveis.cartas.danos.*;
 import usaveis.escudos.*;
 
+/**
+ * Representa a pilha de compra (baralho) do jogador.
+ *
+ * <p>
+ *   Contém as cartas disponíveis para serem compradas dutante o jogo.
+ *   Quando a pilha se esgota, as cartas da pilha de descarte são transferidas
+ *   para a pilha de compra e embaralhadas.
+ * </p>
+ *
+ * <p>
+ *   A pilha é inicializada com um conjunto padrão de cartas.
+ * </p>
+ */
 public class PilhaCompra extends Pilha {
   /* ja temos a pilha exatamente pronta */
   public PilhaCompra() {
@@ -37,7 +50,21 @@ public class PilhaCompra extends Pilha {
     pilha.add(carta);
   }
   
-  public void embraralhaPlha() {
+  
+  /**
+   * Embralha a pilha de compra.
+   *
+   * <p>
+   *   Remove cartas aleatoriamente da pilha atual e as insere em uma nova
+   *   pilha temporária, garantindo uma ordem aleatória das cartas.
+   *   Após esvaziar a pilha original, a referência da pilha é
+   *   atualizada para a pilha embaralhada.
+   * </p>
+   */
+  public void embraralhaPilha() {
+    /* Remove cartas aleatoriamente da pilha original e as adiciona a uma nova pilha
+     * para simular embaralhamento.
+     */
     Pilha temp = new Pilha();
     Carta atual;
     Random aleatorio = new Random();
@@ -52,6 +79,19 @@ public class PilhaCompra extends Pilha {
     pilha = temp.pilha;
   }
   
+  /**
+   * Transfere as cartas da pilha de descarte para a pilha de compra.
+   * <blockquote>
+   *   Este método é chamado quando a pilha de compra se esgota, garantindo que
+   *   o jogo possa continuar sem interrupções. As cartas da pilha de descarte
+   *   são movidas para a pilha de compra, permitindo que o jogador continue
+   *   comprando cartas mesmo após esgotar o baralho inicial.
+   * </blockquote>
+   *
+   * @param pilhaDescarte a pilha de descarte da qual as cartas serão transferidas para a pilha de compra
+   * @see #compraCarta(Mao, PilhaDescarte, int)
+   * @see PilhaDescarte
+   */
   private void transfereDescarte(PilhaDescarte pilhaDescarte){
     Carta carta;
     while(!pilhaDescarte.pilha.isEmpty()){
@@ -65,6 +105,20 @@ public class PilhaCompra extends Pilha {
       Cores.ANSI_RESET + "->" + Cores.ANSI_BLUE + "Pilha Compra" + Cores.ANSI_RESET);
   }
   
+  
+  /**
+   * Compra uma quantidade específica de cartas da pilha de compra para a mão do jogador.
+   *
+   * <p>
+   *   As cartas compradas são adicionadas à mão do jogador. Caso a pilha
+   *   de compra esteja vazia durante o processo de compra, as cartas da pilha de
+   *   descarte são transferidas para a pilha de compra, embaralhadas e o
+   *   processo de compra continua.
+   * </p>
+   * @param mao a mão do jogador para a qual as cartas compradas serão adicionadas
+   * @param pilhaDescarte a pilha de descarte usada para reciclar cartas quando a pilha de compra se esgota
+   * @param qnt a quantidade de cartas a ser comprada da pilha de compra
+   */
   public void compraCarta(Mao mao, PilhaDescarte pilhaDescarte, int qnt) {
     int compradas = 0;
     try {
@@ -73,11 +127,12 @@ public class PilhaCompra extends Pilha {
         mao.cartas.add(carta);
         compradas++;
       }
+      /* caso a pilha esteja vazia, recicla o descarte e continua a compra */
     } catch (NoSuchElementException e) {
       /* caso estiver vazia */
       /* colocamos a pilha de descarte embaralhada */
       transfereDescarte(pilhaDescarte);
-      embraralhaPlha();
+      embraralhaPilha();
       compraCarta(mao, pilhaDescarte, qnt - compradas);
     }
   }

@@ -38,7 +38,7 @@ public class Heroi extends Entidade {
     this.energiaLimite = 20;
     this.mao = new Mao();
     this.pilhaCompra = new PilhaCompra();
-    pilhaCompra.embraralhaPlha();
+    pilhaCompra.embraralhaPilha();
     this.pilhaDescarte = new PilhaDescarte();
   }
 

@@ -92,7 +92,7 @@ public class GameManager {
     Mao mao = heroi.getMao();
     
     /* embaralhamos a pilha de compra do heroi do heroi */
-    pilhaCompra.embraralhaPlha();
+    pilhaCompra.embraralhaPilha();
     /* compramos 5 cartas */
     pilhaCompra.compraCarta(mao, pilhaDescarte, Turnos.QNT_COMPRAR);
   }
