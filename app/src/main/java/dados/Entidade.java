@@ -51,6 +51,10 @@ public abstract class Entidade {
     vida -= dano;
   }
   
+  public Boolean estaVivoSemPrint(){
+    return vida > 0;
+  }
+  
   public Boolean estaVivo() {
     if (vida > 0) {
       System.out.println();
@@ -67,7 +71,7 @@ public abstract class Entidade {
   }
   
   public void ganharVida(int bonusDeVida) {
-    System.out.println(nome + "ganhou" + Cores.ANSI_GREEN + bonusDeVida + Cores.ANSI_RESET + "de vida.");
+    System.out.println(nome + " ganhou " + Cores.ANSI_GREEN + bonusDeVida + Cores.ANSI_RESET + " de vida.");
     vida += bonusDeVida;
   }
   

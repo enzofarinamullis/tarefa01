@@ -271,6 +271,7 @@ public class GameManager {
     
     
     while(true){
+      PrintTerminal.limparTerminal();
       InterfaceBatalha interfaceBatalha = new InterfaceBatalha(dados);
       interfaceBatalha.imprimeTodosInimigos();
       /* escolhemos o inimigo que ira atacar */
@@ -323,7 +324,7 @@ public class GameManager {
               carta.usar(inimigo, heroi);
               
               /* verificamos se o inimigo morreu */
-              if (!inimigo.estaVivo()) {
+              if (!inimigo.estaVivoSemPrint()) {
                 listaInimigos.removerInimigo(inimigo); // removemos ele da lista de inimigos
                 inimigo = null; // apontar para null sera importante para podermos
                                 // nao aplicar efeito em inimgios mortos
