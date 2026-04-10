@@ -5,6 +5,40 @@ import dados.Entidade;
 import dados.Heroi;
 import java.util.List;
 
+/**
+ * Classe abstrata que representa um efeito aplicável as entidades do jogo
+ *
+ * <p>
+ *   Um efeito pode representar ações como dano, cura, veneno, sangramento,
+ *   buff ou debuffs, podendo ser aplicado em um único alvo, em área ou em todos os alvos.
+ * </p>
+ *
+ * <p>
+ *   Cada efeito possuí:<br>
+ *    - Nome identificador
+ *    - Duração (acúmulos)
+ *    - Intensidade (força do efeito)
+ *    - Alcance (quantidade de alvos afetados)
+ *    - ID de ativação (momento do combate que o efeito é aplicado)
+ * </p>
+ *
+ * <p>
+ *   O método {@link #aplicar(Entidade)} deve ser implementado pelas subclasses
+ *   para definir o comportamento específico do efeito.
+ * </p>
+ *
+ * <p>
+ *   Regras:<br>
+ *    - O alcance deve ser sempre um número ímpar (1, 3, 5, ...)<br>
+ *    - O alvo central é usado como referência para efeitos em área<br>
+ * </p>
+ *
+ * <p>
+ *   Exemplo de uso:<br>
+ *   Efeito envenenamento = new Envenenamento(...);
+ *   envenenamento.aplicar(alvo);
+ * </p>
+ */
 public abstract class Efeito{
   private String nome;
   private String dono;

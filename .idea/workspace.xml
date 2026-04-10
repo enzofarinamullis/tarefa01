@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98683573-0a00-4ab9-ad11-5a67a650970d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/cenas/TresSlimes.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/cenas/DoisSlimesELesma.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/org/example/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/Efeito.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/Efeito.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/efeitos/Cura.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/efeitos/Cura.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/efeitos/Envenenamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/efeitos/Envenenamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/efeitos/Sangramento.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/efeitos/Sangramento.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

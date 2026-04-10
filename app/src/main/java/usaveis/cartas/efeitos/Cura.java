@@ -6,6 +6,27 @@ import dados.Heroi;
 import dados.Inimigo;
 import usaveis.cartas.Efeito;
 
+
+/**
+ * Representa um efeito de cura aplicado a uma entidade
+ *
+ * <p>
+ *   A quantidade de cura é baseada na intensidade do efeito,
+ *   sendo calculada como:<br>
+ *   intensidade * 2
+ * </p>
+ *
+ * <p>
+ *   Este efeito é aplicado instantaneamente e pode afetar uma ou mais entidades
+ *   dependendo do alcance.
+ * </p>
+ *
+ * <p>
+ *   Exemplo de uso:<br>
+ *   Cura cura = new Cura("Cura Fraca", 1, 5, 1);<br>
+ *   cura.aplicar(alvo);<br>
+ * </p>
+ */
 public class Cura extends Efeito{
   public Cura(String nome, int duracao, int intensidade, int alcance) {
     super(nome, duracao, intensidade, alcance, Turnos.INSTANTANEO);
