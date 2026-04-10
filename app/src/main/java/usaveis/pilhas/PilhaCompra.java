@@ -48,6 +48,8 @@ public class PilhaCompra extends Pilha {
     pilha.add(carta);
     carta = new escudoDaInstropeccao();
     pilha.add(carta);
+    carta = new espadaCorrupta();
+    pilha.add(carta);
   }
   
   

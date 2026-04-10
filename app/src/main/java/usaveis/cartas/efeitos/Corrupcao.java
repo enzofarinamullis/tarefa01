@@ -8,7 +8,7 @@ import usaveis.cartas.Efeito;
 
 public class Corrupcao extends Efeito {
   public Corrupcao(String nome, int duracao, int intensidade, int alcance) {
-    super(nome, duracao, intensidade, alcance, Turnos.INICIO_TURNO_JOAGADOR);
+    super(nome, duracao, intensidade, alcance, Turnos.INSTANTANEO);
   }
   public void aplicar(Entidade entidade) {
     if (entidade != null) {
