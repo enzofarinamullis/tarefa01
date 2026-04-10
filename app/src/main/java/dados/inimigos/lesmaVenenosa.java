@@ -6,7 +6,7 @@ public class lesmaVenenosa extends Inimigo {
   public lesmaVenenosa() {
     super("Lesma Venenosa", 10, 3, 1, "eu sou uma lesma muito cruel");
     this.ASCII = "/ASCIIInimigos/lesmaVenenosa.txt";
-    Envenenamento veneno = new Envenenamento("Veneno da Lesma", 2, 2, 2);
+    Envenenamento veneno = new Envenenamento("Veneno da Lesma", 1, 1, 2);
     this.listaEfeitos.add(veneno);
   }
 }

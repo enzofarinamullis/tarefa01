@@ -102,4 +102,19 @@ public class Inimigo extends Entidade {
   public String getCaminho(){
     return ASCII;
   }
+  
+  public boolean temEfeitos(){
+    return !listaEfeitos.isEmpty();
+  }
+  
+  public int getQuantidadeEfeitos(){
+    return listaEfeitos.size();
+  }
+  
+  public Efeito retornarEfeito(int indice){
+    if(indice >= 0 && indice < listaEfeitos.size()){
+      return listaEfeitos.get(indice);
+    }
+    return null;
+  }
 }
