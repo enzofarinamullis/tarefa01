@@ -5,7 +5,25 @@ import usaveis.cartas.Carta;
 import usaveis.pilhas.PilhaCompra;
 import usaveis.pilhas.PilhaDescarte;
 
-
+/**
+ * Representa o personagem controlado pelo jogador.
+ * <p>
+ * Estende {@link Entidade} e adiciona o sistema de cartas do jogador,
+ * incluindo mão, pilha de compra (baralho) e pilha de descarte.
+ * </p>
+ * <p>
+ * Responsabilidades:
+ *  - Gerenciar recursos como vida, escudo e energia
+ *  - Controlar o uso de cartas baseado na energia disponível
+ *  - Manter e manipular o estado do baralho do jogador
+ * </p>
+ *
+ * Exemplo de uso:<br>
+ * Heroi heroi = new Heroi();
+ * if(heroi.temEnergia(3)){
+ *   // pode jogar carta
+ * }
+ */
 public class Heroi extends Entidade {
   /* Atributos */
   private Mao mao;

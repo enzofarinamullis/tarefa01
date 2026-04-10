@@ -7,7 +7,9 @@ import cenas.Logo;
 import cenas.TresSlimes;
 import constantes.Cores;
 import dados.Dados;
+import dados.Entidade;
 import dados.Heroi;
+import dados.inimigos.Slime;
 import musica.MusicaInicial;
 import sistematurnos.GameManager;
 import usaveis.*;
@@ -42,7 +44,7 @@ public class App {
     while(!heroi.setNome(nome)){
       nome = teclado.nextLine();
     }
-
+    
     cena.atualizaCena();
     
     //Dialogo dialogo = new DialogoInicial(dados);

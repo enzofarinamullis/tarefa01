@@ -3,6 +3,31 @@ package dados;
 import constantes.Cores;
 import usaveis.cartas.Efeito;
 
+/**
+ * Classe abstrata base para todas as entidades do jogo.
+ *
+ * <p>
+ * Define atributos e comportamentos comuns como vida, dano, escudo e energia.
+ * Serve como superclasse para os inimigos e o personagem jogável (Herói).
+ * </p>
+ * <p>
+ * Fornecendo métodos importantes para:
+ *  - Gerenciar ataques entre as entidades; <br>
+ *  - Verificar o estado da entidade (vivo/morto); <br>
+ *  - Gerenciar o recebimento de dano, vida e escudo; <br>
+ *  - Gerenciar atributos como energia e escudo; <br>
+ * </p>
+ * <p>
+ *  Observações:
+ *  - O dano é absorvido primeiramente pelo escudo e somente aplicado à vida,
+ *  caso não se haja mais escudo para absorver o dano.
+ * </p>
+ * <p>
+ *  Exemplo de uso:
+ * </p>
+ *  Entidade slime = new Slime(); <br>
+ *  slime.receberDano(10);
+ */
 public abstract class Entidade {
   protected int vida;
   protected int dano;

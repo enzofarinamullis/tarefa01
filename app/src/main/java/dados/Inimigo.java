@@ -5,6 +5,30 @@ import java.util.List;
 import constantes.Cores;
 import usaveis.cartas.Efeito;
 
+
+/**
+ * Representa uma entidade inimiga.
+ *
+ * <p>
+ *   Estende{@link Entidade} e adiciona comportamentos específicos de um inimigo
+ *  como o anúncio de ataque e aplicação de efeitos no herói.
+ * </p>
+ * <p>
+ *   Responsabilidades:
+ *    - Gerenciar o dano recebido com lógica de escudo
+ *    - Exibir mensagens de combate no terminal
+ *    - Aplicar efeitos ao herói
+ * </p>
+ * <p>
+ *   Cada inimigo pode possuir uma lista de {@link Efeito} que são aplicados
+ *  durante o combate, cada efeito terá um momento de atuação durante o combate.
+ * </p>
+ * <p>
+ *   Exemplo de uso:<br>
+ *   Inimigo Slime = new Inimigo("Slime Selvagem", 30, 10, 1, "morra seu fedelho miserável!");<br>
+ *   slime.anunciar();
+ * </p>
+ */
 public class Inimigo extends Entidade {
   protected String anuncio;
   protected String ASCII;
