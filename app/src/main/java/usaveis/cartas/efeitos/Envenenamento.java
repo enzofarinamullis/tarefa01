@@ -33,8 +33,8 @@ public class Envenenamento extends Efeito {
   public void aplicar(Entidade entidade) {
     if (entidade != null) {
       int dano = getIntensidade()*2;
+      System.out.println("☠️  " + entidade.getNome() + " envenenado! Perdeu " + dano + " HP");
       entidade.receberDano(dano);
-      System.out.println("☠️ " + entidade.getNome() + " envenenado! Perdeu " + dano + " HP");
     }
 
   }

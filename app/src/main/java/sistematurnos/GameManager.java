@@ -200,14 +200,16 @@ public class GameManager {
     int indiceRand;
     ListaInimigos listaInimigos = dados.listaInimigos;
     /* verificamos se o inimigo que iria atacar morreu */
-    if(!inimigoAnunciar.estaVivo()) {
+    if(!inimigoAnunciar.estaVivoSemPrint()) {
       System.out.println();
-      System.out.println("O inimigo que iria te atacar morreu...");
+      System.out.println("O inimigo que iria te atacar morreu");
+      pausa(1000);
       System.out.println("Cuidado, que outro irá atacar:");
       /* caso nao esteja vivo */
       indiceRand = random.nextInt(listaInimigos.getTamanho());
       /* inimigo que for atacar estar na posicao indiceRand */
       inimigoAnunciar = listaInimigos.buscarInimigo(indiceRand + 1);
+      pausa(1000);
       inimigoAnunciar.anunciar();
     }
     return inimigoAnunciar;
@@ -244,7 +246,7 @@ public class GameManager {
     Inimigo inimigo;
     for(int i = 0; i < listaInimigos.getTamanho(); i++){
       inimigo = listaInimigos.buscarInimigo(i + 1);
-      if(!inimigo.estaVivo()){
+      if(!inimigo.estaVivoSemPrint()){
         /* se morreu */
         listaInimigos.removerInimigo(inimigo);
       }
@@ -258,6 +260,12 @@ public class GameManager {
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
+  }
+  
+  private void mensagemVitoria(){
+    pausa(3000);
+    PrintTerminal.limparTerminal();
+    System.out.println(Cores.ANSI_GREEN + "Parabéns, você venceu a luta!" + Cores.ANSI_RESET);
   }
   
   
@@ -300,8 +308,8 @@ public class GameManager {
       
       /* turno do heroi */
       acionaPublisher(Turnos.INICIO_TURNO_JOAGADOR); // notificamos os efeitos do inicio do combate
-      pausa(2000);
       if(atualizaInimigosMortos()){
+        mensagemVitoria();
         return;
       }
       
@@ -348,6 +356,7 @@ public class GameManager {
               
               /* verificamos se todos morreram e o turno deve acabar */
               if (listaInimigos.getTamanho() == 0) {
+                mensagemVitoria();
                 return;
               }
               
@@ -380,8 +389,8 @@ public class GameManager {
                   publisher.inscrever(subscriber);
                   /* notificamos todos os efeitos instantaneos */
                   acionaPublisher(Turnos.INSTANTANEO);
-                  pausa(2000);
                   if(atualizaInimigosMortos()){
+                    mensagemVitoria();
                     return;
                   }
                 }
@@ -391,10 +400,15 @@ public class GameManager {
         }
       }
       
+      
+      if(atualizaInimigosMortos()){
+        mensagemVitoria();
+        return;
+      }
+      
       /* Agora que o turno do heroi acabou */
       /* aplicamos os efeitos */
       acionaPublisher(Turnos.FINAL_TURNO_JOGADOR);
-      pausa(2000);
       
       /* devemos fazer duas verificacoes
        verificamos se alguem morreu e
@@ -403,15 +417,19 @@ public class GameManager {
        */
       
       if(atualizaInimigosMortos()){
+        mensagemVitoria();
         return;
       }
       
       /* turno inimigo */
       /* queremos um inimigo random atacar o heroi */
+      System.out.println();
+      System.out.println("------------------------------");
       System.out.println("Turno dos Inimigos");
       /* verificamos se o inimigo que iria atacar morreu */
       inimigoAnunciar = escolheAtacante(inimigoAnunciar);
       inimigoAnunciar.atacar(heroi);
+      pausa(2000);
       
       /* caso o inimigo tenha efeito, adicionamos o subscriber no publisher */
       if(inimigoAnunciar.temEfeitos()){
@@ -421,7 +439,6 @@ public class GameManager {
             subscriber = new SubscriberEfeito(heroi, efeito, efeito.getIdAtivacao());
             publisher.inscrever(subscriber);
             acionaPublisher(Turnos.INSTANTANEO);
-            pausa(2000);
           }
         }
       }
