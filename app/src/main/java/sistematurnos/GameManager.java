@@ -230,6 +230,8 @@ public class GameManager {
       }
     }
     
+    pausa(2000);
+    
   }
   
   
@@ -250,10 +252,20 @@ public class GameManager {
     return listaInimigos.getTamanho() == 0;
   }
   
+  private void pausa(long milissegundos){
+    try {
+      Thread.sleep(milissegundos);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
+  
   
   public void turno(){
     int numTurno = 0;
-    mensagemCombate();
+    pausa(5000);
+    PrintTerminal.limparTerminal();
+    
     
     /* para facilitar a leitura */
     Heroi heroi = dados.heroi;
@@ -272,11 +284,13 @@ public class GameManager {
     
     while(true){
       PrintTerminal.limparTerminal();
+      mensagemCombate();
       InterfaceBatalha interfaceBatalha = new InterfaceBatalha(dados);
       interfaceBatalha.imprimeTodosInimigos();
       /* escolhemos o inimigo que ira atacar */
       inimigoAnunciar = escolheInimigoAleatorio();
       inimigoAnunciar.anunciar(); // fazemos o seu anuncio
+      pausa(5000);
       
       resetStatus(heroi);
       
@@ -286,6 +300,7 @@ public class GameManager {
       
       /* turno do heroi */
       acionaPublisher(Turnos.INICIO_TURNO_JOAGADOR); // notificamos os efeitos do inicio do combate
+      pausa(2000);
       if(atualizaInimigosMortos()){
         return;
       }
@@ -322,6 +337,7 @@ public class GameManager {
               /* escolhemos o inimigo que queremos atacar */
               inimigo = escolheInimigo();
               carta.usar(inimigo, heroi);
+              pausa(2000);
               
               /* verificamos se o inimigo morreu */
               if (!inimigo.estaVivoSemPrint()) {
@@ -341,12 +357,12 @@ public class GameManager {
               }
             } else if (carta.isEscudo()) {
               carta.usar(null, heroi);
+              pausa(2000);
             }
             
             /* colocamos o efeito, caso houver no publisher */
             if(carta.temEfeito()) {
               for (int i = 0; i < carta.quantidadeEfeitos(); i++) {
-                
                 efeito = carta.retornarEfeito(i);
                 
                 if (efeito.ehCura()) {
@@ -364,6 +380,7 @@ public class GameManager {
                   publisher.inscrever(subscriber);
                   /* notificamos todos os efeitos instantaneos */
                   acionaPublisher(Turnos.INSTANTANEO);
+                  pausa(2000);
                   if(atualizaInimigosMortos()){
                     return;
                   }
@@ -377,6 +394,7 @@ public class GameManager {
       /* Agora que o turno do heroi acabou */
       /* aplicamos os efeitos */
       acionaPublisher(Turnos.FINAL_TURNO_JOGADOR);
+      pausa(2000);
       
       /* devemos fazer duas verificacoes
        verificamos se alguem morreu e
@@ -394,8 +412,20 @@ public class GameManager {
       /* verificamos se o inimigo que iria atacar morreu */
       inimigoAnunciar = escolheAtacante(inimigoAnunciar);
       inimigoAnunciar.atacar(heroi);
-      /* caso o inimigo tenha efeito, ele ira usa-lo no heroi */
-      inimigoAnunciar.usarEfeitoHeroi(heroi);
+      
+      /* caso o inimigo tenha efeito, adicionamos o subscriber no publisher */
+      if(inimigoAnunciar.temEfeitos()){
+        for(int i = 0; i < inimigoAnunciar.getQuantidadeEfeitos(); i++) {
+          efeito = inimigoAnunciar.retornarEfeito(i);
+          if(efeito != null) {
+            subscriber = new SubscriberEfeito(heroi, efeito, efeito.getIdAtivacao());
+            publisher.inscrever(subscriber);
+            acionaPublisher(Turnos.INSTANTANEO);
+            pausa(2000);
+          }
+        }
+      }
+      
       
       inimigoAgiu = true;
       heroiAgiu = false;

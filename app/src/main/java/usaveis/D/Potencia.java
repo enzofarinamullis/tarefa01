@@ -9,11 +9,27 @@ public class Potencia {
     this.aleatorio =  new Random();
     this.NdeLados = NdeLados;
   }
+  
+  private void pausa(long milissegundos){
+    try {
+      Thread.sleep(milissegundos);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
+  
   public int rolarDado(){
-      int resultado = aleatorio.nextInt(NdeLados) + 1;
-      System.out.println("Rolando dado de potencia:");
-      System.out.println(resultado);
-      
+    int resultado = aleatorio.nextInt(NdeLados) + 1;
+    System.out.println("Rolando dado de potencia:");
+    System.out.println(".");
+    pausa(700);
+    System.out.println("..");
+    pausa(700);
+    System.out.println("...");
+    pausa(700);
+    System.out.println(resultado);
+    pausa(700);
+    
     return resultado;
   }
    public int rolarVantagem() {

@@ -12,11 +12,27 @@ public class Precisao {
   }
 
   /* Métodos */
+  
+  private void pausa(long milissegundos){
+    try {
+      Thread.sleep(milissegundos);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
    
   public int rolarDado(){
     int resultado = aleatorio.nextInt(20) + 1;
     System.out.println("Rolando D20 de precisão:");
+    pausa(700);
+    System.out.println(".");
+    pausa(700);
+    System.out.println("..");
+    pausa(700);
+    System.out.println("...");
+    pausa(700);
     System.out.println(resultado);
+    pausa(700);
       
     return resultado;
   }
