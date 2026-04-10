@@ -5,7 +5,30 @@ import java.util.ArrayList;
 import usaveis.D.Potencia;
 import usaveis.D.Precisao;
 
-
+/**
+ * Representa uma carta de ataque que causa dano a um inimigo
+ * <p>
+ *   O dano é calculado com base em dois fatores:<br>
+ *    - Precisão (rolagem de d20)
+ *    - Potência (baseada no nível da carta)
+ * </p>
+ *
+ * <p>
+ *   A precisão determina um multiplicador aplicado à potência,
+ *   podendo resulta em dano crítico ou falha total.
+ * </p>
+ *
+ * <p>
+ *   Caso a carta tenha efeitos adicionais, estes serão aplicados
+ *   após o dano ser causado.
+ * </p>
+ *
+ * <p>
+ *   Exemplo de uso:<br>
+ *   CartaDano carta = new CartaDano("Ataque Feroz", 2, 3, "Um ataque poderoso que pode causar muito dano.");<br>
+ *   ataque.usar(inimigo, heroi);<br>
+ * </p>
+ */
 public class CartaDano extends Carta{
 
   public CartaDano(String nome, int custoEnergia, int nivel, String descricao){
@@ -69,4 +92,3 @@ public class CartaDano extends Carta{
     }
   } 
 }
-

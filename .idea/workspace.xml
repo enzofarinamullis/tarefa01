@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="98683573-0a00-4ab9-ad11-5a67a650970d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/Efeito.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/Efeito.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/efeitos/Cura.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/efeitos/Cura.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/efeitos/Envenenamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/efeitos/Envenenamento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/efeitos/Sangramento.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/efeitos/Sangramento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/Carta.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/Carta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/CartaDano.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/CartaDano.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/CartaEscudo.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/usaveis/cartas/CartaEscudo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,21 +34,21 @@
     <option name="showLibraryContents" value="true" />
     <option name="showScratchesAndConsoles" value="false" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "gradle-setup",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/max/Java/Tarefas/tarefa01",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "proofread"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;gradle-setup&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/max/Java/Tarefas/tarefa01&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/build/resources/main/animacoes" />
@@ -64,5 +63,13 @@
       <updated>1774915548350</updated>
     </task>
     <servers />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
   </component>
 </project>

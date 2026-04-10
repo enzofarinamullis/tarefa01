@@ -4,6 +4,33 @@ import dados.Heroi;
 import dados.Inimigo;
 import java.util.List;
 
+/**
+ * Classe abstrata que representa uma carta no jogo.
+ *
+ * <p>
+ *   Cartas podem causar dano, conceder escudo ou aplicar efeitos em entidades.
+ *   Cada carta possui custo de energia, nível, descrição e uma lista opcional de
+ *   efeitos associados.
+ * </p>
+ *
+ * <p>
+ *   Responsabilidades:<br>
+ *    - Definir o comportamento da carta ao ser usada<br>
+ *    - Gerenciar efeitos aplicados ao alvo<br>
+ *    - Fornecer informações para exibição ao jogador<br>
+ * </p>
+ *
+ * <p>
+ *   O método {@link #usar(Inimigo, Heroi)} deve ser implementado pelas subclasses
+ *   para definir a ação específica da carta.
+ * </p>
+ *
+ * <p>
+ *   Exemplo de uso:<br>
+ *   Carta carta = new espadaCurta();<br>
+ *   carta.usar(inimigo, heroi);<br>
+ * </p>
+ */
 public abstract class Carta{
   private String nome;
   protected int custoEnergia;
@@ -134,10 +161,3 @@ public abstract class Carta{
     System.out.println("╚═════════════════════════════════");
   }
 }
-  
-
-
-
-
-
-  
