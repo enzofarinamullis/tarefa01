@@ -35,14 +35,7 @@ public class Cura extends Efeito{
   public void aplicar(Entidade entidade) {
     if( entidade != null) {
       int cura = getIntensidade()*2;
-      if (entidade instanceof Heroi) {
-        Heroi heroi = (Heroi) entidade;
-        heroi.ganharVida(cura);
-      }
-      else if (entidade instanceof Inimigo) {
-        Inimigo inimigo = (Inimigo) entidade;
-        inimigo.ganharVida(cura);
-      }
+      entidade.ganharVida(cura);
     }
   }
   
