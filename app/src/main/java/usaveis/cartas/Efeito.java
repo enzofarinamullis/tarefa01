@@ -175,4 +175,8 @@ public abstract class Efeito{
   public boolean ehSangramento(){
     return false;
   }
+  
+  public boolean ehCurrupcao(){
+    return false;
+  }
 }
