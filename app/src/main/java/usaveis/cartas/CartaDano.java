@@ -75,17 +75,6 @@ public class CartaDano extends Carta{
       int dano = calcularDano();
       int danoRecebido = dano - inimigo.getEscudo();
       inimigo.receberDano(dano);
-      if (danoRecebido > 0) {
-        System.out.println(dano + " causado em " + inimigo.getNome() + "!");
-        if (!efeitos.isEmpty()) {
-          for (int i = 0; i < efeitos.size(); i++) {
-            efeitos.get(i).aplicar(inimigo);
-          }
-        }
-      }
-      else {
-        System.out.println("0 causado em " + inimigo.getNome() + "!");
-      }
     }
     else{
       System.out.println("Energia Insuficiente!");
