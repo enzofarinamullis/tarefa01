@@ -6,13 +6,18 @@ import usaveis.cartas.efeitos.Sangramento;
 
 /**
  * Representa a carta de dano "Espada Corrupta" no jogo.
+ *
  * <p>
- * A Espada Corrupta é uma carta de dano forte que causa 20 pontos de dano
- * com um custo de 10 pontos de mana. Além do dano instantâneo, ela aplica o efeito
- * de Corrupção, causando dano adicional ao longo do tempo.
- * </p>
- * @see usaveis.cartas.CartaDano
- * @see usaveis.cartas.efeitos.Corrupcao
+ *   A Espada Corrupta é uma carta de dano que causa 20 pontos de dano
+ *   com um custo de 20 pontos de mana.
+ *   </p>
+ *   <p>
+ *     Seu efeito adicional é a Corrupção I, que causa pontos de dano baseados
+ *     no nível 10, com duração de 1 turno.
+ *     </p>
+ *
+ *   @see usaveis.cartas.CartaDano
+ *   @see usaveis.cartas.efeitos.Corrupcao
  */
 public class espadaCorrupta extends CartaDano {
   public espadaCorrupta() {

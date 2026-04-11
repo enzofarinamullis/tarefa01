@@ -2,25 +2,20 @@ package usaveis.cartas.danos;
 
 import usaveis.cartas.CartaDano;
 import usaveis.cartas.efeitos.Sangramento;
+
 /**
  * Representa a carta de dano "Espada da Lua Sangrenta" no jogo.
  * <p>
- * A Espada da Lua Sangrenta é uma poderosa carta de dano que combina 
- * dano físico com magia sangrenta. Esta arma lendária não apenas causa 
- * dano imediato significativo, mas também aplica um efeito de sangramento 
- * poderoso no alvo, causando dano contínuo ao longo do tempo.
+ * A Espada da Lua Sangrenta é uma carta de dano poderosa que causa 5 pontos de dano
+ * com um custo de 5 pontos de mana.
  * </p>
- * 
- * <p><b>Características da carta:</b></p>
- * <ul>
- *   <li><b>Dano Base:</b> 5 pontos</li>
- *   <li><b>Custo de Mana:</b> 5 pontos</li>
- *   <li><b>Efeito Especial:</b> Sangramento V (5 de dano por turno durante 10 turnos)</li>
- * </ul>
+ * <p>
+ * Seu efeito adicional é o Sangramento V, que causa pontos de dano por
+ * turno baseados no nível 5, durante 5 turnos.
+ * </p>
  * @see usaveis.cartas.CartaDano
  * @see usaveis.cartas.efeitos.Sangramento
  */
-
 public class espadaDaLuaSangrenta extends CartaDano{
   public espadaDaLuaSangrenta() {
     super("Espada da Lua Sangrenta", 5,5, "Espada com magia sangrenta" );
