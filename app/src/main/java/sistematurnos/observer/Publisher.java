@@ -28,7 +28,16 @@ public class Publisher {
       subscriber = subscribers.get(i);
       if(subscriber.getIdAtivacao() == idAtivacao) {
         subscriber.serNotificado();
+        pausa(1500);
       }
+    }
+  }
+  
+  private void pausa(long milissegundos){
+    try {
+      Thread.sleep(milissegundos);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
     }
   }
   

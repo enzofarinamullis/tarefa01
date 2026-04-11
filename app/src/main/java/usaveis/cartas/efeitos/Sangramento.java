@@ -33,8 +33,8 @@ public class Sangramento extends Efeito {
   public void aplicar(Entidade entidade) {
     if (entidade != null) {
       int dano = getIntensidade()*3;
-      entidade.receberDano(dano);
       System.out.println("🩸 " + entidade.getNome() + " sangrando! Dano: " + dano);
+      entidade.receberDano(dano);
     }
 
   }

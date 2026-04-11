@@ -43,8 +43,8 @@ public class Envenenamento extends Efeito {
         heroi.receberDano(dano);
         System.out.println("💀 " + heroi.getNome() + "envenenado! Dano: " + dano);
       }
+      System.out.println("☠️  " + entidade.getNome() + " envenenado! Perdeu " + dano + " HP");
       entidade.receberDano(dano);
-      System.out.println("☠️ " + entidade.getNome() + " envenenado! Perdeu " + dano + " HP");
     }
 
   }

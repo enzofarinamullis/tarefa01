@@ -2,7 +2,7 @@
 *. class
 *. jar
 # IntelliJ IDEA
-. idea /
+.idea /
 *. iml
 # Maven / Gradle build output
 target /
@@ -10,6 +10,7 @@ build /
 . gradle /
 # macOS metadata
 . DS_Store
+
 
 # Ignore Gradle project-specific cache directory
 .gradle
