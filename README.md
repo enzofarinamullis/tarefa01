@@ -232,10 +232,10 @@ git clone https://github.com/enzofarinamullis/tarefa01.git
 
 java -jar app/build/libs/app.jar
 
-#### compilar e executar com makefile:
+### Compilar e executar com makefile:
 make
 
-### documentação do código:
+### Documentação do código:
 xsg-open docs\index.html 
 
 está na pasta docs.
