@@ -41,6 +41,33 @@ public class CartaDano extends Carta{
     this.efeitos = new ArrayList<>();
   }
   
+  /**
+   * Calcula o dano causado pela carta com base na precisão e potência.
+   * <p>
+   * A precisão é determinada por uma rolagem de d20, onde:
+   * - 1: Falha crítica (dano 0)<br>
+   * - 2-5: Dano normal (potência x1)<br>
+   * - 6-10: Dano forte (potência x2)<br>
+   * - 11-15: Dano muito forte (potência x4)<br>
+   * - 16-19: Dano crítico (potência x16)<br>
+   * - 20: Dano devastador (potência x64)<br>
+   * </p>
+   * <p>
+   * A potência é calculada com base no nível da carta, onde cada nível aumenta a potência base.
+   * </p>
+   * <p>
+   *   Exemplo de cálculo:<br>
+   *   Se a precisão for 12 e a potência base for 5, o dano seria 5 x 4 = 20.<br>
+   *   Se a precisão for 1, o dano seria 0, independentemente da potência.
+   * </p>
+   *
+   * <p>
+   *   Este método é chamado internamente ao usar a carta para determinar o dano final causado
+   *   ao inimigo.
+   * </p>
+   *
+   * @return O dano final calculado com base na precisão e potência.
+   */
   public int calcularDano(){
     Precisao d20 = new Precisao();
     Potencia dx = new Potencia(nivel);
@@ -66,9 +93,19 @@ public class CartaDano extends Carta{
       return potencia * 64;
     }
   }
-
-
-  /* Usar carta no inimigo ja pronta */
+  
+  
+  /**
+   * Usa a carta de dano, causando dano ao inimigo com base no cálculo de precisão e potência.
+   * O uso da carta consome energia do herói.
+   * <p>
+   *   Se o herói não tiver energia suficiente, a carta não será usada e uma
+   *   mensagem de aviso será exibida.
+   * </p>
+   *
+   * @param inimigo - O inimigo alvo da carta, que receberá o dano calculado.
+   * @param heroi - O herói que usará a carta e causará o dano ao inimigo.
+   */
   public void usar(Inimigo inimigo, Heroi heroi){
     if (heroi.temEnergia(custoEnergia)) {
       heroi.setaEnergia(heroi.getEnergia() - custoEnergia);

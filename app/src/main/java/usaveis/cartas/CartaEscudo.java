@@ -31,7 +31,17 @@ public class CartaEscudo extends Carta{
     this.descricao = descricao;
     this.efeitos = new ArrayList<>();
   }
-
+  
+  /**
+   * Usa a carta de escudo, concedendo escudo ao herói e aplicando efeitos adicionais, se houver.
+   * O uso da carta consome energia do herói.
+   * <p>
+   *   Se o herói não tiver energia suficiente, a carta não será usada e uma
+   *   mensagem de aviso será exibida.
+   * </p>
+   * @param inimigo - O inimigo alvo da carta (pode ser null se a carta não afetar o inimigo diretamente)
+   * @param heroi - O herói que usará a carta e receberá o escudo
+   */
   public void usar(Inimigo inimigo, Heroi heroi) {
     if (heroi.getEnergia() >= custoEnergia) {
       heroi.ganharEscudo(this.escudo);
