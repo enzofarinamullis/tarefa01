@@ -227,13 +227,15 @@ O combate termina se o herói fugir, ou se o herói ou todos os inimigos morrere
 ## Instruções para compilar e executar o programa
 ### Para baixar o projeto:
 git clone https://github.com/enzofarinamullis/tarefa01.git
-### Executar e compilar:
+### Compilar e executar:
 ./gradlew build
-
 java -jar app/build/libs/app.jar
+
+Pode ser com make
 
 ### documentação do código:
 xsg-open docs\index.html 
+
 está na pasta docs.
 
 
