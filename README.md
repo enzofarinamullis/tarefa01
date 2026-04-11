@@ -229,6 +229,7 @@ O combate termina se o herói fugir, ou se o herói ou todos os inimigos morrere
 git clone https://github.com/enzofarinamullis/tarefa01.git
 ### Compilar e executar:
 ./gradlew build
+
 java -jar app/build/libs/app.jar
 
 Pode ser com make
