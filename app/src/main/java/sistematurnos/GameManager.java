@@ -1,5 +1,9 @@
 package sistematurnos;
 
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+
 import constantes.Cabecalho;
 import constantes.Cores;
 import constantes.Turnos;
@@ -16,21 +20,68 @@ import usaveis.cartas.Efeito;
 import usaveis.pilhas.PilhaCompra;
 import usaveis.pilhas.PilhaDescarte;
 import utilitarios.PrintTerminal;
-import sistematurnos.InterfaceBatalha;
 
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
-
+/**
+ * Gerenciador principal do sistema de turnos do jogo.
+ * 
+ * <p>Esta classe é responsável por orquestrar o fluxo de combate entre o herói
+ * e os inimigos, gerenciando turnos, ações, sistema de cartas, efeitos,
+ * fugas e condições de vitória/derrota.</p>
+ * 
+ * <p>O GameManager implementa a lógica completa de uma batalha por turnos,
+ * incluindo:</p>
+ * <ul>
+ *   <li>Gerenciamento de turnos do herói e dos inimigos</li>
+ *   <li>Sistema de compra e descarte de cartas</li>
+ *   <li>Uso de cartas para atacar ou se defender</li>
+ *   <li>Sistema de fuga com chance baseada em tentativas</li>
+ *   <li>Aplicação de efeitos (cura, envenenamento, sangramento)</li>
+ *   <li>Verificação de condições de vitória/derrota</li>
+ *   <li>Reset de recursos (escudo, energia) entre turnos</li>
+ * </ul>
+ * 
+ * @see dados.Dados
+ * @see sistematurnos.observer.Publisher
+ * @see sistematurnos.InterfaceBatalha
+ */
 public class GameManager {
+  
+  /**
+   * Dados centrais do jogo contendo herói, lista de inimigos e publisher.
+   */
   Dados dados;
+  
+  /**
+   * Scanner para leitura de entrada do jogador.
+   */
   Scanner teclado;
+  
+  /**
+   * Flag que indica se o herói já realizou sua ação no turno atual.
+   */
   boolean heroiAgiu;
+  
+  /**
+   * Flag que indica se os inimigos já realizaram suas ações no turno atual.
+   */
   boolean inimigoAgiu;
+  
+  /**
+   * Número de tentativas de fuga realizadas (aumenta a cada falha).
+   */
   int tentativasFuga;
+  
+  /**
+   * Gerador de números aleatórios para seleção de inimigos e chances de fuga.
+   */
   Random random;
   
-  public GameManager(Dados dados){
+  /**
+   * Construtor que inicializa o gerenciador com os dados do jogo.
+   * 
+   * @param dados objeto contendo todas as informações centrais do jogo
+   */
+  public GameManager(Dados dados) {
     this.dados = dados;
     this.heroiAgiu = false;
     this.inimigoAgiu = false;
@@ -39,7 +90,18 @@ public class GameManager {
     tentativasFuga = 0;
   }
   
-  public void printAcoes(){
+  /**
+   * Exibe o menu de ações disponíveis para o herói no turno.
+   * 
+   * <p>Opções disponíveis:
+   * <ul>
+   *   <li>1 - Usar Carta</li>
+   *   <li>2 - Tentar fugir</li>
+   *   <li>0 - Passar turno</li>
+   * </ul>
+   * </p>
+   */
+  public void printAcoes() {
     System.out.println();
     PrintTerminal.printLinha(Cores.ANSI_RESET, Cabecalho.TAM_LINHA_DEQUE);
     dados.heroi.status();
@@ -55,12 +117,20 @@ public class GameManager {
     PrintTerminal.printLinha(Cores.ANSI_RESET, Cabecalho.TAM_LINHA_DEQUE);
   }
   
-  private boolean haInimigos(){
+  /**
+   * Verifica se ainda existem inimigos vivos na lista.
+   * 
+   * @return {@code true} se houver pelo menos um inimigo, {@code false} caso contrário
+   */
+  private boolean haInimigos() {
     return dados.listaInimigos.getTamanho() != 0;
   }
   
-  private void mensagemCombate(){
-    if(!haInimigos()){
+  /**
+   * Exibe mensagem de início de combate com a lista de inimigos.
+   */
+  private void mensagemCombate() {
+    if(!haInimigos()) {
       System.out.println("Não há inimigos, por aqui!");
     }
     else {
@@ -70,37 +140,51 @@ public class GameManager {
     }
   }
   
-  private Inimigo escolheInimigoAleatorio(){
+  /**
+   * Seleciona aleatoriamente um inimigo da lista para atacar.
+   * 
+   * @return inimigo aleatório da lista
+   */
+  private Inimigo escolheInimigoAleatorio() {
     ListaInimigos listaInimigos = dados.listaInimigos;
     int indiceRand;
     indiceRand = random.nextInt(listaInimigos.getTamanho());
-    /* inimigo que for atacar estar na posicao indiceRand */
     return listaInimigos.buscarInimigo(indiceRand + 1);
   }
   
-  private void resetStatus(Heroi heroi){
-    /* resetamos o valor de escudo como pedido no enunciado */
+  /**
+   * Reseta os status do herói no início de cada turno.
+   * 
+   * <p>O escudo é zerado e a energia é completamente restaurada.</p>
+   * 
+   * @param heroi herói que terá os status resetados
+   */
+  private void resetStatus(Heroi heroi) {
     heroi.setaEscudo(0);
-    /* completamos a energia do heroi como pedido no enunciado */
     heroi.setaEnergia(heroi.getEnergiaLimite());
   }
   
-  private void embaralhaECompra(){
+  /**
+   * Embaralha a pilha de compra e compra as cartas iniciais.
+   * 
+   * <p>Utilizado apenas no primeiro turno da batalha.</p>
+   */
+  private void embaralhaECompra() {
     Heroi heroi = dados.heroi;
     PilhaCompra pilhaCompra = heroi.getPilhaCompra();
     PilhaDescarte pilhaDescarte = heroi.getPilhaDescarte();
     Mao mao = heroi.getMao();
     
-    /* embaralhamos a pilha de compra do heroi do heroi */
     pilhaCompra.embraralhaPilha();
-    /* compramos 5 cartas */
     pilhaCompra.compraCarta(mao, pilhaDescarte, Turnos.QNT_COMPRAR);
   }
   
-  /* como pedido pelo enunciado remover a mao inteira no inicio do turno */
-  /* colocar a Mao inteira no descarte */
-  /* comprar 5 cartas */
-  private void descarteECompra(){
+  /**
+   * Move todas as cartas da mão para o descarte e compra novas cartas.
+   * 
+   * <p>Utilizado no início de cada turno após o primeiro.</p>
+   */
+  private void descarteECompra() {
     Heroi heroi = dados.heroi;
     PilhaCompra pilhaCompra = heroi.getPilhaCompra();
     PilhaDescarte pilhaDescarte = heroi.getPilhaDescarte();
@@ -109,40 +193,61 @@ public class GameManager {
     pilhaCompra.compraCarta(mao, pilhaDescarte, Turnos.QNT_COMPRAR);
   }
   
-  private int leComando(){
-    int comando = teclado.nextInt(); // lemos o comando
-    // verificamos se o comando eh valido
-    if(comando != Turnos.USAR && comando != Turnos.FUGIR && comando != Turnos.PASSAR){
+  /**
+   * Lê e valida o comando digitado pelo jogador.
+   * 
+   * @return comando válido (0, 1 ou 2)
+   */
+  private int leComando() {
+    int comando = teclado.nextInt();
+    if(comando != Turnos.USAR && comando != Turnos.FUGIR && comando != Turnos.PASSAR) {
       comando = teclado.nextInt();
     }
     return comando;
   }
   
-  private void limpaInimigos(ListaInimigos listaInimigos){
+  /**
+   * Remove todos os inimigos da lista.
+   * 
+   * @param listaInimigos lista a ser esvaziada
+   */
+  private void limpaInimigos(ListaInimigos listaInimigos) {
     Inimigo inimigo;
-    for(int i = 1; i < listaInimigos.getTamanho() + 1; i++){
+    for(int i = 1; i < listaInimigos.getTamanho() + 1; i++) {
       inimigo = listaInimigos.buscarInimigo(i);
       listaInimigos.removerInimigo(inimigo);
     }
   }
   
-  private boolean calculaChangeFuga(){
-    if(tentativasFuga > 2){
+  /**
+   * Calcula a chance de fuga baseada no número de tentativas.
+   * 
+   * <p>Chance base de 10% de sucesso. A cada tentativa falha,
+   * as chances não aumentam, mas após 3 tentativas é informado
+   * que não há mais chance.</p>
+   * 
+   * @return {@code true} se a fuga foi bem-sucedida, {@code false} caso contrário
+   */
+  private boolean calculaChangeFuga() {
+    if(tentativasFuga > 2) {
       System.out.println("Não há chance alguma de você escapar dessa!");
     }
-    if(random.nextInt(100) <= 10){
+    if(random.nextInt(100) <= 10) {
       limpaInimigos(dados.listaInimigos);
       System.out.println(Cores.ANSI_PURPLE + " >> Parabéns... você escapou... -_- << " + Cores.ANSI_RESET);
       return true;
     }
-    else{
+    else {
       System.out.println(Cores.ANSI_PURPLE + " >> Dificilmente você escapará dessa << " + Cores.ANSI_RESET);
       tentativasFuga++;
       return false;
     }
   }
   
-  private void mostraCartas(){
+  /**
+   * Exibe as cartas disponíveis na mão do herói.
+   */
+  private void mostraCartas() {
     Mao mao = dados.heroi.getMao();
     System.out.println("Escolha uma opção:");
     mao.printMao();
@@ -151,33 +256,41 @@ public class GameManager {
     System.out.println("-1 - Voltar");
   }
   
-  public Carta leCarta(){
+  /**
+   * Lê a escolha de carta do jogador e a remove da mão para o descarte.
+   * 
+   * @return a carta escolhida, ou {@code null} se o jogador optou por voltar
+   */
+  public Carta leCarta() {
     int comando;
     Heroi heroi = dados.heroi;
     PilhaDescarte pilhaDescarte = heroi.getPilhaDescarte();
     Mao mao = heroi.getMao();
     Carta carta;
     
-    comando = teclado.nextInt(); // lemos o numero da carta que queremos usar
+    comando = teclado.nextInt();
     
-    /* tentamos puxar a carta */
-    while(-1 > comando  || comando > mao.cartas.size()){
+    while(-1 > comando || comando > mao.cartas.size()) {
       System.out.println("Comando inválido");
       comando = teclado.nextInt();
       mao.printMao();
     }
     
-    if(comando == -1){
+    if(comando == -1) {
       return null;
     }
     
-    /* removemos a carta da mao e colocamos em descarte */
     carta = mao.cartas.remove(comando);
     pilhaDescarte.pilha.add(carta);
     return carta;
   }
   
-  private Inimigo escolheInimigo(){
+  /**
+   * Permite ao jogador escolher um inimigo como alvo.
+   * 
+   * @return o inimigo escolhido
+   */
+  private Inimigo escolheInimigo() {
     ListaInimigos listaInimigos = dados.listaInimigos;
     int comando;
     
@@ -185,29 +298,31 @@ public class GameManager {
     listaInimigos.mostrarInimigos();
     comando = teclado.nextInt();
     
-    /* caso o numero nao tenha sido aprovado lemos o numero denovo*/
     while (comando <= 0 || comando > listaInimigos.getTamanho()) {
       System.out.println("Numero inválido, escolha outro:");
       listaInimigos.mostrarInimigos();
       comando = teclado.nextInt();
     }
     
-    /* buscamos o inimigo */
     return listaInimigos.buscarInimigo(comando);
   }
   
-  private Inimigo escolheAtacante(Inimigo inimigoAnunciar){
+  /**
+   * Verifica se o inimigo que iria atacar ainda está vivo e escolhe outro se necessário.
+   * 
+   * @param inimigoAnunciar inimigo que originalmente iria atacar
+   * @return inimigo vivo para atacar (pode ser o mesmo ou outro)
+   */
+  private Inimigo escolheAtacante(Inimigo inimigoAnunciar) {
     int indiceRand;
     ListaInimigos listaInimigos = dados.listaInimigos;
-    /* verificamos se o inimigo que iria atacar morreu */
+    
     if(!inimigoAnunciar.estaVivoSemPrint()) {
       System.out.println();
       System.out.println("O inimigo que iria te atacar morreu");
       pausa(1000);
       System.out.println("Cuidado, que outro irá atacar:");
-      /* caso nao esteja vivo */
       indiceRand = random.nextInt(listaInimigos.getTamanho());
-      /* inimigo que for atacar estar na posicao indiceRand */
       inimigoAnunciar = listaInimigos.buscarInimigo(indiceRand + 1);
       pausa(1000);
       inimigoAnunciar.anunciar();
@@ -215,7 +330,12 @@ public class GameManager {
     return inimigoAnunciar;
   }
   
-  private void acionaPublisher(int idAtivacao){
+  /**
+   * Notifica o publisher para ativar efeitos com o ID especificado.
+   * 
+   * @param idAtivacao ID do momento de ativação dos efeitos
+   */
+  private void acionaPublisher(int idAtivacao) {
     Publisher publisher = dados.getPublisher();
     SubscriberEfeito finalizou;
     List<SubscriberEfeito> subscribersEfeito;
@@ -224,37 +344,39 @@ public class GameManager {
     
     subscribersEfeito = publisher.getSubscribersEfeitos();
     
-    /* verificamos se algum efeito acabou */
-    for(int i = 0; i < subscribersEfeito.size(); i++){
+    for(int i = 0; i < subscribersEfeito.size(); i++) {
       finalizou = subscribersEfeito.get(i);
-      if(finalizou.acabou()){
+      if(finalizou.acabou()) {
         publisher.desinscrever(finalizou);
       }
     }
     
     pausa(2000);
-    
   }
   
-  
-  /*
-   * Caso nao houverem mais inimigos a funcao retornara true
-   * indicando que a luta acabou
+  /**
+   * Remove da lista todos os inimigos que estão mortos.
+   * 
+   * @return {@code true} se não houver mais inimigos vivos, {@code false} caso contrário
    */
-  private boolean atualizaInimigosMortos(){
+  private boolean atualizaInimigosMortos() {
     ListaInimigos listaInimigos = dados.listaInimigos;
     Inimigo inimigo;
-    for(int i = 0; i < listaInimigos.getTamanho(); i++){
+    for(int i = 0; i < listaInimigos.getTamanho(); i++) {
       inimigo = listaInimigos.buscarInimigo(i + 1);
-      if(!inimigo.estaVivoSemPrint()){
-        /* se morreu */
+      if(!inimigo.estaVivoSemPrint()) {
         listaInimigos.removerInimigo(inimigo);
       }
     }
     return listaInimigos.getTamanho() == 0;
   }
   
-  private void pausa(long milissegundos){
+  /**
+   * Pausa a execução por um determinado número de milissegundos.
+   * 
+   * @param milissegundos tempo de pausa em milissegundos
+   */
+  private void pausa(long milissegundos) {
     try {
       Thread.sleep(milissegundos);
     } catch (InterruptedException e) {
@@ -262,20 +384,32 @@ public class GameManager {
     }
   }
   
-  private void mensagemVitoria(){
+  /**
+   * Exibe mensagem de vitória ao final da batalha.
+   */
+  private void mensagemVitoria() {
     pausa(3000);
     PrintTerminal.limparTerminal();
     System.out.println(Cores.ANSI_GREEN + "Parabéns, você venceu a luta!" + Cores.ANSI_RESET);
   }
   
-  
-  public void turno(){
+  /**
+   * Executa o loop principal de turnos da batalha.
+   * 
+   * <p>Este método contém a lógica completa do combate, incluindo:
+   * <ul>
+   *   <li>Inicialização do combate e compra de cartas</li>
+   *   <li>Turno do herói (uso de cartas, fuga, passar)</li>
+   *   <li>Turno dos inimigos (ataque e aplicação de efeitos)</li>
+   *   <li>Verificação contínua de condições de fim de batalha</li>
+   * </ul>
+   * </p>
+   */
+  public void turno() {
     int numTurno = 0;
     pausa(5000);
     PrintTerminal.limparTerminal();
     
-    
-    /* para facilitar a leitura */
     Heroi heroi = dados.heroi;
     ListaInimigos listaInimigos = dados.listaInimigos;
     
@@ -289,15 +423,14 @@ public class GameManager {
     Subscriber subscriber = null;
     Efeito efeito;
     
-    
-    while(true){
+    while(true) {
       PrintTerminal.limparTerminal();
       mensagemCombate();
       InterfaceBatalha interfaceBatalha = new InterfaceBatalha(dados);
       interfaceBatalha.imprimeTodosInimigos();
-      /* escolhemos o inimigo que ira atacar */
+      
       inimigoAnunciar = escolheInimigoAleatorio();
-      inimigoAnunciar.anunciar(); // fazemos o seu anuncio
+      inimigoAnunciar.anunciar();
       pausa(5000);
       
       resetStatus(heroi);
@@ -306,61 +439,51 @@ public class GameManager {
         descarteECompra();
       }
       
-      /* turno do heroi */
-      acionaPublisher(Turnos.INICIO_TURNO_JOAGADOR); // notificamos os efeitos do inicio do combate
-      if(atualizaInimigosMortos()){
+      acionaPublisher(Turnos.INICIO_TURNO_JOAGADOR);
+      if(atualizaInimigosMortos()) {
         mensagemVitoria();
         return;
       }
       
-      while(!heroiAgiu){
-        
-        if(!heroi.estaVivo()){
+      while(!heroiAgiu) {
+        if(!heroi.estaVivo()) {
           System.out.println(Cores.ANSI_PURPLE + "Você morreu!" + Cores.ANSI_RESET);
           return;
         }
         
-        /* Vemos qual acao o heroi quer tomar */
         printAcoes();
         comando = leComando();
         
-        if(comando == Turnos.PASSAR){
+        if(comando == Turnos.PASSAR) {
           heroiAgiu = true;
           break;
         }
         
-        if(comando == Turnos.FUGIR){
-          if(calculaChangeFuga()){ return; }
-          else{ break; }
+        if(comando == Turnos.FUGIR) {
+          if(calculaChangeFuga()) { return; }
+          else { break; }
         }
         
-        /* Caso a escolha seja USAR, verificamos se ha energia suficiente */
-        if(comando == Turnos.USAR && heroi.verificaEnergia()){
+        if(comando == Turnos.USAR && heroi.verificaEnergia()) {
           mostraCartas();
-          carta = leCarta(); // caso o jogador deseja retornar ao menu anterior
-                             // a carta lida sera null
+          carta = leCarta();
           
-          if(carta != null){
+          if(carta != null) {
             if (carta.isDano()) {
-              /* escolhemos o inimigo que queremos atacar */
               inimigo = escolheInimigo();
               carta.usar(inimigo, heroi);
               pausa(2000);
               
-              /* verificamos se o inimigo morreu */
               if (!inimigo.estaVivoSemPrint()) {
-                listaInimigos.removerInimigo(inimigo); // removemos ele da lista de inimigos
-                inimigo = null; // apontar para null sera importante para podermos
-                                // nao aplicar efeito em inimgios mortos
+                listaInimigos.removerInimigo(inimigo);
+                inimigo = null;
               }
               
-              /* verificamos se todos morreram e o turno deve acabar */
               if (listaInimigos.getTamanho() == 0) {
                 mensagemVitoria();
                 return;
               }
               
-              /* verificamos se o heroi ainda possui energia */
               if (heroi.getEnergia() == 0) {
                 heroiAgiu = true;
               }
@@ -369,27 +492,21 @@ public class GameManager {
               pausa(2000);
             }
             
-            /* colocamos o efeito, caso houver no publisher */
             if(carta.temEfeito()) {
               for (int i = 0; i < carta.quantidadeEfeitos(); i++) {
                 efeito = carta.retornarEfeito(i);
                 
                 if (efeito.ehCura()) {
                   subscriber = new SubscriberEfeito(heroi, efeito, efeito.getIdAtivacao());
-                  
                 } else if (efeito.ehEnvenamento() || efeito.ehSangramento()) {
-                  /* como os efeito de dano, inicialmente so estarao nas espadas
-                   * o inimigo estara selecionado, a nao ser que ele tenha morrido */
-                  
                   if(inimigo != null) {
                     subscriber = new SubscriberEfeito(inimigo, efeito, efeito.getIdAtivacao());
                   }
                 }
                 if(subscriber != null) {
                   publisher.inscrever(subscriber);
-                  /* notificamos todos os efeitos instantaneos */
                   acionaPublisher(Turnos.INSTANTANEO);
-                  if(atualizaInimigosMortos()){
+                  if(atualizaInimigosMortos()) {
                     mensagemVitoria();
                     return;
                   }
@@ -400,39 +517,27 @@ public class GameManager {
         }
       }
       
-      
-      if(atualizaInimigosMortos()){
+      if(atualizaInimigosMortos()) {
         mensagemVitoria();
         return;
       }
       
-      /* Agora que o turno do heroi acabou */
-      /* aplicamos os efeitos */
       acionaPublisher(Turnos.FINAL_TURNO_JOGADOR);
       
-      /* devemos fazer duas verificacoes
-       verificamos se alguem morreu e
-       verificamos se ainda existem inimigos vivos
-       pois nao queremos entrar no turno dos inimigos sem inimigos
-       */
-      
-      if(atualizaInimigosMortos()){
+      if(atualizaInimigosMortos()) {
         mensagemVitoria();
         return;
       }
       
-      /* turno inimigo */
-      /* queremos um inimigo random atacar o heroi */
       System.out.println();
       System.out.println("------------------------------");
       System.out.println("Turno dos Inimigos");
-      /* verificamos se o inimigo que iria atacar morreu */
+      
       inimigoAnunciar = escolheAtacante(inimigoAnunciar);
       inimigoAnunciar.atacar(heroi);
       pausa(2000);
       
-      /* caso o inimigo tenha efeito, adicionamos o subscriber no publisher */
-      if(inimigoAnunciar.temEfeitos()){
+      if(inimigoAnunciar.temEfeitos()) {
         for(int i = 0; i < inimigoAnunciar.getQuantidadeEfeitos(); i++) {
           efeito = inimigoAnunciar.retornarEfeito(i);
           if(efeito != null) {
@@ -443,11 +548,9 @@ public class GameManager {
         }
       }
       
-      
       inimigoAgiu = true;
       heroiAgiu = false;
       numTurno++;
     }
   }
-  
 }
