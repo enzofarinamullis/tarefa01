@@ -50,12 +50,7 @@ public class Cura extends Efeito{
     }
   }
   
-  /**
-    * ❤️‍🩹 VERIFICA SE ESTE EFEITO É UMA CURA ❤️‍🩹
-    * <p>
-    *   Este método sobrescrito retorna {@code true} para indicar que esta
-    *   instância representa um efeito de cura.
-    */
+  
   @Override
   public boolean ehCura(){
     return true;

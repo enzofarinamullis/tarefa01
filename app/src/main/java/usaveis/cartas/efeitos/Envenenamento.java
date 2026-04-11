@@ -49,13 +49,6 @@ public class Envenenamento extends Efeito {
 
   }
   
-  
-  /**
-    * 💀 VERIFICA SE ESTE EFEITO É UM ENVENENAMENTO 💀
-    * <p>
-    *   Este método sobrescrito retorna {@code true} para indicar que esta
-    *   instância representa um efeito de envenenamento.
-    */
   public boolean ehEnvenenamento(){
     return true;
   }
