@@ -14,7 +14,7 @@ import usaveis.cartas.efeitos.Cura;
  *   É uma carta híbrida que combina defesa e recupeação de vida.
  *   <p>
  *     Exemplo de uso:<br>
- *     EscudoDaInstrospecao carta = new EscudoDaInstrospecao();<br>
+ *     escudoDaInstrospecao carta = new escudoDaInstrospecao();<br>
  *     carta.usar(null, heroi);<br>
  */
 public class escudoDaInstropeccao extends CartaEscudo {
