@@ -6,6 +6,8 @@ import dados.Heroi;
 import dados.Inimigo;
 import usaveis.cartas.Efeito;
 
+import java.nio.charset.StandardCharsets;
+
 
 /**
  * Representa um efeito de cura aplicado a uma entidade
