@@ -16,6 +16,9 @@ import usaveis.cartas.efeitos.Cura;
  *     Exemplo de uso:<br>
  *     escudoDaInstrospecao carta = new escudoDaInstrospecao();<br>
  *     carta.usar(null, heroi);<br>
+ *
+ *   </p>
+ * @see usaveis.cartas.CartaEscudo
  */
 public class escudoDaInstropeccao extends CartaEscudo {
   public escudoDaInstropeccao() {

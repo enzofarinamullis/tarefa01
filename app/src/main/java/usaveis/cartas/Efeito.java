@@ -131,14 +131,28 @@ public abstract class Efeito{
   }
   
   // Getters
+  
+  /**
+   * Retorna o nome do efeito, que serve como identificador para o tipo de efeito.
+   * @return O nome do efeito
+   */
   public String getNome() {
     return nome;
   }
   
+  /**
+   * Retorna a duração do efeito em acúmulos, indicando quantas vezes o efeito será aplicado
+   * @return A duração do efeito em acúmulos
+   */
   public int getDuracao() {
     return acumulos;
   }
   
+  
+  /**
+   * Retorna a intensidade do efeito, que representa a força ou magnitude do efeito aplicado.
+   * @return A intensidade do efeito
+   */
   public int getIntensidade() {
     return intensidade;
   }
@@ -147,15 +161,28 @@ public abstract class Efeito{
     return alcance;
   }
   
-  // Setters (opcionais)
+  // Setters
+  
+  /**
+   * Define o nome do efeito, que serve como identificador para o tipo de efeito.
+   * @param nome O nome do efeito a ser definido
+   */
   public void setNome(String nome) {
     this.nome = nome;
   }
   
+  /**
+   * Define a duração do efeito em acúmulos, indicando quantas vezes o efeito será aplicado.
+   * @param duracao A duração do efeito em acúmulos a ser definida
+   */
   public void setDuracao(int duracao) {
     this.acumulos = duracao;
   }
   
+  /**
+   * Define a intensidade do efeito, que representa a intensidade do efeito aplicado.
+   * @param intensidade A intensidade do efeito a ser definida
+   */
   public void setIntensidade(int intensidade) {
     this.intensidade = intensidade;
   }
@@ -164,18 +191,39 @@ public abstract class Efeito{
     this.alcance = alcance;
   }
   
+  /**
+   * Indica se o efeito é do tipo cura, permitindo que as subclasses de efeitos de cura
+   * sobrescrevam este método para retornar true, facilitando a identificação do tipo de efeito
+   * @return true se o efeito for do tipo cura, false caso contrário
+   */
   public boolean ehCura(){
     return false;
   }
   
+  /**
+   * Indica se o efeito é do tipo envenenamento, permitindo que as subclasses de efeitos de envenenamento
+   * sobrescrevam este método para retornar true, facilitando a identificação do tipo de efeito
+   * @return true se o efeito for do tipo envenenamento, false caso contrário
+   */
   public boolean ehEnvenamento(){
     return false;
   }
   
+  
+  /**
+   * Indica se o efeito é do tipo sangramento, permitindo que as subclasses de efeitos de sangramento
+   * sobrescrevam este método para retornar true, facilitando a identificação do tipo de efeito
+   * @return true se o efeito for do tipo sangramento, false caso contrário
+   */
   public boolean ehSangramento(){
     return false;
   }
   
+  /**
+   * Indica se o efeito é do tipo corrupção, permitindo que as subclasses de efeitos de corrupção
+   * sobrescrevam este método para retornar true, facilitando a identificação do tipo de efeito
+   * @return true se o efeito for do tipo corrupção, false caso contrário
+   */
   public boolean ehCurrupcao(){
     return false;
   }
