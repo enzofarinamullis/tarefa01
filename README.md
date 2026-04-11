@@ -232,7 +232,8 @@ git clone https://github.com/enzofarinamullis/tarefa01.git
 
 java -jar app/build/libs/app.jar
 
-Pode ser com make
+#### compilar e executar com makefile:
+make
 
 ### documentação do código:
 xsg-open docs\index.html 
