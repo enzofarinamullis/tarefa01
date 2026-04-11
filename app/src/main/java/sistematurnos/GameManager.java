@@ -22,6 +22,28 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * Gerencia o fluxo do jogo, incluindo turnos, ações do jogador e inimigos, e a aplicação de efeitos.
+ * <p>
+ *   Responsabilidades:<br>
+ *   - Controlar a sequência de turnos entre o herói e os inimigos<br
+ *   - Gerenciar as ações disponíveis para o jogador e processar suas escolhas<br>
+ *   - Determinar o comportamento dos inimigos durante seus turnos<br>
+ *   - Aplicar os efeitos de cartas e habilidades, interagindo com o sistema de
+ *   eventos ({@link Publisher} e {@link Subscriber})<br>
+ *   - Verificar condições de vitória e derrota<br>
+ * </p>
+ * <p>
+ *   O {@link GameManager} é o núcleo do sistema de turnos, coordenando
+ *   todas as interações entre o jogador, os inimigos e os efeitos durante o combate.
+ *   </p>
+ *   <p>
+ *     Exemplo de uso:<br>
+ *     Dados dados = new Dados(new Heroi());<br>
+ *     GameManager gameManager = new GameManager(dados);<br>
+ *     gameManager.turno();<br>
+ *     </p>
+ */
 public class GameManager {
   Dados dados;
   Scanner teclado;
@@ -39,6 +61,22 @@ public class GameManager {
     tentativasFuga = 0;
   }
   
+  /**
+   * Exibe as opções de ação disponíveis para o jogador durante seu turno.
+   * <p>
+   *   As opções incluem usar uma carta, tentar fugir ou passar o turno.
+   *   Também exibe o status atual do herói para auxiliar na tomada de decisão.
+   *   </p>
+   *   <p>
+   *     Esta função é chamada no início do turno do jogador para apresentar as
+   *     ações possíveis e o estado atual do herói.
+   *     </p>
+   *
+   *   Exemplo de uso:<br>
+   *   gameManager.printAcoes();<br>
+   *     // Exibe as opções de ação para o jogador<br>
+   *     </p>
+   */
   public void printAcoes(){
     System.out.println();
     PrintTerminal.printLinha(Cores.ANSI_RESET, Cabecalho.TAM_LINHA_DEQUE);
@@ -55,10 +93,30 @@ public class GameManager {
     PrintTerminal.printLinha(Cores.ANSI_RESET, Cabecalho.TAM_LINHA_DEQUE);
   }
   
+  
+  /**
+   * Verifica se ainda existem inimigos vivos na lista de inimigos.
+   * @return true se houverem inimigos vivos, false caso contrário
+   */
   private boolean haInimigos(){
     return dados.listaInimigos.getTamanho() != 0;
   }
   
+  /**
+   * Exibe uma mensagem de combate indicando os inimigos presentes na cena.
+   * <p>
+   *   Se não houverem inimigos, exibe uma mensagem informando que a área
+   *   está livre de inimigos. Caso contrário, exibe uma mensagem de alerta e
+   *   lista os inimigos presentes para o jogador.
+   *   </p>
+   *   <p>
+   *     Esta função é chamada no início do combate para informar o jogador sobre
+   *     os inimigos que ele enfrentará.
+   *   </p>
+   *   Exemplo de uso:<br>
+   *   gameManager.mensagemCombate();<br>
+   *   // Exibe a mensagem de combate e os inimigos presentes<br>
+   */
   private void mensagemCombate(){
     if(!haInimigos()){
       System.out.println("Não há inimigos, por aqui!");
@@ -70,6 +128,16 @@ public class GameManager {
     }
   }
   
+  /**
+   * Seleciona um inimigo aleatório da lista de inimigos para atacar o jogador.
+   * <p>
+   *   Esta função é chamada no início do turno dos inimigos para determinar qual
+   *   inimigo irá atacar o jogador. O inimigo selecionado é anunciado para o
+   *   jogador antes de realizar seu ataque.
+   *   </p>
+   *
+   * @return o inimigo selecionado para atacar o jogador
+   */
   private Inimigo escolheInimigoAleatorio(){
     ListaInimigos listaInimigos = dados.listaInimigos;
     int indiceRand;
@@ -78,6 +146,20 @@ public class GameManager {
     return listaInimigos.buscarInimigo(indiceRand + 1);
   }
   
+  /**
+   * Reseta o status do herói no início de cada turno, ajustando o valor do escudo
+   * para 0 e restaurando a energia para o limite máximo.
+   * <p>
+   *   Esta função é chamada no início do turno do jogador para garantir que o
+   *   herói comece o turno com o escudo zerado e a energia completa.
+   *   </p>
+   *
+   *   Exemplo de uso:<br>
+   *   gameManager.resetStatus(dados.heroi);<br>
+   *   // Reseta o status do herói para o início do turno<br>
+   *
+   * @param heroi o herói cujo status será resetado
+   */
   private void resetStatus(Heroi heroi){
     /* resetamos o valor de escudo como pedido no enunciado */
     heroi.setaEscudo(0);
@@ -85,6 +167,18 @@ public class GameManager {
     heroi.setaEnergia(heroi.getEnergiaLimite());
   }
   
+  /**
+   * Embaralha a pilha de compra do herói e compra 5 cartas para a mão.
+   * <p>
+   *   Esta função é chamada no início do combate para preparar a mão do jogador
+   *   para o primeiro turno. Ela garante que o jogador comece o combate com uma
+   *   mão completa de cartas, embaralhando o baralho para garantir aleatoriedade
+   *   na compra.
+   *   </p>
+   *   Exemplo de uso:<br>
+   *   gameManager.embaralhaECompra();<br>
+   *   // Embaralha o baralho e compra 5 cartas para a mão
+   */
   private void embaralhaECompra(){
     Heroi heroi = dados.heroi;
     PilhaCompra pilhaCompra = heroi.getPilhaCompra();
@@ -97,9 +191,19 @@ public class GameManager {
     pilhaCompra.compraCarta(mao, pilhaDescarte, Turnos.QNT_COMPRAR);
   }
   
-  /* como pedido pelo enunciado remover a mao inteira no inicio do turno */
-  /* colocar a Mao inteira no descarte */
-  /* comprar 5 cartas */
+  /**
+   * Descarta as cartas da mão do herói e compra novas cartas da pilha de compra.
+   * <p>
+   *   Esta função é chamada no início de cada turno do jogador (exceto o primeiro)
+   *   para renovar a mão do jogador. As cartas atualmente na mão são movidas para
+   *   a pilha de descarte, e novas cartas são compradas da pilha
+   *   de compra para a mão do jogador, garantindo que o jogador tenha novas opções de
+   *   cartas a cada turno.
+   *   </p>
+   *   Exemplo de uso:<br>
+   *   gameManager.descarteECompra();<br>
+   *   // Descarta as cartas da mão e compra novas cartas para o jogador<br>
+   */
   private void descarteECompra(){
     Heroi heroi = dados.heroi;
     PilhaCompra pilhaCompra = heroi.getPilhaCompra();
@@ -109,6 +213,19 @@ public class GameManager {
     pilhaCompra.compraCarta(mao, pilhaDescarte, Turnos.QNT_COMPRAR);
   }
   
+  /**
+   * Lê o comando do jogador para escolher uma ação durante seu turno.
+   * <p>
+   *   O jogador pode escolher entre usar uma carta, tentar fugir ou passar o turno.
+   *   Esta função valida a entrada do jogador para garantir que um comando válido seja
+   *   selecionado. Se o comando for inválido, a função continuará solicitando uma
+   *   entrada até que um comando válido seja fornecido.
+   *   </p>
+   *   Exemplo de uso:<br>
+   *   int comando = gameManager.leComando();<br>
+   *   // Lê o comando do jogador para escolher uma ação<br>
+   * @return o comando escolhido pelo jogador, representado por um inteiro correspondente às opções disponíveis
+   */
   private int leComando(){
     int comando = teclado.nextInt(); // lemos o comando
     // verificamos se o comando eh valido
@@ -118,6 +235,21 @@ public class GameManager {
     return comando;
   }
   
+  /**
+   * Limpa a lista de inimigos, removendo todos os inimigos presentes.
+   * <p>
+   *   Esta função é chamada quando o jogador consegue fugir do combate, garantindo
+   *   que a lista de inimigos seja esvaziada e o jogador possa continuar
+   *   jogando sem a presença dos inimigos anteriores. Ela percorre a lista de inimigos
+   *   e remove cada inimigo individualmente, garantindo que a lista esteja completamente
+   *   limpa após a fuga bem-sucedida.
+   *   </p>
+   *   Exemplo de uso:<br>
+   *   gameManager.limpaInimigos(dados.listaInimigos);<br>
+   *   // Limpa a lista de inimigos após uma fuga bem-sucedida<br>
+    * @see #calculaChangeFuga()
+   * @param listaInimigos a lista de inimigos a ser limpa.
+   */
   private void limpaInimigos(ListaInimigos listaInimigos){
     Inimigo inimigo;
     for(int i = 1; i < listaInimigos.getTamanho() + 1; i++){
@@ -126,6 +258,21 @@ public class GameManager {
     }
   }
   
+  /**
+   * Calcula a chance de fuga do jogador durante o combate.
+   * <p>
+   *   O jogador tem uma chance de 10% de escapar do combate a cada tentativa
+   *   de fuga. Se o jogador tentar fugir mais de 2 vezes, uma mensagem de alerta é exibida
+   *   indicando que as chances de fuga estão diminuindo.
+   *   Se a fuga for bem-sucedida, a lista de inimigos é limpa e uma mensagem de sucesso é exibida.
+   *   Caso contrário, uma mensagem de dificuldade é exibida e o número de tentativas de fuga é incrementado.
+   *   </p>
+   *   Exemplo de uso:<br>
+   *   boolean fugaBemSucedida = gameManager.calculaChangeFuga();<br>
+   *   //   if (fugaBemSucedida) {<br>
+   *   //     // A fuga foi bem-sucedida, o jogador escapou do combate<br>
+   * @return true se a fuga foi bem-sucedida, false caso contrário
+   */
   private boolean calculaChangeFuga(){
     if(tentativasFuga > 2){
       System.out.println("Não há chance alguma de você escapar dessa!");
@@ -142,6 +289,20 @@ public class GameManager {
     }
   }
   
+  /**
+   * Exibe as cartas disponíveis na mão do jogador para uso durante seu turno.
+   * <p>
+   *   Esta função é chamada quando o jogador escolhe a opção de usar uma carta durante
+   *   seu turno. Ela exibe as cartas atualmente na mão do jogador,
+   *   permitindo que ele escolha qual carta deseja usar.
+   *   Também oferece a opção de voltar ao menu anterior caso o jogador decida
+   *   não usar uma carta.
+   *
+   *   Exemplo de uso:<br>
+   *   gameManager.mostraCartas();<br>
+   *   // Exibe as cartas disponíveis na mão do jogador<br>
+   * @see #leCarta()
+   */
   private void mostraCartas(){
     Mao mao = dados.heroi.getMao();
     System.out.println("Escolha uma opção:");
@@ -151,6 +312,29 @@ public class GameManager {
     System.out.println("-1 - Voltar");
   }
   
+  /**
+   * Lê a carta escolhida pelo jogador para usar durante seu turno.
+   * <p>
+   *   O jogador pode escolher uma carta da mão para usar contra
+   *   um inimigo ou para se beneficiar de um efeito.
+   *   Esta função valida a entrada do jogador para garantir
+   *   que uma carta válida seja selecionada.
+   *   Se o jogador escolher voltar ao menu anterior, a função retornará null,
+   *   indicando que nenhuma carta foi escolhida.
+   * </p>
+   * <p>
+   *   Exemplo de uso:<br>
+   *   Carta cartaEscolhida = gameManager.leCarta();<br>
+   *   if (cartaEscolhida != null) {<br>
+   *   // O jogador escolheu uma carta para usar<br>
+   *   } else {<br>
+   *   // O jogador optou por voltar ao menu anterior, nenhuma carta foi escolhida<br>
+   *   }
+   *
+   * @return a carta escolhida pelo jogador para usar,
+   * ou null se o jogador optar por voltar ao menu anterior
+   * @see #mostraCartas()
+   */
   public Carta leCarta(){
     int comando;
     Heroi heroi = dados.heroi;
@@ -177,6 +361,24 @@ public class GameManager {
     return carta;
   }
   
+  /**
+   * Permite ao jogador escolher um inimigo específico
+   * para atacar usando uma carta de dano.
+   *
+   * <p>
+   *   Esta função é chamada quando o jogador escolhe usar uma carta de dano durante
+   *   seu turno. Ela exibe a lista de inimigos disponíveis e solicita que o jogador
+   *   escolha um inimigo para atacar. A função valida
+   *   a entrada do jogador para garantir que um inimigo válido seja selecionado.
+   *   Se o jogador escolher um número inválido, a função continuará solicitando uma
+   *   entrada até que um inimigo válido seja escolhido.
+   *
+   *   Exemplo de uso:<br>
+   *   Inimigo inimigoEscolhido = gameManager.escolheInimigo();<br>
+   *   // O jogador escolheu um inimigo para atacar<br>
+   *
+   * @return o inimigo escolhido pelo jogador
+   */
   private Inimigo escolheInimigo(){
     ListaInimigos listaInimigos = dados.listaInimigos;
     int comando;
@@ -196,6 +398,22 @@ public class GameManager {
     return listaInimigos.buscarInimigo(comando);
   }
   
+  /**
+   * Verifica se o inimigo que iria atacar o jogador está vivo.
+   * Se o inimigo estiver morto, a função seleciona um novo inimigo
+   * aleatório para atacar o jogador e anuncia esse novo inimigo.
+   * <p>
+   *   Esta função é chamada no início do turno dos inimigos
+   *   para garantir que o inimigo
+   *   que irá atacar o jogador esteja vivo. Se o inimigo selecionado inicialmente
+   *   estiver morto, a função seleciona um novo inimigo aleatório da lista de inimigos
+   *   e o anuncia para o jogador, garantindo que o combate continue
+   *   mesmo quando um inimigo morre antes de realizar seu ataque.
+   *
+   * @param inimigoAnunciar o inimigo inicialmente selecionado para atacar o jogador,
+   *                        que será verificado para determinar se está vivo ou morto
+   * @return o inimigo que irá atacar o jogador, garantindo que seja um inimigo vivo
+   */
   private Inimigo escolheAtacante(Inimigo inimigoAnunciar){
     int indiceRand;
     ListaInimigos listaInimigos = dados.listaInimigos;
@@ -237,9 +455,18 @@ public class GameManager {
   }
   
   
-  /*
-   * Caso nao houverem mais inimigos a funcao retornara true
-   * indicando que a luta acabou
+  /**
+   * Atualiza a lista de inimigos removendo aqueles que estão mortos.
+   * <p>
+   *   Esta função é chamada após qualquer ação do jogador que possa
+   *   resultar na morte de um inimigo, como o uso de uma carta de dano.
+   *   Ela percorre a lista de inimigos e remove aqueles que estão mortos,
+   *   garantindo que a lista apresente apenas os inimigos vivos.
+   *   Se todos os inimigos forem removidos, a função retorna true,
+   *   indicando que o jogador venceu o combate.
+   *
+   * @return true se todos os inimigos foram removidos (vencendo o combate),
+   * false caso contrário
    */
   private boolean atualizaInimigosMortos(){
     ListaInimigos listaInimigos = dados.listaInimigos;
@@ -254,6 +481,10 @@ public class GameManager {
     return listaInimigos.getTamanho() == 0;
   }
   
+  /**
+   * Faz uma pausa na execução do jogo por um determinado número de milissegundos.
+   * @param milissegundos o número de milissegundos para pausar a execução do jogo
+   */
   private void pausa(long milissegundos){
     try {
       Thread.sleep(milissegundos);
@@ -269,6 +500,23 @@ public class GameManager {
   }
   
   
+  /**
+   * Gerencia o fluxo principal do combate, alternando entre os turnos do jogador
+   * e dos inimigos, e aplicando as ações e efeitos conforme as escolhas do jogador
+   * e o comportamento dos inimigos.
+   *
+   * <p>
+   *   O método inicia o combate exibindo os inimigos presentes e embaralhando o
+   *   baralho do jogador para comprar as cartas iniciais. Em seguida, entra em
+   *   um loop principal onde o jogador realiza suas ações, como usar cartas ou
+   *   tentar fugir, enquanto os inimigos atacam o jogador em seus turnos.
+   *   O método também gerencia a aplicação de efeitos e a atualização do estado do combate,
+   *   verificando condições de vitória ou derrota a cada etapa do processo.
+   *   <p>
+   *     Exemplo de uso:<br>
+   *     gameManager.turno();<br>
+   *     // Inicia o fluxo principal do combate<br>
+   */
   public void turno(){
     int numTurno = 0;
     pausa(5000);
