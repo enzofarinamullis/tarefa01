@@ -11,7 +11,7 @@ import usaveis.cartas.efeitos.Cura;
  *   e aplica um efeito de {@link Cura}, restaurando a vida do herói.
  * </p>
  * <p>
- *   É uma carta híbrida que combina defesa e recupeação de vida.
+ *   É uma carta híbrida que combina defesa e recuperação de vida.
  *   <p>
  *     Exemplo de uso:<br>
  *     escudoDaInstrospecao carta = new escudoDaInstrospecao();<br>

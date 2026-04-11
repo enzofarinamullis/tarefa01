@@ -3,6 +3,17 @@ import java.util.Random;
 
 import constantes.Cores;
 
+/**
+ * Representa um dado de precisão no jogo, utilizado para determinar o resultado de ações
+ * relacionadas à precisão.
+ *
+ * <p>
+ *   O dado de precisão é um dado personalizado que tem 20 lados, representando um
+ *   resultado de 1 a 20. Ele é utilizado para determinar o sucesso ou falha de
+ *   ações relacionadas à precisão, como ataques ou habilidades que exigem precisão.
+ * </p>
+ * @see usaveis.D
+ */
 public class Precisao {
   private Random aleatorio;
 

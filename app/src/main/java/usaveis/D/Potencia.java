@@ -1,6 +1,18 @@
 package usaveis.D;
 import java.util.Random;
 
+
+/**
+ * Representa um dado de potência no jogo, utilizado para determinar o resultado de ações
+ * relacionadas à potência.
+ *
+ * <p>
+ *   O dado de potência é um dado personalizado que pode ter um número variável de lados,
+ *   dependendo do contexto do jogo. Ele é utilizado para determinar o sucesso ou falha de
+ *   ações relacionadas à potência, como ataques ou habilidades especiais.
+ * </p>
+ * @see usaveis.D
+ */
 public class Potencia {
   private Random aleatorio;
   private int NdeLados;
