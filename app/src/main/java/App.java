@@ -34,9 +34,6 @@ import sistematurnos.GameManager;
  *   <li>Finalizar os recursos ao encerrar</li>
  * </ol>
  * </p>
- *
- * @author Desconhecido
- * @version 1.0
  * @see dados.Dados
  * @see dados.Heroi
  * @see sistematurnos.GameManager
