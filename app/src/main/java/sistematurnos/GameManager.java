@@ -519,7 +519,7 @@ import dados.ListaInimigos;
    *     gameManager.turno();<br>
    *     // Inicia o fluxo principal do combate<br>
    */
-  public void turno(){
+  public int turno(){
     int numTurno = 0;
     pausa(5000);
     PrintTerminal.limparTerminal();
@@ -560,14 +560,14 @@ import dados.ListaInimigos;
       acionaPublisher(Turnos.INICIO_TURNO_JOAGADOR); // notificamos os efeitos do inicio do combate
       if(atualizaInimigosMortos()){
         mensagemVitoria();
-        return;
+        return Turnos.GANHOU;
       }
       
       while(!heroiAgiu){
         
         if(!heroi.estaVivo()){
           System.out.println(Cores.ANSI_PURPLE + "Você morreu!" + Cores.ANSI_RESET);
-          return;
+          return Turnos.PERDEU;
         }
         
         /* Vemos qual acao o heroi quer tomar */
@@ -580,7 +580,7 @@ import dados.ListaInimigos;
         }
         
         if(comando == Turnos.FUGIR){
-          if(calculaChangeFuga()){ return; }
+          if(calculaChangeFuga()){ return Turnos.FUGIU; }
           else{ break; }
         }
         
@@ -607,7 +607,7 @@ import dados.ListaInimigos;
               /* verificamos se todos morreram e o turno deve acabar */
               if (listaInimigos.getTamanho() == 0) {
                 mensagemVitoria();
-                return;
+                return Turnos.GANHOU;
               }
               
               /* verificamos se o heroi ainda possui energia */
@@ -641,7 +641,7 @@ import dados.ListaInimigos;
                   acionaPublisher(Turnos.INSTANTANEO);
                   if(atualizaInimigosMortos()){
                     mensagemVitoria();
-                    return;
+                    return Turnos.GANHOU;
                   }
                 }
               }
@@ -653,7 +653,7 @@ import dados.ListaInimigos;
       
       if(atualizaInimigosMortos()){
         mensagemVitoria();
-        return;
+        return Turnos.GANHOU;
       }
       
       /* Agora que o turno do heroi acabou */
@@ -668,7 +668,7 @@ import dados.ListaInimigos;
       
       if(atualizaInimigosMortos()){
         mensagemVitoria();
-        return;
+        return Turnos.GANHOU;
       }
       
       /* turno inimigo */
