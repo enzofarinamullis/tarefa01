@@ -1,15 +1,16 @@
 # Java compiled output
-*. class
-*. jar
+*.class
+*.jar
 # IntelliJ IDEA
 .idea/
-*. iml
+*.iml
+*.xml
 # Maven / Gradle build output
-target /
-build /
-. gradle /
+target/
+build/
+.gradle/
 # macOS metadata
-. DS_Store
+.DS_Store
 
 
 # Ignore Gradle project-specific cache directory
