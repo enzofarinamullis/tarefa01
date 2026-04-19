@@ -33,9 +33,5 @@ public class Mapa {
     mapa.addEdge(b3, b5);
     mapa.addEdge(b4,b5);
     mapa.addEdge(b5, b6);
-    
-    imprimirMapa();
   }
-  
-
 }
