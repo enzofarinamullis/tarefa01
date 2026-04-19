@@ -1,6 +1,7 @@
 package sistematurnos;
 import constantes.Turnos;
 import dados.Dados;
+import sistematurnos.idsBatalhas.GeradorIds;
 
 public abstract class Batalha {
   private GameManager gameManager;
@@ -12,6 +13,7 @@ public abstract class Batalha {
     this.dados = dados;
     gameManager = new GameManager(dados);
     this.nome = nome;
+    this.id = GeradorIds.proximoId();
   }
   
   
