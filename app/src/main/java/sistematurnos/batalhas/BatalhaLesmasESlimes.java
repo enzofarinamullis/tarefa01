@@ -10,7 +10,7 @@ public class BatalhaLesmasESlimes extends Batalha {
   int qntLesmas;
   int qntSlimes;
   public BatalhaLesmasESlimes(Dados dados, int qntLesmas, int qntSlimes){
-    super(dados);
+    super(dados, "Batalha contra Lesmas e Slimes");
     this.qntLesmas = qntLesmas;
     this.qntSlimes = qntSlimes;
   }

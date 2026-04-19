@@ -9,6 +9,7 @@ import dados.Heroi;
 import musica.MidiPlayer;
 import musica.MusicaInicial;
 import sistematurnos.GameManager;
+import sistematurnos.Mapa;
 
 /**
  * Classe principal responsável por iniciar e executar o jogo.
@@ -88,7 +89,10 @@ public class App {
     
     // Exibe o status inicial do herói
     heroi.status();
-
+    
+    /* Testes de Mapa */
+    Mapa mapa = new Mapa(dados);
+    
     // Cria o gerenciador de turnos com os dados do jogo
     GameManager gameManager = new GameManager(dados);
 

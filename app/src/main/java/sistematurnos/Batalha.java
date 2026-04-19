@@ -5,10 +5,13 @@ import dados.Dados;
 public abstract class Batalha {
   private GameManager gameManager;
   protected Dados dados;
+  protected String nome;
+  protected int id;
   
-  public Batalha(Dados dados) {
+  public Batalha(Dados dados, String nome) {
     this.dados = dados;
     gameManager = new GameManager(dados);
+    this.nome = nome;
   }
   
   
@@ -32,6 +35,12 @@ public abstract class Batalha {
       System.out.println("Fugiu");
       return true;
     }
+  }
+  
+  /* Para a impressão do nosso mapa ficar bonita */
+  @Override
+  public String toString(){
+    return nome + id;
   }
   
 }

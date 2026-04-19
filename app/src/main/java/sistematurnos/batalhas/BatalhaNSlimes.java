@@ -7,7 +7,7 @@ import sistematurnos.Batalha;
 public class BatalhaNSlimes extends Batalha {
   int quantidadeSlimes;
   public BatalhaNSlimes(Dados dados, int quantidadeSlimes){
-    super(dados);
+    super(dados, "Batalha contra Slimes");
     this.quantidadeSlimes = quantidadeSlimes;
   }
   
