@@ -2,7 +2,7 @@
 *. class
 *. jar
 # IntelliJ IDEA
-. idea /
+.idea/
 *. iml
 # Maven / Gradle build output
 target /

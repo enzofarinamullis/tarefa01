@@ -15,8 +15,11 @@ public abstract class Batalha {
   protected abstract void adicionarInimigos();
   
   public boolean iniciarBatalha(){
+    /* Adicionamos os inimigos necessários para cada batalha */
+    adicionarInimigos();
+    /* Iniciamos o turno */
     int resultado = gameManager.turno();
-    
+    /* Analisamos o resultado da batalha */
     if(resultado == Turnos.GANHOU){
       System.out.println("Ganhou");
       return true;

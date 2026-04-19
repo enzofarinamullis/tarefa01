@@ -19,6 +19,7 @@ repositories {
 dependencies {
     // This dependency is used by the application.
     implementation libs.guava
+    implementation 'org.jgrapht:jgrapht-core:1.5.2'
 }
 
 testing {
