@@ -4,7 +4,6 @@
 # IntelliJ IDEA
 .idea/
 *.iml
-*.xml
 # Maven / Gradle build output
 target/
 build/
