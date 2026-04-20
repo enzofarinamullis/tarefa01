@@ -3,6 +3,7 @@ import org.jgrapht.generate.CompleteGraphGenerator;
 import sistematurnos.NoMapa.NoMapa;
 import sistematurnos.batalhas.*;
 import dados.Dados;
+import constantes.Mapa;
 
 /* para ref: https://jgrapht.org/guide/UserOverview */
 import org.jgrapht.graph.DefaultDirectedGraph;
@@ -10,9 +11,12 @@ import org.jgrapht.graph.DefaultEdge;
 
 public class Mapa {
   DefaultDirectedGraph<Batalha, DefaultEdge> mapa;
+  int[][] matrizMapa;
   
   public Mapa(Dados dados){
     mapa = new DefaultDirectedGraph<>(DefaultEdge.class);
+    inicializaMatriz();
+    
     /* Criamos as batalhas que iremos utilizar */
     NoMapa no;
     Batalha b1 = new BatalhaNSlimes(dados, 1);
@@ -37,6 +41,15 @@ public class Mapa {
     mapa.addEdge(b5, b6);
     
     imprimirMapa();
+  }
+  
+  public void inicializaMatriz(){
+    matrizMapa = new int[constantes.Mapa.TAM_MAPA_X][constantes.Mapa.TAM_MAPA_Y];
+    for(int i = 0; i < constantes.Mapa.TAM_MAPA_X; i++){
+      for(int j = 0; j < constantes.Mapa.TAM_MAPA_Y; j++){
+        matrizMapa[j][i] = 0;
+      }
+    }
   }
   
   public void imprimirMapa(){
