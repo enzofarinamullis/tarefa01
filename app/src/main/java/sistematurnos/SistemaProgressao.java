@@ -13,41 +13,52 @@ public class SistemaProgressao {
     estagio = 0;
   }
   
-  private Batalha selecionaBatalha(){
-    Batalha batalhaEscolhida = null;
-    int escolha = 0;
-    Scanner teclado = new Scanner(System.in);
-    while (batalhaEscolhida == null){
-      escolha = teclado.nextInt();
-      batalhaEscolhida = mapa.getBatalha(escolha);
-    }
-    System.out.println("Batalha escolhida com sucesso!");
-    return batalhaEscolhida;
-  }
-  
   public void selecionaEstagio(){
     int indice = 0;
-    System.out.println("Selecione uma fase: ");
     int escolha = 0;
+    System.out.println("Selecione uma fase: ");
     boolean resultado = false;
-    Batalha batalhaEscolhida = null;
+    Batalha batalhaEscolhida;
+    Batalha noAnterior = null;
     for(Batalha noAtual : mapa.grafo.vertexSet()){
       /* Baseado no estado que estamos, procuramos quais são os caminhos possíveis */
       if(estagio == 0) {
         System.out.println(noAtual);
-        batalhaEscolhida = selecionaBatalha();
+        
+        /* Verificamos se a batalha escolhida é valida */
+        batalhaEscolhida = null;
+        Scanner teclado = new Scanner(System.in);
+        while (batalhaEscolhida == null){
+          escolha = teclado.nextInt();
+          batalhaEscolhida = mapa.getBatalha(escolha);
+        }
+        System.out.println("Batalha escolhida com sucesso!");
+        
+        /* iniciamos a batalha */
         resultado = batalhaEscolhida.iniciarBatalha();
       }
       else if(estagio == indice){
-        for(DefaultEdge aresta : mapa.grafo.outgoingEdgesOf(noAtual)){
+        for(DefaultEdge aresta : mapa.grafo.outgoingEdgesOf(noAnterior)){
           Batalha noDestino = mapa.grafo.getEdgeTarget(aresta);
           System.out.println(noDestino);
         }
-        batalhaEscolhida = selecionaBatalha();
+        
+        /* Verificamos se a batalha escolhida é valida */
+        batalhaEscolhida = null;
+        Scanner teclado = new Scanner(System.in);
+        while (batalhaEscolhida == null){
+          escolha = teclado.nextInt();
+          batalhaEscolhida = mapa.getBatalha(escolha);
+        }
+        System.out.println("Batalha escolhida com sucesso!");
+        
+        /* Iniciamos a batalha */
         resultado = batalhaEscolhida.iniciarBatalha();
       }
-      if(resultado == true) {
+      if(resultado) {
         indice++;
+        estagio = escolha;
+        noAnterior = noAtual;
       }
       else{
         break;

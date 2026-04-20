@@ -137,7 +137,9 @@ public class Mapa {
       if(numero == indice + 1){
         return noAtual;
       }
+      indice++;
     }
+    System.out.println("Batalha inválida!");
     return null;
   }
 }
