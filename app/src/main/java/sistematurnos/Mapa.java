@@ -1,5 +1,6 @@
 package sistematurnos;
 import org.jgrapht.generate.CompleteGraphGenerator;
+import sistematurnos.NoMapa.NoMapa;
 import sistematurnos.batalhas.*;
 import dados.Dados;
 
@@ -13,6 +14,7 @@ public class Mapa {
   public Mapa(Dados dados){
     mapa = new DefaultDirectedGraph<>(DefaultEdge.class);
     /* Criamos as batalhas que iremos utilizar */
+    NoMapa no;
     Batalha b1 = new BatalhaNSlimes(dados, 1);
     Batalha b2 = new BatalhaNSlimes(dados, 2);
     Batalha b3 = new BatalhaNSlimes(dados, 3);
@@ -33,5 +35,19 @@ public class Mapa {
     mapa.addEdge(b3, b5);
     mapa.addEdge(b4,b5);
     mapa.addEdge(b5, b6);
+    
+    imprimirMapa();
+  }
+  
+  public void imprimirMapa(){
+    Batalha noDestino;
+    for(Batalha noInicio : mapa.vertexSet()){
+      System.out.println("Vértice: " + noInicio);
+      
+      for(DefaultEdge aresta : mapa.outgoingEdgesOf(noInicio)){
+        noDestino = mapa.getEdgeTarget(aresta);
+        System.out.println(noInicio + " -> " + noDestino);
+      }
+    }
   }
 }
