@@ -61,6 +61,7 @@ public class Mapa {
     boolean pausa = false;
     int indicePausa = 0;
     int qntArestasAnterior = 0;
+    
     for(Batalha noAtual : mapa.vertexSet()) {
       if(pausa){
         indicePausa++;
@@ -73,14 +74,19 @@ public class Mapa {
       }
      
       if (qntArestasAnterior == 1 || qntArestasAnterior == 0 && !pausa){
+        matrizMapa[linha - 1][meioX] = ConstMapa.CAMINHO_RETO;
         matrizMapa[linha][meioX] = ConstMapa.NO;
       }
       if(qntArestasAnterior == 2  && indiceIrmaos == 0 && !pausa){
+        matrizMapa[linha - 1][meioX - 1] = ConstMapa.CAMINHO_ESQ;
         matrizMapa[linha][meioX - 2] = ConstMapa.NO;
+        matrizMapa[linha + 1][meioX - 1] = ConstMapa.CAMINHO_DIR;
         indiceIrmaos++;
       }
       if (qntArestasAnterior == 2 && indiceIrmaos == 1 && !pausa){
+        matrizMapa[linha - 1][meioX + 1] = ConstMapa.CAMINHO_DIR;
         matrizMapa[linha][meioX + 2] = ConstMapa.NO;
+        matrizMapa[linha + 1][meioX + 1] = ConstMapa.CAMINHO_ESQ;
         indiceIrmaos = 0;
         pausa = true;
       }
@@ -92,27 +98,22 @@ public class Mapa {
     }
   }
   
-  
-  public void imprimirMapa(){
-    Batalha noDestino;
-    for(Batalha noInicio : mapa.vertexSet()){
-      System.out.println("Vértice: " + noInicio);
-      /* podemos ver quantas arestas saem de um nó */
-      
-      for(DefaultEdge aresta : mapa.outgoingEdgesOf(noInicio)){
-        noDestino = mapa.getEdgeTarget(aresta);
-        System.out.println(noInicio + " -> " + noDestino);
-      }
-    }
-  }
-  
   private void imprimeMatriz(){
     for(int i = 0; i < ConstMapa.TAM_MAPA_Y; i++){
       for(int j = 0; j < ConstMapa.TAM_MAPA_X; j++){
         if(matrizMapa[i][j] == ConstMapa.NO) {
           System.out.print(Cores.ANSI_YELLOW + "⚫ " + Cores.ANSI_RESET);
         }
-        else{
+        else if(matrizMapa[i][j] == ConstMapa.CAMINHO_RETO){
+          System.out.print(Cores.ANSI_YELLOW + "▎▎");
+        }
+        else if (matrizMapa[i][j] == ConstMapa.CAMINHO_ESQ) {
+          System.out.print(Cores.ANSI_YELLOW + "▞ " + Cores.ANSI_RESET);
+        }
+        else if (matrizMapa[i][j] == ConstMapa.CAMINHO_DIR){
+          System.out.print(Cores.ANSI_YELLOW + "▚ " + Cores.ANSI_RESET);
+        }
+        else {
           System.out.print(Cores.COR_CIMENTO_3 + "█ " + Cores.ANSI_RESET);
         }
       }
