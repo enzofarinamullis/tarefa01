@@ -42,7 +42,7 @@ public abstract class Batalha {
   /* Para a impressão do nosso mapa ficar bonita */
   @Override
   public String toString(){
-    return id + " - " + nome;
+    return " - " + nome;
   }
   
 }

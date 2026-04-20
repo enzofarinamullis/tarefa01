@@ -131,15 +131,10 @@ public class Mapa {
     System.out.println("---------");
   }
   
-  protected Batalha getBatalha(int numero) {
-    int indice = 0;
-    for(Batalha noAtual : grafo.vertexSet()){
-      if(numero == indice + 1){
-        return noAtual;
-      }
-      indice++;
+  protected Batalha getInicio() {
+    for (Batalha noAtual : grafo.vertexSet()) {
+      return noAtual;
     }
-    System.out.println("Batalha inválida!");
     return null;
   }
 }
