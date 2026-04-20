@@ -61,7 +61,7 @@ public class Mapa {
     boolean pausa = false;
     int indicePausa = 0;
     int qntArestasAnterior = 0;
-    
+    boolean anteriorFoiDois = false;
     for(Batalha noAtual : mapa.vertexSet()) {
       if(pausa){
         indicePausa++;
@@ -70,11 +70,14 @@ public class Mapa {
           indicePausa = 0;
           linha += 2;
           qntArestasAnterior = mapa.outgoingEdgesOf(noAtual).size();
+          anteriorFoiDois = true;
         }
       }
      
       if (qntArestasAnterior == 1 || qntArestasAnterior == 0 && !pausa){
-        matrizMapa[linha - 1][meioX] = ConstMapa.CAMINHO_RETO;
+        if(!anteriorFoiDois) {
+          matrizMapa[linha - 1][meioX] = ConstMapa.CAMINHO_RETO;
+        }
         matrizMapa[linha][meioX] = ConstMapa.NO;
       }
       if(qntArestasAnterior == 2  && indiceIrmaos == 0 && !pausa){
@@ -93,6 +96,9 @@ public class Mapa {
       if(!pausa) {
         linha = linha + 2;
         qntArestasAnterior = mapa.outgoingEdgesOf(noAtual).size();
+      }
+      if(anteriorFoiDois){
+        anteriorFoiDois = false;
       }
       
     }
