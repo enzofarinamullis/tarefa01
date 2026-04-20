@@ -11,11 +11,11 @@ import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
 
 public class Mapa {
-  DefaultDirectedGraph<Batalha, DefaultEdge> mapa;
+  DefaultDirectedGraph<Batalha, DefaultEdge> grafo;
   int[][] matrizMapa;
   
   public Mapa(Dados dados){
-    mapa = new DefaultDirectedGraph<>(DefaultEdge.class);
+    grafo = new DefaultDirectedGraph<>(DefaultEdge.class);
     inicializaMatriz();
     
     /* Criamos as batalhas que iremos utilizar */
@@ -27,19 +27,19 @@ public class Mapa {
     Batalha b5 = new BatalhaLesmasESlimes(dados, 2, 1);
     Batalha b6 = new BatalhaLesmasESlimes(dados, 1, 3);
     
-    mapa.addVertex(b1);
-    mapa.addVertex(b2);
-    mapa.addVertex(b3);
-    mapa.addVertex(b4);
-    mapa.addVertex(b5);
-    mapa.addVertex(b6);
+    grafo.addVertex(b1);
+    grafo.addVertex(b2);
+    grafo.addVertex(b3);
+    grafo.addVertex(b4);
+    grafo.addVertex(b5);
+    grafo.addVertex(b6);
     
-    mapa.addEdge(b1, b2);
-    mapa.addEdge(b2, b3);
-    mapa.addEdge(b2, b4);
-    mapa.addEdge(b3, b5);
-    mapa.addEdge(b4,b5);
-    mapa.addEdge(b5, b6);
+    grafo.addEdge(b1, b2);
+    grafo.addEdge(b2, b3);
+    grafo.addEdge(b2, b4);
+    grafo.addEdge(b3, b5);
+    grafo.addEdge(b4,b5);
+    grafo.addEdge(b5, b6);
     
     geraMapa();
     imprimeMatriz();
@@ -62,14 +62,14 @@ public class Mapa {
     int indicePausa = 0;
     int qntArestasAnterior = 0;
     boolean anteriorFoiDois = false;
-    for(Batalha noAtual : mapa.vertexSet()) {
+    for(Batalha noAtual : grafo.vertexSet()) {
       if(pausa){
         indicePausa++;
         if(indicePausa == 2){
           pausa = false;
           indicePausa = 0;
           linha += 2;
-          qntArestasAnterior = mapa.outgoingEdgesOf(noAtual).size();
+          qntArestasAnterior = grafo.outgoingEdgesOf(noAtual).size();
           anteriorFoiDois = true;
         }
       }
@@ -95,7 +95,7 @@ public class Mapa {
       }
       if(!pausa) {
         linha = linha + 2;
-        qntArestasAnterior = mapa.outgoingEdgesOf(noAtual).size();
+        qntArestasAnterior = grafo.outgoingEdgesOf(noAtual).size();
       }
       if(anteriorFoiDois){
         anteriorFoiDois = false;

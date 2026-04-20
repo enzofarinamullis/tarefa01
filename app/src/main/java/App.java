@@ -10,6 +10,7 @@ import musica.MidiPlayer;
 import musica.MusicaInicial;
 import sistematurnos.GameManager;
 import sistematurnos.Mapa;
+import sistematurnos.SistemaProgressao;
 
 /**
  * Classe principal responsável por iniciar e executar o jogo.
@@ -92,6 +93,8 @@ public class App {
     
     /* Testes de Mapa */
     Mapa mapa = new Mapa(dados);
+    SistemaProgressao sistemaProgressao = new SistemaProgressao(mapa);
+    sistemaProgressao.selecionaEstagio();
     
     // Cria o gerenciador de turnos com os dados do jogo
     GameManager gameManager = new GameManager(dados);
