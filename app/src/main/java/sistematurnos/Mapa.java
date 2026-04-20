@@ -105,6 +105,9 @@ public class Mapa {
   }
   
   private void imprimeMatriz(){
+    
+    System.out.println("MAPA:");
+    System.out.println("---------");
     for(int i = 0; i < ConstMapa.TAM_MAPA_Y; i++){
       for(int j = 0; j < ConstMapa.TAM_MAPA_X; j++){
         if(matrizMapa[i][j] == ConstMapa.NO) {
@@ -125,5 +128,6 @@ public class Mapa {
       }
       System.out.println();
     }
+    System.out.println("---------");
   }
 }
