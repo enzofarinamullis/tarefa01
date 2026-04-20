@@ -1,9 +1,10 @@
 package sistematurnos;
-import org.jgrapht.generate.CompleteGraphGenerator;
+import com.sun.security.jgss.GSSUtil;
 import sistematurnos.NoMapa.NoMapa;
 import sistematurnos.batalhas.*;
 import dados.Dados;
-import constantes.Mapa;
+import constantes.ConstMapa;
+import constantes.Cores;
 
 /* para ref: https://jgrapht.org/guide/UserOverview */
 import org.jgrapht.graph.DefaultDirectedGraph;
@@ -40,27 +41,82 @@ public class Mapa {
     mapa.addEdge(b4,b5);
     mapa.addEdge(b5, b6);
     
-    imprimirMapa();
+    geraMapa();
+    imprimeMatriz();
   }
   
-  public void inicializaMatriz(){
-    matrizMapa = new int[constantes.Mapa.TAM_MAPA_X][constantes.Mapa.TAM_MAPA_Y];
-    for(int i = 0; i < constantes.Mapa.TAM_MAPA_X; i++){
-      for(int j = 0; j < constantes.Mapa.TAM_MAPA_Y; j++){
-        matrizMapa[j][i] = 0;
+  private void inicializaMatriz(){
+    matrizMapa = new int[ConstMapa.TAM_MAPA_Y][ConstMapa.TAM_MAPA_X];
+    for(int i = 0; i < ConstMapa.TAM_MAPA_Y; i++){
+      for(int j = 0; j < ConstMapa.TAM_MAPA_X; j++){
+        matrizMapa[i][j] = 0;
       }
     }
   }
+  
+  private void geraMapa(){
+    int linha = 1;
+    int meioX = ConstMapa.MEIO_X;
+    int indiceIrmaos = 0;
+    boolean pausa = false;
+    int indicePausa = 0;
+    int qntArestasAnterior = 0;
+    for(Batalha noAtual : mapa.vertexSet()) {
+      if(pausa){
+        indicePausa++;
+        if(indicePausa == 2){
+          pausa = false;
+          indicePausa = 0;
+          linha += 2;
+          qntArestasAnterior = mapa.outgoingEdgesOf(noAtual).size();
+        }
+      }
+     
+      if (qntArestasAnterior == 1 || qntArestasAnterior == 0 && !pausa){
+        matrizMapa[linha][meioX] = ConstMapa.NO;
+      }
+      if(qntArestasAnterior == 2  && indiceIrmaos == 0 && !pausa){
+        matrizMapa[linha][meioX - 2] = ConstMapa.NO;
+        indiceIrmaos++;
+      }
+      if (qntArestasAnterior == 2 && indiceIrmaos == 1 && !pausa){
+        matrizMapa[linha][meioX + 2] = ConstMapa.NO;
+        indiceIrmaos = 0;
+        pausa = true;
+      }
+      if(!pausa) {
+        linha = linha + 2;
+        qntArestasAnterior = mapa.outgoingEdgesOf(noAtual).size();
+      }
+      
+    }
+  }
+  
   
   public void imprimirMapa(){
     Batalha noDestino;
     for(Batalha noInicio : mapa.vertexSet()){
       System.out.println("Vértice: " + noInicio);
+      /* podemos ver quantas arestas saem de um nó */
       
       for(DefaultEdge aresta : mapa.outgoingEdgesOf(noInicio)){
         noDestino = mapa.getEdgeTarget(aresta);
         System.out.println(noInicio + " -> " + noDestino);
       }
+    }
+  }
+  
+  private void imprimeMatriz(){
+    for(int i = 0; i < ConstMapa.TAM_MAPA_Y; i++){
+      for(int j = 0; j < ConstMapa.TAM_MAPA_X; j++){
+        if(matrizMapa[i][j] == ConstMapa.NO) {
+          System.out.print(Cores.ANSI_YELLOW + "⚫ " + Cores.ANSI_RESET);
+        }
+        else{
+          System.out.print(Cores.COR_CIMENTO_3 + "█ " + Cores.ANSI_RESET);
+        }
+      }
+      System.out.println();
     }
   }
 }
