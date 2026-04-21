@@ -204,7 +204,7 @@ public abstract class Efeito{
    * sobrescrevam este método para retornar true, facilitando a identificação do tipo de efeito
    * @return true se o efeito for do tipo envenenamento, false caso contrário
    */
-  public boolean ehEnvenamento(){
+  public boolean ehEnvenenamento(){
     return false;
   }
   

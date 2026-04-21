@@ -33,22 +33,12 @@ public class Envenenamento extends Efeito {
   public void aplicar(Entidade entidade) {
     if (entidade != null) {
       int dano = getIntensidade()*2;
-      if (entidade instanceof Inimigo) {
-        Inimigo inimigo = (Inimigo) entidade;
-        inimigo.receberDano(dano);
-        System.out.println("💀 " + inimigo.getNome() + " sangrando! Dano: " + dano);
-      }
-      else if (entidade instanceof Heroi) {
-        Heroi heroi = (Heroi) entidade;
-        heroi.receberDano(dano);
-        System.out.println("💀 " + heroi.getNome() + "envenenado! Dano: " + dano);
-      }
       System.out.println("☠️  " + entidade.getNome() + " envenenado! Perdeu " + dano + " HP");
       entidade.receberDano(dano);
     }
 
   }
-  
+  @Override
   public boolean ehEnvenenamento(){
     return true;
   }
