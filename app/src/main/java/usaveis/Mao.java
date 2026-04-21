@@ -32,6 +32,7 @@ public class Mao{
     cartas = new ArrayList<>();
   }
   
+  
   /**
    * Método para exibir as cartas atualmente na mão do jogador.
    */

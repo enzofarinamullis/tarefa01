@@ -501,6 +501,32 @@ import dados.ListaInimigos;
     System.out.println(Cores.ANSI_GREEN + "Parabéns, você venceu a luta!" + Cores.ANSI_RESET);
   }
   
+  private void tranfereMaoCompra(){
+    Mao mao = dados.heroi.getMao();
+    PilhaCompra pilhaCompra = dados.heroi.getPilhaCompra();
+    
+    while(!mao.cartas.isEmpty()){
+      pilhaCompra.pilha.add(mao.cartas.removeFirst());
+    }
+  }
+  
+  private void tranfereDescarteCompra(){
+    PilhaCompra pilhaCompra = dados.heroi.getPilhaCompra();
+    PilhaDescarte pilhaDescarte = dados.heroi.getPilhaDescarte();
+    
+    while(!pilhaDescarte.pilha.isEmpty()){
+      pilhaCompra.pilha.add(pilhaDescarte.pilha.removeFirst());
+    }
+  }
+  
+  private void iniciaMao(){
+    Mao mao = dados.heroi.getMao();
+    PilhaDescarte pilhaDescarte = dados.heroi.getPilhaDescarte();
+    PilhaCompra pilhaCompra = dados.heroi.getPilhaCompra();
+    
+    tranfereMaoCompra();
+    tranfereDescarteCompra();
+  }
   
   /**
    * Gerencia o fluxo principal do combate, alternando entre os turnos do jogador
@@ -528,7 +554,10 @@ import dados.ListaInimigos;
     /* para facilitar a leitura */
     Heroi heroi = dados.heroi;
     ListaInimigos listaInimigos = dados.listaInimigos;
-    
+    /* Como o jogo funciona com progressão */
+    /* precisamos garantir que a cada estágio o jogador */
+    /* não acumule cartas e possa sempre usar novas */
+    iniciaMao();
     embaralhaECompra();
     
     int comando;
