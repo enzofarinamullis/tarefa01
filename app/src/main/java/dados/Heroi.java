@@ -129,14 +129,16 @@ public class Heroi extends Entidade {
    *         {@code false} caso contrário
    */
   public boolean verificaEnergia() {
-    Carta atual = mao.cartas.getFirst();
-    int indice = 0;
-    while(indice != mao.cartas.size()) {
-      if(atual.getCustoEnergia() <= energia) {
-        return true;
+    if(!mao.cartas.isEmpty()) {
+      Carta atual;
+      int indice = 0;
+      while (indice != mao.cartas.size()) {
+        atual = mao.cartas.get(indice);
+        if (atual.getCustoEnergia() <= energia) {
+          return true;
+        }
+        indice++;
       }
-      atual = mao.cartas.get(indice);
-      indice++;
     }
     return false;
   }

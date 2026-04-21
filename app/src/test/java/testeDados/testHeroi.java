@@ -126,8 +126,8 @@ public class testHeroi {
       int energiaConsumida = 0;
       if (heroi.temEnergia(espadaCurta.getCustoEnergia())) {
         for (int i = 0; i < inimigos.getTamanho(); i++) {
-          if (inimigos.buscarInimigo(i).estaVivoSemPrint()) {
-            heroi.getMao().cartas.get(0).usar(inimigos.buscarInimigo(i), heroi);
+          if (inimigos.buscarInimigo(i + 1).estaVivoSemPrint()) {
+            heroi.getMao().cartas.getFirst().usar(inimigos.buscarInimigo(i + 1), heroi);
             break;
           }
         }
@@ -157,8 +157,8 @@ public class testHeroi {
       for (int i = 0; i < heroi.getMao().cartas.size(); i++) {
         if (heroi.temEnergia(heroi.getMao().cartas.get(i).getCustoEnergia())) {
           for (int j = 0; j < inimigos.getTamanho(); j++) {
-            if (inimigos.buscarInimigo(j).estaVivoSemPrint()) {
-              heroi.getMao().cartas.get(i).usar(inimigos.buscarInimigo(j), heroi);
+            if (inimigos.buscarInimigo(j + 1).estaVivoSemPrint()) {
+              heroi.getMao().cartas.get(i).usar(inimigos.buscarInimigo(j + 1), heroi);
               break;
             }
           }
