@@ -41,7 +41,6 @@ import java.util.List;
  */
 public abstract class Efeito{
   private String nome;
-  private String dono;
   private int acumulos;
   private int intensidade;
   private int idAtivacao;

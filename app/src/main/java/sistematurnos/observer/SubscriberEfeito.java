@@ -17,8 +17,16 @@ public class SubscriberEfeito extends Subscriber{
   }
   
   protected void serNotificado(){
-    efeito.aplicar(alvo);
-    usos++;
+    if(alvo != null) {
+      efeito.aplicar(alvo);
+      usos++;
+    }
+  }
+  
+  public void matarEfeito(Entidade alvo){
+    if(alvo == this.alvo) {
+      alvo = null;
+    }
   }
   
   /**
