@@ -26,7 +26,7 @@ import usaveis.pilhas.PilhaDescarte;
 
 
 
-public class testHeroi {
+public class TestHeroi {
   private Heroi heroi;
   private ListaInimigos inimigos;
   @BeforeEach
