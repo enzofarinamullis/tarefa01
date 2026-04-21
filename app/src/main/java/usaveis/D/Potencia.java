@@ -31,7 +31,7 @@ public class Potencia {
   }
   
   public int rolarDado(){
-    int resultado = aleatorio.nextInt(NdeLados) + 1;
+    int resultado = rolarDadoSemAnim();
     System.out.println("Rolando dado de potencia:");
     System.out.println(".");
     pausa(700);
@@ -62,8 +62,6 @@ public class Potencia {
   
   public int rolarDadoSemAnim(){
     int resultado = aleatorio.nextInt(NdeLados) + 1;
-    System.out.println("Rolando dado de potencia:");
-    System.out.println(resultado);
     
     return resultado;
   }

@@ -33,7 +33,7 @@ public class Precisao {
   }
    
   public int rolarDado(){
-    int resultado = aleatorio.nextInt(20) + 1;
+    int resultado = rolarDadoSemAnim();
     System.out.println("Rolando D20 de precisão:");
     pausa(700);
     System.out.println(".");
@@ -73,9 +73,6 @@ public class Precisao {
   
   public int rolarDadoSemAnim(){
     int resultado = aleatorio.nextInt(20) + 1;
-    System.out.println("Rolando D20 de precisão:");
-    System.out.println(resultado);
-    
     return resultado;
   }
   
