@@ -68,9 +68,37 @@ public class Precisao {
     return resultado;
   }
   public boolean teste(int dificuldade) {
-    return rolarDado()>= dificuldade;
+    return rolarDadoSemAnim()>= dificuldade;
   }
-
+  
+  public int rolarDadoSemAnim(){
+    int resultado = aleatorio.nextInt(20) + 1;
+    System.out.println("Rolando D20 de precisão:");
+    System.out.println(resultado);
+    
+    return resultado;
+  }
+  
+  public int rolarVantagemSemAnim() {
+    System.out.println("Rolando D20 de precisão com vantagem:");
+    int dado_1 = rolarDadoSemAnim();
+    int dado_2 = rolarDadoSemAnim();
+    int resultado = Math.max(dado_1, dado_2);
+    System.out.println(resultado);
+    return resultado;
+  }
+  
+  public int rolarDesvantagemSemAnim() {
+    System.out.print("> Rolando ");
+    Cores.cprint(Cores.ANSI_BLUE, "D20");
+    System.out.print(" de precisão com desvantagem <\n");
+    int dado_1 = rolarDadoSemAnim();
+    int dado_2 = rolarDadoSemAnim();
+    int resultado = Math.min(dado_1, dado_2);
+    System.out.println(resultado);
+    return resultado;
+  }
+  
   public void critico(int resultado) {
     if (resultado == 20) {
       System.out.print("Acerto ");
