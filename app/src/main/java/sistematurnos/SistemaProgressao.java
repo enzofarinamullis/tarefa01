@@ -38,11 +38,19 @@ public class SistemaProgressao {
         break;
       }
       
+      /* limpamos o caminho simplesmente redeclarando ele */
       List<Batalha> caminhos = new ArrayList<>();
       
       for(DefaultEdge aresta : mapa.grafo.outgoingEdgesOf(atual)){
         Batalha destino = mapa.grafo.getEdgeTarget(aresta);
         caminhos.add(destino);
+      }
+      
+      /* precisamos verificar se o jogador chegou ao último caminho */
+      /* o último caminho não terá caminho para nenhum outro nó */
+      if(caminhos.isEmpty()){
+        System.out.println("Você chegou ao fim!");
+        return;
       }
       
       atualizaMapa();
