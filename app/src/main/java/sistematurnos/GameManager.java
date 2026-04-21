@@ -528,6 +528,14 @@ import dados.ListaInimigos;
     tranfereDescarteCompra();
   }
   
+  private void limpaBatalha(Publisher publisher){
+    int numero = 1;
+    dados.listaInimigos.limparListaInimigos();
+    if(publisher != null) {
+      publisher.limparPublisher();
+    }
+  }
+  
   /**
    * Gerencia o fluxo principal do combate, alternando entre os turnos do jogador
    * e dos inimigos, e aplicando as ações e efeitos conforme as escolhas do jogador
@@ -589,6 +597,7 @@ import dados.ListaInimigos;
       acionaPublisher(Turnos.INICIO_TURNO_JOAGADOR); // notificamos os efeitos do inicio do combate
       if(atualizaInimigosMortos()){
         mensagemVitoria();
+        limpaBatalha(publisher);
         return Turnos.GANHOU;
       }
       
@@ -609,9 +618,12 @@ import dados.ListaInimigos;
         }
         
         if(comando == Turnos.FUGIR){
-          return Turnos.FUGIU;
-          //if(calculaChangeFuga()){ return Turnos.FUGIU; }
-          //else{ break; }
+          
+          if(calculaChangeFuga()){
+            limpaBatalha(publisher);
+            return Turnos.FUGIU;
+          }
+          else{ break; }
         }
         
         /* Caso a escolha seja USAR, verificamos se ha energia suficiente */
@@ -641,6 +653,7 @@ import dados.ListaInimigos;
               /* verificamos se todos morreram e o turno deve acabar */
               if (listaInimigos.getTamanho() == 0) {
                 mensagemVitoria();
+                limpaBatalha(publisher);
                 return Turnos.GANHOU;
               }
               
@@ -675,6 +688,7 @@ import dados.ListaInimigos;
                   acionaPublisher(Turnos.INSTANTANEO);
                   if(atualizaInimigosMortos()){
                     mensagemVitoria();
+                    limpaBatalha(publisher);
                     return Turnos.GANHOU;
                   }
                 }

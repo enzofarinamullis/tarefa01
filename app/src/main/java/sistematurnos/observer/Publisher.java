@@ -20,6 +20,12 @@ public class Publisher {
     subscribers.remove(remover);
   }
   
+  public void limparPublisher(){
+    while(!subscribers.isEmpty()){
+      subscribers.removeFirst();
+    }
+  }
+  
   public void notificar(int idAtivacao){
     /* chama um metodo para todos os subscribers com o id de ativacao especificado */
     Subscriber subscriber;
