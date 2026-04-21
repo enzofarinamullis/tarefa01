@@ -202,6 +202,6 @@ public class testHeroi {
       heroi.receberDano(100);
       assertDoesNotThrow(() -> heroi.status(), "O status não mpode crashar com o heroi morto!");
 
-}
+  }
 }
 

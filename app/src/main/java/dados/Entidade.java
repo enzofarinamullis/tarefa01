@@ -240,6 +240,9 @@ public abstract class Entidade {
    * @return valor atual da vida
    */
   public int getVida() {
+    if(vida < 0){
+      vida = 0;
+    }
     return vida;
   }
 
