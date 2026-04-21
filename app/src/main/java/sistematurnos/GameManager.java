@@ -501,6 +501,40 @@ import dados.ListaInimigos;
     System.out.println(Cores.ANSI_GREEN + "Parabéns, você venceu a luta!" + Cores.ANSI_RESET);
   }
   
+  private void tranfereMaoCompra(){
+    Mao mao = dados.heroi.getMao();
+    PilhaCompra pilhaCompra = dados.heroi.getPilhaCompra();
+    
+    while(!mao.cartas.isEmpty()){
+      pilhaCompra.pilha.add(mao.cartas.removeFirst());
+    }
+  }
+  
+  private void tranfereDescarteCompra(){
+    PilhaCompra pilhaCompra = dados.heroi.getPilhaCompra();
+    PilhaDescarte pilhaDescarte = dados.heroi.getPilhaDescarte();
+    
+    while(!pilhaDescarte.pilha.isEmpty()){
+      pilhaCompra.pilha.add(pilhaDescarte.pilha.removeFirst());
+    }
+  }
+  
+  private void iniciaMao(){
+    Mao mao = dados.heroi.getMao();
+    PilhaDescarte pilhaDescarte = dados.heroi.getPilhaDescarte();
+    PilhaCompra pilhaCompra = dados.heroi.getPilhaCompra();
+    
+    tranfereMaoCompra();
+    tranfereDescarteCompra();
+  }
+  
+  private void limpaBatalha(Publisher publisher){
+    int numero = 1;
+    dados.listaInimigos.limparListaInimigos();
+    if(publisher != null) {
+      publisher.limparPublisher();
+    }
+  }
   
   /**
    * Gerencia o fluxo principal do combate, alternando entre os turnos do jogador
@@ -528,7 +562,10 @@ import dados.ListaInimigos;
     /* para facilitar a leitura */
     Heroi heroi = dados.heroi;
     ListaInimigos listaInimigos = dados.listaInimigos;
-    
+    /* Como o jogo funciona com progressão */
+    /* precisamos garantir que a cada estágio o jogador */
+    /* não acumule cartas e possa sempre usar novas */
+    iniciaMao();
     embaralhaECompra();
     
     int comando;
@@ -560,6 +597,7 @@ import dados.ListaInimigos;
       acionaPublisher(Turnos.INICIO_TURNO_JOAGADOR); // notificamos os efeitos do inicio do combate
       if(atualizaInimigosMortos()){
         mensagemVitoria();
+        limpaBatalha(publisher);
         return Turnos.GANHOU;
       }
       
@@ -580,9 +618,14 @@ import dados.ListaInimigos;
         }
         
         if(comando == Turnos.FUGIR){
-          return Turnos.FUGIU;
-          //if(calculaChangeFuga()){ return Turnos.FUGIU; }
-          //else{ break; }
+          
+          if(calculaChangeFuga()){
+            limpaBatalha(publisher);
+            return Turnos.FUGIU;
+          }
+          else{
+            break;
+          }
         }
         
         /* Caso a escolha seja USAR, verificamos se ha energia suficiente */
@@ -601,13 +644,18 @@ import dados.ListaInimigos;
               /* verificamos se o inimigo morreu */
               if (!inimigo.estaVivoSemPrint()) {
                 listaInimigos.removerInimigo(inimigo); // removemos ele da lista de inimigos
-                inimigo = null; // apontar para null sera importante para podermos
-                                // nao aplicar efeito em inimgios mortos
+                /* se o inimigo morreu, removemos os efeitos aplicados nele */
+                /* da lista de publishers */
+                for(SubscriberEfeito subscriberSelecionado : publisher.getSubscribersEfeitos()){
+                  subscriberSelecionado.matarEfeito(inimigo);
+                }
+                inimigo = null;
               }
               
               /* verificamos se todos morreram e o turno deve acabar */
               if (listaInimigos.getTamanho() == 0) {
                 mensagemVitoria();
+                limpaBatalha(publisher);
                 return Turnos.GANHOU;
               }
               
@@ -628,7 +676,7 @@ import dados.ListaInimigos;
                 if (efeito.ehCura()) {
                   subscriber = new SubscriberEfeito(heroi, efeito, efeito.getIdAtivacao());
                   
-                } else if (efeito.ehEnvenamento() || efeito.ehSangramento()) {
+                } else if (efeito.ehEnvenenamento() || efeito.ehSangramento() || efeito.ehCurrupcao()) {
                   /* como os efeito de dano, inicialmente so estarao nas espadas
                    * o inimigo estara selecionado, a nao ser que ele tenha morrido */
                   
@@ -642,6 +690,7 @@ import dados.ListaInimigos;
                   acionaPublisher(Turnos.INSTANTANEO);
                   if(atualizaInimigosMortos()){
                     mensagemVitoria();
+                    limpaBatalha(publisher);
                     return Turnos.GANHOU;
                   }
                 }

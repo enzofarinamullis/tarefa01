@@ -105,6 +105,12 @@ public class ListaInimigos {
     int indice = numero - 1;
     return inimigos.get(indice);
   }
+  
+  public void limparListaInimigos(){
+    while(!inimigos.isEmpty()){
+      inimigos.removeFirst();
+    }
+  }
 
   /**
    * Remove um inimigo específico da lista.

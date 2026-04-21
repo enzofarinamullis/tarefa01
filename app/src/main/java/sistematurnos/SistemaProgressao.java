@@ -25,12 +25,12 @@ public class SistemaProgressao {
   public void selecionaEstagio(){
     Scanner teclado = new Scanner(System.in);
     Batalha atual = mapa.getInicio();
-    int escolha = -1;
+    int qntEscolhas = 1;
     while (atual != null){
       System.out.println("Batalha selecionada: " + atual);
       boolean resultado = atual.iniciarBatalha();
       
-      estagio += escolha + 1; // a escolha variará de 0 a 1, precisamos
+      estagio += qntEscolhas; // a escolha variará de 0 a 1, precisamos
       // incrementar o estagio com base nela
       
       if(!resultado){
@@ -38,11 +38,19 @@ public class SistemaProgressao {
         break;
       }
       
+      /* limpamos o caminho simplesmente redeclarando ele */
       List<Batalha> caminhos = new ArrayList<>();
       
       for(DefaultEdge aresta : mapa.grafo.outgoingEdgesOf(atual)){
         Batalha destino = mapa.grafo.getEdgeTarget(aresta);
         caminhos.add(destino);
+      }
+      
+      /* precisamos verificar se o jogador chegou ao último caminho */
+      /* o último caminho não terá caminho para nenhum outro nó */
+      if(caminhos.isEmpty()){
+        System.out.println("Você chegou ao fim!");
+        return;
       }
       
       atualizaMapa();
@@ -52,7 +60,8 @@ public class SistemaProgressao {
       }
       
       /* fazemos a leitura e a validacao baseado no indice da lista de escolhas */
-      escolha = -1;
+      int escolha = -1;
+      qntEscolhas = caminhos.size();
       while(escolha < 0 || escolha >= caminhos.size()) {
         escolha = teclado.nextInt();
       }

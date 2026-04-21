@@ -153,6 +153,9 @@ public class Mapa {
           matrizMapa[i][j] = ConstMapa.NO_TERMINADO;
           indice++;
         }
+        else if (matrizMapa[i][j] == ConstMapa.NO_TERMINADO) {
+          indice++;
+        }
         if(indice == estagio){
           return;
         }
