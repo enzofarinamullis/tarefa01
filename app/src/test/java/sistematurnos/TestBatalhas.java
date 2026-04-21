@@ -1,14 +1,14 @@
 package sistematurnos;
 
-import dados.Dados;
-import dados.Heroi;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import dados.Dados;
+import dados.Heroi;
 import sistematurnos.batalhas.BatalhaLesmasESlimes;
 import sistematurnos.batalhas.BatalhaNSlimes;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestBatalhas {
   private Heroi heroi;
