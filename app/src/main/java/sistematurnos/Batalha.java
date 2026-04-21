@@ -44,5 +44,4 @@ public abstract class Batalha {
   public String toString(){
     return " - " + nome;
   }
-  
 }
