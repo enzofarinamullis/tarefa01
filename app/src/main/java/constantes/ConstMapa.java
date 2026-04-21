@@ -9,4 +9,6 @@ public class ConstMapa {
   public final static int CAMINHO_RETO = 3;
   public final static int CAMINHO_DIR = 4;
   public final static int NO = 5;
+  public final static int NO_ATUAL = 6;
+  public final static int NO_TERMINADO = 7;
 }

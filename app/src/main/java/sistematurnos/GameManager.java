@@ -580,8 +580,9 @@ import dados.ListaInimigos;
         }
         
         if(comando == Turnos.FUGIR){
-          if(calculaChangeFuga()){ return Turnos.FUGIU; }
-          else{ break; }
+          return Turnos.FUGIU;
+          //if(calculaChangeFuga()){ return Turnos.FUGIU; }
+          //else{ break; }
         }
         
         /* Caso a escolha seja USAR, verificamos se ha energia suficiente */

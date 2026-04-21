@@ -12,17 +12,27 @@ public class SistemaProgressao {
   
   public SistemaProgressao(Mapa mapa){
     this.mapa = mapa;
-    estagio = 0;
+    estagio = -1;
+    atualizaMapa();
+    mapa.imprimeMatriz();
+  }
+  
+  private void atualizaMapa(){
+    mapa.atualizaMapa(estagio);
+    mapa.imprimeMatriz();
   }
   
   public void selecionaEstagio(){
     Scanner teclado = new Scanner(System.in);
     Batalha atual = mapa.getInicio();
-    
+    int escolha = -1;
     while (atual != null){
       System.out.println("Batalha selecionada: " + atual);
-      
       boolean resultado = atual.iniciarBatalha();
+      
+      estagio += escolha + 1; // a escolha variará de 0 a 1, precisamos
+      // incrementar o estagio com base nela
+      
       if(!resultado){
         System.out.println("Você morreu!");
         break;
@@ -34,13 +44,15 @@ public class SistemaProgressao {
         Batalha destino = mapa.grafo.getEdgeTarget(aresta);
         caminhos.add(destino);
       }
+      
+      atualizaMapa();
       System.out.println("Escolha a próxima batalha:");
       for(int i = 0; i < caminhos.size(); i++) {
         System.out.println(i + " - " + caminhos.get(i));
       }
       
       /* fazemos a leitura e a validacao baseado no indice da lista de escolhas */
-      int escolha = -1;
+      escolha = -1;
       while(escolha < 0 || escolha >= caminhos.size()) {
         escolha = teclado.nextInt();
       }

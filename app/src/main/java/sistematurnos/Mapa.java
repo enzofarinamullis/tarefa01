@@ -104,7 +104,7 @@ public class Mapa {
     }
   }
   
-  private void imprimeMatriz(){
+  protected void imprimeMatriz(){
     
     System.out.println("MAPA:");
     System.out.println("---------");
@@ -112,6 +112,12 @@ public class Mapa {
       for(int j = 0; j < ConstMapa.TAM_MAPA_X; j++){
         if(matrizMapa[i][j] == ConstMapa.NO) {
           System.out.print(Cores.ANSI_YELLOW + "⚫ " + Cores.ANSI_RESET);
+        }
+        else if(matrizMapa[i][j] == ConstMapa.NO_TERMINADO){
+          System.out.print(Cores.ANSI_RED + "⚫ " + Cores.ANSI_RESET);
+        }
+        else if (matrizMapa[i][j] == ConstMapa.NO_ATUAL){
+          System.out.print(Cores.ANSI_BLUE + "⚫ " + Cores.ANSI_RESET);
         }
         else if(matrizMapa[i][j] == ConstMapa.CAMINHO_RETO){
           System.out.print(Cores.ANSI_YELLOW + "▎▎");
@@ -136,5 +142,21 @@ public class Mapa {
       return noAtual;
     }
     return null;
+  }
+  
+  protected void atualizaMapa(int estagio){
+    int indice = -1;
+    /* percorremos a matriz até achar os nós */
+    for(int i = 0; i < ConstMapa.TAM_MAPA_Y; i++){
+      for(int j = 0; j < ConstMapa.TAM_MAPA_X; j++){
+        if(matrizMapa[i][j] == ConstMapa.NO){
+          matrizMapa[i][j] = ConstMapa.NO_TERMINADO;
+          indice++;
+        }
+        if(indice == estagio){
+          return;
+        }
+      }
+    }
   }
 }
