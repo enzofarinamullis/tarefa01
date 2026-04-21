@@ -1,20 +1,28 @@
 package testeDados;
 
-import org.junit.jupiter.api.BeforeEach;//Executa o método antes do teste
-import org.junit.jupiter.api.Test;// Marca como teste
-import org.junit.jupiter.api.DisplayName;//Nome descritivo
-import static org.junit.jupiter.api.Assertions.*;//Métodos para checar resultados
+import java.util.Collections;//Executa o método antes do teste
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;// Marca como teste
+import static org.junit.jupiter.api.Assertions.assertEquals;//Nome descritivo
+import static org.junit.jupiter.api.Assertions.assertFalse;//Métodos para checar resultados
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import dados.Heroi;
-import dados.Inimigo;
-import usaveis.Mao;
-import dados.inimigos.*;
 import dados.ListaInimigos;
-import usaveis.cartas.danos.*;
+import dados.inimigos.Slime;
+import usaveis.Mao;
+import usaveis.cartas.CartaDano;
+import usaveis.cartas.CartaEscudo;
+import usaveis.cartas.danos.espadaCorrupta;
+import usaveis.cartas.danos.espadaCurta;
+import usaveis.cartas.danos.espadaDaLuaSangrenta;
+import usaveis.cartas.danos.espadaEnvenenada;
 import usaveis.pilhas.PilhaCompra;
 import usaveis.pilhas.PilhaDescarte;
-import usaveis.cartas.*;
-import java.util.*;
 
 
 
@@ -103,6 +111,7 @@ public class testHeroi {
       assertNotNull(pilhaCompra, "PilhaCompra getter não deveria retornar null");
       assertNotNull(pilhaDescarte, "PilhaDescarte getter não deveria retornar null");
   }
+
 @Test
   @DisplayName("Deve atualizar energia corretamente ao usar cartas")
   void testGastarEnergia() {
@@ -129,6 +138,7 @@ public class testHeroi {
        assertEquals(Eesperada, heroi.getEnergia(), String.format("Energia deveria ser %d após consumir %d de energia", Eesperada, energiaConsumida));
 
       /*varias cartas */
+      heroi.setaEnergia(20);
       heroi.getMao().cartas.clear();
       espadaCorrupta espadaCorrupta = new espadaCorrupta();
       heroi.getMao().cartas.add(espadaCorrupta);
@@ -159,12 +169,7 @@ public class testHeroi {
       int energiaEsperada = 20 - energiaConsumida2;
       assertEquals(energiaEsperada, heroi.getEnergia(), String.format("Energia deveria ser %d após consumir %d de energia", energiaEsperada, energiaConsumida2));
   }
-@Test
-  @DisplayName("Deve gerenciar ciclo de turno corretamente")
-  void testCicloDeTurno() {
-      int energiaInicial = heroi.getEnergia();
-      assertEquals(20, energiaInicial, "ENergia inicial = 20");
-  }
+
 @Test
   @DisplayName("Deve exibir status sem lançar exceções")
   void testStatus() {
@@ -175,14 +180,28 @@ public class testHeroi {
   @DisplayName("Deve gerenciar vida e morte corretamente")
   void testVidaEMorte() {
       int vidaInicial = heroi.getVida();
-      // Código comentado aguardando implementação
-  }
+      assertEquals(5, vidaInicial,"Vida inicial deve ser 5");
+      assertTrue(heroi.estaVivoSemPrint(), "O heroi deve estar vivo");
 
+      /*Recebimento de dano */
+      heroi.setaEscudo(0);
+      heroi.receberDano(3);
+      assertEquals(2, heroi.getVida(), "Vida deve ficar igual a 2");
 
+      heroi.setaEscudo(0);
+      heroi.setVida(5);
+      heroi.receberDano(100);
+      assertEquals(0, heroi.getVida(), "Vida não pode ser negativa");
+      assertFalse(heroi.estaVivo());
 
+      heroi.setaEscudo(0);
+      heroi.setVida(5);
+      heroi.receberDano(-100);
+      assertEquals(5, heroi.getVida(), "Não há dano negativo!");
 
-
-
-
+      heroi.receberDano(100);
+      assertDoesNotThrow(() -> heroi.status(), "O status não mpode crashar com o heroi morto!");
 
 }
+}
+

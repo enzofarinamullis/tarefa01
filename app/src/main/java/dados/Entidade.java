@@ -91,18 +91,20 @@ public abstract class Entidade {
    * @see constantes.Cores
    */
   public void receberDano(int dano) {
-    if(escudo > 0) {
-      int dano_no_escudo = Math.min(escudo, dano);
-      escudo -= dano_no_escudo;
-      dano -= dano_no_escudo;
-      System.out.println("O " + Cores.ANSI_BLUE + "escudo" + Cores.ANSI_RESET + 
-        " absorveu " + Cores.ANSI_RED + dano_no_escudo +
-        Cores.ANSI_RESET + " de " + Cores.ANSI_RED + "dano" + Cores.ANSI_RESET);
+    if (dano >= 0) {
+      if(escudo > 0) {
+        int dano_no_escudo = Math.min(escudo, dano);
+        escudo -= dano_no_escudo;
+        dano -= dano_no_escudo;
+        System.out.println("O " + Cores.ANSI_BLUE + "escudo" + Cores.ANSI_RESET + 
+          " absorveu " + Cores.ANSI_RED + dano_no_escudo +
+          Cores.ANSI_RESET + " de " + Cores.ANSI_RED + "dano" + Cores.ANSI_RESET);
+      }
+      
+      System.out.println(Cores.ANSI_CYAN + nome + Cores.ANSI_RESET + " recebeu " +
+        Cores.ANSI_RED + dano + Cores.ANSI_RESET + " de dano.");
+      vida -= dano;
     }
-    
-    System.out.println(Cores.ANSI_CYAN + nome + Cores.ANSI_RESET + " recebeu " +
-      Cores.ANSI_RED + dano + Cores.ANSI_RESET + " de dano.");
-    vida -= dano;
   }
   
   /**
@@ -277,5 +279,10 @@ public abstract class Entidade {
    */
   public int getEscudo() {
     return escudo;
+  }
+  public void setVida(int vida) {
+    if (vida >= 0) {
+      this.vida = vida;
+    }
   }
 }
