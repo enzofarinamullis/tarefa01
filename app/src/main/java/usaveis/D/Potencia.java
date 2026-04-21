@@ -64,7 +64,7 @@ public class Potencia {
     if (resultado == NdeLados) {
       System.out.println("Golpe Brutal");
     }
-    else if (resultado == NdeLados) {
+    else if (resultado == 1) {
       System.out.println("Passou de raspão");
     }
   } 
