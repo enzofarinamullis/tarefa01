@@ -32,9 +32,8 @@ public class Corrupcao extends Efeito {
   public void aplicar(Entidade entidade) {
     if (entidade != null) {
       int dano = getIntensidade()*10;
-      System.out.println("☠️  " + entidade.getNome() + " sofreu corrupção! Perdeu " + dano + " HP");
+      System.out.println("☠️  " + entidade.getNome() + " sofreu corrupção!");
       entidade.receberDano(dano);
-     
     }
     
   }
