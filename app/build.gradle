@@ -9,6 +9,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'jacoco'
 }
 
 repositories {
@@ -20,6 +21,8 @@ dependencies {
     // This dependency is used by the application.
     implementation libs.guava
     implementation 'org.jgrapht:jgrapht-core:1.5.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.1'
 }
 
 testing {
@@ -28,6 +31,25 @@ testing {
         test {
             // Use JUnit Jupiter test framework
             useJUnitJupiter('6.0.1')
+        }
+    }
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        html.required = true
+        csv.required = false
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.8
+            }
         }
     }
 }
