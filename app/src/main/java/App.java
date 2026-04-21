@@ -1,14 +1,12 @@
 import java.util.Scanner;
 
 import cenas.Cena;
-import cenas.DoisSlimesELesma;
 import cenas.Logo;
 import constantes.Cores;
 import dados.Dados;
 import dados.Heroi;
 import musica.MidiPlayer;
 import musica.MusicaInicial;
-import sistematurnos.GameManager;
 import sistematurnos.Mapa;
 import sistematurnos.SistemaProgressao;
 
@@ -96,15 +94,6 @@ public class App {
     SistemaProgressao sistemaProgressao = new SistemaProgressao(mapa);
     sistemaProgressao.selecionaEstagio();
     
-    // Cria o gerenciador de turnos com os dados do jogo
-    GameManager gameManager = new GameManager(dados);
-
-    // Carrega a primeira cena de batalha (Dois Slimes e uma Lesma)
-    cena = new DoisSlimesELesma(dados);
-
-    // Inicia o loop principal de combate
-    gameManager.turno();
-
     // Libera os recursos do scanner ao finalizar o programa
     teclado.close();
   }
