@@ -661,7 +661,7 @@ import dados.ListaInimigos;
                 if (efeito.ehCura()) {
                   subscriber = new SubscriberEfeito(heroi, efeito, efeito.getIdAtivacao());
                   
-                } else if (efeito.ehEnvenamento() || efeito.ehSangramento()) {
+                } else if (efeito.ehEnvenenamento() || efeito.ehSangramento() || efeito.ehCurrupcao()) {
                   /* como os efeito de dano, inicialmente so estarao nas espadas
                    * o inimigo estara selecionado, a nao ser que ele tenha morrido */
                   
