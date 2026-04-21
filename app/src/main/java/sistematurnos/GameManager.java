@@ -623,7 +623,9 @@ import dados.ListaInimigos;
             limpaBatalha(publisher);
             return Turnos.FUGIU;
           }
-          else{ break; }
+          else{
+            break;
+          }
         }
         
         /* Caso a escolha seja USAR, verificamos se ha energia suficiente */
