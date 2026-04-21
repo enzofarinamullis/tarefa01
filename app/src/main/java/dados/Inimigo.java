@@ -206,4 +206,15 @@ public class Inimigo extends Entidade {
     }
     return null;
   }
+  public int getId() {
+    return id;
+  }
+  public void setId(int id) {
+    if (id >= -1) {
+      this.id = id;
+    }
+  }
+  public int getDano() {
+    return dano;
+  }
 }
