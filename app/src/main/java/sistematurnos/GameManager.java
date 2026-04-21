@@ -630,8 +630,12 @@ import dados.ListaInimigos;
               /* verificamos se o inimigo morreu */
               if (!inimigo.estaVivoSemPrint()) {
                 listaInimigos.removerInimigo(inimigo); // removemos ele da lista de inimigos
-                inimigo = null; // apontar para null sera importante para podermos
-                                // nao aplicar efeito em inimgios mortos
+                /* se o inimigo morreu, removemos os efeitos aplicados nele */
+                /* da lista de publishers */
+                for(SubscriberEfeito subscriberSelecionado : publisher.getSubscribersEfeitos()){
+                  subscriberSelecionado.matarEfeito(inimigo);
+                }
+                inimigo = null;
               }
               
               /* verificamos se todos morreram e o turno deve acabar */
