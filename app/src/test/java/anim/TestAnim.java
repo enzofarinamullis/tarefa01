@@ -45,4 +45,6 @@ public class TestAnim {
     assertTrue(animacao.linhasImpressas.contains("frame1Linha2"));
   }
   
+  
+  
 }
