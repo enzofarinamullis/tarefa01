@@ -24,7 +24,7 @@ public class SubscriberEfeito extends Subscriber{
   
   public void matarEfeito(Entidade alvo){
     if(alvo == this.alvo) {
-      alvo = null;
+      this.alvo = null;
     }
   }
   
@@ -33,7 +33,10 @@ public class SubscriberEfeito extends Subscriber{
    *  assim podemos com o publisher removê-lo com o publisher
    */
   public boolean acabou(){
-    return this.usos == efeito.getDuracao();
+    if(efeito.getDuracao() < 0){
+      return false;
+    }
+    return this.usos >= efeito.getDuracao();
   }
   
   @Override
