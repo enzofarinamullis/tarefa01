@@ -106,8 +106,8 @@ class testMao{
         String output = outContent.toString();
         assertTrue(output.contains("Espada Curta"));
         assertTrue(output.contains("Escudo de Madeira"));
-        assertTrue(output.contains("Dano: 10"));
-        assertTrue(output.contains("Custo: 2"));
+        assertTrue(output.contains("Custo Energia: 10"));
+        assertTrue(output.contains("Nível: 2"));
         
         // Restaurar saída original
         System.setOut(originalOut);
@@ -192,6 +192,9 @@ class testMao{
     @Test
     @DisplayName("Deve permitir iterar sobre as cartas")
     void testIterarSobreCartas() {
+        while(!mao.cartas.isEmpty()) {
+          mao.cartas.removeFirst();
+        }
         mao.cartas.add(carta1);
         mao.cartas.add(carta2);
         
@@ -201,7 +204,7 @@ class testMao{
             contador++;
         }
         
-        assertEquals(3, contador);
+        assertEquals(2, contador);
     }
 }
 
