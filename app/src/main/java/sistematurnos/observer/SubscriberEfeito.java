@@ -24,7 +24,7 @@ public class SubscriberEfeito extends Subscriber{
   
   public void matarEfeito(Entidade alvo){
     if(alvo == this.alvo) {
-      alvo = null;
+      this.alvo = null;
     }
   }
   
