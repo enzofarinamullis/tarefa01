@@ -2,6 +2,8 @@ package anim;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -45,6 +47,74 @@ public class TestAnim {
     assertTrue(animacao.linhasImpressas.contains("frame1Linha2"));
   }
   
+  @Test
+  public void deveIgnorarEspaco(){
+    AnimacaoFogo animacao = new AnimacaoFogo();
+    
+    ByteArrayOutputStream out = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(out));
+    
+    animacao.imprimeLinha(" ");
+    String saida = out.toString();
+    
+    /* neste caso a saída deve ser somente um quebra de linha */
+    assertTrue(saida.contains("\n"));
+    assertFalse(saida.contains(" "));
+  }
   
+  @Test void deveImprimirPonto(){
+    AnimacaoFogo animacao = new AnimacaoFogo();
+    
+    ByteArrayOutputStream out = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(out));
+    
+    animacao.imprimeLinha("b");
+    String saida = out.toString();
+    
+    /* neste caso a saída deve ser somente um ponto */
+    assertTrue(saida.contains("."));
+  }
+  
+  @Test
+  public void deveImprimirMultiplosCaracteres(){
+    AnimacaoFogo animacao = new AnimacaoFogo();
+    
+    ByteArrayOutputStream out = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(out));
+    
+    animacao.imprimeLinha("bd");
+    String saida = out.toString();
+    
+    /* neste caso a saída deve ser somente um ponto e dois pontos */
+    assertTrue(saida.contains("."));
+    assertTrue(saida.contains(":"));
+  }
+  
+  @Test
+  public void deveImprimirArroba(){
+    AnimacaoFogo animacao = new AnimacaoFogo();
+    
+    ByteArrayOutputStream out = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(out));
+    
+    animacao.imprimeLinha("o");
+    String saida = out.toString();
+    
+    /* neste caso a saída deve ser somente um arroba */
+    assertTrue(saida.contains("@"));
+  }
+  
+  @Test
+  public void deveTerminarComNovaLinha(){
+    AnimacaoFogo animacao = new AnimacaoFogo();
+    
+    ByteArrayOutputStream out = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(out));
+    
+    animacao.imprimeLinha("b");
+    String saida = out.toString();
+    
+    assertTrue(saida.endsWith("\n"));
+  }
   
 }
