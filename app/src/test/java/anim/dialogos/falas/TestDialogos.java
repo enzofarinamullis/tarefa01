@@ -1,5 +1,6 @@
 package anim.dialogos.falas;
 
+import anim.dialogos.DialogoInicial;
 import constantes.IdsSubscribers;
 import dados.Dados;
 import dados.Entidade;
@@ -80,4 +81,43 @@ public class TestDialogos {
     String saida = out.toString();
     assertTrue(saida.contains("$\n"));
   }
+  
+  @Test
+  public void deveExecutarDialogoInicial(){
+    DialogoInicial dialogo = new DialogoInicial(dadosMock);
+    
+    /* ignoramos o arquivo */
+    String arquivoNovo = "linha1\n, \nlinha2\n";
+    
+    dialogo.leitor = new java.util.Scanner(arquivoNovo);
+    
+    /* Capturamos o sout */
+    ByteArrayOutputStream out = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(out));
+    
+    dialogo.rodar();
+    String saida = out.toString();
+    assertTrue(saida.contains("linha1"));
+  }
+  
+  @Test
+  public void deveExecutarDialogoPrimeiraBatalha(){
+    DialogoInicial dialogo = new DialogoInicial(dadosMock);
+    
+    /* ignoramos o arquivo */
+    String arquivoNovo = "linha1\n, \nlinha2\n";
+    
+    dialogo.leitor = new java.util.Scanner(arquivoNovo);
+    
+    /* Capturamos o sout */
+    ByteArrayOutputStream out = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(out));
+    
+    dialogo.rodar();
+    String saida = out.toString();
+    assertTrue(saida.contains("linha1"));
+  }
+  
+  
+  
 }
