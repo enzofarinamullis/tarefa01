@@ -10,10 +10,36 @@ import constantes.Cores;
 import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
 
+/**
+ * Classe responsável por representar o mapa do jogo.
+ *
+ * <p>
+ *   O mapa é modelado como um grafo direcionado de {@link Batalha},
+ *   onde cada vértice representa uma batalha e as arestas representam os
+ *   caminhos entre elas.
+ *
+ *
+ * <p>
+ *   Além do grafo, o mapa também possui uma representação visual em forma de uma
+ *   matriz bidimensional {@code matrizMapa}, utilizada para exibição no terminal.
+ * </p>
+ *
+ * <p>
+ *   Para não complicarmos a impressão da matrizMapa, criamos uma convenção
+ *   de somente ter no máximo 2 arestas saindo de um mesmo nó, e que os nós irmãos
+ *   devem convergir sempre para o mesmo nó filho. Assim, conseguimos criar um padrão de impressão
+ *   mais simples.
+ *  </p>
+ */
 public class Mapa {
   DefaultDirectedGraph<Batalha, DefaultEdge> grafo;
   int[][] matrizMapa;
   
+  
+  /**
+   * Construtor do mapa, que inicializa o grafo e a matriz de representação visual.
+   * @param dados objeto que armazena todas as informações relevantes do jogo, como o herói e os inimigos.
+   */
   public Mapa(Dados dados){
     grafo = new DefaultDirectedGraph<>(DefaultEdge.class);
     inicializaMatriz();
@@ -45,6 +71,10 @@ public class Mapa {
     imprimeMatriz();
   }
   
+  /**
+   * Inicializa a matriz de representação visual do mapa, preenchendo-a com zeros.
+   * A matriz é dimensionada de acordo com as constantes definidas em {@link ConstMapa}
+   */
   private void inicializaMatriz(){
     matrizMapa = new int[ConstMapa.TAM_MAPA_Y][ConstMapa.TAM_MAPA_X];
     for(int i = 0; i < ConstMapa.TAM_MAPA_Y; i++){
@@ -54,6 +84,16 @@ public class Mapa {
     }
   }
   
+  /**
+   * Gera a representação visual do mapa com base na estrutura de grafo.
+   *
+   * <p>
+   *   Posiciona nós e caminhos na matriz de acordo com a quantidade de arestas
+   *   de saída de cada nó. Utilizando a convenção de somente ter no máximo 2 arestas saindo
+   *   de um mesmo nó, e que os nós irmãos
+   *   devem convergir sempre para o mesmo nó filho.
+   * </p>
+   */
   private void geraMapa(){
     int linha = 1;
     int meioX = ConstMapa.MEIO_X;
@@ -104,6 +144,18 @@ public class Mapa {
     }
   }
   
+  /**
+   * Imprime a matriz de representação visual do mapa no terminal.
+   *
+   * <p>
+   *   Utiliza cores para diferenciar:
+   *   <ul>
+   *     <li> Nós disponíveis futuros </li>
+   *     <li> Nós já terminados </li>
+   *     <li> Caminhos entre os nós </li>
+   *   </ul>
+   *   </p>
+   */
   protected void imprimeMatriz(){
     
     System.out.println("MAPA:");
@@ -137,6 +189,10 @@ public class Mapa {
     System.out.println("---------");
   }
   
+  /**
+   * Retorna o nó inicial do mapa.
+   * @return a primeira batalha do mapa ou {@code null} se o mapa estiver vazio.
+   */
   protected Batalha getInicio() {
     for (Batalha noAtual : grafo.vertexSet()) {
       return noAtual;
@@ -144,6 +200,13 @@ public class Mapa {
     return null;
   }
   
+  /**
+   * Atualiza o estado visual do mapa com base no progresso do jogador.
+   *
+   * <p>
+   *   Marca os nós como terminados (vermelho) à medida que o jogador avança pelos estágios do mapa.
+   * @param estagio o estágio atual do jogador.
+   */
   protected void atualizaMapa(int estagio){
     int indice = -1;
     /* percorremos a matriz até achar os nós */

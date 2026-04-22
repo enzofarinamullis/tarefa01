@@ -1,4 +1,4 @@
-
+package sistematurnos;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,7 +9,6 @@ import dados.Dados;
 import dados.Heroi;
 import sistematurnos.batalhas.BatalhaLesmasESlimes;
 import sistematurnos.batalhas.BatalhaNSlimes;
-import sistematurnos.Batalha;
 
 public class TestBatalhas {
   private Heroi heroi;
@@ -26,7 +25,7 @@ public class TestBatalhas {
   void deveAdicionarQuantidadeCorretaInimigos(){
     int qntSlimes = 10;
     int qntLesmas = 20;
-    Batalha batalha = new BatalhaNSlimes(dados, qntSlimes);
+    BatalhaNSlimes batalha = new BatalhaNSlimes(dados, qntSlimes);
     batalha.adicionarInimigos();
     int totalInimigos = dados.listaInimigos.getTamanho();
     assertEquals(qntSlimes, totalInimigos);
