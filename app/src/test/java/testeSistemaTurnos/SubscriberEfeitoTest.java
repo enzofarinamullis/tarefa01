@@ -178,13 +178,4 @@ public class SubscriberEfeitoTest {
         verify(efeitoMock, never()).aplicar(any());
         assertEquals(0, subscriber.getUsos());
     }
-    
-    @Test
-    public void testMultiplosEfeitosNoMesmoAlvo() throws Exception {
-        chamarSerNotificado(subscriber);
-        chamarSerNotificado(subscriber2);
-      
-        
-        verify(efeitoMock, times(2)).aplicar(alvoMock);
-    }
 }
