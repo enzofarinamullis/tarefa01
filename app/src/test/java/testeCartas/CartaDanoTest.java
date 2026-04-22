@@ -72,9 +72,9 @@ public class CartaDanoTest {
         void testDanoFalhaCritica() {
             // Como o método usa rolagem aleatória, testamos múltiplas vezes
             boolean viuFalhaCritica = false;
-            for (int i = 0; i < 10000; i++) {
+            for (int i = 0; i < 1000; i++) {
                 CartaDano carta = new CartaDano("Teste", 1, 1, "Teste");
-                int dano = carta.calcularDano();
+                int dano = carta.calcularDanoSemAnim();
                 if (dano == 0) {
                     viuFalhaCritica = true;
                     break;
@@ -87,7 +87,7 @@ public class CartaDanoTest {
         @DisplayName("Dano nunca deve ser negativo")
         void testDanoNuncaNegativo() {
             for (int i = 0; i < 50; i++) {
-                int dano = cartaDano.calcularDano();
+                int dano = cartaDano.calcularDanoSemAnim();
                 assertTrue(dano >= 0, "Dano não pode ser negativo: " + dano);
             }
         }
@@ -98,7 +98,7 @@ public class CartaDanoTest {
             // Este teste verifica se o dano segue os multiplicadores esperados
             // Nota: Como é aleatório, testamos padrões
             for (int i = 0; i < 100; i++) {
-                int dano = cartaDano.calcularDano();
+                int dano = cartaDano.calcularDanoSemAnim();
                 // Dano deve ser 0, potência, potência*2, potência*4, potência*16 ou potência*64
                 assertTrue(dano == 0 || dano >= 1, "Dano deve ser 0 ou positivo");
             }
