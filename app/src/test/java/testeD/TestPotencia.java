@@ -8,14 +8,14 @@ import org.junit.jupiter.api.Test;
 import usaveis.D.Potencia;
 
 @DisplayName("Testes da Classe Potencia")
-public class testPotencia {
+public class TestPotencia {
     
     @Test
     @DisplayName("Dado deve rolar valores dentro do intervalo")
     void testIntervalo() {
         Potencia dado = new Potencia(6);
         for (int i = 0; i < 1000; i++) {
-            int resultado = dado.rolarDado();
+            int resultado = dado.rolarDadoSemAnim();
             assertTrue(resultado >= 1 && resultado <= 6);
         }
     }
@@ -26,7 +26,7 @@ public class testPotencia {
         Potencia dado = new Potencia(20);
         
         for (int i = 0; i < 500; i++) {
-            int resultado = dado.rolarVantagem();
+            int resultado = dado.rolarVantagemSemAnim();
             assertTrue(resultado >= 1 && resultado <= 20);
         }
     }
@@ -37,7 +37,7 @@ public class testPotencia {
         Potencia dado = new Potencia(20);
         
         for (int i = 0; i < 500; i++) {
-            int resultado = dado.rolarDesvantagem();
+            int resultado = dado.rolarDesvantagemSemAnim();
             assertTrue(resultado >= 1 && resultado <= 20);
         }
     }

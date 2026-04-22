@@ -31,7 +31,7 @@ public class Potencia {
   }
   
   public int rolarDado(){
-    int resultado = aleatorio.nextInt(NdeLados) + 1;
+    int resultado = rolarDadoSemAnim();
     System.out.println("Rolando dado de potencia:");
     System.out.println(".");
     pausa(700);
@@ -55,6 +55,29 @@ public class Potencia {
     System.out.println("Rolando dado de potencia com desvantagem:");
     int dado_1 = rolarDado();
     int dado_2 = rolarDado();
+    int resultado = Math.min(dado_1, dado_2);
+    System.out.println(resultado);
+    return resultado;
+  }
+  
+  public int rolarDadoSemAnim(){
+    int resultado = aleatorio.nextInt(NdeLados) + 1;
+    
+    return resultado;
+  }
+  
+  public int rolarVantagemSemAnim() {
+    System.out.println("Rolando dado de potencia com vantagem:");
+    int dado_1 = rolarDadoSemAnim();
+    int dado_2 = rolarDadoSemAnim();
+    int resultado = Math.max(dado_1, dado_2);
+    return resultado;
+  }
+  
+  public int rolarDesvantagemSemAnim() {
+    System.out.println("Rolando dado de potencia com desvantagem:");
+    int dado_1 = rolarDadoSemAnim();
+    int dado_2 = rolarDadoSemAnim();
     int resultado = Math.min(dado_1, dado_2);
     System.out.println(resultado);
     return resultado;
