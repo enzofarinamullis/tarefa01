@@ -17,6 +17,9 @@ public class SubscriberEfeito extends Subscriber{
   
   protected void serNotificado(){
     if(alvo != null) {
+      if(efeito.getDuracao() >= 0 && usos >= efeito.getDuracao()) {
+        return; // Não aplica o efeito se a duração tiver sido atingida
+      }
       efeito.aplicar(alvo);
       usos++;
     }

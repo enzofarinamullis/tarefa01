@@ -12,7 +12,7 @@ public class DialogoInicial extends Dialogo {
   /* e nao limpando o terminal entre elas */
   
   public DialogoInicial(Dados dados) {
-    super("src/anim/dialogos/falas/FalaInicial.txt");
+    super("/anim/dialogos/falas/FalaInicial.txt");
     this.dados = dados;
   }
   

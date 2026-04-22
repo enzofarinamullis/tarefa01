@@ -94,6 +94,31 @@ public class CartaDano extends Carta{
     }
   }
   
+  public int calcularDanoSemAnim(){
+    Precisao d20 = new Precisao();
+    Potencia dx = new Potencia(nivel);
+    int precisao = d20.rolarDadoSemAnim();
+    if (precisao == 1) {
+      System.out.println("Errou o ataque!");
+      return 0;
+    }
+    int potencia = dx.rolarDadoSemAnim();
+    if (precisao >= 2 && precisao <= 5) {
+      return potencia;
+    }
+    else if (precisao >= 6 && precisao <= 10) {
+      return potencia * 2;
+    }
+    else if (precisao >= 11 && precisao <= 15) {
+      return potencia * 4;
+    }
+    else if (precisao >= 16 && precisao <= 19) {
+      return potencia * 16;
+    }
+    else {
+      return potencia * 64;
+    }
+  }
   
   /**
    * Usa a carta de dano, causando dano ao inimigo com base no cálculo de precisão e potência.
@@ -107,6 +132,12 @@ public class CartaDano extends Carta{
    * @param heroi - O herói que usará a carta e causará o dano ao inimigo.
    */
   public void usar(Inimigo inimigo, Heroi heroi){
+    if(heroi == null){
+      return;
+    }
+    else if(inimigo == null){
+      return;
+    }
     if (heroi.temEnergia(custoEnergia)) {
       heroi.setaEnergia(heroi.getEnergia() - custoEnergia);
       int dano = calcularDano();

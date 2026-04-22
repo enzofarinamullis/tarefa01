@@ -25,7 +25,7 @@ public class TestBatalhas {
   void deveAdicionarQuantidadeCorretaInimigos(){
     int qntSlimes = 10;
     int qntLesmas = 20;
-    BatalhaNSlimes batalha = new BatalhaNSlimes(dados, qntSlimes);
+    Batalha batalha = new BatalhaNSlimes(dados, qntSlimes);
     batalha.adicionarInimigos();
     int totalInimigos = dados.listaInimigos.getTamanho();
     assertEquals(qntSlimes, totalInimigos);

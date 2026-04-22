@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 public class DialogoPrimeiraBatalha extends Dialogo {
   
   public DialogoPrimeiraBatalha(){
-    super("src/anim/dialogos/falas/PrimeiraBatalha.txt");
+    super("/anim/dialogos/falas/PrimeiraBatalha.txt");
   }
   
   public void rodar() {

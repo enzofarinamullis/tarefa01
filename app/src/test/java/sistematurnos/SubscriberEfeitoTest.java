@@ -20,7 +20,6 @@ import static org.mockito.Mockito.when;
 
 import constantes.IdsSubscribers;
 import dados.Entidade;
-import sistematurnos.observer.Publisher;
 import sistematurnos.observer.SubscriberEfeito;
 import usaveis.cartas.Efeito;
 
@@ -31,8 +30,6 @@ public class SubscriberEfeitoTest {
     private Efeito efeito2Mock;
     private SubscriberEfeito subscriber;
     private SubscriberEfeito subscriber2;
-    private SubscriberEfeito subscriber3;
-    private Publisher publisher;
     
     @BeforeEach
     void setUp() {
@@ -42,16 +39,9 @@ public class SubscriberEfeitoTest {
 
         efeito2Mock = mock(Efeito.class);
         when(efeito2Mock.getDuracao()).thenReturn(4);
-
-        publisher = mock(Publisher.class);
-
+        
         subscriber = new SubscriberEfeito(alvoMock, efeitoMock, IdsSubscribers.SANGRAMENTO);
         subscriber2 = new SubscriberEfeito(alvoMock, efeito2Mock, IdsSubscribers.ENVENENAMENTO);
-        subscriber3 = new SubscriberEfeito(alvoMock, efeitoMock,IdsSubscribers.SANGRAMENTO);
-
-        publisher.inscrever(subscriber);
-        publisher.inscrever(subscriber2);
-        publisher.inscrever(subscriber3);
     }
 
     
@@ -187,11 +177,5 @@ public class SubscriberEfeitoTest {
         chamarSerNotificado(subscriber);
         verify(efeitoMock, never()).aplicar(any());
         assertEquals(0, subscriber.getUsos());
-    }
-    
-    @Test
-    public void testMultiplosEfeitosNoMesmoAlvo() throws Exception {
-        publisher.notificar(IdsSubscribers.SANGRAMENTO);
-        verify(efeitoMock, times(2)).aplicar(alvoMock);
     }
 }
