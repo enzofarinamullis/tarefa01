@@ -9,6 +9,7 @@ import dados.Dados;
 import dados.Heroi;
 import sistematurnos.batalhas.BatalhaLesmasESlimes;
 import sistematurnos.batalhas.BatalhaNSlimes;
+import sistematurnos.Batalha;
 
 public class TestBatalhas {
   private Heroi heroi;

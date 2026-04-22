@@ -17,7 +17,7 @@ public abstract class Batalha {
   }
   
   
-  protected abstract void adicionarInimigos();
+  public  abstract void adicionarInimigos();
   
   public boolean iniciarBatalha(){
     /* Adicionamos os inimigos necessários para cada batalha */
