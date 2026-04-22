@@ -70,8 +70,6 @@ public class GameManager {
    *   <p>
    *     Esta função é chamada no início do turno do jogador para apresentar as
    *     ações possíveis e o estado atual do herói.
-import dados.Inimigo;
-import dados.ListaInimigos;
    *     </p>
    *
    *   Exemplo de uso:<br>
