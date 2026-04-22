@@ -19,8 +19,6 @@ public abstract class Batalha {
   private GameManager gameManager;
   protected Dados dados;
   protected String nome;
-  protected int id;
-  
   
   /**
    * Construtor da batalha.
@@ -31,7 +29,6 @@ public abstract class Batalha {
     this.dados = dados;
     gameManager = new GameManager(dados);
     this.nome = nome;
-    this.id = GeradorIds.proximoId();
   }
   
   /**
