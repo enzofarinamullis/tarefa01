@@ -1,16 +1,21 @@
 package usaveis.cartas;
 
-import dados.Heroi;
-import dados.Inimigo;
-import usaveis.cartas.efeitos.Cura;
-import constantes.IdsSubscribers;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import constantes.IdsSubscribers;
+import dados.Heroi;
+import dados.Inimigo;
+import usaveis.cartas.efeitos.Cura;
 
 class CartaEscudoTest {
     
@@ -23,7 +28,7 @@ class CartaEscudoTest {
         // Criando carta de escudo padrão para os testes
         cartaEscudo = new CartaEscudo("Barreira Mágica", 15, 3, "Concede um escudo mágico");
         heroi = new Heroi();
-        inimigo = new Inimigo("Goblin", 50, 10, 5,);
+        inimigo = new Inimigo("Goblin", 50, 10, 5,"vou te roubar fedelho!");
     }
     
     @Nested
