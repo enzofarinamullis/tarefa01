@@ -7,11 +7,17 @@ public abstract class Subscriber {
   /* chamado pelo metodo de notificacao do publisher */
   abstract void serNotificado();
   
-  protected int getIdAtivacao(){
+  public int getIdAtivacao(){
     return idAtivacao;
   }
+  public int getQuantidadeDeNotificacoes() {
+    return quantidadeNotificacoes;
+  }
+  public void setQuantidadeDeNotificacoes(int n) {
+    this.quantidadeNotificacoes = n;
+  }
   
-  protected boolean ehEfeito(){
+  public boolean ehEfeito(){
     return false;
   }
   

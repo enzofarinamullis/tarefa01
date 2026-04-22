@@ -1,6 +1,5 @@
 package sistematurnos.observer;
 
-import constantes.IdsSubscribers;
 import dados.Entidade;
 import usaveis.cartas.Efeito;
 
@@ -40,5 +39,15 @@ public class SubscriberEfeito extends Subscriber{
   @Override
   public boolean ehEfeito(){
     return true;
+  }
+
+  public int getUsos() {
+    return usos;
+  }
+  public void setUsos(int usos) {
+    this.usos = usos;
+  }
+  public Entidade getAlvo(){
+    return alvo;
   }
 }
