@@ -1,7 +1,6 @@
 package sistematurnos;
 import constantes.Turnos;
 import dados.Dados;
-import sistematurnos.idsBatalhas.GeradorIds;
 
 /**
  * Classe abstrata que representa uma batalha genérica no jogo.
