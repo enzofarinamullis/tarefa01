@@ -1,4 +1,4 @@
-package testeCartas;
+package usaveis.cartas;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,8 +12,6 @@ import org.junit.jupiter.api.Test;
 
 import dados.Heroi;
 import dados.Inimigo;
-import usaveis.cartas.Carta;
-import usaveis.cartas.CartaDano;
 import usaveis.cartas.efeitos.Envenenamento;
 import usaveis.cartas.efeitos.Sangramento;
 
@@ -27,6 +25,8 @@ public class CartaDanoTest {
     void setUp() {
         cartaDano = new CartaDano("Espada capenga", 2, 3, "Ataque capenga");
         heroi = new Heroi();
+        heroi.setVida(50);
+        heroi.setaEscudo(20);
         inimigo = new Inimigo("Goblin", 50, 10, 2, "Vou te roubar!");
     }
     

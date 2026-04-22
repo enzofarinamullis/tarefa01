@@ -1,4 +1,4 @@
-package testeSistemaTurnos;
+package sistematurnos;
 
 //package testeSistemaTurnos;
 

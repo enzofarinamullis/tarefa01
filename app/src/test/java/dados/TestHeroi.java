@@ -1,4 +1,4 @@
-package testeDados;
+package dados;
 
 import java.util.Collections;//Executa o método antes do teste
 
@@ -11,8 +11,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import dados.Heroi;
-import dados.ListaInimigos;
 import dados.inimigos.Slime;
 import usaveis.Mao;
 import usaveis.cartas.CartaDano;

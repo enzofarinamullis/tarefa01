@@ -1,4 +1,4 @@
-package testeDados;
+package dados;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -10,9 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import dados.Heroi;
-import dados.Inimigo;
 
 public class TestInimigo {
   private Heroi heroi;
