@@ -8,7 +8,7 @@ public abstract class evento {
   protected Tipo tipo;
   protected boolean esta_concluido;
 
-  protected  enum Tipo { BATALHA, LOJA, JOGO, DIALOGO, INDEFINIDO};
+  protected  enum Tipo { BATALHA, LOJA, JOGO, DIALOGO, FOGUEIRA, INDEFINIDO};
 
   public evento(Dados dados, String nome, Tipo tipo) {
     this.dados = dados;
