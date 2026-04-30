@@ -132,4 +132,7 @@ public class ListaInimigos {
   public int getTamanho() {
     return inimigos.size();
   }
+  public List<Inimigo> getLista() {
+    return inimigos;
+  }
 }
