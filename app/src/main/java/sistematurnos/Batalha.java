@@ -1,15 +1,9 @@
 package sistematurnos;
 import constantes.Turnos;
 import dados.Dados;
-import dados.inimigos.*;
-import dados.Inimigo;
-import dados.ListaInimigos;
-import java.util.ArrayList;
-import java.util.List;
 
 
-
-public abstract class Batalha extends evento {
+public abstract class Batalha extends Evento {
   private GameManager gameManager;
   protected Dados dados;
   protected String nome;

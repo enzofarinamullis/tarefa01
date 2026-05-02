@@ -74,7 +74,7 @@ public class SistemaProgressao {
    */
   public void selecionaEstagio(){
     Scanner teclado = new Scanner(System.in);
-    Batalha atual = mapa.getInicio();
+    Evento atual = mapa.getInicio();
     int qntEscolhas = 1;
     while (atual != null){
       System.out.println("Batalha selecionada: " + atual);
@@ -89,10 +89,10 @@ public class SistemaProgressao {
       }
       
       /* limpamos o caminho simplesmente redeclarando ele */
-      List<Batalha> caminhos = new ArrayList<>();
+      List<Evento> caminhos = new ArrayList<>();
       
       for(DefaultEdge aresta : mapa.grafo.outgoingEdgesOf(atual)){
-        Batalha destino = mapa.grafo.getEdgeTarget(aresta);
+        Evento destino = mapa.grafo.getEdgeTarget(aresta);
         caminhos.add(destino);
       }
       

@@ -1,7 +1,7 @@
 package sistematurnos;
 import dados.Dados;
 
-public abstract class evento {
+public abstract class Evento {
   protected GameManager gameManager;
   protected Dados dados;
   protected String nome;
@@ -10,7 +10,7 @@ public abstract class evento {
 
   protected  enum Tipo { BATALHA, LOJA, JOGO, DIALOGO, FOGUEIRA, INDEFINIDO};
 
-  public evento(Dados dados, String nome, Tipo tipo) {
+  public Evento(Dados dados, String nome, Tipo tipo) {
     this.dados = dados;
     this.nome = nome;
     gameManager = new GameManager(dados);

@@ -32,7 +32,7 @@ import org.jgrapht.graph.DefaultEdge;
  *  </p>
  */
 public class Mapa {
-  DefaultDirectedGraph<Batalha, DefaultEdge> grafo;
+  DefaultDirectedGraph<Evento, DefaultEdge> grafo;
   int[][] matrizMapa;
   
   
@@ -45,13 +45,12 @@ public class Mapa {
     inicializaMatriz();
     
     /* Criamos as batalhas que iremos utilizar */
-    NoMapa no;
-    Batalha b1 = new BatalhaNSlimes(dados, 1);
-    Batalha b2 = new BatalhaNSlimes(dados, 2);
-    Batalha b3 = new BatalhaNSlimes(dados, 3);
-    Batalha b4 = new BatalhaLesmasESlimes(dados, 1, 1);
-    Batalha b5 = new BatalhaLesmasESlimes(dados, 2, 1);
-    Batalha b6 = new BatalhaLesmasESlimes(dados, 1, 3);
+    Evento b1 = new BatalhaNSlimes(dados, 1);
+    Evento b2 = new BatalhaNSlimes(dados, 2);
+    Evento b3 = new BatalhaNSlimes(dados, 3);
+    Evento b4 = new BatalhaLesmasESlimes(dados, 1, 1);
+    Evento b5 = new BatalhaLesmasESlimes(dados, 2, 1);
+    Evento b6 = new BatalhaLesmasESlimes(dados, 1, 3);
     
     grafo.addVertex(b1);
     grafo.addVertex(b2);
@@ -102,7 +101,7 @@ public class Mapa {
     int indicePausa = 0;
     int qntArestasAnterior = 0;
     boolean anteriorFoiDois = false;
-    for(Batalha noAtual : grafo.vertexSet()) {
+    for(Evento noAtual : grafo.vertexSet()) {
       if(pausa){
         indicePausa++;
         if(indicePausa == 2){
@@ -193,8 +192,8 @@ public class Mapa {
    * Retorna o nó inicial do mapa.
    * @return a primeira batalha do mapa ou {@code null} se o mapa estiver vazio.
    */
-  protected Batalha getInicio() {
-    for (Batalha noAtual : grafo.vertexSet()) {
+  protected Evento getInicio() {
+    for (Evento noAtual : grafo.vertexSet()) {
       return noAtual;
     }
     return null;
