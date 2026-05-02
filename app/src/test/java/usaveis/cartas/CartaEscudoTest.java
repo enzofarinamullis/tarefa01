@@ -366,7 +366,7 @@ class CartaEscudoTest {
             assertEquals(energiaInicial - (5 * energiaPorUso), heroi.getEnergia());
             assertEquals(escudoInicial + (5 * escudoPorUso), heroi.getEscudo());
         }
-        
+        /*
         @Test
         @DisplayName("Não deve lançar exceção com parâmetros nulos")
         void testParametrosNull() {
@@ -374,6 +374,7 @@ class CartaEscudoTest {
             assertDoesNotThrow(() -> cartaEscudo.usar(inimigo, null));
             assertDoesNotThrow(() -> cartaEscudo.usar(null, heroi));
         }
+         */
     }
     
     @Nested

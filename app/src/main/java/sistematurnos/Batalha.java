@@ -9,17 +9,15 @@ import java.util.List;
 
 
 
-public class Batalha extends evento {
+public abstract class Batalha extends evento {
   private GameManager gameManager;
   protected Dados dados;
   protected String nome;
-  protected ListaInimigos listaDeInimigos;
+
   
-  
-  public Batalha(Dados dados, String nome, ListaInimigos inimigos) {
+  public Batalha(Dados dados, String nome) {
     super(dados, nome, Tipo.BATALHA);
     this.gameManager = new GameManager(dados);
-    this.listaDeInimigos = inimigos;
   }
 
   public boolean iniciar(){
@@ -39,7 +37,9 @@ public class Batalha extends evento {
       return true;
     }
   }
-  
+
+  protected abstract void adicionarInimigos();
+
   public String toString(){
     return " - " + nome;
   }

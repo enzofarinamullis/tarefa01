@@ -18,14 +18,12 @@ public abstract class evento {
     this.esta_concluido = false;
   }
 
-  public abstract void iniciar();
-  public abstract boolean ver_se_esta_concluido();
+  public abstract boolean iniciar();
+
   public String getNome() {
     return nome;
   }
-  public Tipo getTipo() {
-    return tipo;
-  }
+
 
 
 

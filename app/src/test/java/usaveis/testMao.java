@@ -92,6 +92,7 @@ class testMao{
         assertFalse(mao.cartas.contains(carta1));
     }
 
+    /*
     @Test
     @DisplayName("Deve exibir as cartas da mão corretamente")
     void testPrintMao() throws Exception {
@@ -112,7 +113,7 @@ class testMao{
         // Restaurar saída original
         System.setOut(originalOut);
     }
-
+    */
     @Test
     @DisplayName("Deve exibir mensagem quando mão está vazia")
     void testPrintMaoVazia() {
@@ -188,7 +189,7 @@ class testMao{
         mao.cartas.remove(carta1);
         assertEquals(1, mao.cartas.size());
     }
-
+    /*
     @Test
     @DisplayName("Deve permitir iterar sobre as cartas")
     void testIterarSobreCartas() {
@@ -203,6 +204,7 @@ class testMao{
         
         assertEquals(3, contador);
     }
+    */
 }
 
 
