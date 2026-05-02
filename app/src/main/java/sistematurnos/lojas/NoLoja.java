@@ -5,12 +5,10 @@ import usaveis.cartas.Carta;
 public class NoLoja {
   private Carta carta;
   private int custo;
-  private String descricao;
 
-  protected NoLoja(Carta carta, int custo, String descicao){
+  protected NoLoja(Carta carta, int custo){
     this.carta = carta;
     this.custo = custo;
-    this.descricao = "uma descrição qualquer";
   }
 
   public String getNome(){
@@ -18,10 +16,14 @@ public class NoLoja {
   }
 
   public String getDescricao(){
-    return descricao;
+    return carta.getDescricao();
   }
 
   public int getCusto(){
     return custo;
+  }
+
+  public Carta getCarta(){
+    return carta;
   }
 }

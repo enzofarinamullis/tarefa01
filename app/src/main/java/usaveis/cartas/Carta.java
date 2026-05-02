@@ -51,6 +51,10 @@ public abstract class Carta{
   public String getNome(){
     return nome;
   }
+
+  public String getDescricao(){
+    return descricao;
+  }
   
   public int getEscudo(){
     return escudo;

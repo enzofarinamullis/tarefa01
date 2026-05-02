@@ -166,6 +166,10 @@ public class Heroi extends Entidade {
   public int getQntDinheiro(){
     return qntDinheiro;
   }
+
+  public int setQntDinheiro(int qntDinheiro){
+    this.qntDinheiro = qntDinheiro;
+  }
   /**
    * Retorna a pilha de descarte do herói.
    * 
