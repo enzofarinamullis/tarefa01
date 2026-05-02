@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 public class Batalha extends evento {
   private GameManager gameManager;
   protected Dados dados;
