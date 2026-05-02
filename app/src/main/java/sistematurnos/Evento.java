@@ -24,7 +24,7 @@ public abstract class Evento {
     return nome;
   }
 
-
-
-
+  public String toString(){
+    return nome;
+  }
 }

@@ -9,6 +9,7 @@ import constantes.Cores;
 /* para ref: https://jgrapht.org/guide/UserOverview */
 import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
+import sistematurnos.lojas.LojaUm;
 
 /**
  * Classe responsável por representar o mapa do jogo.
@@ -45,13 +46,15 @@ public class Mapa {
     inicializaMatriz();
     
     /* Criamos as batalhas que iremos utilizar */
+    Evento b0 = new LojaUm(dados);
     Evento b1 = new BatalhaNSlimes(dados, 1);
     Evento b2 = new BatalhaNSlimes(dados, 2);
     Evento b3 = new BatalhaNSlimes(dados, 3);
     Evento b4 = new BatalhaLesmasESlimes(dados, 1, 1);
     Evento b5 = new BatalhaLesmasESlimes(dados, 2, 1);
     Evento b6 = new BatalhaLesmasESlimes(dados, 1, 3);
-    
+
+    grafo.addVertex(b0);
     grafo.addVertex(b1);
     grafo.addVertex(b2);
     grafo.addVertex(b3);

@@ -167,7 +167,7 @@ public class Heroi extends Entidade {
     return qntDinheiro;
   }
 
-  public int setQntDinheiro(int qntDinheiro){
+  public void setQntDinheiro(int qntDinheiro){
     this.qntDinheiro = qntDinheiro;
   }
   /**

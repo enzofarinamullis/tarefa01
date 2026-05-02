@@ -77,7 +77,7 @@ public class SistemaProgressao {
     Evento atual = mapa.getInicio();
     int qntEscolhas = 1;
     while (atual != null){
-      System.out.println("Batalha selecionada: " + atual);
+      System.out.println("Evento selecionado: " + atual);
       boolean resultado = atual.iniciar();
       
       estagio += qntEscolhas; // a escolha variará de 0 a 1, precisamos
@@ -104,7 +104,7 @@ public class SistemaProgressao {
       }
       
       atualizaMapa();
-      System.out.println("Escolha a próxima batalha:");
+      System.out.println("Escolha o próximo evento:");
       for(int i = 0; i < caminhos.size(); i++) {
         System.out.println(i + " - " + caminhos.get(i));
       }

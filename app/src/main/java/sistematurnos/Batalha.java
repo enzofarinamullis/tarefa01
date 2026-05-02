@@ -34,7 +34,5 @@ public abstract class Batalha extends Evento {
 
   protected abstract void adicionarInimigos();
 
-  public String toString(){
-    return " - " + nome;
-  }
+
 }

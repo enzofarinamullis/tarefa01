@@ -31,7 +31,8 @@ public abstract class Loja extends Evento {
       Carta cartaAtual;
       for(int i = 0; i < nosDisponiveis.size(); i++){
         noAtual = nosDisponiveis.get(i);
-        System.out.println(i + noAtual.getNome() + " - " + noAtual.getDescricao());
+        System.out.println(i + " - $ " + noAtual.getCusto() +
+            " - " + noAtual.getNome() + " - " + noAtual.getDescricao());
       }
     }
   }
@@ -77,12 +78,20 @@ public abstract class Loja extends Evento {
 
         /* diminuimos o dinheiro do heroi */
         dados.heroi.setQntDinheiro(dados.heroi.getQntDinheiro() - noEscolhido.getCusto());
+
+        /* Removemos o item da loja */
+        removerItemLoja(noEscolhido);
+        cartaComprada = null;
       }
       else {
         System.out.println("Você não tem saldo suficiente para comprar esta carta");
       }
     }
 
+  }
+
+  private void removerItemLoja(NoLoja noEscolhido){
+    nosDisponiveis.remove(noEscolhido);
   }
 
 }

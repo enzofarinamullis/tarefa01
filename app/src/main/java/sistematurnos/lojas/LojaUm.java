@@ -6,8 +6,8 @@ import usaveis.cartas.CartaDano;
 import usaveis.cartas.CartaEscudo;
 
 public class LojaUm extends Loja {
-  public LojaUm(Dados dados, String nome){
-    super(dados, nome);
+  public LojaUm(Dados dados){
+    super(dados, "Loja Inicial");
   }
 
   protected void adicionarNos(){
