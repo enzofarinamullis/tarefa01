@@ -15,7 +15,10 @@ public abstract class Loja extends Evento {
 
   public Loja(Dados dados, String nome){
     super(dados, nome, Tipo.LOJA);
+    adicionarNos();
   }
+
+  protected abstract void adicionarNos();
 
   private void adicionarCompra(Carta cartaComprada){
     PilhaCompra pilhaCompra = dados.heroi.getPilhaCompra();
@@ -70,7 +73,7 @@ public abstract class Loja extends Evento {
       if (verificaQuantidadeDinheiro(noEscolhido)) {
         cartaComprada = noEscolhido.getCarta();
         PilhaCompra pilhaCompra = dados.heroi.getPilhaCompra();
-        pilhaCompra.pilha.add(cartaComprada);
+        adicionarCompra(cartaComprada);
 
         /* diminuimos o dinheiro do heroi */
         dados.heroi.setQntDinheiro(dados.heroi.getQntDinheiro() - noEscolhido.getCusto());
