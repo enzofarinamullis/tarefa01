@@ -54,6 +54,7 @@ public class Heroi extends Entidade {
    */
   private PilhaDescarte pilhaDescarte;
 
+  private int qntDinheiro;
   /* Construtor */
   
   /**
@@ -80,6 +81,7 @@ public class Heroi extends Entidade {
     this.pilhaCompra = new PilhaCompra();
     pilhaCompra.embraralhaPilha();
     this.pilhaDescarte = new PilhaDescarte();
+    this.qntDinheiro = 10;
   }
 
   /**
@@ -160,7 +162,10 @@ public class Heroi extends Entidade {
   public PilhaCompra getPilhaCompra() {
     return pilhaCompra;
   }
-  
+
+  public int getQntDinheiro(){
+    return qntDinheiro;
+  }
   /**
    * Retorna a pilha de descarte do herói.
    * 
