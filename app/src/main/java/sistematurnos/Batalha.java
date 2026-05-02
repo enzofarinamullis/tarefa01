@@ -21,7 +21,7 @@ public class Batalha extends evento {
     this.listaDeInimigos = inimigos;
   }
 
-  public boolean iniciarBatalha(){
+  public boolean iniciar(){
     
     int resultado = gameManager.turno();
    

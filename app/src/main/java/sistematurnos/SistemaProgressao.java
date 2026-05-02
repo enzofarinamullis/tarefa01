@@ -69,7 +69,7 @@ public class SistemaProgressao {
    * </p>
    *
    * @see Mapa
-   * @see Batalha#iniciarBatalha()
+   * @see Batalha#iniciar()
    *
    */
   public void selecionaEstagio(){
@@ -78,7 +78,7 @@ public class SistemaProgressao {
     int qntEscolhas = 1;
     while (atual != null){
       System.out.println("Batalha selecionada: " + atual);
-      boolean resultado = atual.iniciarBatalha();
+      boolean resultado = atual.iniciar();
       
       estagio += qntEscolhas; // a escolha variará de 0 a 1, precisamos
       // incrementar o estagio com base nela
