@@ -4,18 +4,16 @@ import dados.Dados;
 
 
 public abstract class Batalha extends Evento {
-  private GameManager gameManager;
-  protected Dados dados;
   protected String nome;
 
   
   public Batalha(Dados dados, String nome) {
     super(dados, nome, Tipo.BATALHA);
-    this.gameManager = new GameManager(dados);
   }
 
   public boolean iniciar(){
-    
+
+    adicionarInimigos();
     int resultado = gameManager.turno();
    
     if(resultado == Turnos.GANHOU){

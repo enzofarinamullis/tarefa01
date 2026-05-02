@@ -61,7 +61,8 @@ public class Mapa {
     grafo.addVertex(b4);
     grafo.addVertex(b5);
     grafo.addVertex(b6);
-    
+
+    grafo.addEdge(b0, b1);
     grafo.addEdge(b1, b2);
     grafo.addEdge(b2, b3);
     grafo.addEdge(b2, b4);

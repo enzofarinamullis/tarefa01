@@ -38,7 +38,6 @@ import sistematurnos.SistemaProgressao;
  * @see dados.Heroi
  * @see sistematurnos.GameManager
  * @see cenas.Logo
- * @see cenas.DoisSlimesELesma
  */
 public class App {
   
