@@ -91,7 +91,7 @@ public class App {
     /* Testes de Mapa */
     Mapa mapa = new Mapa(dados);
     SistemaProgressao sistemaProgressao = new SistemaProgressao(mapa);
-    sistemaProgressao.selecionaEstagio();
+    sistemaProgressao.selecionaEstagio(dados.heroi);
     
     // Libera os recursos do scanner ao finalizar o programa
     teclado.close();

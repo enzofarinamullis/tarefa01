@@ -1,5 +1,6 @@
 package sistematurnos;
 
+import dados.Heroi;
 import org.jgrapht.graph.DefaultEdge;
 import sistematurnos.interfaces.RecompensaBasica;
 
@@ -72,10 +73,9 @@ public class SistemaProgressao {
    * @see Mapa
    *
    */
-  public void selecionaEstagio(){
+  public void selecionaEstagio(Heroi heroi){
     Scanner teclado = new Scanner(System.in);
     Evento atual = mapa.getInicio();
-    SistemaRecompensas sistemaRecompensas = new SistemaRecompensas(dados, new RecompensaBasica());
     int qntEscolhas = 1;
     while (atual != null){
       System.out.println("Evento selecionado: " + atual);
@@ -93,7 +93,7 @@ public class SistemaProgressao {
         /* apenas verificamos o tipo do evento para ver se este */
         /* deve ocorrer recompensa, no caso uma batalha */
         if(atual.tipo == Evento.Tipo.BATALHA){
-
+          heroi.daRecompensas();
         }
       }
       /* limpamos o caminho simplesmente redeclarando ele */
