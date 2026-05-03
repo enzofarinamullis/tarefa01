@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public abstract class Loja extends Evento {
+public class Loja extends Evento {
   protected int qntItens = 3;
   protected List<NoLoja> nosDisponiveis = new ArrayList<>();
   private LojaStrategy strategy;

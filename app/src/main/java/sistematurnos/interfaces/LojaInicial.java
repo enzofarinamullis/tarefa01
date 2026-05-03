@@ -8,7 +8,7 @@ import usaveis.cartas.CartaEscudo;
 
 import java.util.List;
 
-public class LojaInicialStrategy implements LojaStrategy{
+public class LojaInicial implements LojaStrategy{
   @Override
   public void adicionarNos(List<NoLoja> nosDisponiveis, Dados dados){
     NoLoja noAdicionar;
