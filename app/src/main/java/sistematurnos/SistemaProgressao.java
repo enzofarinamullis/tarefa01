@@ -69,7 +69,6 @@ public class SistemaProgressao {
    * </p>
    *
    * @see Mapa
-   * @see Batalha#iniciar()
    *
    */
   public void selecionaEstagio(){

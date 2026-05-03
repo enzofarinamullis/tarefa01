@@ -20,10 +20,6 @@ public abstract class Evento {
     this.esta_concluido = false;
   }
 
-  public interface Strategy{
-    boolean excecutarEvento();
-  }
-
   public abstract boolean executarEvento();
 
   public String getNome() {

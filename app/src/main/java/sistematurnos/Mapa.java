@@ -9,6 +9,7 @@ import constantes.Cores;
 /* para ref: https://jgrapht.org/guide/UserOverview */
 import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
+import sistematurnos.fogueira.FogueiraBasica;
 import sistematurnos.lojas.LojaUm;
 
 /**
@@ -47,6 +48,7 @@ public class Mapa {
     
     /* Criamos as batalhas que iremos utilizar */
     Evento b0 = new LojaUm(dados);
+    Evento b00 = new FogueiraBasica()
     Evento b1 = new BatalhaNSlimes(dados, 1);
     Evento b2 = new BatalhaNSlimes(dados, 2);
     Evento b3 = new BatalhaNSlimes(dados, 3);
