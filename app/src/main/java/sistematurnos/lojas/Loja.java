@@ -1,9 +1,14 @@
 package sistematurnos.lojas;
 
+import anim.Animacao;
+import anim.Shopping;
+import anim.dialogos.falas.Dialogo;
+import constantes.Cores;
 import dados.Dados;
 import sistematurnos.Evento;
 import usaveis.cartas.Carta;
 import usaveis.pilhas.PilhaCompra;
+import utilitarios.PrintTerminal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +36,10 @@ public abstract class Loja extends Evento {
       Carta cartaAtual;
       for(int i = 0; i < nosDisponiveis.size(); i++){
         noAtual = nosDisponiveis.get(i);
-        System.out.println(i + " - $ " + noAtual.getCusto() +
-            " - " + noAtual.getNome() + " - " + noAtual.getDescricao());
+        System.out.println(i + ": -" + Cores.ANSI_GREEN + " $ " +
+            noAtual.getCusto() + Cores.ANSI_CYAN +
+            " - " + noAtual.getNome() + Cores.ANSI_RESET +
+            " - " + noAtual.getDescricao());
       }
     }
   }
@@ -50,9 +57,25 @@ public abstract class Loja extends Evento {
 
   public boolean iniciar(){
     Scanner teclado = new Scanner(System.in);
+    Animacao imagemShopping = new Shopping();
+
+    try{
+      Thread.sleep(1000);
+    }
+    catch (Exception e){}
+    PrintTerminal.limparTerminal();
+    imagemShopping.run();
+
     Carta cartaComprada = null;
     NoLoja noEscolhido = null;
+    try{
+      Thread.sleep(1000);
+    }
+    catch (Exception e){}
+
     while (true) {
+      System.out.println("Saldo disponível: " + Cores.ANSI_GREEN + "$ " +
+          dados.heroi.getQntDinheiro() + Cores.ANSI_RESET);
       imprimirCartasParaComprar();
       System.out.println();
       System.out.println("Sair: -1");
@@ -61,7 +84,6 @@ public abstract class Loja extends Evento {
       while (!validaEscolha(escolha)) {
         escolha = teclado.nextInt();
       }
-
       /* Verificamos se o jogador não deseja sair */
       if (escolha == -1) {
         return true;
