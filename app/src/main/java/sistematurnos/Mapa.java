@@ -10,6 +10,7 @@ import org.jgrapht.graph.DefaultEdge;
 import sistematurnos.fogueira.Fogueira;
 import sistematurnos.interfaces.FogueiraBasica;
 import sistematurnos.interfaces.LojaInicial;
+import sistematurnos.interfaces.LojaSegunda;
 import sistematurnos.lojas.Loja;
 
 /**
@@ -47,30 +48,37 @@ public class Mapa {
     inicializaMatriz();
     
     /* Criamos as batalhas que iremos utilizar */
-    Evento b0 = new Loja(dados, "Loja Inicial", new LojaInicial());
-    Evento b00 = new Fogueira(dados, "Fogueira Basica", new FogueiraBasica());
+    Evento l0 = new Loja(dados, "Loja Onett", new LojaInicial());
+    Evento l1 = new Loja(dados, "Loja Twoson", new LojaSegunda());
+    Evento f0 = new Fogueira(dados, "Fogueira Basica", new FogueiraBasica());
     Evento b1 = new BatalhaNSlimes(dados, 1);
     Evento b2 = new BatalhaNSlimes(dados, 2);
     Evento b3 = new BatalhaNSlimes(dados, 3);
     Evento b4 = new BatalhaLesmasESlimes(dados, 1, 1);
     Evento b5 = new BatalhaLesmasESlimes(dados, 2, 1);
     Evento b6 = new BatalhaLesmasESlimes(dados, 1, 3);
-    grafo.addVertex(b00);
-    grafo.addVertex(b0);
+
+
+
+
     grafo.addVertex(b1);
+    grafo.addVertex(l0);
     grafo.addVertex(b2);
+    grafo.addVertex(f0);
     grafo.addVertex(b3);
     grafo.addVertex(b4);
+    grafo.addVertex(l1);
     grafo.addVertex(b5);
     grafo.addVertex(b6);
 
-    grafo.addEdge(b00, b0);
-    grafo.addEdge(b0, b1);
-    grafo.addEdge(b1, b2);
-    grafo.addEdge(b2, b3);
-    grafo.addEdge(b2, b4);
-    grafo.addEdge(b3, b5);
-    grafo.addEdge(b4,b5);
+    grafo.addEdge(b1, l0);
+    grafo.addEdge(l0, b2);
+    grafo.addEdge(b2, f0);
+    grafo.addEdge(f0, b3);
+    grafo.addEdge(f0, b4);
+    grafo.addEdge(b3, l1);
+    grafo.addEdge(b4,l1);
+    grafo.addEdge(l1, b5);
     grafo.addEdge(b5, b6);
     
     geraMapa();
