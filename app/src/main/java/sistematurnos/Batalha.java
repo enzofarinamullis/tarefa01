@@ -11,7 +11,7 @@ public abstract class Batalha extends Evento {
     super(dados, nome, Tipo.BATALHA);
   }
 
-  public boolean iniciar(){
+  public boolean executarEvento(){
 
     adicionarInimigos();
     int resultado = gameManager.turno();

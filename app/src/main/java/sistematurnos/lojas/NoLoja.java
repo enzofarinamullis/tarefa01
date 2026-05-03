@@ -6,7 +6,7 @@ public class NoLoja {
   private Carta carta;
   private int custo;
 
-  protected NoLoja(Carta carta, int custo){
+  public NoLoja(Carta carta, int custo){
     this.carta = carta;
     this.custo = custo;
   }

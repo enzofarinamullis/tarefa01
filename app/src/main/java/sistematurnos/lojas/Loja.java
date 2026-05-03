@@ -6,6 +6,7 @@ import anim.dialogos.falas.Dialogo;
 import constantes.Cores;
 import dados.Dados;
 import sistematurnos.Evento;
+import sistematurnos.interfaces.LojaStrategy;
 import usaveis.cartas.Carta;
 import usaveis.pilhas.PilhaCompra;
 import utilitarios.PrintTerminal;
@@ -17,13 +18,13 @@ import java.util.Scanner;
 public abstract class Loja extends Evento {
   protected int qntItens = 3;
   protected List<NoLoja> nosDisponiveis = new ArrayList<>();
+  private LojaStrategy strategy;
 
-  public Loja(Dados dados, String nome){
+  public Loja(Dados dados, String nome, LojaStrategy strategy){
     super(dados, nome, Tipo.LOJA);
-    adicionarNos();
+    this.strategy = strategy;
+    strategy.adicionarNos(nosDisponiveis, dados);
   }
-
-  protected abstract void adicionarNos();
 
   private void adicionarCompra(Carta cartaComprada){
     PilhaCompra pilhaCompra = dados.heroi.getPilhaCompra();
@@ -62,7 +63,7 @@ public abstract class Loja extends Evento {
    * compra a carta ou sai da loja.
    * ref: https://refactoring.guru/design-patterns/strategy
    */
-  public boolean iniciar(){
+  public boolean executarEvento(){
     Scanner teclado = new Scanner(System.in);
     Animacao imagemShopping = new Shopping();
 

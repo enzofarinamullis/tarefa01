@@ -48,8 +48,8 @@ public class SistemaProgressao {
     mapa.atualizaMapa(estagio);
     mapa.imprimeMatriz();
   }
-  
-  
+
+
   /**
    * Inicia o processo de seleção de estágio e progressão.
    *
@@ -78,7 +78,7 @@ public class SistemaProgressao {
     int qntEscolhas = 1;
     while (atual != null){
       System.out.println("Evento selecionado: " + atual);
-      boolean resultado = atual.iniciar();
+      boolean resultado = atual.executarEvento();
       
       estagio += qntEscolhas; // a escolha variará de 0 a 1, precisamos
       // incrementar o estagio com base nela

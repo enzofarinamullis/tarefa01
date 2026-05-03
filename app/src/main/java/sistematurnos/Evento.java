@@ -1,6 +1,8 @@
 package sistematurnos;
 import dados.Dados;
 
+import java.util.List;
+
 public abstract class Evento {
   protected GameManager gameManager;
   protected Dados dados;
@@ -18,7 +20,11 @@ public abstract class Evento {
     this.esta_concluido = false;
   }
 
-  public abstract boolean iniciar();
+  public interface Strategy{
+    boolean excecutarEvento();
+  }
+
+  public abstract boolean executarEvento();
 
   public String getNome() {
     return nome;
