@@ -55,6 +55,13 @@ public abstract class Loja extends Evento {
     return dados.heroi.getQntDinheiro() >= noEscolhido.getCusto();
   }
 
+  /*
+   * Padrão de design utilizado Strategy Pattern
+   * Baseado na escolha do jogador, decidimos se deve haver uma compra
+   * e dependendo da escolha que o jogador fizes, decidimos se este
+   * compra a carta ou sai da loja.
+   * ref: https://refactoring.guru/design-patterns/strategy
+   */
   public boolean iniciar(){
     Scanner teclado = new Scanner(System.in);
     Animacao imagemShopping = new Shopping();
