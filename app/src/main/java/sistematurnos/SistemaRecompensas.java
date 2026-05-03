@@ -1,19 +1,20 @@
 package sistematurnos;
 
 import dados.Dados;
+import dados.Heroi;
 import sistematurnos.interfaces.RecompensaTemplate;
 
 public class SistemaRecompensas {
   RecompensaTemplate recompensa;
-  Dados dados;
+  Heroi heroi;
 
-  public SistemaRecompensas(Dados dados, RecompensaTemplate recompensa){
-    this.dados = dados;
+  public SistemaRecompensas(Heroi heroi, RecompensaTemplate recompensa){
+    this.heroi = heroi;
     this.recompensa = recompensa;
   }
 
-  protected void gerarRecompensa(){
-    dados.heroi.setQntDinheiro(dados.heroi.getQntDinheiro() + recompensa.getDinheiro());
+  public void gerarRecompensa(){
+    heroi.setQntDinheiro(heroi.getQntDinheiro() + recompensa.getDinheiro());
     System.out.println("Como recompensa da sua vitório, você ganhou: " +
         recompensa.getDinheiro());
   }

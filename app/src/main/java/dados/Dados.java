@@ -1,4 +1,6 @@
 package dados;
+import sistematurnos.SistemaRecompensas;
+import sistematurnos.interfaces.RecompensaBasica;
 import sistematurnos.observer.Publisher;
 
 /**
@@ -36,7 +38,6 @@ public class Dados {
   /* colocamos o publisher em dados, pois queremos armazenar os efeitos para alem do combate */
   private Publisher publisher;
   public int frame;
-  private int qntEstagios;
 
   public Dados(Heroi heroi){
     this.heroi = heroi;
@@ -48,4 +49,6 @@ public class Dados {
   public Publisher getPublisher(){
     return publisher;
   }
+
+
 }

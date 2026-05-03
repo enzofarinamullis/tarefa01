@@ -1,6 +1,10 @@
 package dados;
 
 import constantes.Cores;
+import sistematurnos.SistemaRecompensas;
+import sistematurnos.interfaces.RecompensaBasica;
+import sistematurnos.interfaces.RecompensaGrande;
+import sistematurnos.interfaces.RecompensaMedia;
 import usaveis.Mao;
 import usaveis.cartas.Carta;
 import usaveis.pilhas.PilhaCompra;
@@ -55,6 +59,8 @@ public class Heroi extends Entidade {
   private PilhaDescarte pilhaDescarte;
 
   private int qntDinheiro;
+  public SistemaRecompensas sistemaRecompensas;
+  int qntRecompensas;
   /* Construtor */
   
   /**
@@ -82,6 +88,8 @@ public class Heroi extends Entidade {
     pilhaCompra.embraralhaPilha();
     this.pilhaDescarte = new PilhaDescarte();
     this.qntDinheiro = 10;
+    this.sistemaRecompensas = new SistemaRecompensas(this, new RecompensaBasica());
+    qntRecompensas = 0;
   }
 
   /**
@@ -177,5 +185,23 @@ public class Heroi extends Entidade {
    */
   public PilhaDescarte getPilhaDescarte() {
     return pilhaDescarte;
+  }
+
+  public void daRecompensas(){
+    if(qntRecompensas == 0){
+      sistemaRecompensas = new SistemaRecompensas(this, new RecompensaBasica());
+      sistemaRecompensas.gerarRecompensa();
+      qntRecompensas++;
+    }
+    else if(qntRecompensas == 1){
+      sistemaRecompensas = new SistemaRecompensas(this, new RecompensaMedia());
+      sistemaRecompensas.gerarRecompensa();
+      qntRecompensas++;
+    }
+    else if(qntRecompensas >= 2){
+      sistemaRecompensas = new SistemaRecompensas(this, new RecompensaGrande());
+      sistemaRecompensas.gerarRecompensa();
+      qntRecompensas++;
+    }
   }
 }
