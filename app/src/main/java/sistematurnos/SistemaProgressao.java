@@ -1,6 +1,7 @@
 package sistematurnos;
 
 import org.jgrapht.graph.DefaultEdge;
+import sistematurnos.interfaces.RecompensaBasica;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +75,7 @@ public class SistemaProgressao {
   public void selecionaEstagio(){
     Scanner teclado = new Scanner(System.in);
     Evento atual = mapa.getInicio();
+    SistemaRecompensas sistemaRecompensas = new SistemaRecompensas(dados, new RecompensaBasica());
     int qntEscolhas = 1;
     while (atual != null){
       System.out.println("Evento selecionado: " + atual);
@@ -86,7 +88,14 @@ public class SistemaProgressao {
         System.out.println("Você morreu!");
         break;
       }
-      
+      else{
+        /* como houve uma boa saida para o evento */
+        /* apenas verificamos o tipo do evento para ver se este */
+        /* deve ocorrer recompensa, no caso uma batalha */
+        if(atual.tipo == Evento.Tipo.BATALHA){
+
+        }
+      }
       /* limpamos o caminho simplesmente redeclarando ele */
       List<Evento> caminhos = new ArrayList<>();
       
