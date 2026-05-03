@@ -15,5 +15,11 @@ public class PrintTerminal {
       System.out.println();
     }
   }
-  
+
+  public static void pausa(int ms){
+    try{
+      Thread.sleep(ms);
+    }
+    catch (Exception e){}
+  }
 }
