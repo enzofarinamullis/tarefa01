@@ -13,19 +13,22 @@ public class LojaInicial implements LojaStrategy{
   public void adicionarNos(List<NoLoja> nosDisponiveis, Dados dados){
     NoLoja noAdicionar;
     int custo = 0;
-    Carta carta = new CartaDano("Obelisco mortal", 10, 10,
-        "Um obelisco muito mortal");
+    Carta carta = new CartaDano("Toalha", 10, 10,
+        "Uma arma letal. (curiosidade: o dia da toalha é o dia 25 de maio)");
     custo = 10;
     noAdicionar = new NoLoja(carta, custo);
     nosDisponiveis.add(noAdicionar);
 
-    carta = new CartaEscudo("Escudo", 10, 10, "Um escudo");
-    custo = 3;
+    carta = new CartaDano("Frigideira Anti-Aderente", 3, 6,
+        "Uma frigideira anti-aderente muito pesada e com o teflon saindo");
+    custo = 5;
     noAdicionar = new NoLoja(carta, custo);
     nosDisponiveis.add(noAdicionar);
 
-    carta = new CartaEscudo("asd", 10, 10, "asd");
-    custo = 1;
+    carta = new CartaEscudo("Torradeira elétrica", 10, 10,
+        "No nosso universo a eletricidade ainda não foi descoberta, então você" +
+            " só pode usá-la para defesa pessoal");
+    custo = 5;
     noAdicionar = new NoLoja(carta, custo);
     nosDisponiveis.add(noAdicionar);
   }
