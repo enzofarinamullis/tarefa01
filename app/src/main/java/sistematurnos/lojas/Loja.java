@@ -11,6 +11,7 @@ import usaveis.cartas.Carta;
 import usaveis.pilhas.PilhaCompra;
 import utilitarios.PrintTerminal;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -37,10 +38,17 @@ public class Loja extends Evento {
       Carta cartaAtual;
       for(int i = 0; i < nosDisponiveis.size(); i++){
         noAtual = nosDisponiveis.get(i);
-        System.out.println(i + ": -" + Cores.ANSI_GREEN + " $ " +
+        System.out.print(i);
+        if(noAtual.getCarta().isDano()){
+          System.out.print(" Dano");
+        }
+        else if(noAtual.getCarta().isEscudo()){
+          System.out.print(" Escudo");
+        }
+        System.out.print(": -" + Cores.ANSI_GREEN + " $ " +
             noAtual.getCusto() + Cores.ANSI_CYAN +
             " - " + noAtual.getNome() + Cores.ANSI_RESET +
-            " - " + noAtual.getDescricao());
+            " - " + noAtual.getDescricao() + "\n");
       }
     }
   }
