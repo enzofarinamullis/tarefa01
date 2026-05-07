@@ -14,10 +14,11 @@
 O jogo é um RPG de turnos onde você controla um herói que enfrenta inimigos em batalhas, compra cartas em lojas e descansa em fogueiras. O progresso se dá através de um mapa em formato de grafo, onde cada vértice representa um evento diferente. O objetivo é avançar pelo mapa, derrotando inimigos e fortalecendo os heróis com cartas, até completar todos os desafios.
 
 ### 1-Mecanica das cartas:
-#### UML das cartas:
+#### Diagrama UML das cartas:
+'''makefile
 view:
-  @echo " Diagrama uml das cartas"
-  $(VIEWER) $(UML_DIR)/cartas.png
+  @echo "📊 Diagrama UML das cartas"
+	$(VIEWER) $(UML_DIR)/cartas.png
   
 #### Cartas dano
 As cartas dano possuem um determinado nível (váriando de 1 a 5 ) e um custo energia. Elas podem ser acionadas somente se o herói possui energia maior ou igual ao custo da carta.
