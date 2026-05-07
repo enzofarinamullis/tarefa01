@@ -18,7 +18,7 @@ import usaveis.cartas.CartaDano;
 import usaveis.cartas.CartaEscudo;
 
 @DisplayName("Testes da classe Mao")
-class testMao{
+class TestMao{
 
     private Mao mao;
     private Carta carta1;
@@ -92,28 +92,7 @@ class testMao{
         assertFalse(mao.cartas.contains(carta1));
     }
 
-    /*
-    @Test
-    @DisplayName("Deve exibir as cartas da mão corretamente")
-    void testPrintMao() throws Exception {
-        // Configurar captura da saída do sistema
-        System.setOut(new PrintStream(outContent));
-        
-        mao.cartas.add(carta1);
-        mao.cartas.add(carta2);
-        
-        mao.printMao();
-        
-        String output = outContent.toString();
-        assertTrue(output.contains("Espada Curta"));
-        assertTrue(output.contains("Escudo de Madeira"));
-        assertTrue(output.contains("Dano: 10"));
-        assertTrue(output.contains("Custo: 2"));
-        
-        // Restaurar saída original
-        System.setOut(originalOut);
-    }
-    */
+
     @Test
     @DisplayName("Deve exibir mensagem quando mão está vazia")
     void testPrintMaoVazia() {
@@ -189,22 +168,6 @@ class testMao{
         mao.cartas.remove(carta1);
         assertEquals(1, mao.cartas.size());
     }
-    /*
-    @Test
-    @DisplayName("Deve permitir iterar sobre as cartas")
-    void testIterarSobreCartas() {
-        mao.cartas.add(carta1);
-        mao.cartas.add(carta2);
-        
-        int contador = 0;
-        for (Carta carta : mao.cartas) {
-            assertNotNull(carta);
-            contador++;
-        }
-        
-        assertEquals(3, contador);
-    }
-    */
 }
 
 

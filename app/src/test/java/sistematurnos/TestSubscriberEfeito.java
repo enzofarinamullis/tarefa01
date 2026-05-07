@@ -23,7 +23,7 @@ import dados.Entidade;
 import sistematurnos.observer.SubscriberEfeito;
 import usaveis.cartas.Efeito;
 
-public class SubscriberEfeitoTest {
+public class TestSubscriberEfeito {
     
     private Entidade alvoMock;
     private Efeito efeitoMock;

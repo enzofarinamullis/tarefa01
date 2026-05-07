@@ -19,7 +19,6 @@ public class TestBatalhas {
     heroi = new Heroi();
     dados = new Dados(heroi);
   }
-  /*
   @Test
   @DisplayName("Deve adicionar a quantidade correta de inimigos")
   void deveAdicionarQuantidadeCorretaInimigos(){
@@ -38,5 +37,4 @@ public class TestBatalhas {
     
     assertEquals(qntLesmas + qntSlimes, totalInimigos);
   }
-  */
 }

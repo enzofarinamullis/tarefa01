@@ -1,3 +1,3 @@
 run:
-	./gradlew build -x test
-	./gradlew run -x test
+	./gradlew build
+	./gradlew run
