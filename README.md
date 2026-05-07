@@ -231,6 +231,28 @@ git clone https://github.com/enzofarinamullis/tarefa01.git
 ./gradlew build
 
 java -jar app/build/libs/app.jar
+### Eventos:
+O jogo funciona com sistema de mapa em forma de um grafo direcionado, onde cada vértice corresponde a um evento.
+
+Há 3 tipos de evento: Batalha, fogueira e loja. 
+
+#### Batalhas:
+A batalha é um sistema de combate por turnos onde o jogador e os inimigos se alternam realizando ações até que um dos lados seja derrotado. O jogador age primeiro, escolhendo entre usar uma carta ou tentar fugir. Após a ação do jogador, chega a vez dos inimigos: cada um deles que ainda estiver vivo ataca o jogador. Esse ciclo se repete até que algo aconteça: o jogador pode derrotar todos os inimigos e vencer, pode ter seu personagem morrido e perder, ou pode conseguir fugir da batalha.
+#### Loja:
+A classe Loja representa um estabelecimento comercial dentro do jogo, onde o jogador pode gastar seu dinheiro para comprar cartas que auxiliarão em sua jornada.
+##### Mecânica de compra:
+1. Verifica saldo
+2. Cria cópia da carta comprada
+3. Adiciona à pilha de compras do herói
+4. Diminui o dinheiro do herói
+5. Remove o item da lista da loja
+6. Retorna ao menu de compras
+#### Design Pattern: Strategy
+A loja utiliza um padrão de projeto Strategy para definir quais cartas estaram disponíveis. As estratégias são LojaInicial e LojaSecunda. As lojas iniciais possuem itens mais básicos e baratos enquanto a loja secunda possuem itens mais caros e mais poderosos.
+### Fogueira:
+A fogueira epresenta um ponto de descanso dentro do jogo, onde o jogador pode recuperar pontos de vida antes de continuar sua jornada. É um evento seguro que nunca causa game over.
+#### Design Pattern: Template Method Pattern
+A fogueira usa o padrão de projeto Template Method para definir diferentes comportamentos de recuperação. Assim evitando repetição de código e muda o comportamento sem mudar a classe.
 
 ### Compilar e executar com makefile:
 make
