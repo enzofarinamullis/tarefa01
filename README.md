@@ -13,13 +13,34 @@
 ### Visão geral:
 O jogo é um RPG de turnos onde você controla um herói que enfrenta inimigos em batalhas, compra cartas em lojas e descansa em fogueiras. O progresso se dá através de um mapa em formato de grafo, onde cada vértice representa um evento diferente. O objetivo é avançar pelo mapa, derrotando inimigos e fortalecendo os heróis com cartas, até completar todos os desafios.
 
-### 1-Mecanica das cartas:
+### 1-Entidades:
+#### Diagrama UML das entidades:
+📁 O diagrama UML das entidades está disponível em: https://drive.google.com/file/d/1hplqrjE_NpR0gHMIkE3rnphIrEFVonWV/view?usp=sharing
+#### Herói
+A classe Heroi representa o personagem controlado pelo jogador no jogo. É uma classe que gerencia tudo sobre o herói: sua vida, energia, dinheiro, cartas e recompensas. Ela estende a classe Entidade, ou seja, herda características básicas como vida, escudo e energia.
+
+O herói possui vida, que representa quantos pontos de vida ele tem restantes. Ele começa com 5 pontos de vida. Se a vida chegar a zero, o herói morre e o jogo acaba. O herói também possui escudo, que é uma proteção que absorve parte do dano sofrido. Ele começa com zero de escudo. A energia é o recurso usado para jogar cartas durante as batalhas. O herói começa com 20 de energia e tem um limite máximo de 20. Ele também tem um limite de energia, que é o máximo que sua energia pode atingir.
+
+O herói possui uma mão, que é onde ficam as cartas que ele pode jogar no momento atual da batalha. A mão começa vazia. Ele também tem uma pilha de compra, que é o baralho do herói, de onde ele compra novas cartas durante o jogo. Este baralho é criado e automaticamente embaralhado quando o herói é criado. A pilha de descarte é onde vão as cartas que já foram usadas ou descartadas.
+
+O herói também possui uma quantidade de dinheiro, que começa com 10 unidades, e pode ser usado para comprar cartas nas lojas. O sistema de recompensas é responsável por dar prêmios ao herói após vencer batalhas. Por fim, ele tem um contador de quantas recompensas já foram dadas, que começa em zero.
+
+O método de recompensas é chamado quando o herói vence uma batalha e deve receber uma recompensa. O tipo de recompensa muda conforme quantas recompensas já foram dadas anteriormente.
+
+Se o herói ainda não recebeu nenhuma recompensa, ou seja, o contador está em zero, ele recebe uma recompensa básica. Depois de receber, o contador aumenta para um.
+
+Se o herói já recebeu uma recompensa, ou seja, o contador está em um, ele recebe uma recompensa média. Depois de receber, o contador aumenta para dois.
+
+Se o herói já recebeu duas ou mais recompensas, ou seja, o contador é maior ou igual a dois, ele recebe uma recompensa grande. O contador continua aumentando a cada vez que o método é chamado.
+
+Depois de definir qual tipo de recompensa será dada, o método chama gerarRecompensa do sistema de recompensas para efetivamente dar a recompensa ao herói.
+#### Inimigos:
+A classe Inimigo representa os adversários que o herói enfrenta durante as batalhas do jogo. Assim como o herói, o inimigo também estende a classe Entidade, ou seja, ele possui vida, escudo, energia e dano. O inimigo tem comportamentos específicos como anunciar sua presença e aplicar efeitos no herói.
+
+
+### 2-Mecanica das cartas:
 #### Diagrama UML das cartas:
-'''makefile
-view:
-  @echo "📊 Diagrama UML das cartas"
-	$(VIEWER) $(UML_DIR)/cartas.png
-  
+📁 O diagrama UML das cartas está disponível em: https://drive.google.com/file/d/1VQ-yuuNAlYXiD1cJ8nLoSqjtWQNzAfd0/view?usp=sharing
 #### Cartas dano
 As cartas dano possuem um determinado nível (váriando de 1 a 5 ) e um custo energia. Elas podem ser acionadas somente se o herói possui energia maior ou igual ao custo da carta.
 
@@ -67,7 +88,9 @@ D = DANO DO INIMIGO - ESCUDO
 | > 0 | D |
 | <= 0 | 0 |
 
-### 3-Efeitos Especiais
+### Efeitos Especiais
+#### Diagrama UML dos efeitos:
+📁 O diagrama UML dos efeitos: https://drive.google.com/file/d/1RN73PInMLR4mRCJlKV9xVB3ipik_vbGS/view?usp=sharing
 
 Algumas cartas possuem **efeitos de status** que persistem por múltiplos turnos.
 
@@ -98,7 +121,7 @@ Similar ao sangramento, o envenenamento causa dano contínuo ao longo do tempo.
 
 **Diferença mecânica:** Enquanto sangramento é dano físico, envenenamento é dano mágico/natureza — alguns inimigos podem ser imunes a um ou outro.
 
-### 2- Mecânica de combate
+### 3- Mecânica de combate
 #### Turno do herói
 O combate funciona com um sistema de turnos no qual o herói tem a ação inicial. Durante os turnos as ações são tomadas de acordo com o número que o usuário digitar no terminal conforme a seguinte tabela:
 
