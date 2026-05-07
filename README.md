@@ -1,6 +1,18 @@
 # Instruções e Regras do jogo
+## Sumário
+1. [Instruções do Jogo](#instruções-do-jogo)
+2. [Mecânica das Cartas](#mecânica-das-cartas)
+3. [Mecânica de Combate](#mecânica-de-combate)
+4. [Catálogo de Cartas](#catálogo-de-cartas)
+5. [Eventos do Jogo](#eventos-do-jogo)
+6. [Como Compilar e Executar](#como-compilar-e-executar)
+
+---
 
 ## Instruções do jogo
+### Visão geral:
+O jogo é um RPG de turnos onde você controla um herói que enfrenta inimigos em batalhas, compra cartas em lojas e descansa em fogueiras. O progresso se dá através de um mapa em formato de grafo, onde cada vértice representa um evento diferente. O objetivo é avançar pelo mapa, derrotando inimigos e fortalecendo os heróis com cartas, até completar todos os desafios.
+
 ### 1-Mecanica das cartas:
 #### Cartas dano
 As cartas dano possuem um determinado nível (váriando de 1 a 5 ) e um custo energia. Elas podem ser acionadas somente se o herói possui energia maior ou igual ao custo da carta.
