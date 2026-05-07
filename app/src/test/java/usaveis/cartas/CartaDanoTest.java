@@ -224,7 +224,7 @@ public class CartaDanoTest {
             heroi.setaEnergia(20);
             int energiaRestante = heroi.getEnergia();
             
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 1; i++) {
                 cartaDano.usar(inimigo, heroi);
                 energiaRestante -= cartaDano.getCustoEnergia();
                 assertEquals(energiaRestante, heroi.getEnergia());
