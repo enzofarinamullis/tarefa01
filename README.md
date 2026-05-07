@@ -14,6 +14,11 @@
 O jogo é um RPG de turnos onde você controla um herói que enfrenta inimigos em batalhas, compra cartas em lojas e descansa em fogueiras. O progresso se dá através de um mapa em formato de grafo, onde cada vértice representa um evento diferente. O objetivo é avançar pelo mapa, derrotando inimigos e fortalecendo os heróis com cartas, até completar todos os desafios.
 
 ### 1-Mecanica das cartas:
+#### UML das cartas:
+view:
+  @echo " Diagrama uml das cartas"
+  $(VIEWER) $(UML_DIR)/cartas.png
+  
 #### Cartas dano
 As cartas dano possuem um determinado nível (váriando de 1 a 5 ) e um custo energia. Elas podem ser acionadas somente se o herói possui energia maior ou igual ao custo da carta.
 
@@ -235,14 +240,6 @@ O combate termina se o herói fugir, ou se o herói ou todos os inimigos morrere
 *Dano total considerando dano base + dano total do efeito
 
 ---
-
-## Instruções para compilar e executar o programa
-### Para baixar o projeto:
-git clone https://github.com/enzofarinamullis/tarefa01.git
-### Compilar e executar:
-./gradlew build
-
-java -jar app/build/libs/app.jar
 ### Eventos:
 O jogo funciona com sistema de mapa em forma de um grafo direcionado, onde cada vértice corresponde a um evento.
 
@@ -266,6 +263,13 @@ A fogueira epresenta um ponto de descanso dentro do jogo, onde o jogador pode re
 #### Design Pattern: Template Method Pattern
 A fogueira usa o padrão de projeto Template Method para definir diferentes comportamentos de recuperação. Assim evitando repetição de código e muda o comportamento sem mudar a classe.
 
+## Instruções para compilar e executar o programa
+### Para baixar o projeto:
+git clone https://github.com/enzofarinamullis/tarefa01.git
+### Compilar e executar:
+./gradlew build
+
+java -jar app/build/libs/app.jar
 ### Compilar e executar com makefile:
 make
 
